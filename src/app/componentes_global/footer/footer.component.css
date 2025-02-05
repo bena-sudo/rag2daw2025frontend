@@ -1,0 +1,54 @@
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Mantiene el contenido centrado */
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    border-top: 1px solid black;
+    color: var(--color_texto_hf);
+    background-color: var(--fondo_hf);
+    height: auto;
+    position: relative; /* Asegura que la imagen se pueda posicionar de forma absoluta */
+}
+footer #txtSimarro{
+    border-bottom: 2px solid black;
+}
+footer p:hover{
+    color: var(--color_texto_hf_hover);
+}
+.logo-container {
+    position: absolute; /* Posiciona la imagen fuera del flujo normal del documento */
+    top: 10px; /* Coloca la imagen cerca de la parte superior */
+    left: 20px; /* Coloca la imagen a la izquierda */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea la imagen y texto a la izquierda */
+    text-align: left;
+}
+
+.logo-container img {
+    width: 400px;
+    margin-bottom: 10px;
+}
+
+.links {
+    display: flex;
+    justify-content: center; /* Mantiene los enlaces centrados */
+    margin: 10px 0;
+}
+
+.links a {
+    text-decoration: none;
+    color: var(--color_texto_hf);
+    margin: 0 5px;
+}
+
+.links a:hover {
+    color: var(--color_texto_hf_hover);
+}
+
+.links a:not(:last-child)::after {
+    content: " | ";
+    color: black;
+}
