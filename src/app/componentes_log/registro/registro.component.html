@@ -1,0 +1,61 @@
+<form [formGroup]="formRegistro" (ngSubmit)="newUser()">
+    <!-- nickname -->
+    <div>
+        <label for="nickname">nickname:</label>
+        <input 
+        type="text"
+        formControlName="nickname"
+        />
+    </div>
+
+    <!-- nombre -->
+    <div>
+        <label for="nombre">nombre:</label>
+        <input 
+        type="text"
+        formControlName="nombre"
+        />
+    </div>
+
+    <!-- email -->
+    <div>
+        <label for="email">email:</label>
+        <input 
+        type="email"
+        formControlName="email"
+        />
+    </div>
+
+    <!-- password -->
+    <div>
+        <label for="password">password:</label>
+        <input 
+        type="password"
+        formControlName="password"
+        />
+    </div>
+
+    <!-- telefono -->
+    <div>
+        <label for="telefono">telefono:</label>
+        <input 
+        type="tel"
+        formControlName="telefono"
+        />
+    </div>
+
+    <!-- fecha_nacimiento -->
+    <div>
+        <label for="fecha_nacimiento">fecha de nacimiento:</label>
+        <input 
+        type="date"
+        formControlName="fecha_nacimiento"
+        />
+    </div>
+    
+    <!-- submit -->
+    <button type="submit" [disabled]="!formRegistro.valid">
+        Registrarse
+    </button>
+
+</form>

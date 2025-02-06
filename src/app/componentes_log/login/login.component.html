@@ -1,0 +1,51 @@
+<form #userForm="ngForm" (ngSubmit)="sendLogin()">
+    <!-- email -->
+    <div>
+        <label for="">Email:</label>
+        <input 
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        pattern=".*@.*"
+        required
+        id="email"
+        #emailInput="ngModel"
+        [ngClass]="{
+            'is-valid': emailInput.touched && emailInput.valid,
+            'is-invalid': emailInput.touched && !emailInput.valid
+        }"/>
+        @if (emailInput.touched && !emailInput.valid) {
+            <div class="invalid-feedback">
+              Por favor, ingresa un email válido.
+            </div>
+          }
+    </div>
+
+    <!-- password -->
+     <div>
+        <label for="">password:</label>
+        <input 
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        id="password"
+        #passwordInput="ngModel"
+        [ngClass]="{
+            'is-valid': passwordInput.touched && passwordInput.valid,
+            'is-invalid': passwordInput.touched && !passwordInput.valid
+        }"/>
+        @if (passwordInput.touched && !passwordInput.valid) {
+            <div class="invalid-feedback">
+                La contraseña es requerida.
+            </div>
+        }
+
+        <!-- Login Button -->
+        <button type="submit">Login</button>
+
+        <!-- Pulsador para registrarse -->
+        <a [routerLink]="['/registro']">Registrate</a>
+     </div>
+
+</form>
