@@ -1,0 +1,169 @@
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    flex-direction: column; /* Cambia a columna para centrar en cualquier pantalla */
+    align-items: center;
+    justify-content: center;
+    width: 100vw; /* Ocupa toda la pantalla */
+    height: 100vh; /* Ocupa toda la altura */
+    background-color: var(--color_fondo);
+    padding: 20px;
+}
+
+/* Caja del login */
+.login-box {
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+    border-right: 1px solid black;
+}
+/* Títulos */
+h2 {
+    font-size: 35px;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 600;
+  font-style: normal;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+/* Estilos de inputs */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-family: 'Poppins',sans-serif;
+    font-weight: 600;
+  font-style: normal;
+    margin-bottom: 5px;
+    margin-top: 25px;
+}
+
+.input-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    
+}
+
+/* Botón de inicio de sesión */
+.login-button {
+    background-color: var(--button_login);
+    color: white;
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s; /*transicion para cuando se hace hover*/
+    font-family: 'Poppins',sans-serif;
+    font-weight: 500;
+  font-style: normal;
+}
+
+.login-button:hover {
+    background-color: var(--button_login_hover);
+}
+
+/* Enlace para crear cuenta */
+.register-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: var(--button_login);
+    text-decoration: none;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 400;
+  font-style: normal;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
+
+
+/* Sección de texto */
+.text-section {
+    margin-top: 20px;
+    text-align: center;
+    
+}
+
+
+/* Títulos */
+.text-section h1 {
+    font-size: 40px;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    margin: 0;
+}
+
+.text-section h2 {
+    font-family: 'Poppins',sans-serif;
+    font-weight: 700;
+  font-style: normal;
+    text-align: center;
+    font-size: 30px;
+    color: gray;
+}
+
+/* === RESPONSIVE === */
+
+/* Para tablets y pantallas medianas */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column; /* Cambia a columna */
+        text-align: center;
+        padding: 20px;
+    }
+
+    .login-box {
+        max-width: 100%;
+        border: none;
+    }
+
+    .text-section h1 {
+        font-size: 35px;
+    }
+
+    .text-section h2 {
+        font-size: 25px;
+    }
+}
+
+/* Para móviles */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+        width: 100%;
+    }
+
+    .text-section h1 {
+        font-size: 30px;
+    }
+
+    .text-section h2 {
+        font-size: 20px;
+    }
+
+    .login-button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+/* Para pantallas grandes (evita espacios laterales) */
+@media (min-width: 900px) {
+    .container {
+        flex-direction: row; /* En pantallas grandes, login y texto van en fila */
+        gap: 40px;
+    }
+}

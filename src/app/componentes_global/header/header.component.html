@@ -5,8 +5,14 @@
     ☰
   </button>
   <div class="nav-links" [ngClass]="{'active': isMenuOpen}">
-      <a [routerLink]="['inico']" routerLinkActive="router-link-active" >Inicio</a>
-      <a [routerLink]="['login']" routerLinkActive="router-link-active" >Login</a>
-      
+      <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
+      <a [routerLink]="['/asesoramiento']" routerLinkActive="router-link-active">Asesoramiento</a>
+      <a [routerLink]="['/servicios']" routerLinkActive="router-link-active">Servicios</a>
+      <a [routerLink]="['/contacto']" routerLinkActive="router-link-active">Contacto</a>
+      <a [routerLink]="['/nosotros']" routerLinkActive="router-link-active">Nosotros</a>
+      <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login/SignUp</a>
+  </div>
+  <div class="img-section">
+    <img id="imagenChatbot" src="/logoProy-removebg-preview.png" >
   </div>
 </nav>

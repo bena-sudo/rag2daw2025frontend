@@ -1,51 +1,52 @@
-<form #userForm="ngForm" (ngSubmit)="sendLogin()">
-    <!-- email -->
-    <div>
-        <label for="">Email:</label>
-        <input 
-        type="email"
-        name="email"
-        [(ngModel)]="email"
-        pattern=".*@.*"
-        required
-        id="email"
-        #emailInput="ngModel"
-        [ngClass]="{
-            'is-valid': emailInput.touched && emailInput.valid,
-            'is-invalid': emailInput.touched && !emailInput.valid
-        }"/>
+<div class="container">
+  <div class="login-box">
+    <form #userForm="ngForm" (ngSubmit)="sendLogin()">
+      <h2>Iniciar sesión</h2>
+
+      <!-- Email -->
+      <div class="input-group">
+        <label>Email:</label>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          pattern=".*@.*"
+          required
+          id="email"
+          #emailInput="ngModel"
+        />
         @if (emailInput.touched && !emailInput.valid) {
-            <div class="invalid-feedback">
-              Por favor, ingresa un email válido.
-            </div>
-          }
-    </div>
-
-    <!-- password -->
-     <div>
-        <label for="">password:</label>
-        <input 
-        type="password"
-        name="password"
-        [(ngModel)]="password"
-        required
-        id="password"
-        #passwordInput="ngModel"
-        [ngClass]="{
-            'is-valid': passwordInput.touched && passwordInput.valid,
-            'is-invalid': passwordInput.touched && !passwordInput.valid
-        }"/>
-        @if (passwordInput.touched && !passwordInput.valid) {
-            <div class="invalid-feedback">
-                La contraseña es requerida.
-            </div>
+        <div class="invalid-feedback">Por favor, ingresa un email válido.</div>
         }
+      </div>
 
-        <!-- Login Button -->
-        <button type="submit">Login</button>
+      <!-- Password -->
+      <div class="input-group">
+        <label>Contraseña:</label>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          id="password"
+          #passwordInput="ngModel"
+        />
+        @if (passwordInput.touched && !passwordInput.valid) {
+        <div class="invalid-feedback">La contraseña es requerida.</div>
+        }
+      </div>
 
-        <!-- Pulsador para registrarse -->
-        <a [routerLink]="['/registro']">Registrate</a>
-     </div>
+      <!-- Login Button -->
+      <button type="submit" class="login-button">Iniciar sesión</button>
 
-</form>
+      <!-- Register Link -->
+      <a class="register-link" [routerLink]="['/registro']">Crear cuenta</a>
+    </form>
+  </div>
+
+  <!-- Text Section -->
+  <div class="text-section">
+    <h1>ChatBot</h1>
+    <h2>RAG</h2>
+  </div>
+</div>

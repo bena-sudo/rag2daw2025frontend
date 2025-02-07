@@ -1,61 +1,58 @@
-<form [formGroup]="formRegistro" (ngSubmit)="newUser()">
-    <!-- nickname -->
-    <div>
-        <label for="nickname">nickname:</label>
-        <input 
-        type="text"
-        formControlName="nickname"
-        />
+<div class="container">
+    <div class="login-box">
+      <form [formGroup]="formRegistro" (ngSubmit)="newUser()">
+        <h2>Registro</h2>
+  
+        <!-- Nickname -->
+        <div class="input-group">
+          <label for="nickname">Nickname:</label>
+          <input type="text" formControlName="nickname" required />
+        </div>
+  
+        <!-- Nombre -->
+        <div class="input-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" formControlName="nombre" required />
+        </div>
+  
+        <!-- Email -->
+        <div class="input-group">
+          <label for="email">Email:</label>
+          <input type="email" formControlName="email" required />
+        </div>
+  
+        <!-- Password -->
+        <div class="input-group">
+          <label for="password">Contraseña:</label>
+          <input type="password" formControlName="password" required />
+        </div>
+  
+        <!-- Teléfono -->
+        <div class="input-group">
+          <label for="telefono">Teléfono:</label>
+          <input type="tel" formControlName="telefono" required />
+        </div>
+  
+        <!-- Fecha de Nacimiento -->
+        <div class="input-group">
+          <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+          <input type="date" formControlName="fecha_nacimiento" required />
+        </div>
+  
+        <!-- Botón de registro -->
+        <button type="submit" class="register-button" [disabled]="!formRegistro.valid">
+          Registrarse
+        </button>
+  
+        <!-- Enlace para iniciar sesión -->
+        <a class="login-link" [routerLink]="['/login']">¿Ya tienes cuenta? Iniciar sesión</a>
+      </form>
     </div>
-
-    <!-- nombre -->
-    <div>
-        <label for="nombre">nombre:</label>
-        <input 
-        type="text"
-        formControlName="nombre"
-        />
+  
+    <!-- Sección de texto -->
+    <div class="text-section">
+      <h1>ChatBot</h1>
+      <h2 id="h2-text">RAG</h2>
     </div>
-
-    <!-- email -->
-    <div>
-        <label for="email">email:</label>
-        <input 
-        type="email"
-        formControlName="email"
-        />
-    </div>
-
-    <!-- password -->
-    <div>
-        <label for="password">password:</label>
-        <input 
-        type="password"
-        formControlName="password"
-        />
-    </div>
-
-    <!-- telefono -->
-    <div>
-        <label for="telefono">telefono:</label>
-        <input 
-        type="tel"
-        formControlName="telefono"
-        />
-    </div>
-
-    <!-- fecha_nacimiento -->
-    <div>
-        <label for="fecha_nacimiento">fecha de nacimiento:</label>
-        <input 
-        type="date"
-        formControlName="fecha_nacimiento"
-        />
-    </div>
-    
-    <!-- submit -->
-    <button type="submit" [disabled]="!formRegistro.valid">
-        Registrarse
-    </button>
-
-</form>
+  </div>
+  

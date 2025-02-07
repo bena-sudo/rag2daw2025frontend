@@ -1,44 +1,59 @@
+
 footer {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Mantiene el contenido centrado */
+    align-items: center;
+    justify-content: center; /* Centra el contenido verticalmente */
     padding: 20px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
     border-top: 1px solid black;
     color: var(--color_texto_hf);
     background-color: var(--fondo_hf);
     height: auto;
-    position: relative; /* Asegura que la imagen se pueda posicionar de forma absoluta */
+    position: relative;
 }
-footer #txtSimarro{
+
+footer #txtSimarro {
+    font-family: 'Poppins',sans-serif;
+    font-weight: 500;
+    font-style: normal;
     border-bottom: 2px solid black;
+    margin-top: 10px; /* Ajuste para acercar el texto */
+    text-align: center;
 }
-footer p:hover{
+footer p{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 300;
+    font-style: normal; 
+}
+footer p:hover {
     color: var(--color_texto_hf_hover);
 }
+
 .logo-container {
-    position: absolute; /* Posiciona la imagen fuera del flujo normal del documento */
-    top: 10px; /* Coloca la imagen cerca de la parte superior */
-    left: 20px; /* Coloca la imagen a la izquierda */
     display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Alinea la imagen y texto a la izquierda */
-    text-align: left;
+    justify-content: center; /* Centra el logo horizontalmente */
+    align-items: center;
+    margin-bottom: 5px; /* Reducido para evitar empujar el texto hacia abajo */
+    width: 100%;
 }
 
 .logo-container img {
-    width: 400px;
-    margin-bottom: 10px;
+    width: 450px; /* Ajustado el tamaño */
+    margin-right: 15px;
 }
 
 .links {
+    
     display: flex;
-    justify-content: center; /* Mantiene los enlaces centrados */
+    justify-content: center;
     margin: 10px 0;
+    flex-wrap: wrap;
 }
 
 .links a {
+    font-family: 'Poppins',sans-serif;
+    font-weight: 300;
+    font-style: normal;
     text-decoration: none;
     color: var(--color_texto_hf);
     margin: 0 5px;
@@ -51,4 +66,63 @@ footer p:hover{
 .links a:not(:last-child)::after {
     content: " | ";
     color: black;
+}
+
+/* Media Queries para hacer el footer responsive */
+@media screen and (max-width: 768px) {
+    .links a:not(:last-child)::after {
+        content: none;
+    }
+    footer {
+        align-items: center;
+        padding: 15px;
+    }
+
+    .logo-container {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px; /* Ajuste menor */
+        text-align: center;
+    }
+
+    .logo-container img {
+        width: 330px;
+        margin-right: 0;
+        margin-bottom: 5px; /* Menor espacio */
+    }
+
+    .links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .links a {
+        margin: 5px 0;
+    }
+
+    #txtSimarro {
+        text-align: center;
+        margin-top: 5px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .links a:not(:last-child)::after {
+        content: none;
+    }
+    footer {
+        padding: 10px;
+    }
+
+    .logo-container img {
+        width: 300px;
+    }
+
+    .links a {
+        font-size: 14px;
+    }
+
+    #txtSimarro {
+        margin-top: 0; /* Asegura que el texto esté bien alineado */
+    }
 }
