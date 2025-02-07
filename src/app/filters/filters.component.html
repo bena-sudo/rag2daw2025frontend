@@ -1,0 +1,32 @@
+<div class="filters-container">
+    
+
+    <div id="filtros" [class.open]="showFilters">
+        <select class="select_user" name="usuario" [(ngModel)]="selectedUser">
+            <option value="">User</option>
+            <option *ngFor="let user of users" [value]="user">{{ user }}</option>
+        </select>
+
+        <input type="date" [(ngModel)]="startDate"/>
+        <input type="date" [(ngModel)]="endDate"/>
+
+        <input type="text" [(ngModel)]="question" placeholder="Question"/>
+        <input type="text" [(ngModel)]="answer" placeholder="Answer"/>
+
+        <select name="chunk" [(ngModel)]="selectedChunk">
+            <option value="">Chunk</option>
+            <option *ngFor="let chunk of chunks" [value]="chunk">{{ chunk }}</option>
+        </select>
+
+        <select name="valorados" [(ngModel)]="selectedValorados">
+            <option value="">Todos</option>
+            <option value="sin_valorar">Sin valorar</option>
+            <option value="valorados">Valorados</option>
+        </select>
+
+        <button (click)="applyFilters()" id="apply-filters">Apply</button>
+    </div>
+    <button (click)="toggleFilters()" id="toggle-filters">
+        {{ showFilters ? '▲' : '▼' }}
+    </button>
+</div>

@@ -1,0 +1,70 @@
+*{
+    font-family: 'Poppins';
+}
+
+body {
+    margin: 0px;
+    background-color: var(--color_fondo);
+    height: 95vh;
+  }  
+
+.chat-container {
+  display: flex;
+  flex-grow: 1;
+  background-color: var(--color_fondo);
+  transition: 0.5s ease;
+}
+
+.filters {
+  transition: 0.5s ease;
+}
+
+
+.filters.hidden {
+  margin-bottom: 0;
+}
+
+  .chat-list {
+    width: 30vw;
+    background-color: var(--fondo_hf);
+    padding: 10px;
+    border: 5px solid var(--color_fondo);
+    border-radius: 30px;
+    transition: 0.1s ease;
+  }
+  
+  .main-chat {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-grow: 1;
+    background-color: var(--color_fondo);
+    padding: 10px;
+    border: 5px solid rgba(255, 255, 255, 0);
+  }
+
+  .resize-handle {
+    position: sticky;
+    top: 10%;
+    left: 40em;
+    right: 0px;
+    width: 10px;
+    height: 10%;
+    cursor: grab; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .resize-handle::before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 50%; 
+    background-color: rgb(255, 106, 0);
+    margin: 0 1px; 
+    box-shadow: 
+      -3px 0 0 rgb(255, 106, 0),
+      -6px 0 0 rgb(255, 106, 0),
+      3px 0 0 rgb(255, 106, 0);
+  }

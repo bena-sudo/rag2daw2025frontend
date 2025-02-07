@@ -1,0 +1,83 @@
+.filters-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#toggle-filters {
+    background: var(--color_button);
+    color: white;
+    border: none;
+    padding: 3px 12px;
+    font-size: 14px;
+    border-radius: 0px 0px 20px 20px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.334);
+
+}
+
+#toggle-filters:hover {
+    background: var(--color_button_hover);
+}
+
+#filtros {
+    overflow: hidden;
+    max-height: 0;
+    transition: 0.4s;
+    background: rgba(255, 255, 255, 0.67);
+    padding: 0px 10px;
+    border-radius: 0px 0px 35px 35px;
+}
+
+#filtros.open {
+    transition: 0.5s;
+    width: max-content;
+    max-height: 500px;
+    padding: 20px;
+    box-shadow: 3px 3px 6px 1px rgba(0, 0, 0, 0.289);
+
+}
+
+#filtros select,
+#filtros input {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    width: 120px;
+    margin: 5px;
+}
+
+#apply-filters {
+    background: var(--color_button);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#apply-filters:hover {
+    background: var(--color_button_hover);
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.105);
+
+}
+
+@media (max-width: 768px) {
+    #filtros {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    #filtros select,
+    #filtros input {
+        width: 100%;
+    }
+}
