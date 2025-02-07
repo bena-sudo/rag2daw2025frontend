@@ -5,7 +5,6 @@ footer {
     align-items: center;
     justify-content: center; /* Centra el contenido verticalmente */
     padding: 20px;
-    border-top: 1px solid black;
     color: var(--color_texto_hf);
     background-color: var(--fondo_hf);
     height: auto;

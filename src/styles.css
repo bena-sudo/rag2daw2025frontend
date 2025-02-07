@@ -3,12 +3,13 @@
   --color_fondo: #E7EEF2;
   --fondo_hf: #B1C7D2;
   --color_button: #2d4a5b;
-  --color_button_opacity: rgba(45, 74, 91, 0.5); 
-  --color_button_hover: #1E2B34;
-  --button_login:#FF9933;
-  --button_login_hover:#F57A00;
+  --color_button_opacity: #7199AF; 
+  --color_texto: #1E2B34;
+  --button_login:#FF5000;
+  --button_login_hover:#E01E00;
   --color_texto_hf:#2C4F63;
   --color_texto_hf_hover:#3F708D;
+  --color_link:#417794;
 }
 
 * {
