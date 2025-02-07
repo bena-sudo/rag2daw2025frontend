@@ -36,8 +36,6 @@ export class LoginComponent {
         
         this.loading = false;
 
-        console.log('Inicio de sesión exitoso. Token: ', response.token);
-
         // Redirigir al usuario inicio para que se le adapte al tipo de rol al que pertenezca
         this.router.navigate(['/inicio']); 
       },
