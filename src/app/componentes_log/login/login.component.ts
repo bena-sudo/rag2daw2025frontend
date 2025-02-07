@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { ServiceLogService } from '../service/service-log.service';
+import { flush } from '@angular/core/testing';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +15,39 @@ export class LoginComponent {
 
   email: string = '';
   password: string = '';
+  errorMessage: string = '';
+  loading: boolean = false;
 
-  constructor(){ }
+  constructor(private serviceLog:ServiceLogService, private router:Router){ }
 
 
-  sendLogin(){
-    console.log("usuario email: ", this.email);
-    console.log("usuario password: ", this.password);
+  sendLogin() {
+    const credentials = {
+      email: this.email,
+      password: this.password
+    };
+
+    this.loading = true;
+    this.errorMessage = '';
+
+    
+    this.serviceLog.userLogin(credentials).subscribe({
+      next: (response) => {
+        
+        this.loading = false;
+
+        console.log('Inicio de sesión exitoso. Token: ', response.token);
+
+        // Redirigir al usuario inicio para que se le adapte al tipo de rol al que pertenezca
+        this.router.navigate(['/inicio']); 
+      },
+      error: (err) => {
+        
+        this.loading = false;
+
+        this.errorMessage = err.message;
+
+      }
+    });
   }
-
 }
