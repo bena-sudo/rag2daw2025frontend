@@ -1,0 +1,27 @@
+<div class="container">
+    <h2>Documentos del Usuario</h2>
+  
+    @if (documentosArray.controls.length > 0) {
+      <ul>
+        @for ( doc of documentosArray.controls; track $index) {
+          <li>
+            <a [href]="doc.get('url')?.value" target="_blank">{{ doc.get('nombre')?.value }}</a>
+            @if (doc.get('tipo')?.value === 'pdf') { 📄 }
+            @if (doc.get('tipo')?.value === 'imagen') { 🖼️ }
+          </li>
+        }
+      </ul>
+    } @else {
+      <p>No hay documentos disponibles.</p>
+    }
+  
+    <input type="file" (change)="cargarArchivo($event)" style="display: none" #fileInput />
+    <button (click)="fileInput.click()">Añadir Documento</button>
+  
+  
+    <!-- Botón para enviar el archivo seleccionado -->
+    @if (archivoSeleccionado) {
+      <button (click)="enviarDocumento()">Enviar Documento</button>
+    }
+  </div>
+  

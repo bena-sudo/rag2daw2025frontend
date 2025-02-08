@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Formulario de preasesoramiento</h2>
+    <form [formGroup]="preCuestionarioForm">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" aria-describedby="nombre" name="nombre" formControlName="nombre" [ngClass]="strNombreValid"/>
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" class="form-control" id="telefono" aria-describedby="telefono" name="telefono" formControlName="telefono" [ngClass]="strTelefonoValid"/>
+        </div>
+        @for (item of preguntas; track $index) {
+            <div class="form-group">
+                <label>{{ item.texto }}</label>
+                <div class="options">
+                    <input type="radio" id="si_{{ $index }}" name="pregunta_{{ $index }}" value="si">
+                    <label for="si_{{ $index }}">Sí</label>
+                    <input type="radio" id="no_{{ $index }}" name="pregunta_{{ $index }}" value="no">
+                    <label for="no_{{ $index }}">No</label>
+                </div>
+            </div>
+        }
+        <button type="submit" class="button">Enviar</button>
+    </form>
+</div>
