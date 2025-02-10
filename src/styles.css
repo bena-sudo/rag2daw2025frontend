@@ -10,6 +10,7 @@
 
     --fondo_principal:#E7EEF2;
     --fondo_secundario:#FFFFFF;
+    --fondo_terciario: #B8CCD7;
 
     --elemento_principal:#294A5D;
     --texto_elemento:#D0DDE4;
@@ -42,6 +43,7 @@
 
     --white:#FFFFFF;
     --black:#000000;
+
 }
 
 @font-face {
