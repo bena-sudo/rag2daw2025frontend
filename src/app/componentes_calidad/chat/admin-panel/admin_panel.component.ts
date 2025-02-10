@@ -1,7 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FooterComponent } from "../../componentes_global/footer/footer.component";
-import { HeaderComponent } from "../../componentes_global/header/header.component";
+import { FooterComponent } from "../../../componentes_global/footer/footer.component";
+import { HeaderComponent } from "../../../componentes_global/header/header.component";
 import { ChatListComponent } from '../chat-list/chat-list.component';
 import { MainChatComponent } from '../main-chat/main-chat.component';
 import { FiltersComponent } from "../filters/filters.component";
