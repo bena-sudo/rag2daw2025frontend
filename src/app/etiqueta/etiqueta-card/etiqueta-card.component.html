@@ -1,7 +1,19 @@
 <div class="card">
   <div class="actions">
-    <button><i class="fas fa-edit"></i> Editar</button>
-    <button><i class="fas fa-trash"></i> Eliminar</button>
+    <button (click)="abrirModal()"><i class="fas fa-edit"></i> Editar</button>
+    <button (click)="eliminarEtiqueta()"><i class="fas fa-trash"></i> Eliminar</button>
   </div>
-  <p>{{etiqueta.nombre}}</p>
+  <p>{{ etiqueta.nombre }}</p>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" *ngIf="mostrarModal">
+  <div class="modal">
+    <h2>Editar Etiqueta</h2>
+    <input type="text" [(ngModel)]="nuevoNombre" placeholder="Nuevo nombre">
+    <div class="modal-actions">
+      <button (click)="guardarCambios()">Guardar</button>
+      <button (click)="cerrarModal()">Cancelar</button>
+    </div>
+  </div>
 </div>

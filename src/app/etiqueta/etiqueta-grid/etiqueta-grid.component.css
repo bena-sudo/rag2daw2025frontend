@@ -8,26 +8,6 @@ body {
   padding: 16px;
   height: 100vh;
 }
-.search-bar {
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-}
-.search-bar button {
-  background-color: var(--color_button);
-  color: white;
-  font-weight: bold;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  margin-right: 8px;
-}
-.search-bar input {
-  flex-grow: 1;
-  padding: 8px 16px;
-  border: 1px solid var(--fondo_hf);
-  border-radius: 4px;
-}
 .add-document-button {
   background-color: var(--button_login);
   color: white;

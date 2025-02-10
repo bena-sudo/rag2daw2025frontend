@@ -1,12 +1,9 @@
 <div class="container">
-  <div class="search-bar">
-    <button>BUSCAR</button>
-    <input type="text" placeholder="Escribir busqueda" />
-  </div>
+  <app-etiqueta-search (searchTerm)="onSearch($event)"></app-etiqueta-search>
   <button class="add-document-button">+ Añadir documento</button>
   <div class="grid">
     @for (etiqueta of etiquetas; track $index) {
-        <app-etiqueta-card [etiqueta]="etiqueta"> </app-etiqueta-card>
+    <app-etiqueta-card [etiqueta]="etiqueta"> </app-etiqueta-card>
     }
   </div>
 </div>
