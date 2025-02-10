@@ -15,9 +15,7 @@
           id="email"
           #emailInput="ngModel"
         />
-        @if (emailInput.touched && !emailInput.valid) {
-        <div class="invalid-feedback">Por favor, ingresa un email válido.</div>
-        }
+        
       </div>
 
       <!-- Password -->
@@ -31,10 +29,11 @@
           id="password"
           #passwordInput="ngModel"
         />
-        @if (passwordInput.touched && !passwordInput.valid) {
-        <div class="invalid-feedback">La contraseña es requerida.</div>
-        }
       </div>
+
+      @if (errorMessage) {
+        <div class="invalid-feedback">{{ errorMessage }}</div>
+      }
 
       <!-- Login Button -->
       <button type="submit" class="login-button">Iniciar sesión</button>

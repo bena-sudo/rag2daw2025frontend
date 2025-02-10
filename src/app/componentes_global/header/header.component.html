@@ -10,8 +10,22 @@
       <a [routerLink]="['/servicios']" routerLinkActive="router-link-active">Servicios</a>
       <a [routerLink]="['/contacto']" routerLinkActive="router-link-active">Contacto</a>
       <a [routerLink]="['/nosotros']" routerLinkActive="router-link-active">Nosotros</a>
+      @if (!isLoggedIn) {
       <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login/SignUp</a>
+      }@else {
+        <a (click)="logout()">logout</a>
+      }
+
+      @for (rol of userRole; track $index) {
+        @if ( rol ==='ADMINISTRADOR') {
+          <a>Administrador</a>
+        }@else if ( rol === 'USUARIO') {
+          <a>Usuario</a>
+        }
+      }
+      
   </div>
+
   <div class="img-section">
     <img id="imagenChatbot" src="/logoProy-removebg-preview.png" >
   </div>

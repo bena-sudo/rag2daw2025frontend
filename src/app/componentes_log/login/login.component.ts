@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ServiceLogService } from '../service/service-log.service';
-import { flush } from '@angular/core/testing';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +14,17 @@ export class LoginComponent {
 
   email: string = '';
   password: string = '';
-  errorMessage: string = '';
   loading: boolean = false;
+  errorMessage: string = '';
+  formSubmitted: boolean = false;
 
   constructor(private serviceLog:ServiceLogService, private router:Router){ }
 
 
   sendLogin() {
+
+    this.formSubmitted = true;
+
     const credentials = {
       email: this.email,
       password: this.password
@@ -32,18 +35,17 @@ export class LoginComponent {
 
     
     this.serviceLog.userLogin(credentials).subscribe({
-      next: (response) => {
+      next: () => {
         
         this.loading = false;
 
-        // Redirigir al usuario inicio para que se le adapte al tipo de rol al que pertenezca
         this.router.navigate(['/inicio']); 
       },
-      error: (err) => {
+      error: () => {
         
         this.loading = false;
 
-        this.errorMessage = err.message;
+        this.errorMessage = 'Email o contraseña incorrectos';
 
       }
     });
