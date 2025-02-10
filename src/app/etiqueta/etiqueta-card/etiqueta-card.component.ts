@@ -1,21 +1,43 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EtiquetasService } from '../../service/etiquetas.service';
 import { Etiqueta } from '../../interface/etiqueta';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-etiqueta-card',
+
+  imports: [ReactiveFormsModule],
   templateUrl: './etiqueta-card.component.html',
   styleUrl: './etiqueta-card.component.css',
 })
-export class EtiquetaCardComponent {
+export class EtiquetaCardComponent implements OnInit{
   @Input({ required: true }) etiqueta!: Etiqueta;
 
-  mostrarModal: boolean = false; // Controla la visibilidad del modal
-  nuevoNombre: string = ''; // Almacena el nuevo nombre de la etiqueta
+  mostrarModal: boolean = false;
+  formEtiqueta: FormGroup;
+  id:number = 1;
 
-  constructor(private readonly etiquetaService: EtiquetasService) {}
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly etiquetaService: EtiquetasService
+  ) {
+    this.formEtiqueta = this.fb.group({
+      id: ["", [Validators.required]],
+      nombre: ['', [Validators.required]],
+    });
+    
+    
+  }
 
-  /** 🗑️ Eliminar etiqueta */
+  ngOnInit(): void {
+    
+  }
+
   eliminarEtiqueta() {
     if (!this.etiqueta.id) {
       console.error('Error: ID de la etiqueta es null o undefined.');
@@ -25,39 +47,29 @@ export class EtiquetaCardComponent {
     this.etiquetaService.deleteEtiqueta(this.etiqueta.id).subscribe({
       next: () => {
         console.log('Etiqueta eliminada correctamente');
-        window.location.reload(); // Recargar la página
+        window.location.reload();
       },
       error: (err) => console.error('Error al eliminar la etiqueta:', err),
       complete: () => console.log('Operación de eliminación completada'),
     });
   }
 
-  /** ✏️ Abrir el modal para editar */
   abrirModal() {
-    this.nuevoNombre = this.etiqueta.nombre!; // Cargar el nombre actual
     this.mostrarModal = true;
   }
 
-  /** ❌ Cerrar el modal */
   cerrarModal() {
     this.mostrarModal = false;
   }
 
-  /** 💾 Guardar cambios en la etiqueta */
   guardarCambios() {
-    if (!this.nuevoNombre.trim()) {
-      alert('El nombre no puede estar vacío');
-      return;
-    }
-
-    const etiquetaActualizada = { ...this.etiqueta, nombre: this.nuevoNombre };
-
-    this.etiquetaService.actualizarEtiqueta(etiquetaActualizada).subscribe({
-      next: () => {
-        this.etiqueta.nombre = this.nuevoNombre; // Actualizar en la UI
-        this.cerrarModal();
-      },
-      error: (err) => console.error('Error al actualizar la etiqueta:', err),
-    });
+    this.etiquetaService
+      .updateEtiqueta({ ...this.formEtiqueta.value })
+      .subscribe({
+        next: () => {
+          this.cerrarModal();
+        },
+        error: (err) => console.error('Error al actualizar la etiqueta:', err),
+      });
   }
 }

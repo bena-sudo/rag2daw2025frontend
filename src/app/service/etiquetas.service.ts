@@ -7,7 +7,7 @@ import { Etiqueta } from '../interface/etiqueta';
   providedIn: 'root',
 })
 export class EtiquetasService {
-  private readonly apiUrl = 'http://localhost:8090/api/v1/etiqueta';
+  private readonly apiUrl = 'http://localhost:8091/api/v1/etiqueta';
 
   constructor(private readonly http: HttpClient) {}
 
@@ -16,9 +16,13 @@ export class EtiquetasService {
   }
 
   deleteEtiqueta(etiquetaID: number): Observable<void> {
-    console.log(`${this.apiUrl}/${etiquetaID}`);
-
     return this.http.delete<void>(`${this.apiUrl}/${etiquetaID}`);
+  }
+
+  updateEtiqueta(etiqueta: Etiqueta): Observable<Etiqueta> {
+    console.log(`${this.apiUrl}/${etiqueta.id}`, etiqueta);
+    
+    return this.http.put<Etiqueta>(`${this.apiUrl}/${etiqueta.id}`, etiqueta);
   }
 
   searchEtiquetas(query: string): Observable<Etiqueta[]> {
