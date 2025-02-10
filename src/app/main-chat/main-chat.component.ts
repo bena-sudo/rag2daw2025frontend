@@ -1,29 +1,54 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ApiService } from '../service/service'
+import { CommonModule } from '@angular/common';
 
 @Component({
-  imports: [FormsModule, CommonModule],
   selector: 'app-main-chat',
   templateUrl: './main-chat.component.html',
-  styleUrls: ['./main-chat.component.css']
+  styleUrls: ['./main-chat.component.css'],
+  standalone: true,
+  imports: [FormsModule, CommonModule]
 })
-export class MainChatComponent {
-  messages = [
-    { text: 'Hello!', sender: 'user' }, 
-    { text: 'Hi, how are you?', sender: 'bot' } 
-  ];
-
+export class MainChatComponent implements OnInit {
+  messages: { text: string; sender: string }[] = [];
   newMessage = '';
+
+  constructor(private apiService: ApiService) {} // Inject API service
+
+  ngOnInit() {
+    this.loadChatMessages(); // Load chat history on init
+  }
+
+  loadChatMessages() {
+    this.apiService.getChats().subscribe(
+      (chats) => {
+        this.messages = chats.map((chat: any) => ({
+          text: chat.textoPregunta || chat.text,
+          sender: chat.usuario || 'bot' // Default sender if missing
+        }));
+      },
+      (error) => {
+        console.error('Error fetching chat messages:', error);
+      }
+    );
+  }
 
   sendMessage() {
     if (this.newMessage.trim() !== '') {
-      this.messages.push({ text: this.newMessage, sender: 'user' }); // Add user message
-      this.newMessage = '';
+      const userMessage = { text: this.newMessage, sender: 'user' };
+      this.messages.push(userMessage);
 
-      setTimeout(() => {
-        this.messages.push({ text: 'I am fine, thank you!', sender: 'bot' }); // Add bot message
-      }, 1000);
+      this.apiService.createQuestionChat({ textoPregunta: this.newMessage, usuario: 'user' }).subscribe(
+        (response) => {
+          this.messages.push({ text: response.textoPregunta || '...', sender: 'bot' });
+        },
+        (error) => {
+          console.error('Error sending message:', error);
+        }
+      );
+
+      this.newMessage = '';
     }
   }
 }
