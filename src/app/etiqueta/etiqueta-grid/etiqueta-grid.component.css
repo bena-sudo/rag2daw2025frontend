@@ -1,0 +1,76 @@
+body {
+  background-color: var(--color_fondo);
+  font-family: Arial, sans-serif;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  height: 100vh;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.search-bar button {
+  background-color: var(--color_button);
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+.search-bar input {
+  flex-grow: 1;
+  padding: 8px 16px;
+  border: 1px solid var(--fondo_hf);
+  border-radius: 4px;
+}
+.add-document-button {
+  background-color: var(--button_login);
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+.document-list {
+  background-color: var(--fondo_hf);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.document-list ul {
+  list-style: none;
+  padding: 0;
+}
+.document-list ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color_fondo);
+}
+.document-list ul li:last-child {
+  border-bottom: none;
+}
+.document-list ul li button {
+  background: none;
+  border: none;
+  color: var(--button_login);
+  font-size: 1.25rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 80%;
+}

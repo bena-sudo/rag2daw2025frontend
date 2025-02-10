@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EtiquetaItemComponent } from './etiqueta-item.component';
+import { EtiquetaCardComponent } from './etiqueta-card.component';
 
-describe('EtiquetaItemComponent', () => {
-  let component: EtiquetaItemComponent;
-  let fixture: ComponentFixture<EtiquetaItemComponent>;
+describe('EtiquetaCardComponent', () => {
+  let component: EtiquetaCardComponent;
+  let fixture: ComponentFixture<EtiquetaCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EtiquetaItemComponent]
+      imports: [EtiquetaCardComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EtiquetaItemComponent);
+    fixture = TestBed.createComponent(EtiquetaCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
