@@ -17,7 +17,7 @@ export class MainChatComponent implements OnChanges{
 
   constructor(private apiService: ApiService) {};
 
-  @Input() idChat: number = 1;
+  @Input() idChat: number | null = 1;
   ngOnChanges(changes: SimpleChanges): void {
     this.apiService.returnPreguntasByIdChat(this.idChat).subscribe(
       listaPreguntas => this.preguntas = listaPreguntas,

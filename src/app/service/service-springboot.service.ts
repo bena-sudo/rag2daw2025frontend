@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ServiceSpringbootService {
-  private baseUrl = 'http://192.168.8.125:8090/api/rag/v1/'; 
+  private baseUrl = 'http://localhost:8090/api/rag/v1/'; 
 
   constructor() {}
 
