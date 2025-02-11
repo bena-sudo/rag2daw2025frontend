@@ -20,10 +20,13 @@ export class EtiquetasService {
   }
 
   updateEtiqueta(etiqueta: Etiqueta): Observable<Etiqueta> {
-    console.log(`${this.apiUrl}/${etiqueta.id}`, etiqueta);
     return this.http.put<Etiqueta>(`${this.apiUrl}/${etiqueta.id}`, etiqueta);
   }
 
+  createEtiqueta(etiqueta: Etiqueta): Observable<Etiqueta> {
+    return this.http.post<Etiqueta>(`${this.apiUrl}`, etiqueta);
+  }
+  
   searchEtiquetas(query: string): Observable<Etiqueta[]> {
     return from(
       this.http.get<any>(

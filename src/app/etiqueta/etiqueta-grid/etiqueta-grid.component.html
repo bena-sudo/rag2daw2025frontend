@@ -1,13 +1,28 @@
 <div class="container">
   <app-etiqueta-search (searchTerm)="onSearch($event)"></app-etiqueta-search>
-  <button class="add-document-button">+ Añadir documento</button>
+
+  <!-- Botón para abrir el modal -->
+  <button class="add-document-button" (click)="abrirModal()">
+    + Añadir documento
+  </button>
+
   <div class="grid">
     @for (etiqueta of etiquetas; track $index) {
-    <app-etiqueta-card [etiqueta]="etiqueta"> </app-etiqueta-card>
+    <app-etiqueta-card [etiqueta]="etiqueta"></app-etiqueta-card>
     }
   </div>
 </div>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-/>
+
+<!-- Modal de Añadir Etiqueta -->
+@if (mostrarModal) {
+<div class="modal-overlay">
+  <form class="modal" [formGroup]="formEtiqueta" (ngSubmit)="agregarEtiqueta()">
+    <h2>Nueva Etiqueta</h2>
+    <input type="text" formControlName="nombre" placeholder="Nuevo nombre" />
+    <div class="modal-actions">
+      <button type="submit">Guardar</button>
+      <button (click)="cerrarModal()">Cancelar</button>
+    </div>
+  </form>
+</div>
+}

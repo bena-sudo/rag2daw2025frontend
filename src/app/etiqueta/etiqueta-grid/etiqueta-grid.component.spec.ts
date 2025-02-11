@@ -8,9 +8,8 @@ describe('EtiquetaGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EtiquetaGridComponent]
-    })
-    .compileComponents();
+      imports: [EtiquetaGridComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(EtiquetaGridComponent);
     component = fixture.componentInstance;
