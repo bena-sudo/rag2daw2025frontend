@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
-import { EtiquetaGridComponent } from './etiqueta/etiqueta-grid/etiqueta-grid.component';
+import { MainDocumentoComponent } from './documentos/main-documento/main-documento.component';
 
 export const routes: Routes = [
-    {path: '', component: EtiquetaGridComponent}
+
+    {path: '', component: MainDocumentoComponent}
 ];
