@@ -35,4 +35,9 @@ export class EtiquetasListComponent {
       },
     });
   }
+
+  cambiarEtiqueta(id: number){
+    console.log(id);
+    
+  }
 }

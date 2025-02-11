@@ -4,7 +4,7 @@
     <h2 class="">Etiquetas</h2>
     <ul>
       @for (etiqueta of etiquetas; track $index) {
-      <li>{{ etiqueta.nombre }}</li>
+      <li><div (click)="cambiarEtiqueta(etiqueta.id!)">{{ etiqueta.nombre }}</div></li>
       }
     </ul>
   </div>
