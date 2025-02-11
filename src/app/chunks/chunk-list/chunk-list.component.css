@@ -1,0 +1,64 @@
+body {
+    background-color: #f3f4f6;
+    font-family: Arial, sans-serif;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+}
+.left-column, .right-column {
+    width: 100%;
+    padding: 16px;
+}
+.left-column {
+    background-color: white;
+}
+.right-column {
+    display: flex;
+    flex-direction: column;
+}
+.text-block {
+    margin-bottom: 16px;
+}
+.item {
+    background-color: #ffffff;
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+}
+.item p {
+    color: #4b5563;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita el texto a 2 líneas */
+    -webkit-box-orient: vertical;
+    overflow: hidden; /* Oculta el texto que excede */
+    text-overflow: ellipsis; /* Agrega los tres puntos (...) */
+    max-width: 100%; /* Asegura que el texto no sobrepase el contenedor */
+    line-height: 1.4; /* Ajusta el espaciado entre líneas para mayor claridad */
+    height: calc(1.4em * 2); /* Asegura que el contenedor tenga altura suficiente para 2 líneas */
+    margin-right: 20px;
+    min-width: min-content;
+}
+
+.icons {
+    display: flex;
+    gap: 8px;
+}
+.icons i {
+    color: #ff5000;
+}
+
+.icons i:hover{
+    color: #e01e00;
+    cursor: pointer;
+}
