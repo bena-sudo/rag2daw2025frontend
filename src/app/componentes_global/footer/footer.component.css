@@ -1,11 +1,12 @@
+
 footer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center;
+    justify-content: center; /* Centra el contenido verticalmente */
     padding: 20px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
     border-top: 1px solid black;
     color: var(--color_texto_hf);
     background-color: var(--fondo_hf);
@@ -18,13 +19,19 @@ footer #txtSimarro {
     margin-top: 10px; /* Ajuste para acercar el texto */
     text-align: center;
 }
+footer p:hover {
 
 footer p:hover {
     color: var(--color_texto_hf_hover);
 }
 
+
 .logo-container {
     display: flex;
+    justify-content: center; /* Centra el logo horizontalmente */
+    align-items: center;
+    margin-bottom: 5px; /* Reducido para evitar empujar el texto hacia abajo */
+    width: 100%;
     justify-content: center; /* Centra el logo horizontalmente */
     align-items: center;
     margin-bottom: 5px; /* Reducido para evitar empujar el texto hacia abajo */
@@ -34,16 +41,24 @@ footer p:hover {
 .logo-container img {
     width: 450px; /* Ajustado el tamaño */
     margin-right: 15px;
+    width: 450px; /* Ajustado el tamaño */
+    margin-right: 15px;
 }
 
 .links {
+    
     display: flex;
     justify-content: center;
+    justify-content: center;
     margin: 10px 0;
+    flex-wrap: wrap;
     flex-wrap: wrap;
 }
 
 .links a {
+    font-family: 'Poppins',sans-serif;
+    font-weight: 300;
+    font-style: normal;
     text-decoration: none;
     color: var(--color_texto_hf);
     margin: 0 5px;

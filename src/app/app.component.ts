@@ -11,4 +11,5 @@ import { HeaderComponent } from "./componentes_global/header/header.component";
 })
 export class AppComponent {
   title = 'rag2daw2025frontend';
+  
 }
