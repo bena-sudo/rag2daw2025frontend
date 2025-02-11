@@ -1,32 +1,65 @@
 <nav class="nav">
-  <img src="/image.png" alt="Logo" class="logo">
-  <!-- Botón de menú para pantallas pequeñas -->
-  <button class="menu-toggle" (click)="toggleMenu()">
-    ☰
-  </button>
-  <div class="nav-links" [ngClass]="{'active': isMenuOpen}">
-      <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
-      <a [routerLink]="['/asesoramiento']" routerLinkActive="router-link-active">Asesoramiento</a>
-      <a [routerLink]="['/servicios']" routerLinkActive="router-link-active">Servicios</a>
-      <a [routerLink]="['/contacto']" routerLinkActive="router-link-active">Contacto</a>
-      <a [routerLink]="['/nosotros']" routerLinkActive="router-link-active">Nosotros</a>
+  <img src="/image.png" alt="Logo" class="logo" />
+    <!-- Botón de menú para pantallas pequeñas -->
+  <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+  <div class="nav-links" [ngClass]="{ active: isMenuOpen }">
       @if (!isLoggedIn) {
-      <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login/SignUp</a>
-      }@else {
+        <!-- rutas en caso del que el usuario NO ESTE LOGEADO -->
+        <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
+        <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login/SignUp</a>
+      }@else { 
+        @for (rol of userRole; track $index) { 
+          @if ( rol === 'USUARIO') {
+            <!-- rutas en caso del que el usuario sea rol USUARIO-->
+            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
+            
+            
+          }@else if ( rol === 'SUPERVISOR') {
+            <!-- rutas en caso del que el usuario sea rol SUPERVISOR-->
+            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
+            
+
+          }@else if ( rol === 'ACREDITADOR') {
+            <!-- rutas en caso del que el usuario sea rol ACREDITADOR-->
+            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
+            
+
+          }@else if ( rol === 'EVALUADOR') {
+            <!-- rutas en caso del que el usuario sea rol EVALUADOR-->
+            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
+            
+
+          }@else if ( rol === 'PROFESOR') {
+            <!-- rutas en caso del que el usuario sea rol PROFESOR-->
+            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
+            
+
+          }@else if ( rol === 'JEFEDPTO') {
+            <!-- rutas en caso del que el usuario sea rol JEFEDPTO-->
+            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
+            
+
+          }@else if ( rol === 'JEFEESTUDIOS') {
+            <!-- rutas en caso del que el usuario sea rol JEFEESTUDIOS-->
+            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
+            
+
+          }@else if ( rol ==='ADMINISTRADOR') {
+            <!-- rutas en caso del que el usuario sea rol ADMINISTRADOR-->
+
+            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
+            <a [routerLink]="['/users-list']">Lista Usuarios</a>
+         
+          }@else {
+            <!-- rutas en caso de error por logear y no tener ningun rol-->
+            <h2>Error en la app.</h2>
+          }
+        } 
         <a (click)="logout()">logout</a>
       }
-
-      @for (rol of userRole; track $index) {
-        @if ( rol ==='ADMINISTRADOR') {
-          <a>Administrador</a>
-        }@else if ( rol === 'USUARIO') {
-          <a>Usuario</a>
-        }
-      }
-      
   </div>
 
   <div class="img-section">
-    <img id="imagenChatbot" src="/logoProy-removebg-preview.png" >
+    <img id="imagenChatbot" src="/logoProy-removebg-preview.png" />
   </div>
 </nav>

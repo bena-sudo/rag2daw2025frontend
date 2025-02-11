@@ -28,14 +28,10 @@ export class HeaderComponent implements OnInit {
       this.userRole = role;
       console.log(this.userRole)
     })
-
-    console.log(this.authService.isLoggedIn());
-    console.log(this.authService.isLoggedIn$);
   }
 
   logout(){
     this.authService.logout();
-    this.router.navigate(['/inicio']);
   }
 
   toggleMenu() {

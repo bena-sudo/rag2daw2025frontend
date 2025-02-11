@@ -13,6 +13,7 @@ import { RouterLink } from '@angular/router';
 export class RegistroComponent implements OnInit {
   formRegistro!: FormGroup;
   formSubmitted: boolean = false; // Para rastrear si el usuario presionó "Submit"
+  messageError: string = '';
 
   constructor(private formBuilder: FormBuilder, private serviceLog: ServiceLogService, private router: Router) {}
 
@@ -45,9 +46,12 @@ export class RegistroComponent implements OnInit {
     this.serviceLog.userRegistro(this.formRegistro.value).subscribe({
       next: () => {
         console.log('Usuario creado con éxito.');
-        this.router.navigate(['/inicio']);
+        
       },
-      error: (err) => console.log('Error al registrar usuario: ', err)
+      error: (err) => this.messageError = err,
+      complete: () => {
+        this.router.navigate(['/login']);
+      }
     });
   }
 }

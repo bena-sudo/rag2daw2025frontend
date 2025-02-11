@@ -1,8 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, tap, throwError } from 'rxjs';
-import { RecipeUser } from '../interface/recipe-user';
+import { RecipeUser } from '../../interface/recipe-user';
 import { environment } from '../../../environments/environment.development';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +23,25 @@ export class ServiceLogService {
   private userRoleSubject = new BehaviorSubject<string[]>(this.getUserRoles());
   userRole$ = this.userRoleSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   //Metodo para registrar
   userRegistro(user: RecipeUser): Observable<RecipeUser> {
-    return this.http.post<RecipeUser>(`${this.authUrl}/nuevo`, user, this.httpOptions);
+    return this.http.post<RecipeUser>(`${this.authUrl}/nuevo`, user, this.httpOptions).pipe(
+
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage = 'Ocurrió un error insesperado.';
+        if(error.status === 400) {
+          errorMessage = "Nickname en uso. Prueba con otro.";
+        }else if (error.status === 500){
+          errorMessage = "Error en el servidor. Intentelo mas tarde";
+        }
+
+        return throwError(() => errorMessage);
+      })
+    );
+    
+    
   }
 
 
@@ -87,10 +102,23 @@ export class ServiceLogService {
 
   // Método para cerrar sesión
   logout() {
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('user_roles');
-    this.updateLoginStatus();
-    this.updateUserRoles();
+
+    this.http.post(`${this.authUrl}/logout`, {}, this.httpOptions).subscribe({
+      next: () => {
+
+        this.router.navigate(['/inicio'])
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('user_roles');
+        this.updateLoginStatus();
+        this.updateUserRoles();
+
+        
+
+      },
+      error: (err) => {
+        console.error('Error al cerrar la sesion: ', err)
+      }
+    })
   }
 
   // Método para obtener los roles del usuario actual

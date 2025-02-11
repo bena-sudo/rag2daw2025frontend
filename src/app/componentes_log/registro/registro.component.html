@@ -9,7 +9,7 @@
           <input id="nickname" type="text" formControlName="nickname" class="form-control"/>
           
           @if (formSubmitted && formRegistro.get('nickname')?.invalid) {
-            <div class="alert alert-danger mt-2">
+            <div class="">
               El nickname es obligatorio.
             </div>
           }
@@ -21,7 +21,7 @@
           <input id="nombre" type="text" formControlName="nombre" class="form-control"/>
           
           @if (formSubmitted && formRegistro.get('nombre')?.invalid) {
-            <div class="alert alert-danger mt-2">
+            <div class="">
               El nombre es obligatorio.
             </div>
           }
@@ -34,12 +34,12 @@
           
           @if (formSubmitted && formRegistro.get('email')?.invalid) {
             @if (formRegistro.get('email')?.errors?.['required']) {
-              <div class="alert alert-danger mt-2">
+              <div class="">
                 El email es obligatorio.
               </div>
             }
             @if (formRegistro.get('email')?.errors?.['email']) {
-              <div class="alert alert-danger mt-2">
+              <div class="">
                 El email no es válido.
               </div>
             }
@@ -53,12 +53,12 @@
           
           @if (formSubmitted && formRegistro.get('password')?.invalid) {
             @if (formRegistro.get('password')?.errors?.['required']) {
-              <div class="alert alert-danger mt-2">
+              <div class="">
                 La contraseña es obligatoria.
               </div>
             }
             @if (formRegistro.get('password')?.errors?.['pattern']) {
-              <div class="alert alert-danger mt-2">
+              <div class="">
                 La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un símbolo.
               </div>
             }
@@ -72,12 +72,12 @@
           
           @if (formSubmitted && formRegistro.get('telefono')?.invalid) {
             @if (formRegistro.get('telefono')?.errors?.['required']) {
-              <div class="alert alert-danger mt-2">
+              <div class="">
                 El teléfono es obligatorio.
               </div>
             }
             @if (formRegistro.get('telefono')?.errors?.['pattern']) {
-              <div class="alert alert-danger mt-2">
+              <div class="">
                 El teléfono debe tener 10 dígitos numéricos.
               </div>
             }
@@ -90,11 +90,15 @@
           <input id="fecha_nacimiento" type="date" formControlName="fecha_nacimiento" class="form-control"/>
           
           @if (formSubmitted && formRegistro.get('fecha_nacimiento')?.invalid) {
-            <div class="alert alert-danger mt-2">
+            <div class="">
               La fecha de nacimiento es obligatoria.
             </div>
           }
         </div>
+
+        @if (messageError != '') {
+          <div>{{ messageError }}</div>
+        }
   
         <!-- Botón de registro -->
         <button type="submit" class="register-button">
