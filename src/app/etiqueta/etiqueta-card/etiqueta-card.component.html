@@ -12,7 +12,13 @@
 <div class="modal-overlay">
   <form class="modal" [formGroup]="formEtiqueta" (ngSubmit)="guardarCambios()">
     <h2>Editar Etiqueta</h2>
-    <input type="text" formControlName="nombre" placeholder="Nuevo nombre" />
+    <input
+      type="text"
+      formControlName="nombre"
+      placeholder="Nuevo nombre"
+      [ngClass]="nombreNotValid ? 'is-invalid' : 'is-valid'"
+    />
+
     <div class="modal-actions">
       <button type="submit">Guardar</button>
       <button (click)="cerrarModal()">Cancelar</button>

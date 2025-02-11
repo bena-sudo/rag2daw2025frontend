@@ -7,11 +7,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-etiqueta-card',
 
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './etiqueta-card.component.html',
   styleUrl: './etiqueta-card.component.css',
 })
@@ -27,7 +28,7 @@ export class EtiquetaCardComponent {
   ) {
     this.formEtiqueta = this.fb.group({
       id: ['', [Validators.required]],
-      nombre: ['', [Validators.required]],
+      nombre: ['', [Validators.required, Validators.minLength(4)]],
     });
   }
 
@@ -68,5 +69,12 @@ export class EtiquetaCardComponent {
         },
         error: (err) => console.error('Error al actualizar la etiqueta:', err),
       });
+  }
+
+  get nombreNotValid() {
+    return (
+      this.formEtiqueta.get('nombre')?.invalid &&
+      this.formEtiqueta.get('nombre')?.touched
+    );
   }
 }

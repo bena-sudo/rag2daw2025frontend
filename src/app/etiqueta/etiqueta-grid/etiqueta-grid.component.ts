@@ -9,6 +9,7 @@ import { Etiqueta } from '../../interface/etiqueta';
 import { EtiquetasService } from '../../service/etiquetas.service';
 import { EtiquetaCardComponent } from '../etiqueta-card/etiqueta-card.component';
 import { EtiquetaSearchComponent } from '../etiqueta-search/etiqueta-search.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-etiqueta-grid',
@@ -16,6 +17,7 @@ import { EtiquetaSearchComponent } from '../etiqueta-search/etiqueta-search.comp
     ReactiveFormsModule,
     EtiquetaCardComponent,
     EtiquetaSearchComponent,
+    CommonModule,
   ],
   templateUrl: './etiqueta-grid.component.html',
   styleUrl: './etiqueta-grid.component.css',
@@ -31,7 +33,7 @@ export class EtiquetaGridComponent {
     private readonly fb: FormBuilder
   ) {
     this.formEtiqueta = this.fb.group({
-      nombre: ['', Validators.required],
+      nombre: ['', [Validators.required, Validators.minLength(4)]],
     });
   }
 
@@ -95,5 +97,12 @@ export class EtiquetaGridComponent {
       },
       error: (err) => console.error('Error al crear la etiqueta:', err),
     });
+  }
+
+  get nombreNotValid() {
+    return (
+      this.formEtiqueta.get('nombre')?.invalid &&
+      this.formEtiqueta.get('nombre')?.touched
+    );
   }
 }
