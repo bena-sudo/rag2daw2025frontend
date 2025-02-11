@@ -1,12 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-:root{
-    --color_fondo: #E7EEF2;
+:root {
+    --color_fondo: #e7eef2;
     --fondo_hf: #b1c7d2;
     --color_button: #2d4a5b;
-    --color_button_hover: #1E2B34;
-    --color_texto_hf:#2C4F63;
-    --color_texto_hf_hover:#3F708D;
-}
+    --color_button_opacity: #7199af;
+    --color_texto: #1e2b34;
+    --button_login: #ff5000;
+    --button_login_hover: #e01e00;
+    --color_texto_hf: #2c4f63;
+    --color_texto_hf_hover: #3f708d;
+    --color_link: #417794;
+  }
 @font-face {
     font-family: 'Poppins';
     src: url('/public/fonts/Poppins/Poppins-Regular.woff2') format('woff2'),

@@ -1,58 +1,36 @@
-body {
-  background-color: var(--color_fondo);
-  font-family: Arial, sans-serif;
-}
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 16px;
-  height: 100vh;
-}
-.add-document-button {
-  background-color: var(--button_login);
-  color: white;
-  font-weight: bold;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  width: 100%;
-  margin-bottom: 16px;
-}
-.document-list {
-  background-color: var(--fondo_hf);
-  padding: 16px;
+.card {
+  position: relative;
+  background: white;
+  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s;
 }
-.document-list ul {
-  list-style: none;
-  padding: 0;
+.card:hover {
+  transform: translateY(-5px);
 }
-.document-list ul li {
+.card:hover .actions {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--color_fondo);
 }
-.document-list ul li:last-child {
-  border-bottom: none;
+.actions {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  justify-content: space-around;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
 }
-.document-list ul li button {
+.actions button {
   background: none;
   border: none;
-  color: var(--button_login);
-  font-size: 1.25rem;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  background-color: white;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 80%;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 /* MODAL */
@@ -66,6 +44,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 .modal {
