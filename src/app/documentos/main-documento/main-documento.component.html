@@ -1,4 +1,5 @@
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,12 +12,14 @@
                 width: 100%;
                 margin-bottom: 16px;
             }
+
             .main {
                 width: 100%;
             }
         }
     </style>
 </head>
+
 <body class="">
     <div class="container">
         <div class="main">
@@ -26,64 +29,68 @@
                 <div class="main-etiquetas">
                     <h2 class="">Etiquetas</h2>
                     <ul>
-                        <li class="documento">Añadir un poco de texto</li>
-                        <li class="documento">Añadir un poco de texto</li>
-                        <li class="documento">Añadir un poco de texto</li>
-                        <li class="documento">Añadir un poco de texto</li>
-                        <li class="documento">Añadir un poco de texto</li>
-                        <li class="documento">Añadir un poco de texto</li>
-                        <li class="documento">Añadir un poco de texto</li>
+                        <li class="">Añadir un poco de texto</li>
+                        <li class="">Añadir un poco de texto</li>
+                        <li class="">Añadir un poco de texto</li>
+                        <li class="">Añadir un poco de texto</li>
+                        <li class="">Añadir un poco de texto</li>
+                        <li class="">Añadir un poco de texto</li>
+                        <li class="">Añadir un poco de texto</li>
                     </ul>
                 </div>
             </div>
 
             <div class="document-container">
-                <div class="search-bar">
+
+                <form [formGroup]="searchForm" class="search-bar">
                     <button class="button_blue">BUSCAR</button>
-                    <input type="text" placeholder="Escribir busqueda" class="input_buscar">
-                    <button class="button_blue dropdown-button">
+                    <input type="text" placeholder="Escribir busqueda" class="input_buscar"
+                        formControlName="searchInput" name="searchInput">
+
+                    <button class="button_blue dropdown-button" type="submit">
                         <i class="fas fa-chevron-down"></i>
                     </button>
-                </div>
+                </form>
+
                 <div class="document-list">
                     <ul>
-                        <li class="">
+                        <li class="documento">
                             <span>nombrededocumento.pdf</span>
                             <button class="documento-plus">
                                 <i class="fas fa-plus-circle"></i>
                             </button>
                         </li>
-                        <li class="">
+                        <li class="documento">
                             <span>nombrededocumento.pdf</span>
                             <button class="documento-plus">
                                 <i class="fas fa-plus-circle"></i>
                             </button>
                         </li>
-                        <li class="">
+                        <li class="documento">
                             <span>nombrededocumento.pdf</span>
                             <button class="documento-plus">
                                 <i class="fas fa-plus-circle"></i>
                             </button>
                         </li>
-                        <li class="">
+                        <li class="documento">
                             <span>nombrededocumento.pdf</span>
                             <button class="documento-plus">
                                 <i class="fas fa-plus-circle"></i>
                             </button>
                         </li>
-                        <li class="">
+                        <li class="documento">
                             <span>nombrededocumento.pdf</span>
                             <button class="documento-plus">
                                 <i class="fas fa-plus-circle"></i>
                             </button>
                         </li>
-                        <li class="">
+                        <li class="documento">
                             <span>nombrededocumento.pdf</span>
                             <button class="documento-plus">
                                 <i class="fas fa-plus-circle"></i>
                             </button>
                         </li>
-                        <li class="">
+                        <li class="documento">
                             <span>nombrededocumento.pdf</span>
                             <button class="documento-plus">
                                 <i class="fas fa-plus-circle"></i>
@@ -92,8 +99,9 @@
                     </ul>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </body>
+
 </html>
