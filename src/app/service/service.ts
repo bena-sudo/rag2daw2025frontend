@@ -16,12 +16,12 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}returnChats`);
   }
 
-  createChat(chatData: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}createChat`, chatData);
+  createChat(body: object): Observable<any> {
+    return this.http.post(`${this.baseUrl}createChat`, body);
   }
 
-  updateChat(id: number, chatData: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}updateChat/${id}`, chatData);
+  updateChat(body: object): Observable<any> {
+    return this.http.put(`${this.baseUrl}createQuestionChat`, body);
   }
 
   deleteChat(id: number): Observable<any> {

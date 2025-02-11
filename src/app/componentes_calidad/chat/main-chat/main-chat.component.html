@@ -1,16 +1,16 @@
 <div class="main-chat-container">
     <div class="chat-messages">
       @for (pregunta of preguntas; track $index) {
-        <div class="user-message">
+        <div class="user-message message">
           {{ pregunta.textoPregunta }}
         </div>
-        <div class="bot-message">
+        <div class="bot-message message">
           {{ pregunta.textoRespuesta }}
         </div>
       }
     </div>
-    <!-- <div class="chat-input">
-      <input type="text" [(ngModel)]="newMessage" placeholder="Type a message..." />
-      <button (click)="sendMessage()">Send</button>
-    </div> -->
+    <div class="chat-input">
+      <input type="text" placeholder="Escribe aquí tu pregunta" [(ngModel)]="textoPregunta"/>
+      <button (click)="crearMensaje()">Enviar</button>
+    </div>
   </div>

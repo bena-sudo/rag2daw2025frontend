@@ -6,6 +6,7 @@
 .chat-list-container {
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 
 .chat-item {
@@ -69,8 +70,14 @@ button:hover {
   visibility: hidden;
   position: absolute;
   right: 0%;
+  background-color: #FFFFFF00;
+  box-shadow: none;
 }
 
 .chat-item:hover .borrarButton {
   visibility: visible;
+}
+
+#new-chat {
+  font-size: 1.5em;
 }

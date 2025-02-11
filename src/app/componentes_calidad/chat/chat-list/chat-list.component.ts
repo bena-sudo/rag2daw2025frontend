@@ -15,10 +15,10 @@ export class ChatListComponent {
 	constructor(private apiService: ApiService) {};
 
 	ngOnInit() {
-		this.loadBasicChats();
+		this.cargarChats();
 	}
 
-	loadBasicChats() {
+	cargarChats() {
 		this.apiService.getChats().subscribe( 
 			page => this.chats = page.content,
 			error => console.error("Error al conseguir los chats: ", error)
@@ -29,4 +29,26 @@ export class ChatListComponent {
 	onItemClick(idChat: number) {
 		this.seleccionarChat.emit(idChat);
 	}
+
+	borrarChat(idChat: number) {
+		this.apiService.deleteChat(idChat).subscribe( 
+			response => this.cargarChats(),
+			error => console.error("Error al conseguir los chats: ", error)
+		);
+	}
+
+	jsonIniciarChat = {
+		"usuario": "usuarioAngular",
+    	"contexto": 1
+	};
+	iniciarChat() {
+		this.apiService.createChat(this.jsonIniciarChat).subscribe( 
+			response => {
+				this.cargarChats()
+			},
+			error => console.error("Error al conseguir los chats: ", error)
+		);
+	}
+
+	
 }
