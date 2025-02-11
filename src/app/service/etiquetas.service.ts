@@ -7,7 +7,7 @@ import { Etiqueta } from '../interface/etiqueta';
   providedIn: 'root',
 })
 export class EtiquetasService {
-  private readonly apiUrl = 'http://localhost:8091/api/v1/etiqueta';
+  private readonly apiUrl = 'http://localhost:8090/api/v1/etiqueta';
 
   constructor(private readonly http: HttpClient) {}
 

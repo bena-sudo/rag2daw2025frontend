@@ -64,6 +64,7 @@ export class EtiquetaCardComponent {
       .subscribe({
         next: () => {
           this.cerrarModal();
+          window.location.reload();
         },
         error: (err) => console.error('Error al actualizar la etiqueta:', err),
       });
