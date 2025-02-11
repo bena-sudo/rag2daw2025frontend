@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../../service/service'
 import { CommonModule } from '@angular/common';
+import { IPregunta } from '../../ipregunta';
 
 @Component({
   selector: 'app-main-chat',
@@ -10,45 +11,36 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, CommonModule]
 })
-export class MainChatComponent implements OnInit {
-  messages: { text: string; sender: string }[] = [];
-  newMessage = '';
+export class MainChatComponent {
+  preguntas: IPregunta[] = [];
+  nuevaPregunta = '';
 
-  constructor(private apiService: ApiService) {} // Inject API service
-
-  ngOnInit() {
-    this.loadChatMessages(); // Load chat history on init
-  }
+  constructor(private apiService: ApiService) {};
 
   loadChatMessages() {
-    this.apiService.getChats().subscribe(
-      (chats) => {
-        this.messages = chats.map((chat: any) => ({
-          text: chat.textoPregunta || chat.text,
-          sender: chat.usuario || 'bot' // Default sender if missing
-        }));
-      },
-      (error) => {
-        console.error('Error fetching chat messages:', error);
-      }
+    this.apiService.returnPreguntasByIdChat().subscribe(
+      page => this.preguntas = page.content,
+			error => console.error("Error al conseguir los chats: ", error)
     );
   }
 
+  /*
   sendMessage() {
-    if (this.newMessage.trim() !== '') {
-      const userMessage = { text: this.newMessage, sender: 'user' };
-      this.messages.push(userMessage);
+    if (this.nuevaPregunta.trim() !== '') {
+      const userMessage: IPregunta = {};
+      userMessage
+      this.preguntas.push(userMessage);
 
-      this.apiService.createQuestionChat({ textoPregunta: this.newMessage, usuario: 'user' }).subscribe(
+      this.apiService.createQuestionChat({ textoPregunta: this.nuevaPregunta, usuario: 'user' }).subscribe(
         (response) => {
-          this.messages.push({ text: response.textoPregunta || '...', sender: 'bot' });
+          this.preguntas.push({ text: response.textoPregunta || '...', sender: 'bot' });
         },
         (error) => {
           console.error('Error sending message:', error);
         }
       );
 
-      this.newMessage = '';
+      this.nuevaPregunta = '';
     }
-  }
+  }*/
 }

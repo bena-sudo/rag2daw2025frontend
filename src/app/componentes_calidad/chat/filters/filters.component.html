@@ -4,7 +4,9 @@
     <div id="filtros" [class.open]="showFilters">
         <select class="select_user" name="usuario" [(ngModel)]="selectedUser">
             <option value="">User</option>
-            <option *ngFor="let user of users" [value]="user">{{ user }}</option>
+            @for (user of users; track $index) {
+                <option>{{ user }}</option>
+            }
         </select>
 
         <input type="date" [(ngModel)]="startDate"/>

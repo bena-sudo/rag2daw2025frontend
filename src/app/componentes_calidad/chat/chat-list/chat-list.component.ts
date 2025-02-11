@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { IChat } from '../../ichat';
+import { ApiService } from '../../../service/service';
 
 @Component({
   selector: 'app-chat-list',
@@ -8,9 +10,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./chat-list.component.css']
 })
 export class ChatListComponent {
-  chats = [
-    { name: 'Chat 1' },
-    { name: 'Chat 2' },
-    { name: 'Chat 3' }
-  ];
+	chats: IChat[] = [];
+
+	constructor(private apiService: ApiService) {};
+
+	ngOnInit() {
+		this.loadBasicChats();
+	}
+
+	loadBasicChats() {
+		this.apiService.getChats().subscribe( 
+			page => this.chats = page.content,
+			error => console.error("Error al conseguir los chats: ", error)
+		);
+	}
 }
