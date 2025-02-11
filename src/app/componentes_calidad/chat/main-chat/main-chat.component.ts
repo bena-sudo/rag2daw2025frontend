@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../../service/service'
 import { CommonModule } from '@angular/common';
@@ -11,16 +11,17 @@ import { IPregunta } from '../../ipregunta';
   standalone: true,
   imports: [FormsModule, CommonModule]
 })
-export class MainChatComponent {
+export class MainChatComponent implements OnChanges{
   preguntas: IPregunta[] = [];
   nuevaPregunta = '';
 
   constructor(private apiService: ApiService) {};
 
-  loadChatMessages() {
-    this.apiService.returnPreguntasByIdChat().subscribe(
-      page => this.preguntas = page.content,
-			error => console.error("Error al conseguir los chats: ", error)
+  @Input() idChat: number = 1;
+  ngOnChanges(changes: SimpleChanges): void {
+    this.apiService.returnPreguntasByIdChat(this.idChat).subscribe(
+      listaPreguntas => this.preguntas = listaPreguntas,
+			error => console.error("Error al conseguir las preguntas del chat" + this.idChat + ": ", error)
     );
   }
 

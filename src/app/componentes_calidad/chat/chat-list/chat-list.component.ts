@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { IChat } from '../../ichat';
 import { ApiService } from '../../../service/service';
 
@@ -23,5 +23,10 @@ export class ChatListComponent {
 			page => this.chats = page.content,
 			error => console.error("Error al conseguir los chats: ", error)
 		);
+	}
+
+	@Output() seleccionarChat = new EventEmitter<number>();
+	onItemClick(idChat: number) {
+		this.seleccionarChat.emit(idChat);
 	}
 }

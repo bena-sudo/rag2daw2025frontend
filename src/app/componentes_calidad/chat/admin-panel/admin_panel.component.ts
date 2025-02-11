@@ -6,6 +6,7 @@ import { ChatListComponent } from '../chat-list/chat-list.component';
 import { MainChatComponent } from '../main-chat/main-chat.component';
 import { FiltersComponent } from "../filters/filters.component";
 import { NgStyle } from '@angular/common';
+import { ApiService } from '../../../service/service';
 @Component({
   selector: 'app-root',
   imports: [NgStyle,  FooterComponent, HeaderComponent, ChatListComponent, MainChatComponent, FiltersComponent],
@@ -42,5 +43,10 @@ export class AppComponent {
   @HostListener('document:mouseup')
   onMouseUp() {
     this.isResizing = false;
+  }
+
+  idChatSeleccionado: number | null = null;
+  alSeleccionarChat(idChat: number) {
+    this.idChatSeleccionado = idChat;
   }
 }

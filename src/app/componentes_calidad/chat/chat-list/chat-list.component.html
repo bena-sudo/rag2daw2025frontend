@@ -1,3 +1,5 @@
-<div *ngFor="let chat of chats" class="chat-item">
-    Chat by {{ chat.usuario }}
-</div>
+@for (chat of chats; track $index) {
+    <div class="chat-item" (click)="onItemClick(chat.idChat)">
+        Chat by {{ chat.usuario }}
+    </div>
+}

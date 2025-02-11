@@ -30,8 +30,8 @@ export class ApiService {
 
 
   //  Preguntas
-  returnPreguntasByIdChat(): Observable<any> {
-    return this.http.get(`${this.baseUrl}returnPreguntasByIdChat`);
+  returnPreguntasByIdChat(idChat: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}returnPreguntasByIdChat?idChat=${idChat}`);
   }
 
   createQuestionChat(data: any): Observable<any> {

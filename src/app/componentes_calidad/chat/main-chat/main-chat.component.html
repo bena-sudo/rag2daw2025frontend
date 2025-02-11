@@ -1,8 +1,13 @@
 <div class="main-chat-container">
     <div class="chat-messages">
-      <!-- <div *ngFor="let pregunta of preguntas" class="pregunta" [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
-        {{ message.text }}
-      </div> -->
+      @for (pregunta of preguntas; track $index) {
+        <div class="user-message">
+          {{ pregunta.textoPregunta }}
+        </div>
+        <div class="bot-message">
+          {{ pregunta.textoRespuesta }}
+        </div>
+      }
     </div>
     <!-- <div class="chat-input">
       <input type="text" [(ngModel)]="newMessage" placeholder="Type a message..." />

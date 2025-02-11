@@ -1,6 +1,6 @@
 export interface IChat {
-    idChat: null | Number;
+    idChat: number;
     usuario: null | string;
-    contexto: null | Number;
+    contexto: null | number;
     fecha: null | string;
 }
