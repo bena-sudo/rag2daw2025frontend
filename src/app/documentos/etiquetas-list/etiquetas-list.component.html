@@ -1,0 +1,11 @@
+<div class="sidebar">
+  <button class="button_orange">+ Añadir documento</button>
+  <div class="main-etiquetas">
+    <h2 class="">Etiquetas</h2>
+    <ul>
+      @for (etiqueta of etiquetas; track $index) {
+      <li>{{ etiqueta.nombre }}</li>
+      }
+    </ul>
+  </div>
+</div>

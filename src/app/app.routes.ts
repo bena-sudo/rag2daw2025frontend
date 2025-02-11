@@ -3,5 +3,5 @@ import { MainDocumentoComponent } from './documentos/main-documento/main-documen
 
 export const routes: Routes = [
 
-    {path: 'mainDocumentos', component: MainDocumentoComponent}
+    {path: '', component: MainDocumentoComponent}
 ];
