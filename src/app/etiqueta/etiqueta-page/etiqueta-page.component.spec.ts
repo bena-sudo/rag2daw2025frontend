@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EtiquetaItemComponent } from './etiqueta-item.component';
+import { EtiquetaPageComponent } from './etiqueta-page.component';
 
-describe('EtiquetaItemComponent', () => {
-  let component: EtiquetaItemComponent;
-  let fixture: ComponentFixture<EtiquetaItemComponent>;
+describe('EtiquetaPageComponent', () => {
+  let component: EtiquetaPageComponent;
+  let fixture: ComponentFixture<EtiquetaPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EtiquetaItemComponent]
+      imports: [EtiquetaPageComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EtiquetaItemComponent);
+    fixture = TestBed.createComponent(EtiquetaPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
