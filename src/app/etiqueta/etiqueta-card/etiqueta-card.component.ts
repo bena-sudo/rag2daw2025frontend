@@ -20,14 +20,13 @@ export class EtiquetaCardComponent {
 
   mostrarModal: boolean = false;
   formEtiqueta: FormGroup;
-  id: number = 1;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly etiquetaService: EtiquetasService
   ) {
     this.formEtiqueta = this.fb.group({
-      id: [1, [Validators.required]],
+      id: ['', [Validators.required]],
       nombre: ['', [Validators.required]],
     });
   }
@@ -57,7 +56,9 @@ export class EtiquetaCardComponent {
   }
 
   guardarCambios() {
-    
+    this.formEtiqueta.patchValue({
+      id: this.etiqueta.id,
+    });
     this.etiquetaService
       .updateEtiqueta({ ...this.formEtiqueta.value })
       .subscribe({
