@@ -20,8 +20,6 @@ export class EtiquetasService {
   }
 
   updateEtiqueta(etiqueta: Etiqueta): Observable<Etiqueta> {
-    console.log(`${this.apiUrl}/${etiqueta.id}`, etiqueta);
-    
     return this.http.put<Etiqueta>(`${this.apiUrl}/${etiqueta.id}`, etiqueta);
   }
 

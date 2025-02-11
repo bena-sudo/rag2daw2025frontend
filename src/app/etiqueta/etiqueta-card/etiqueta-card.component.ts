@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EtiquetasService } from '../../service/etiquetas.service';
 import { Etiqueta } from '../../interface/etiqueta';
 import {
@@ -15,27 +15,21 @@ import {
   templateUrl: './etiqueta-card.component.html',
   styleUrl: './etiqueta-card.component.css',
 })
-export class EtiquetaCardComponent implements OnInit{
+export class EtiquetaCardComponent {
   @Input({ required: true }) etiqueta!: Etiqueta;
 
   mostrarModal: boolean = false;
   formEtiqueta: FormGroup;
-  id:number = 1;
+  id: number = 1;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly etiquetaService: EtiquetasService
   ) {
     this.formEtiqueta = this.fb.group({
-      id: ["", [Validators.required]],
+      id: [1, [Validators.required]],
       nombre: ['', [Validators.required]],
     });
-    
-    
-  }
-
-  ngOnInit(): void {
-    
   }
 
   eliminarEtiqueta() {
@@ -63,6 +57,7 @@ export class EtiquetaCardComponent implements OnInit{
   }
 
   guardarCambios() {
+    
     this.etiquetaService
       .updateEtiqueta({ ...this.formEtiqueta.value })
       .subscribe({
