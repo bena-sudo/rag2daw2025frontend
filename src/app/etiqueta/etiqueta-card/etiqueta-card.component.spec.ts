@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EtiquetaGridComponent } from './etiqueta-grid.component';
+import { EtiquetaCardComponent } from './etiqueta-card.component';
 
-describe('EtiquetaGridComponent', () => {
-  let component: EtiquetaGridComponent;
-  let fixture: ComponentFixture<EtiquetaGridComponent>;
+describe('EtiquetaCardComponent', () => {
+  let component: EtiquetaCardComponent;
+  let fixture: ComponentFixture<EtiquetaCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EtiquetaGridComponent],
+      imports: [EtiquetaCardComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(EtiquetaGridComponent);
+    fixture = TestBed.createComponent(EtiquetaCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
