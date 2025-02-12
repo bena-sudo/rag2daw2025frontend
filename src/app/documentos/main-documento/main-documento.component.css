@@ -1,9 +1,3 @@
-body {
-  background-color: var(--fondo_principal);
-  font-family: "Poppins", sans-serif;
-  height: 100vh;
-}
-
 .container {
   margin: 0 auto;
   padding: 16px;

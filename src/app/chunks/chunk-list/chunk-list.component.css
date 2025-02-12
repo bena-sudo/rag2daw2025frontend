@@ -2,7 +2,7 @@
     margin-top: 16px;
 }
 .item {
-    background-color: #ffffff;
+    background-color: var(--white);
     padding: 16px;
     margin-bottom: 16px;
     display: grid; /* Cambiado de flex a grid */
@@ -13,7 +13,7 @@
     font-weight: 400;
 }
 .item p {
-    color: #4b5563;
+    color: var(--azul-oscuro-1);
     margin: 0;
     margin-right: 20px;
     min-width: min-content;
@@ -37,10 +37,10 @@
     align-self: center;
 }
 .icons i {
-    color: #ff5000;
+    color: var(--resaltado);
 }
 
 .icons i:hover{
-    color: #e01e00;
+    color: var(--resaltado_hover);
     cursor: pointer;
 }
