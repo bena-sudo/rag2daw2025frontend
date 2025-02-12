@@ -1,0 +1,15 @@
+<form class="search-bar">
+  <button class="button_blue">BUSCAR</button>
+  <input
+    type="search"
+    class="form-control input_buscar"
+    placeholder="Search..."
+    aria-label="Search"
+    [formControl]="searchControl"
+    (keydown.enter)="$event.preventDefault()"
+  />
+
+  <button class="button_blue dropdown-button" type="submit">
+    <i class="fas fa-chevron-down"></i>
+  </button>
+</form>

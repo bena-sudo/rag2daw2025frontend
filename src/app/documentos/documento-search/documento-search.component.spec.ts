@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EtiquetaPageComponent } from './etiqueta-page.component';
+import { DocumentoSearchComponent } from './documento-search.component';
 
-describe('EtiquetaPageComponent', () => {
-  let component: EtiquetaPageComponent;
-  let fixture: ComponentFixture<EtiquetaPageComponent>;
+describe('DocumentoSearchComponent', () => {
+  let component: DocumentoSearchComponent;
+  let fixture: ComponentFixture<DocumentoSearchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EtiquetaPageComponent]
+      imports: [DocumentoSearchComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EtiquetaPageComponent);
+    fixture = TestBed.createComponent(DocumentoSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
