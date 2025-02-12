@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - master
-    paths:
-      - rag2daw2025frontend/** # Ejecuta solo cuando se modifique algo en esta carpeta
 
 jobs:
   build-and-deploy:
