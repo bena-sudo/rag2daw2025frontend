@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IPregunta } from '../componentes_calidad/ipregunta';
+import { IChat } from '../componentes_calidad/ichat';
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +51,9 @@ export class ApiService {
   // Filtros
   getListUsuarios(): Observable<string[]> {
     return this.http.get<string[]>(`${this.baseUrl}getListUsuarios`);
+  }
+
+  filterChats(bodyFilter: object | null): Observable<any> {
+    return this.http.post<string[]>(`${this.baseUrl}filter`, bodyFilter);
   }
 }

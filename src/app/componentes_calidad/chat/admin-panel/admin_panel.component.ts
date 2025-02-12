@@ -45,9 +45,15 @@ export class AdminPanelComponent {
     this.isResizing = false;
   }
 
+  // al suceder el evento de seleccionar un chat, se modifica la variable que se pasa al componente hijo secundario
   idChatSeleccionado: number | null = null;
   alSeleccionarChat(idChat: number) {
     this.idChatSeleccionado = idChat;
+  }
+
+  bodyFiltros: object | null = null;
+  alFiltrarChat(bodyFiltros: object) {
+    this.bodyFiltros = bodyFiltros;
   }
 
   toggleFooter() {

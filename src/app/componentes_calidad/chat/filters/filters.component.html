@@ -1,28 +1,27 @@
 <div class="filters-container">
-    
 
     <div id="filtros" [class.open]="showFilters">
-        <select class="select_user" name="usuario" [(ngModel)]="selectedUser">
+        <select class="select_user" name="usuario" [(ngModel)]="filtros.filterUser">
             <option value="">User</option>
             @for (user of users; track $index) {
                 <option>{{ user }}</option>
             }
         </select>
 
-        <input type="date" [(ngModel)]="startDate"/>
-        <input type="date" [(ngModel)]="endDate"/>
+        <input type="date" [(ngModel)]="fechaInicio"/>
+        <input type="date" [(ngModel)]="fechaFin"/>
 
-        <input type="text" [(ngModel)]="question" placeholder="Question"/>
-        <input type="text" [(ngModel)]="answer" placeholder="Answer"/>
+        <input type="text" [(ngModel)]="filtros.filterPregunta" placeholder="Question"/>
+        <input type="text" [(ngModel)]="filtros.filterRespuesta" placeholder="Answer"/>
 
-        <select name="chunk" [(ngModel)]="selectedChunk">
+        <select name="chunk" [(ngModel)]="filtros.filterChunks">
             <option value="">Chunk</option>
             @for (chunk of chunks; track $index) {
                 <option [value]="chunk">{{ chunk }}</option>
             }
         </select>
 
-        <select name="valorados" [(ngModel)]="selectedValorados">
+        <select name="valorados" [(ngModel)]="filtros.filterValorado">
             <option value="">Todos</option>
             <option value="sin_valorar">Sin valorar</option>
             <option value="valorados">Valorados</option>
@@ -36,9 +35,16 @@
             <option value="bien">Bien</option>
             <option value="mal">Mal</option>
         </select>
+        
+        <select [ngClass]="{'show': selectedValorados === 'valorados'}" 
+                *ngIf="selectedValorados === 'valorados'" 
+                name="valor" [(ngModel)]="selectedValor">
+            <option value="">Ambos</option>
+            <option value="bien">Bien</option>
+            <option value="mal">Mal</option>
+        </select>
 
-
-        <button (click)="applyFilters()" id="apply-filters">Apply</button>
+        <button (click)="aplicarFiltros()" id="apply-filters">Apply</button>
     </div>
     <button (click)="toggleFilters()" id="toggle-filters">
         {{ showFilters ? '▲' : '▼' }}

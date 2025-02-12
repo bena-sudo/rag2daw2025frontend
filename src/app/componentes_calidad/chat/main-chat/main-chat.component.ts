@@ -21,6 +21,10 @@ export class MainChatComponent implements OnChanges{
 
 	@Input() idChat: number | null = 0;
 	ngOnChanges(changes: SimpleChanges): void {
+		this.actualizarChat();
+	}
+
+	actualizarChat() {
 		this.apiService.returnPreguntasByIdChat(this.idChat).subscribe(
 			listaPreguntas => this.preguntas = listaPreguntas,
 			error => console.error("Error al conseguir las preguntas del chat" + this.idChat + ": ", error)
@@ -39,7 +43,7 @@ export class MainChatComponent implements OnChanges{
 
 	enviarMensaje(body: IBodyEnvioPregunta) {
 		this.apiService.createQuestionChat(body).subscribe(
-			response => console.log(response),
+			response => this.actualizarChat(),
 			error => console.error("Error al conseguir las preguntas del chat" + this.idChat + ": ", error)
 		);
 	}
