@@ -1,0 +1,10 @@
+<div class="main-etiquetas">
+  <h2>Etiquetas</h2>
+  <ul>
+    @for (etiqueta of etiquetas; track $index) {
+    <li>
+      <div (click)="cambiarEtiqueta(etiqueta.id!)">{{ etiqueta.nombre }}</div>
+    </li>
+    }
+  </ul>
+</div>

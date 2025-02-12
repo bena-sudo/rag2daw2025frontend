@@ -1,0 +1,12 @@
+.main-etiquetas {
+  margin: 8px;
+  background-color: var(--azul-muy-claro-2);
+  padding: 16px;
+  height: 87%;
+  border-radius: 8px;
+}
+
+.main-etiquetas ul li {
+  margin: 16px;
+  list-style: none;
+}
