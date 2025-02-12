@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainDocumentoComponent } from './documentos/main-documento/main-documento.component';
-import { GraficasEstadisticasComponent } from './components/graficas-estadisticas/graficas-estadisticas.component';
+import { GraficasEstadisticasComponent } from './graficas-estadisticas/graficas-estadisticas.component';
 
 export const routes: Routes = [
 
