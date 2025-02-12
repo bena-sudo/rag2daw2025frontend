@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Chunk } from '../chunk';
 import { ChunksService } from '../../services/chunks.service';
 import { Estado, EstadoColor } from '../../enums/estado.enum';
@@ -10,7 +10,7 @@ import { Estado, EstadoColor } from '../../enums/estado.enum';
   styleUrl: './chunk-list.component.css'
 })
 export class ChunkListComponent implements OnInit{
-    public chunks! :Chunk[];
+    @Input() chunks!: Chunk[];
     Estado = Estado;
     EstadoColor = EstadoColor;
 
