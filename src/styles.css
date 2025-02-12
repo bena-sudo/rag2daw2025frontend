@@ -1,11 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 :root{
-    --color_fondo: #E7EEF2;
-    --fondo_hf: #b1c7d2;
-    --color_button: #2d4a5b;
-    --color_button_hover: #1E2B34;
-    --color_texto_hf:#2C4F63;
-    --color_texto_hf_hover:#3F708D;
+    --resaltado: #FF5000;
+    --resaltado_hover: #E01E00;
+
+    --titulos: #080F12;
+    --texto_principal: #101E25;
+    --texto_secundario: #182D38;
+    --texto_terciario:#213B4A;
+
+    --fondo_principal:#E7EEF2;
+    --fondo_secundario:#FFFFFF;
+    --fondo_terciario: #B8CCD7;
+
+    --elemento_principal:#294A5D;
+    --texto_elemento:#D0DDE4;
+
+    /*En caso de necesitar mas tonalidades utilizar-->*/
+
+    /***SOMBRAS***/
+    --azul-muy-oscuro: #080F12;
+    --azul-extra-oscuro: #101E25;
+    --azul-oscuro-3: #182D38;
+    --azul-oscuro-2: #213B4A;
+    --azul-oscuro-1: #294A5D;
+    --azul-medio-oscuro: #31596F;
+    --azul-medio: #396882;
+    /****/
+
+    /**COLOR BASE**/
+    --azul-base: #417794;
+    /****/
+
+    /***TINTES***/
+    --azul-medio-claro: #5988A1;
+    --azul-claro-1: #7199AF;
+    --azul-claro-2: #88AABC;
+    --azul-claro-3: #A0BBCA;
+    --azul-muy-claro-1: #B8CCD7;
+    --azul-muy-claro-2: #D0DDE4;
+    --azul-muy-claro-3: #E7EEF2;
+    /****/
+
+    --white:#FFFFFF;
+    --black:#000000;
+
 }
 @font-face {
     font-family: 'Poppins';
@@ -166,7 +204,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--fondo_hf);
+  background: var(--fondo_terciario);
   padding: 10px 20px;
   box-shadow: 5px 5px 10px rgba(70, 70, 70, 0.5);
 }

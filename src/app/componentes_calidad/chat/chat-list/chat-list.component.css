@@ -1,8 +1,3 @@
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #1e2b3466 rgba(255, 255, 255, 0);
-}
-
 .chat-list-container {
   display: flex;
   flex-direction: column;
@@ -11,15 +6,15 @@
 
 .chat-item {
   padding: 10px;
-  border-bottom: 1px solid rgb(255, 106, 0);
+  border-bottom: 1px solid var(--resaltado);
   cursor: pointer;
   transition: 0.2s ease-in-out;
   position: relative;
+  margin-right: 10px;
 }
 
 .chat-item:hover {
-  background-color: rgba(255, 255, 255, 0.153);
-  ;
+  background-color: #e01e001b ;
   border-radius: 20px;
   box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.105);
 }
@@ -52,8 +47,8 @@ button {
   margin-left: 5px;
   width: auto;
   padding: 5px 10px;
-  background-color: #294A5D;
-  color: white;
+  background-color: var(--elemento_principal)  ;
+  color: var(--texto_elemento);
   border: none;
   border-radius: 25px;
   cursor: pointer;
@@ -62,7 +57,7 @@ button {
 }
 
 button:hover {
-  background-color: #1E2B34;
+  background-color: #1e3644;
 
 }
 
@@ -70,12 +65,18 @@ button:hover {
   visibility: hidden;
   position: absolute;
   right: 0%;
-  background-color: #FFFFFF00;
+  color: var(--black);
+  background: none;
   box-shadow: none;
+}
+
+.borrarButton:hover{
+  color: var(--resaltado);
 }
 
 .chat-item:hover .borrarButton {
   visibility: visible;
+  background: none;
 }
 
 #new-chat {

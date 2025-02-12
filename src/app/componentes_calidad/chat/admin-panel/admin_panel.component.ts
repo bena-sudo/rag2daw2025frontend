@@ -5,23 +5,23 @@ import { HeaderComponent } from "../../../componentes_global/header/header.compo
 import { ChatListComponent } from '../chat-list/chat-list.component';
 import { MainChatComponent } from '../main-chat/main-chat.component';
 import { FiltersComponent } from "../filters/filters.component";
-import { NgStyle } from '@angular/common';
+import { CommonModule, NgStyle } from '@angular/common';
 import { ApiService } from '../../../service/service';
 @Component({
   selector: 'app-root',
-  imports: [NgStyle,  FooterComponent, HeaderComponent, ChatListComponent, MainChatComponent, FiltersComponent],
+  imports: [NgStyle,  FooterComponent, HeaderComponent, ChatListComponent, MainChatComponent, FiltersComponent, CommonModule],
   templateUrl: './admin_panel.component.html',
   styleUrl: './admin_panel.component.css'
 })
 export class AppComponent {
   title = 'rag2daw2025frontend';
-  chatContainerHeight = '75.8vh';
+  chatContainerHeight = '72.8vh';
   chatListWidth = 300;
   isResizing = false;
-
+  showFooter = false;
   
   onFiltersToggled(showFilters: boolean) {
-    this.chatContainerHeight = showFilters ? '75.8vh' : '87vh'; // Adjust height based on filters visibility
+    this.chatContainerHeight = showFilters ? '72.8vh' : '84vh'; // Adjust height based on filters visibility
   }
 
   startResizing(event: MouseEvent) {
@@ -48,5 +48,9 @@ export class AppComponent {
   idChatSeleccionado: number | null = null;
   alSeleccionarChat(idChat: number) {
     this.idChatSeleccionado = idChat;
+  }
+
+  toggleFooter() {
+    this.showFooter = !this.showFooter; // Toggle visibility
   }
 }

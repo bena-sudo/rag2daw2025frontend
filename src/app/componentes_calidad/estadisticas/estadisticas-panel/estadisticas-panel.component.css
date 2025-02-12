@@ -1,0 +1,38 @@
+.mainBento {
+  display: grid;
+  grid-template-areas: 
+    "tab tab tab tab"
+    "grafica grafica grafica filtros"
+    "grafica grafica grafica filtros"
+    "grafica grafica grafica filtros";
+  gap: 16px;
+  padding: 16px;
+}
+
+.bento-item {
+  background-color: #f4f4f4;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.bento-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.grafica {
+  height: 100%;
+  width: 100%;
+  background-color: lightblue;
+}
+
+.filtros {
+  background-color: lightgreen; 
+}
+
+.tab {
+  background-color: lightcoral;
+}

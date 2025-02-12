@@ -20,24 +20,19 @@
     padding: 12px;
     border-radius: 15px;
     position: relative;
-    box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.462);
-    margin: 5px;
-    box-shadow: none;
-    border: 0px !important; 
+    margin: 5px; 
   }
   
   .user-message {
     align-self: flex-end; 
-    background-color: #294A5D;
+    background-color: var(--azul-medio);
     color: white;
-    border: 1px inset #1E2B34;
   }
   
   .bot-message {
     align-self: flex-start; 
-    background-color: rgb(255, 106, 0);
+    background-color: var(--resaltado);
     color: white;
-    border: 1px inset rgb(255, 159, 91);
   }
   
   .chat-input {

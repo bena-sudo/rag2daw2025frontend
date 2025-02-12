@@ -24,6 +24,7 @@ export class FiltersComponent implements OnInit {
   answer: string = '';
   selectedChunk: string = '';
   selectedValorados: string = '';
+  selectedValor: string = '';
 
   constructor(private apiService: ApiService) {};
 
@@ -32,7 +33,6 @@ export class FiltersComponent implements OnInit {
     this.apply = document.getElementById("apply-filters");
   }
 
-  //@HostListener función para aplicar y enviar los filtros seleccionados al backend y devolver los usuarios que cumplen con los criterios.
   
 
   iniciarListaNombres() {
@@ -44,11 +44,11 @@ export class FiltersComponent implements OnInit {
 
 
 
-  @Output() filtersToggled = new EventEmitter<boolean>(); // Emit a boolean value
+  @Output() filtersToggled = new EventEmitter<boolean>();
 
   toggleFilters() {
-    this.showFilters = !this.showFilters; // Toggle the boolean value
-    this.filtersToggled.emit(this.showFilters); // Emit the current state of filters
+    this.showFilters = !this.showFilters; 
+    this.filtersToggled.emit(this.showFilters);
   }
 
   applyFilters() {
@@ -59,7 +59,8 @@ export class FiltersComponent implements OnInit {
       question: this.question,
       answer: this.answer,
       chunk: this.selectedChunk,
-      valorados: this.selectedValorados
+      valorados: this.selectedValorados,
+      valor: this.selectedValor
     };
 
     console.log('Filters applied:', filters);

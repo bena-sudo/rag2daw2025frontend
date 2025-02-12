@@ -1,0 +1,12 @@
+#filtros{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-content: center;
+}
+
+#filtros * {
+    height: 40px;
+    text-align: center;
+
+}
