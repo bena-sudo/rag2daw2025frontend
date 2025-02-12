@@ -1,107 +1,76 @@
-<html lang="es">
+<div class="container">
+  <div class="main">
+    <div class="sidebar">
+      <button class="button_orange">+ Añadir documento</button>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                margin-bottom: 16px;
-            }
-
-            .main {
-                width: 100%;
-            }
-        }
-    </style>
-</head>
-
-<body class="">
-    <div class="container">
-        <div class="main">
-
-            <div class="sidebar">
-                <button class="button_orange">+ Añadir documento</button>
-                <div class="main-etiquetas">
-                    <h2 class="">Etiquetas</h2>
-                    <ul>
-                        <li class="">Añadir un poco de texto</li>
-                        <li class="">Añadir un poco de texto</li>
-                        <li class="">Añadir un poco de texto</li>
-                        <li class="">Añadir un poco de texto</li>
-                        <li class="">Añadir un poco de texto</li>
-                        <li class="">Añadir un poco de texto</li>
-                        <li class="">Añadir un poco de texto</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="document-container">
-
-                <form [formGroup]="searchForm" class="search-bar">
-                    <button class="button_blue">BUSCAR</button>
-                    <input type="text" placeholder="Escribir busqueda" class="input_buscar"
-                        formControlName="searchInput" name="searchInput">
-
-                    <button class="button_blue dropdown-button" type="submit">
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                </form>
-
-                <div class="document-list">
-                    <ul>
-                        <li class="documento">
-                            <span>nombrededocumento.pdf</span>
-                            <button class="documento-plus">
-                                <i class="fas fa-plus-circle"></i>
-                            </button>
-                        </li>
-                        <li class="documento">
-                            <span>nombrededocumento.pdf</span>
-                            <button class="documento-plus">
-                                <i class="fas fa-plus-circle"></i>
-                            </button>
-                        </li>
-                        <li class="documento">
-                            <span>nombrededocumento.pdf</span>
-                            <button class="documento-plus">
-                                <i class="fas fa-plus-circle"></i>
-                            </button>
-                        </li>
-                        <li class="documento">
-                            <span>nombrededocumento.pdf</span>
-                            <button class="documento-plus">
-                                <i class="fas fa-plus-circle"></i>
-                            </button>
-                        </li>
-                        <li class="documento">
-                            <span>nombrededocumento.pdf</span>
-                            <button class="documento-plus">
-                                <i class="fas fa-plus-circle"></i>
-                            </button>
-                        </li>
-                        <li class="documento">
-                            <span>nombrededocumento.pdf</span>
-                            <button class="documento-plus">
-                                <i class="fas fa-plus-circle"></i>
-                            </button>
-                        </li>
-                        <li class="documento">
-                            <span>nombrededocumento.pdf</span>
-                            <button class="documento-plus">
-                                <i class="fas fa-plus-circle"></i>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
+      <app-etiquetas-list></app-etiquetas-list>
     </div>
-</body>
+    <div class="document-container">
+      <form [formGroup]="searchForm" class="search-bar">
+        <button class="button_blue">BUSCAR</button>
+        <input
+          type="text"
+          placeholder="Escribir busqueda"
+          class="input_buscar"
+          formControlName="searchInput"
+          name="searchInput"
+        />
 
-</html>
+        <button class="button_blue dropdown-button" type="submit">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+      </form>
+
+      <div class="document-list">
+        <ul>
+          <li class="documento">
+            <span>nombrededocumento.pdf</span>
+            <button class="documento-plus">
+              <i class="fas fa-plus-circle"></i>
+            </button>
+          </li>
+          <li class="documento">
+            <span>nombrededocumento.pdf</span>
+            <button class="documento-plus">
+              <i class="fas fa-plus-circle"></i>
+            </button>
+          </li>
+          <li class="documento">
+            <span>nombrededocumento.pdf</span>
+            <button class="documento-plus">
+              <i class="fas fa-plus-circle"></i>
+            </button>
+          </li>
+          <li class="documento">
+            <span>nombrededocumento.pdf</span>
+            <button class="documento-plus">
+              <i class="fas fa-plus-circle"></i>
+            </button>
+          </li>
+          <li class="documento">
+            <span>nombrededocumento.pdf</span>
+            <button class="documento-plus">
+              <i class="fas fa-plus-circle"></i>
+            </button>
+          </li>
+          <li class="documento">
+            <span>nombrededocumento.pdf</span>
+            <button class="documento-plus">
+              <i class="fas fa-plus-circle"></i>
+            </button>
+          </li>
+          <li class="documento">
+            <span>nombrededocumento.pdf</span>
+            <button class="documento-plus">
+              <i class="fas fa-plus-circle"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+/>
