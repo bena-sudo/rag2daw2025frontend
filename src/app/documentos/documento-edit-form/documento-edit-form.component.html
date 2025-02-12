@@ -1,24 +1,34 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Edición</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="documento-edit-form.component.css"> -->
-</head>
-
-<body>
-
+<div class="body">
     <div class="formulario-contenedor">
         <h1>Formulario de edición</h1>
-        <form class="formulario-edicion">
+        <form [formGroup]="editForm" class="formulario-edicion">
             <label for="nombre">Introduce el nuevo nombre</label>
-            <input type="text" id="nombre" name="nombre" placeholder="  Nombre" required>
+            <input 
+                type="text"
+                id="nombre"
+                name="nombre"
+                aria-describedby="nombre"
+                formControlName="nombre"
+                [ngClass]="{
+                    'is-valid': nombreValid,
+                    'is-invalid': !nombreValid
+                }"
+                placeholder="  Nombre"
+                required>
 
             <label for="comentario">Introduce el nuevo comentario</label>
-            <textarea id="comentario" name="comentario" placeholder="  Comentario" required></textarea>
+            <textarea 
+                id="comentario"
+                name="comentario"
+                placeholder="  Comentario"
+                formControlName="comentario"
+                [ngClass]="{
+                    'is-valid': comentarioValid,
+                    'is-invalid': !comentarioValid
+                }"
+                required>
+
+            </textarea>
 
             <div class="centro">
                 <div class="botones">
@@ -29,8 +39,5 @@
 
         </form>
     </div>
-
-
-</body>
-
-</html>
+</div>
+    
