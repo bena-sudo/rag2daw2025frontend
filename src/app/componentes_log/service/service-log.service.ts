@@ -32,7 +32,7 @@ export class ServiceLogService {
       catchError((error: HttpErrorResponse) => {
         let errorMessage = 'Ocurrió un error insesperado.';
         if(error.status === 400) {
-          errorMessage = "Nickname en uso. Prueba con otro.";
+          errorMessage = "Email / Nickname en uso. Prueba con otro.";
         }else if (error.status === 500){
           errorMessage = "Error en el servidor. Intentelo mas tarde";
         }

@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   isMenuOpen = false;
   isLoggedIn: boolean = false;
   userRole: string [] = [];
+  hayAdmin:boolean =false;
 
   constructor(private authService: ServiceLogService, private router:Router) { }
 
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit {
     this.authService.userRole$.subscribe(role => {
       this.userRole = role;
       console.log(this.userRole)
+      this.funcHayAdmin();
     })
   }
 
@@ -38,4 +40,11 @@ export class HeaderComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  funcHayAdmin(){
+    if(this.userRole.includes("ADMINISTRADOR")){
+      this.hayAdmin = true;
+      console.log(this.hayAdmin);
+      
+    }
+  }
 }

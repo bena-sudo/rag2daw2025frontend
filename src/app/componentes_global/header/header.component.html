@@ -8,54 +8,55 @@
         <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
         <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login/SignUp</a>
       }@else { 
+
+        @if ( hayAdmin == true) {
+          <a [routerLink]="['/home']" routerLinkActive="router-link-active">Inicio</a>
+        }@else{
+          <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
+        }
+        
         @for (rol of userRole; track $index) { 
           @if ( rol === 'USUARIO') {
             <!-- rutas en caso del que el usuario sea rol USUARIO-->
-            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
             
             
           }@else if ( rol === 'SUPERVISOR') {
             <!-- rutas en caso del que el usuario sea rol SUPERVISOR-->
-            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
             
 
           }@else if ( rol === 'ACREDITADOR') {
             <!-- rutas en caso del que el usuario sea rol ACREDITADOR-->
-            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
             
 
           }@else if ( rol === 'EVALUADOR') {
             <!-- rutas en caso del que el usuario sea rol EVALUADOR-->
-            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
             
 
           }@else if ( rol === 'PROFESOR') {
             <!-- rutas en caso del que el usuario sea rol PROFESOR-->
-            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
             
 
           }@else if ( rol === 'JEFEDPTO') {
             <!-- rutas en caso del que el usuario sea rol JEFEDPTO-->
-            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
             
 
           }@else if ( rol === 'JEFEESTUDIOS') {
             <!-- rutas en caso del que el usuario sea rol JEFEESTUDIOS-->
-            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
             
 
           }@else if ( rol ==='ADMINISTRADOR') {
             <!-- rutas en caso del que el usuario sea rol ADMINISTRADOR-->
 
-            <a [routerLink]="['/inicio']" routerLinkActive="router-link-active">Inicio</a>
+            
             <a [routerLink]="['/users-list']">Lista Usuarios</a>
+            <a [routerLink]="['/crear-usuario']">Crear usuario</a>
          
           }@else {
             <!-- rutas en caso de error por logear y no tener ningun rol-->
             <h2>Error en la app.</h2>
           }
         } 
-        <a (click)="logout()">logout</a>
+        <a (click)="logout()">Logout</a>
       }
   </div>
 
