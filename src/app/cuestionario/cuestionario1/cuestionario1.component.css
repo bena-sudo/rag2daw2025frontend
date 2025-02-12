@@ -1,0 +1,100 @@
+.cuestionario-container {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.pregunta {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+button[disabled] {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+
+button.seleccionado {
+  background-color: #007bff;
+  color: white;
+}
+
+.paginacion {
+  margin-top: 20px;
+}
+
+.paginacion button {
+  width: 30px;
+  height: 30px;
+  margin: 2px;
+  border-radius: 50%;
+  font-size: 1em;
+}
+
+.paginacion .activa {
+  background-color: #007bff;
+  color: white;
+}
+
+.pregunta .rango {
+  font-size: 14px;
+  width: 100%;  /* Botones de ancho completo */
+  height: 50px;  /* Altura mayor */
+  text-align: center;  /* Centrar el texto */
+  white-space: normal; /* Permite que el texto se envuelva */
+}
+
+.pregunta .rango:nth-child(1),
+.pregunta .rango:nth-child(2),
+.pregunta .rango:nth-child(3),
+.pregunta .rango:nth-child(4) {
+  margin-top: 10px;
+}
+
+.boton-finalizar {
+  background-color: #28a745; 
+  color: white;
+}
+
+.boton-finalizar:hover {
+  background-color: #218838; 
+}
+
+.boton-finalizar:active {
+  background-color: #1e7e34; 
+}
+
+
+.cuestionario-container .pregunta {
+  position: relative;
+  transition: transform 400ms ease-in-out, opacity 400ms ease-in-out;
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.cuestionario-container .pregunta.entrada {
+  opacity: 1;
+  transform: translateX(0); 
+}
+
+.cuestionario-container .pregunta.salida {
+  opacity: 0;
+  transform: translateX(-100%); 
+}

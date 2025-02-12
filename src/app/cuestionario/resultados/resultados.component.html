@@ -1,0 +1,48 @@
+<div class="resultados-container">
+  <h2>Resultados del Cuestionario</h2>
+  <div> 
+    <div *ngFor="let respuesta of respuestas; let i = index" class="resultado">
+      <p><strong>{{ respuesta.preguntaTexto }}</strong></p>
+      <div>
+
+      </div>
+      <div *ngIf="respuesta.respuesta === 'si'">
+        
+        <p><strong  class="respuestaSi">SI</strong></p>
+        <p>{{ explicaciones[i].si }}</p>
+      
+      </div>
+      <div *ngIf="respuesta.respuesta === 'no'">
+        
+        <p><strong class="respuestaNo">NO</strong></p>
+        <p>{{ explicaciones[i].no }}</p>
+      
+      </div>
+      <div *ngIf="respuesta.respuesta !== 'si' && respuesta.respuesta !== 'no'">
+        
+        <p><strong>No Contestada</strong></p>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+<div class="resultados-container">
+  <h2>Resultados del Cuestionario</h2>
+  <div> 
+    @for (respuesta of respuestas; track $index) {
+      <div class="resultado">
+        <p><strong>{{ respuesta.textoPregunta }}</strong> {{ respuesta.respuesta }}</p>
+          @if (respuesta.respuesta === 'si') {
+            <p><strong>Explicación:</strong> {{ explicaciones[$index].si }}</p>
+          } @else {
+            <p><strong>Explicación:</strong> {{ explicaciones[$index].no }}</p>
+          }else{
+            <p><strong>Explicación:</strong> No contestada </p>
+          }
+      </div>
+    }
+  </div>
+</div> 
+-->

@@ -1,0 +1,26 @@
+<div class="perfil-usuario-card">
+    <h2 class="perfil-usuario-titulo">Datos del Usuario</h2>
+    
+    <div class="perfil-usuario-info">
+      <div class="perfil-usuario-dato">
+        <label>Nombre:</label>
+        <span>{{ usuario.nombre }}</span>
+      </div>
+      
+      <div class="perfil-usuario-dato">
+        <label>Email:</label>
+        <span>{{ usuario.email }}</span>
+      </div>
+      
+      <div class="perfil-usuario-dato">
+        <label>Teléfono:</label>
+        <span>{{ usuario.telefono }}</span>
+      </div>
+      
+      <div class="perfil-usuario-dato">
+        <label>Fecha de Nacimiento:</label>
+        <span>{{ usuario.fechaNacimiento | date: 'dd/MM/yyyy' }}</span>
+      </div>
+    </div>
+  </div>
+  

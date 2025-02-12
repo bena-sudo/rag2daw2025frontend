@@ -1,0 +1,24 @@
+<!-- tabla-acreditaciones.component.html -->
+<div class="acreditaciones-container">
+    <table class="acreditaciones-table">
+      <thead>
+        <tr>
+          <th>Modulo</th>
+          <th>Estado</th>
+          <th>Fecha de Actualización</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let acreditacion of acreditaciones">
+          <td>{{ acreditacion.Modulo }}</td>
+          <td>{{ acreditacion.estado }}</td>
+          <td>{{ acreditacion.fechaActualizacion | date: 'dd/MM/yyyy' }}</td>
+          <td>
+            <button class="revisar-btn">Revisar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

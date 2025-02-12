@@ -23,4 +23,18 @@ export class BbddService {
   getCuestionarioById(id: number): Observable<any[]> {
     return this.getDataObservable<any[]>(`cuestionarios/${id}/preguntas`);
   }
+
+  enviarRespuestas(respuestas: any[]): Observable<any> {
+    console.log('enviando:', respuestas);
+    
+    return this.http.post(`${this.apiUrl}/respuestas`, respuestas, { headers: { 'Content-Type': 'application/json' } });
+  }
+
+  getUsuario(id: number): Observable<any> {
+    return this.getDataObservable<any>(`usuarios/id/${id}`);
+  }
+
+  getAcreditaciones(id: number): Observable<any> {
+    return this.getDataObservable<any>(`acreditaciones/usuario/${id}`);
+  }
 }
