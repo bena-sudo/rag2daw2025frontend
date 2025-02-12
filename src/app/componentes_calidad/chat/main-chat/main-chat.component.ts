@@ -58,6 +58,7 @@ export class MainChatComponent implements OnChanges{
 
 	valorarPregunta(pregunta: IPregunta) {
 		pregunta.valorado = true;
+		pregunta.idChat = this.idChat
 		this.apiService.updateQuestion(pregunta.idPregunta, pregunta).subscribe(
 			response => console.log(response),
 			error => console.error("Error al valorar la pregunta" + this.idChat + ": ", error)

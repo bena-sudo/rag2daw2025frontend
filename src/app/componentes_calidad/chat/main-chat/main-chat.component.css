@@ -91,3 +91,12 @@
   .rating:hover {
     background-color: var(fondo_hf);
   }
+
+
+  .bien{
+    background-color: rgb(17, 145, 17);
+  }
+
+  .mal{
+    background-color: rgb(218, 59, 59);
+  }
