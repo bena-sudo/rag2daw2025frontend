@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { ChunksService } from '../../services/chunks.service';
 import { Subscription } from 'rxjs';
 import { ChunkListComponent } from "../chunk-list/chunk-list.component";
+import { Estado } from '../../enums/estado.enum';
 
 @Component({
   selector: 'app-chunks',
@@ -15,6 +15,7 @@ export class ChunksComponent {
   chunks: any[] = [];  // Todos los chunks
   filteredChunks: any[] = [];  // Chunks filtrados
   selectedStatus: string = '';  // Estado seleccionado para el filtro
+  estados = Object.values(Estado);
   private chunksSubscription?: Subscription;
 
   constructor(private chunkService: ChunksService) {}
@@ -26,7 +27,6 @@ export class ChunksComponent {
   fetchChunks(): void {
     this.chunksSubscription = this.chunkService.getChunksByDocumentId(this.documentId)
       .subscribe(chunks => {
-        console.log(chunks.content);
         this.chunks = chunks.content;
         this.applyFilter();  // Aplica el filtro después de obtener los chunks
       }

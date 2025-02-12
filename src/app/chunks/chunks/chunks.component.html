@@ -1,12 +1,13 @@
-<div>
-    <h3>Chunks del Documento</h3>
+<div class="container">
+    <h2>Chunks del Documento</h2>
   
     <!-- Filtro de estado -->
-    <label for="status">Filtrar por estado:</label>
-    <select id="status" (change)="onStatusChange($event)">
-      <option value="">Todos</option>
-      <option value="pendiente">Pendiente</option>
-      <option value="aprobado">Aprobado</option>
+    <label class="filtro" for="status">Filtrar por estado:</label>
+    <select class="filtro" id="status" (change)="onStatusChange($event)">
+      <option value="">TODOS</option>
+      @for (estado of estados; track $index) {
+        <option value={{estado}}>{{estado}}</option>
+      }
     </select>
   
     <!-- Lista de Chunks filtrados -->
