@@ -6,16 +6,13 @@ import { EtiquetasService } from '../../service/etiquetas.service';
   selector: 'app-etiquetas-list',
   imports: [],
   templateUrl: './etiquetas-list.component.html',
-  styleUrl: './etiquetas-list.component.css'
+  styleUrl: './etiquetas-list.component.css',
 })
-
 export class EtiquetasListComponent {
   etiquetas: Etiqueta[] = [];
   isLoading: boolean = false;
 
-  constructor(private readonly etiquetaService: EtiquetasService){
-  }
-
+  constructor(private readonly etiquetaService: EtiquetasService) {}
 
   ngOnInit() {
     this.cargarEtiquetas();
@@ -36,8 +33,7 @@ export class EtiquetasListComponent {
     });
   }
 
-  cambiarEtiqueta(id: number){
+  cambiarEtiqueta(id: number) {
     console.log(id);
-    
   }
 }

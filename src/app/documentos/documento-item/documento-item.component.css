@@ -1,0 +1,25 @@
+.documento-plus {
+  background: none;
+  border: none;
+  color: var(--resaltado);
+  font-size: 1.25rem;
+}
+
+.documento-plus:hover {
+  background: none;
+  border: none;
+  color: var(--resaltado_hover);
+  font-size: 1.25rem;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--azul-muy-claro-2);
+}
+
+ul li:last-child {
+  border-bottom: none;
+}
