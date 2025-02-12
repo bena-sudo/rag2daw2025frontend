@@ -13,7 +13,7 @@ import { ApiService } from '../../../service/service';
   templateUrl: './admin_panel.component.html',
   styleUrl: './admin_panel.component.css'
 })
-export class AppComponent {
+export class AdminPanelComponent {
   title = 'rag2daw2025frontend';
   chatContainerHeight = '72.8vh';
   chatListWidth = 300;
@@ -21,7 +21,7 @@ export class AppComponent {
   showFooter = false;
   
   onFiltersToggled(showFilters: boolean) {
-    this.chatContainerHeight = showFilters ? '72.8vh' : '84vh'; // Adjust height based on filters visibility
+    this.chatContainerHeight = showFilters ? '72.8vh' : '84vh';
   }
 
   startResizing(event: MouseEvent) {
@@ -51,6 +51,6 @@ export class AppComponent {
   }
 
   toggleFooter() {
-    this.showFooter = !this.showFooter; // Toggle visibility
+    this.showFooter = !this.showFooter;
   }
 }

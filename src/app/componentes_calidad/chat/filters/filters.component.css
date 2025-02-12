@@ -9,7 +9,7 @@
 
 #toggle-filters {
     background: var(--azul-medio);
-    color: white;
+    color:var(--white);
     border: none;
     padding: 3px 12px;
     font-size: 14px;
@@ -58,7 +58,7 @@
 
 #apply-filters {
     background: var(--azul-medio);
-    color: white;
+    color: var(--white);
     border: none;
     padding: 6px 12px;
     font-size: 14px;
