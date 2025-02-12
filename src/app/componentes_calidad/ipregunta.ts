@@ -1,4 +1,5 @@
 export interface IPregunta {
+    idChat: null | number,
     idPregunta: null | number, 
     usuario: null | string,
     textoPregunta: null | string,
