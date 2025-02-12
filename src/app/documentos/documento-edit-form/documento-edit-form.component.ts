@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DocumentosService } from '../../service/documentos.service';
+import { Documento } from '../../interface/documento';
 
 @Component({
   selector: 'app-documento-edit-form',
@@ -42,13 +43,19 @@ export class DocumentoEditFormComponent {
       return;
     }
     
-    const {nombre, comentario} = this.editForm.value;
+    const documento: Documento = this.editForm.value;
 
-    // this.documentService.updateDocumento().subscribe({
-    //   next:
-    //   complete:
-    //   error:
-    // })
+    this.documentService.updateDocumento(documento).subscribe({
+      next: (updatedDoc) => {
+        console.log('Documento actualizado:', updatedDoc);
+      },
+      complete: () => {
+        console.log('Actualización completada.');
+      },
+      error: (err) => {
+        console.error('Error al actualizar el documento:', err);
+      }
+    })
 
   }
 
