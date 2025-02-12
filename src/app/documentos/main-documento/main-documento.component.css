@@ -103,6 +103,20 @@ body {
     background-color: var(--azul-oscuro-3);
 }
 
+.documento-plus {
+    background: none;
+    border: none;
+    color: var(--resaltado);
+    font-size: 1.25rem;
+}
+
+.documento-plus:hover {
+    background: none;
+    border: none;
+    color: var(--resaltado_hover);
+    font-size: 1.25rem;
+}
+
 /******/
 
 .document-container {
@@ -134,13 +148,6 @@ body {
 
 .document-list ul li:last-child {
     border-bottom: none;
-}
-
-.documento-plus {
-    background: none;
-    border: none;
-    color: var(--resaltado);
-    font-size: 1.25rem;
 }
 
 /*******/
