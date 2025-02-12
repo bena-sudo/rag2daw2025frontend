@@ -1,5 +1,5 @@
 export interface IPregunta {
-    idPregunta: null | Number, 
+    idPregunta: null | number, 
     usuario: null | string,
     textoPregunta: null | string,
     textoRespuesta: null | string,

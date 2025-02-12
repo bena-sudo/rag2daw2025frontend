@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../../service/service'
 import { CommonModule } from '@angular/common';
 import { IPregunta } from '../../ipregunta';
-import { IBodyPregunta } from './ibodypregunta';
+import { IBodyEnvioPregunta } from './ibodyenviopregunta';
 
 @Component({
 	selector: 'app-main-chat',
@@ -29,7 +29,7 @@ export class MainChatComponent implements OnChanges{
 	
 	// Metodos que crean y envian el mensaje a la api
 	crearMensaje() {
-		let cuerpoPregunta: IBodyPregunta = {
+		let cuerpoPregunta: IBodyEnvioPregunta = {
 			idChat: this.idChat,
 			usuario: this.usuario,
 			textoPregunta: this.textoPregunta,
@@ -37,10 +37,30 @@ export class MainChatComponent implements OnChanges{
 		this.enviarMensaje(cuerpoPregunta);
 	}
 
-	enviarMensaje(body: IBodyPregunta) {
+	enviarMensaje(body: IBodyEnvioPregunta) {
 		this.apiService.createQuestionChat(body).subscribe(
 			response => console.log(response),
 			error => console.error("Error al conseguir las preguntas del chat" + this.idChat + ": ", error)
+		);
+	}
+
+	// Metodos para valorar respuestas
+	valorarBien(pregunta: IPregunta) {
+		pregunta.feedback = "BIEN";
+		console.log(pregunta);
+		this.valorarPregunta(pregunta);
+	}
+
+	valorarMal(pregunta: IPregunta) {
+		pregunta.feedback = "MAL";
+		this.valorarPregunta(pregunta);
+	}
+
+	valorarPregunta(pregunta: IPregunta) {
+		pregunta.valorado = true;
+		this.apiService.updateQuestion(pregunta.idPregunta, pregunta).subscribe(
+			response => console.log(response),
+			error => console.error("Error al valorar la pregunta" + this.idChat + ": ", error)
 		);
 	}
 }

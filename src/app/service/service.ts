@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { IPregunta } from '../componentes_calidad/ipregunta';
 
 @Injectable({
   providedIn: 'root'
@@ -42,8 +43,8 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}answerQuestionChat?idQuestionchat=${id}&user=${user}`);
   }
 
-  updateQuestion(id: number, data: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}updatePregunta/${id}`, data);
+  updateQuestion(idPregunta: number | null, pregunta: IPregunta): Observable<any> {
+    return this.http.put(`${this.baseUrl}updatePregunta/${idPregunta}`, pregunta);
   }
 
   // Filtros
