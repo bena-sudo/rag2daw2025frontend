@@ -9,7 +9,7 @@ body {
   height: 100vh;
 }
 .add-document-button {
-  background-color: var(--button_login);
+  background-color: var(--resaltado);
   color: white;
   font-weight: bold;
   padding: 8px 16px;
@@ -19,7 +19,7 @@ body {
   margin-bottom: 16px;
 }
 .document-list {
-  background-color: var(--fondo_hf);
+  background-color: var(--fondo_secundario);
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -33,7 +33,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 8px 0;
-  border-bottom: 1px solid var(--color_fondo);
+  border-bottom: 1px solid var(--fondo_principal);
 }
 .document-list ul li:last-child {
   border-bottom: none;
@@ -53,6 +53,7 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   height: 80%;
+  align-content: start;
 }
 
 /* MODAL */
@@ -79,7 +80,7 @@ body {
 .modal input {
   width: 100%;
   padding: 8px 16px;
-  border: 1px solid var(--fondo_hf);
+  border: 1px solid var(--fondo_secundario);
   border-radius: 4px;
 }
 
@@ -90,7 +91,7 @@ body {
 }
 
 .modal button {
-  background-color: var(--color_button);
+  background-color: var(--elemento_principal);
   color: white;
   font-weight: bold;
   padding: 8px 16px;

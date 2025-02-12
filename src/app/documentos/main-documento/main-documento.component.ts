@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs';
-import { EtiquetasListComponent } from '../etiquetas-list/etiquetas-list.component';
+import { EtiquetasListComponent } from '../../etiqueta/etiquetas-list/etiquetas-list.component';
 import { DocumentosService } from '../../service/documentos.service';
 import { Documento } from '../../interface/documento';
 import { DocumentoItemComponent } from '../documento-item/documento-item.component';
