@@ -5,12 +5,18 @@ import { debounceTime } from 'rxjs';
 import { EtiquetasListComponent } from '../etiquetas-list/etiquetas-list.component';
 import { DocumentosService } from '../../service/documentos.service';
 import { Documento } from '../../interface/documento';
-import { DocumentoItemComponent } from "../documento-item/documento-item.component";
-import { DocumentoSearchComponent } from "../documento-search/documento-search.component";
+import { DocumentoItemComponent } from '../documento-item/documento-item.component';
+import { DocumentoSearchComponent } from '../documento-search/documento-search.component';
 
 @Component({
   selector: 'app-main-documento',
-  imports: [ReactiveFormsModule, CommonModule, EtiquetasListComponent, DocumentoItemComponent, DocumentoSearchComponent],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    EtiquetasListComponent,
+    DocumentoItemComponent,
+    DocumentoSearchComponent,
+  ],
   templateUrl: './main-documento.component.html',
   styleUrl: './main-documento.component.css',
 })
@@ -20,7 +26,8 @@ export class MainDocumentoComponent implements OnInit {
 
   constructor(
     private readonly documentosService: DocumentosService,
-    private readonly formBuilder: FormBuilder) {
+    private readonly formBuilder: FormBuilder
+  ) {
     this.searchForm = this.formBuilder.group({
       searchInput: [''],
     });
@@ -33,14 +40,14 @@ export class MainDocumentoComponent implements OnInit {
         debounceTime(1000) // Espera 1 segundo tras el último cambio
       )
       .subscribe(); //SERVICE
-      this.cargarDocumentos();
+    this.cargarDocumentos();
   }
 
   cargarDocumentos() {
     this.documentosService.getDocumentos().subscribe({
       next: (data) => {
         console.log(data);
-        
+
         this.documentos = data.content;
       },
       error: (err) => {

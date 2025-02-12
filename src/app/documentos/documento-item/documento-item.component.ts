@@ -5,7 +5,7 @@ import { Documento } from '../../interface/documento';
   selector: 'app-documento-item',
   imports: [],
   templateUrl: './documento-item.component.html',
-  styleUrl: './documento-item.component.css'
+  styleUrl: './documento-item.component.css',
 })
 export class DocumentoItemComponent {
   @Input({ required: true }) documento!: Documento;

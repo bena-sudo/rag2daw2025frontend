@@ -6,7 +6,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
   selector: 'app-documento-search',
   imports: [ReactiveFormsModule],
   templateUrl: './documento-search.component.html',
-  styleUrl: './documento-search.component.css'
+  styleUrl: './documento-search.component.css',
 })
 export class DocumentoSearchComponent {
   @Output() searchTerm = new EventEmitter<string>();
