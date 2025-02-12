@@ -7,6 +7,9 @@
                 <th>ID</th>
                 <th>Usuario</th>
                 <th>Email</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
 
@@ -17,6 +20,11 @@
                     <td>{{ user.id }}</td>
                     <td>{{ user.nickname }}</td>
                     <td>{{ user.email }}</td>
+                    <!-- Pasa la ruta y el id del usuario que usaremos para buscar al usuario mas tarde-->
+                    <td><a [routerLink]="['/infoUser', user.id]">Mostrar</a></td>
+                    <td><a (click)="borrarUsuario(user.id)">🗑️ Borrar</a></td>
+                    <td><a [routerLink]="['/users-list/modificar', user.id]">✏️ Modificar</a></td>
+                    
                 </tr>
             }
           

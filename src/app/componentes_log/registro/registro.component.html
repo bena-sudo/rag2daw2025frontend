@@ -78,13 +78,13 @@
             }
             @if (formRegistro.get('telefono')?.errors?.['pattern']) {
               <div class="">
-                El teléfono debe tener 10 dígitos numéricos.
+                El teléfono debe tener 9 dígitos numéricos.
               </div>
             }
           }
         </div>
       
-        <!-- Fecha de nacimiento -->
+        <!-- Fecha de nacimiento
         <div class="input-group">
           <label for="fecha_nacimiento">Fecha de nacimiento:</label>
           <input id="fecha_nacimiento" type="date" formControlName="fecha_nacimiento" class="form-control"/>
@@ -94,7 +94,7 @@
               La fecha de nacimiento es obligatoria.
             </div>
           }
-        </div>
+        </div> -->
 
         @if (messageError != '') {
           <div>{{ messageError }}</div>

@@ -29,8 +29,7 @@ export class RegistroComponent implements OnInit {
           Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
         ]
       ],
-      telefono: ['', [Validators.required, Validators.pattern('^[0-9]{9}$')]],
-      fecha_nacimiento: ['', Validators.required]
+      telefono: ['', [Validators.required, Validators.pattern('^[0-9]{9}$')]]
     });
   }
 

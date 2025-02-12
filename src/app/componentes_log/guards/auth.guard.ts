@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router, UrlTree } from '@angular/router';
 import { ServiceLogService } from '../service/service-log.service';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 
 
 export const authGuard: CanActivateFn = (route, state): Observable<boolean | UrlTree> => {
@@ -10,8 +10,10 @@ export const authGuard: CanActivateFn = (route, state): Observable<boolean | Url
   const serviceLog: ServiceLogService = inject(ServiceLogService);
 
   // Redirigir al inicio si el usuario está logueado
-  return serviceLog.isLoggedIn$.pipe(
+ /* return serviceLog.isLoggedIn$.pipe(
     map((isLoggedIn: boolean) => {
+      console.log(isLoggedIn);
+      
       if (isLoggedIn) {
         // Si está logueado, redirige a inicio
         return router.parseUrl('/inicio');
@@ -19,5 +21,7 @@ export const authGuard: CanActivateFn = (route, state): Observable<boolean | Url
       // Si no está logueado, permite el acceso a la ruta solicitada
       return true;
     })
-  );
+  );*/
+
+  return of(serviceLog.isLoggedIn() ? router.parseUrl('/inicio') : true)
 };

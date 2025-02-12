@@ -79,16 +79,37 @@ export class ServiceLogService {
     return token !== null && !this.isTokenExpired(token);
   }
 
+  //Metodo para 
   //Metodo para comprobar si el tocken ha expirado
   isTokenExpired(token: string): boolean {
+    //console.log(token);
+    
     try {
       const payload = JSON.parse(atob(token.split('.')[1])); // Decodifica el token
       const expiration = payload.exp * 1000; // Convierte UNIX timestamp a milisegundos
-      return Date.now() > expiration; // Compara la fecha actual con la expiración
+  
+      if (Date.now() > expiration) {
+        // Token expirado, eliminar datos y redirigir
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('user_roles');
+        this.updateLoginStatus();
+        this.updateUserRoles();
+        this.router.navigate(['/inicio']);
+        return true;
+      }
+  
+      return false; // Token aún válido
     } catch (e) {
-      return true; // Si hay un error, consideramos que el token ha expirado
+      // En caso de error, también eliminar datos y redirigir
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('user_roles');
+      this.updateLoginStatus();
+      this.updateUserRoles();
+      this.router.navigate(['/inicio']);
+      return true;
     }
   }
+  
 
   // Método para actualizar el estado del login
   updateLoginStatus() {
@@ -124,6 +145,9 @@ export class ServiceLogService {
   // Método para obtener los roles del usuario actual
   getUserRoles(): string[] {
     const roles = localStorage.getItem('user_roles');
+    //Comprueba si esta login para que compruebe si el tocken a expirado 
+    // o no i el guard pueda echar al usuario en ese caso
+    this.isLoggedIn();
     return roles ? JSON.parse(roles) : [];
   }
 

@@ -1,5 +1,6 @@
 export interface RecipeUser {
 
+    id: number;
     nickname: string;
     nombre: string;
     email: string;

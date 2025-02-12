@@ -1,0 +1,104 @@
+.user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .user-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #fff;
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
+    width: 100%;
+  }
+  
+  .user-avatar img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007bff;
+  }
+  
+  .user-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  .user-details h2 {
+    margin: 0;
+    font-size: 22px;
+    color: #333;
+  }
+  
+  .nickname {
+    font-size: 16px;
+    color: #777;
+    font-weight: bold;
+  }
+  
+  .email, .telefono, .id {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .telefono {
+    color: #28a745;
+  }
+  
+  .id {
+    font-size: 12px;
+    color: #999;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .edit-btn {
+    background: #ffc107;
+    color: #333;
+  }
+  
+  .edit-btn:hover {
+    background: #e0a800;
+  }
+  
+  .delete-btn {
+    background: #dc3545;
+    color: white;
+  }
+  
+  .delete-btn:hover {
+    background: #c82333;
+  }
+  
+  .back-btn {
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    margin: 20px;
+    font-size: 14px;
+  }
+  
+  .back-btn:hover {
+    background: #0056b3;
+  }
+  

@@ -1,6 +1,5 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { ServiceAdminService } from '../service/service-admin.service';
 import { ServiceLogService } from '../../componentes_log/service/service-log.service';
 
 export const adminGuardsGuard: CanActivateFn = (route, state) => {
