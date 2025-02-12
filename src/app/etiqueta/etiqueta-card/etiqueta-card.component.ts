@@ -71,10 +71,9 @@ export class EtiquetaCardComponent {
       });
   }
 
-  get nombreNotValid() {
-    return (
-      this.formEtiqueta.get('nombre')?.invalid &&
-      this.formEtiqueta.get('nombre')?.touched
-    );
+  get nombreNotValid(): string {
+    const nombre = this.formEtiqueta.get('nombre');
+    if (!nombre?.touched) return '';
+    return nombre.invalid ? 'is-invalid' : 'is-valid';
   }
 }
