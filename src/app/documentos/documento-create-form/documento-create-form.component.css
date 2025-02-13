@@ -102,7 +102,7 @@ button:hover {
 }
 
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
     .formulario-contenedor {
         max-width: 90%; 
         padding: 20px;
@@ -142,5 +142,50 @@ button:hover {
     button {
         font-size: 0.9rem; 
         padding: 8px 16px;
+    }
+} */
+
+.drop-area {
+    width: 100%;
+    max-width: 700px;
+    height: 150px;
+    border: 2px dashed #aaa;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #555;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    margin-bottom: 20px;
+  }
+  
+  .drop-area:hover, .drop-area.dragover {
+    background-color: #f0f8ff;
+    border-color: #007bff;
+    color: #007bff;
+  }
+  
+  #drop-text {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+    .drop-area {
+        height: 120px;
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .drop-area {
+        height: 100px;
+        font-size: 0.8rem;
     }
 }
