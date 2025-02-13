@@ -1,0 +1,39 @@
+
+<h1>Acreditaciones de Pedro</h1>
+
+<div class="container pendientes">
+    <h2>Acreditaciones pendientes</h2>
+
+    @for (acreditacion of acreditaciones; track $index) {
+        @if (acreditacion.idAsesor == null ) {
+            <div>
+                @for (modulo of modulos; track $index) {
+                    @if (modulo.idModulo === acreditacion.idModulo) {
+                        <h3>ID {{acreditacion.idAcreditacion}} -- {{modulo.nombre}} ---- Usuario: {{acreditacion.idUsuario}}</h3>
+                        <button type="button" (click)="asignarAcreditacion(acreditacion.idAcreditacion)">Asignar</button>
+                        
+
+                    }
+                }
+            </div>
+        }
+    }
+</div>
+ 
+<div class="container asignadas">
+    <h2>Acreditaciones asignadas</h2>
+    @for (acreditacion of acreditaciones; track $index) {
+        @if (acreditacion.idAsesor !== null ) {
+            <div>
+                @for (modulo of modulos; track $index) {
+                    @if (modulo.idModulo === acreditacion.idModulo) {
+                        <h3>ID {{acreditacion.idAcreditacion}} -- {{modulo.nombre}} ---- Usuario: {{acreditacion.idUsuario}}</h3>
+                        <button type="button" 
+                        (click)="crearAcreditacion(acreditacion.idAcreditacion, modulo.nombre, acreditacion.idUsuario, acreditacion.idAsesor, acreditacion.idModulo)" 
+                        [routerLink]="['/detalle-acreditacion',acreditacion.idAcreditacion]">Ver</button>
+                    }
+                }
+            </div>
+        }
+    }
+</div>
