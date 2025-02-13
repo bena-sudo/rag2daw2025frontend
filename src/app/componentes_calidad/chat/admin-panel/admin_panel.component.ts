@@ -6,11 +6,10 @@ import { ChatListComponent } from '../chat-list/chat-list.component';
 import { MainChatComponent } from '../main-chat/main-chat.component';
 import { FiltersComponent } from "../filters/filters.component";
 import { CommonModule, NgStyle } from '@angular/common';
-import { ApiService } from '../../../service/service';
 import { SharedService } from '../../../service/sharedService';
 @Component({
   selector: 'app-root',
-  imports: [NgStyle,  FooterComponent, HeaderComponent, ChatListComponent, MainChatComponent, FiltersComponent, CommonModule],
+  imports: [NgStyle, ChatListComponent, MainChatComponent, FiltersComponent, CommonModule],
   templateUrl: './admin_panel.component.html',
   styleUrl: './admin_panel.component.css'
 })
