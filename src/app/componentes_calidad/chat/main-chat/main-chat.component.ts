@@ -19,16 +19,22 @@ export class MainChatComponent implements OnChanges{
 
 	constructor(private apiService: ApiService) {};
 
-	@Input() idChat: number | null = 0;
+	@Input() idChat: number = 0;
 	ngOnChanges(changes: SimpleChanges): void {
 		this.actualizarChat();
 	}
 
 	actualizarChat() {
 		this.apiService.returnPreguntasByIdChat(this.idChat).subscribe(
-			listaPreguntas => this.preguntas = listaPreguntas,
+			listaPreguntas => this.preguntas = this.invertir_lista(listaPreguntas),
 			error => console.error("Error al conseguir las preguntas del chat" + this.idChat + ": ", error)
 		);
+	}
+
+	invertir_lista(lista: IPregunta[]): IPregunta[] {
+		return lista.sort((a, b):any => {
+			return b.idPregunta - a.idPregunta;
+		})
 	}
 	
 	// Metodos que crean y envian el mensaje a la api
@@ -39,6 +45,7 @@ export class MainChatComponent implements OnChanges{
 			textoPregunta: this.textoPregunta,
 		};
 		this.enviarMensaje(cuerpoPregunta);
+		this.textoPregunta = '';
 	}
 
 	enviarMensaje(body: IBodyEnvioPregunta) {

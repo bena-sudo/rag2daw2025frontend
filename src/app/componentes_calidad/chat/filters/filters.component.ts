@@ -65,9 +65,25 @@ export class FiltersComponent implements OnInit {
 		if (stringFecha != 'null,null')
 			this.bodyFiltros['filterRango'] = stringFecha;
 
-		console.log(this.bodyFiltros)
+		this.limpiarFiltros();
+		console.log(this.bodyFiltros);
+		
+		this.enviarFiltrosService.actualizarFiltros(this.bodyFiltros);
+		this.bodyFiltros = {};
+	}
 
-		this.enviarFiltrosService.actualizarFiltros(this.bodyFiltros)
+	limpiarFiltros() {
+		this.filtros = {
+			filterUser: '',
+			filterPregunta: '',
+			filterRespuesta: '',
+			filterChunks: '',
+			filterValorado: '',
+			filterFeedback: ''
+		};
+	  
+		this.fechaInicio = '';
+		this.fechaFin = '';
 	}
 
 }

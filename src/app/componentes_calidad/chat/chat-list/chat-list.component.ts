@@ -39,10 +39,7 @@ export class ChatListComponent implements OnInit {
 	suscripcionFiltros() {
 		this.enviarFiltrosService.filtros$.subscribe( bodyFiltros => {
 			this.apiService.filterChats(bodyFiltros).subscribe( 
-				page => {
-					this.chats = page.content;
-					console.log(bodyFiltros);
-				},
+				page => this.chats = page.content,
 				error => console.error("Error al conseguir los usuarios: ", error)
 			  );
 		})

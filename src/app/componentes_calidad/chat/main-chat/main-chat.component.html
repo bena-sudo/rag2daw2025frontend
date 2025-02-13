@@ -2,6 +2,7 @@
     <div class="chat-messages">
 
       @for (pregunta of preguntas; track $index) {
+        <div>
         <div class="user-message message">
           {{ pregunta.textoPregunta }}
         </div>
@@ -27,6 +28,7 @@
             </svg>
           </button>
         </div>
+      </div>
       }
     </div>
 

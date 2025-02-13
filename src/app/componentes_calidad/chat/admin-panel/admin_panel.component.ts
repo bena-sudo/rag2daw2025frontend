@@ -46,7 +46,7 @@ export class AdminPanelComponent {
   }
 
   // al suceder el evento de seleccionar un chat, se modifica la variable que se pasa al componente hijo secundario
-  idChatSeleccionado: number | null = null;
+  idChatSeleccionado: number = 0;
   alSeleccionarChat(idChat: number) {
     this.idChatSeleccionado = idChat;
   }

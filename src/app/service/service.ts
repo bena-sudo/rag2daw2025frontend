@@ -32,7 +32,7 @@ export class ApiService {
 
 
   //  Preguntas
-  returnPreguntasByIdChat(idChat: number | null): Observable<any> {
+  returnPreguntasByIdChat(idChat: number): Observable<any> {
     return this.http.get(`${this.baseUrl}returnPreguntasByIdChat?idChat=${idChat}`);
   }
 
