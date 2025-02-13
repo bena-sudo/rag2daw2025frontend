@@ -28,20 +28,13 @@
         </select>
 
         
-        <select [ngClass]="{'show': selectedValorados === 'valorados'}" 
-                *ngIf="selectedValorados === 'valorados'" 
-                name="valor" [(ngModel)]="selectedValor">
+        <select [ngClass]="{'show': filtros.filterValorado == 'valorados'}"
+            *ngIf="filtros.filterValorado === 'valorados'"
+            [(ngModel)]="filtros.filterFeedback"
+            name="valor">
             <option value="">Ambos</option>
-            <option value="bien">Bien</option>
-            <option value="mal">Mal</option>
-        </select>
-        
-        <select [ngClass]="{'show': selectedValorados === 'valorados'}" 
-                *ngIf="selectedValorados === 'valorados'" 
-                name="valor" [(ngModel)]="selectedValor">
-            <option value="">Ambos</option>
-            <option value="bien">Bien</option>
-            <option value="mal">Mal</option>
+            <option value="BIEN">Bien</option>
+            <option value="MAL">Mal</option>
         </select>
 
         <button (click)="aplicarFiltros()" id="apply-filters">Apply</button>

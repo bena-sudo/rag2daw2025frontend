@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import Chart from 'chart.js/auto';
+//import Chart from 'chart.js/auto';
 
 @Component({
   selector: 'app-grafica',
@@ -7,9 +7,9 @@ import Chart from 'chart.js/auto';
   templateUrl: './grafica.component.html',
   styleUrl: './grafica.component.css'
 })
-export class GraficaComponent implements AfterViewInit{
+export class GraficaComponent/* implements AfterViewInit*/ {
   @ViewChild('myChart') chartRef!: ElementRef;
-
+/*
   ngAfterViewInit() {
     new Chart(this.chartRef.nativeElement, {
       type: 'pie',
@@ -22,5 +22,5 @@ export class GraficaComponent implements AfterViewInit{
         }]
       }
     });
-  }
+  }*/
 }

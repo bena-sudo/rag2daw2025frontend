@@ -24,6 +24,7 @@ export class FiltersComponent implements OnInit {
 		filterRespuesta: "",
 		filterChunks: "",
 		filterValorado: "",
+		filterFeedback: "",
 	}
 
 	fechaInicio: string = "";
@@ -41,8 +42,8 @@ export class FiltersComponent implements OnInit {
 
 	iniciarListaNombres() {
 		this.apiService.getListUsuarios().subscribe( 
-		list => this.users = list,
-		error => console.error("Error al conseguir los usuarios: ", error)
+			list => this.users = list,
+			error => console.error("Error al conseguir los usuarios: ", error)
 		);
 	}
 
@@ -59,7 +60,13 @@ export class FiltersComponent implements OnInit {
 			if (value != "")
 				this.bodyFiltros[key] = value;
 		
-		this.bodyFiltros['filterRango'] = `${this.fechaInicio != "" ? this.fechaInicio : "null"},${this.fechaFin != "" ? this.fechaFin : "null"}`;
+		let stringFecha = `${this.fechaInicio != "" ? this.fechaInicio : "null"},${this.fechaFin != "" ? this.fechaFin : "null"}`;
+		
+		if (stringFecha != 'null,null')
+			this.bodyFiltros['filterRango'] = stringFecha;
+
+		console.log(this.bodyFiltros)
+
 		this.enviarFiltrosService.actualizarFiltros(this.bodyFiltros)
 	}
 
