@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ChunksService } from '../../services/chunks.service';
+import { ChunksService } from '../../service/chunks.service';
 import { Subscription } from 'rxjs';
 import { ChunkListComponent } from "../chunk-list/chunk-list.component";
 import { Estado } from '../../enums/estado.enum';

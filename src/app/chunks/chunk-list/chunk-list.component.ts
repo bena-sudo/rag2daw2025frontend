@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Chunk } from '../chunk';
-import { ChunksService } from '../../services/chunks.service';
+import { ChunksService } from '../../service/chunks.service';
 import { Estado, EstadoColor } from '../../enums/estado.enum';
 
 @Component({
