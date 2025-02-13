@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { IPregunta } from '../componentes_calidad/ipregunta';
 import { IChat } from '../componentes_calidad/ichat';
+import { EnviarFitrosService } from '../componentes_calidad/chat/enviar-fitros.service';
+import { IFiltroAgroupacion } from '../componentes_calidad/estadisticas/filtros/ifiltroygroup';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ import { IChat } from '../componentes_calidad/ichat';
 export class ApiService {  
   private baseUrl = 'http://localhost:8090/api/rag/v1/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private  enviarFiltrosService :EnviarFitrosService) {}
 
   
   // Chats
@@ -59,8 +61,15 @@ export class ApiService {
 
 
   //Estadisticas Qualitat
-  getStats(datos : object):Observable<any>{
-    return this.http.post<string[]>(`${this.baseUrl}estadisticas`+datos.agrupacion, datos.body);
+  getStats(datos : IFiltroAgroupacion):Observable<any>{
+    return this.http.post<string[]>(`${this.baseUrl}estadisticas`+datos.agrupacion, datos.filtros)
+    .pipe(
+      tap(
+        page => {
+         this.enviarFiltrosService.stats$.next(page)
+        }
+      )
+    );
   }
 
 }

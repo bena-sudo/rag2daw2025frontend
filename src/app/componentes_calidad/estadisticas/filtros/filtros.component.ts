@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../../service/service';
 import { EnviarFitrosService } from '../../chat/enviar-fitros.service';
+import { IFiltroAgroupacion } from './ifiltroygroup';
 
 @Component({
   selector: 'app-filtros',
@@ -67,8 +68,10 @@ export class FiltrosComponent {
         agrupacion= "?groupBy="+this.selectedGroup
     }
 
+    let datos :IFiltroAgroupacion = {"filtros":this.bodyFiltros, "agrupacion":agrupacion} 
+    
 
-    this.apiService.getStats({"body":this.bodyFiltros, agrupacion}).subscribe( data => console.log(data));
+    this.apiService.getStats(datos).subscribe( data => console.log(data));
   }
 
 }
