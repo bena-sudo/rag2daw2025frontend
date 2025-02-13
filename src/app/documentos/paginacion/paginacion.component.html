@@ -1,1 +1,5 @@
-<p>paginacion works!</p>
+<div class="paginacion">
+    <button class="arrow" id="prev" (click)="modificarPagina('-')">←</button>
+    <input type="number" class="numeroPagina" value={{pagina}} min="1" (change)="importarValue($event)"/>
+    <button class="arrow" id="next" (click)="modificarPagina('+')">→</button>
+</div>
