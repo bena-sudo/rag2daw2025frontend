@@ -1,26 +1,24 @@
-import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from 'chart.js';
+import { Component, OnInit } from '@angular/core';
+import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
+import { SseService } from '../service/sse.service';
 
+// Registrar los controladores necesarios
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 @Component({
   selector: 'app-home',
-  imports: [],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent{
 
-  public chartOptions: ChartOptions = {
-    responsive : true,
-  };
-  public chartData: ChartData<'bar'> = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], 
-  datasets: [
-    {
-    data: [12, 19, 3, 5, 2, 3],
-    label: 'Series A'
-    }
-  ]
-  };
-  public chartType: 'bar' ='bar';
+  
 }

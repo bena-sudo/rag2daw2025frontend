@@ -15,6 +15,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withHashLocation(), withComponentInputBinding()),
+    //Declaracion del interceptor para que por cada llamada introduzca token si existe
     provideHttpClient(withInterceptors([authInterceptor])),
     
   ],

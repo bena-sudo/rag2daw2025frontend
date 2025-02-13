@@ -25,6 +25,7 @@ export class LoginComponent {
 
     this.formSubmitted = true;
 
+    //Crea objeto con email y password que es lo que nos pide pasarle al endpoint
     const credentials = {
       email: this.email,
       password: this.password
@@ -39,12 +40,22 @@ export class LoginComponent {
         
         this.loading = false;
 
-        this.router.navigate(['/inicio']); 
+        const roles = this.serviceLog.getUserRoles();
+        //Si entre los rols del usuario se encuentra el rol de administrador 
+        //el usuario no visualizara el inicio normal sino el de el administrador
+        console.log(roles)
+        if (roles.includes("ADMINISTRADOR")) {
+          this.router.navigate(['/home']); 
+        }else{
+          this.router.navigate(['/inicio']); 
+        }
+
+        
       },
       error: () => {
         
         this.loading = false;
-
+        //Mensage de error en caso de que el usuario o contraseña no sean correctos
         this.errorMessage = 'Email o contraseña incorrectos';
 
       }

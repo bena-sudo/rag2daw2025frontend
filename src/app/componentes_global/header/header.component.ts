@@ -32,14 +32,19 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  //Cuando pulsas el boton de logaut actua esta funcion 
+  // que llama al metodo de logout del service
   logout(){
     this.authService.logout();
   }
 
+  //Menu desplegable para responsive nav
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  //Comprueva si el usuario logeado tiene el rol de administrador 
+  // para asi mostrar el inicio normal o el del admin
   funcHayAdmin(){
     if(this.userRole.includes("ADMINISTRADOR")){
       this.hayAdmin = true;

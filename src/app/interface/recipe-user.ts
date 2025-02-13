@@ -1,3 +1,4 @@
+//Interfaz para los usuarios
 export interface RecipeUser {
 
     id: number;
@@ -6,5 +7,6 @@ export interface RecipeUser {
     email: string;
     password: string;
     telefono: string;
-    fecha_nacimiento: string;
+    estado: string;
+    roleIds: number[];
 }

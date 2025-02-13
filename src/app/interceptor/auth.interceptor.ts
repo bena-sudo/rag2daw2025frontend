@@ -1,10 +1,11 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  // Obtener el token del localStorage
+  //Obtiene tocken de localStorage
   const token = localStorage.getItem('auth_token');
 
-  // Clonar la solicitud y agregar el token en los headers
+  //Si tocken existe colona solicitud y añade
+  //a headers el token
   if (token) {
     const authReq = req.clone({
       setHeaders: {

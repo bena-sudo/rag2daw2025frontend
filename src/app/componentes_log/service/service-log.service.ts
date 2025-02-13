@@ -17,9 +17,11 @@ export class ServiceLogService {
     })
   };
 
+  //Subject para si el usuario esta logeado
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
+  //Subject para los rols del usuario
   private userRoleSubject = new BehaviorSubject<string[]>(this.getUserRoles());
   userRole$ = this.userRoleSubject.asObservable();
 
@@ -27,7 +29,7 @@ export class ServiceLogService {
 
   //Metodo para registrar
   userRegistro(user: RecipeUser): Observable<RecipeUser> {
-    return this.http.post<RecipeUser>(`${this.authUrl}/nuevo`, user, this.httpOptions).pipe(
+    return this.http.post<RecipeUser>(`${this.authUrl}/nuevo`,user, this.httpOptions).pipe(
 
       catchError((error: HttpErrorResponse) => {
         let errorMessage = 'Ocurrió un error insesperado.';
@@ -37,7 +39,7 @@ export class ServiceLogService {
           errorMessage = "Error en el servidor. Intentelo mas tarde";
         }
 
-        return throwError(() => errorMessage);
+        return throwError(() => error);
       })
     );
     
@@ -49,7 +51,7 @@ export class ServiceLogService {
   userLogin(credentials: { email: string, password: string }): Observable<{ token: string }> {
     return this.http.post<{ token: string; authorities: { authority: string }[] }>(`${this.authUrl}/login`, JSON.stringify(credentials), this.httpOptions)
       .pipe(
-        //Si la respuesta es correcta guarda el token en local storage
+        //Si la respuesta es correcta guarda el token en localstorage
         tap((response) => {
           if (response.token) {
             localStorage.setItem('auth_token', response.token);
@@ -79,7 +81,7 @@ export class ServiceLogService {
     return token !== null && !this.isTokenExpired(token);
   }
 
-  //Metodo para 
+  //Metodo para que borre de 
   //Metodo para comprobar si el tocken ha expirado
   isTokenExpired(token: string): boolean {
     //console.log(token);
@@ -111,12 +113,12 @@ export class ServiceLogService {
   }
   
 
-  // Método para actualizar el estado del login
+  //Metodo que actualida el estatus del logeo
   updateLoginStatus() {
-    this.isLoggedInSubject.next(this.isLoggedIn()); // Notifica a los suscriptores
+    this.isLoggedInSubject.next(this.isLoggedIn());
   }
 
-  // Método para actualizar los roles del usuario
+  //Metodo que actualida el estatus del rol
   updateUserRoles() {
     this.userRoleSubject.next(this.getUserRoles());
   }

@@ -18,6 +18,8 @@ export class RegistroComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private serviceLog: ServiceLogService, private router: Router) {}
 
   ngOnInit(): void {
+    //Formulario reactivo se crea desde un principio con valores nulos
+    //tambien se añaden una serie de validators para cada campo
     this.formRegistro = this.formBuilder.group({
       nickname: ['', Validators.required],
       nombre: ['', Validators.required],
@@ -34,14 +36,14 @@ export class RegistroComponent implements OnInit {
   }
 
   newUser() {
-    this.formSubmitted = true; // Indica que el usuario intentó enviar el formulario
+    this.formSubmitted = true; //Indica que el usuario intentó enviar el formulario
 
     if (this.formRegistro.invalid) {
-      this.formRegistro.markAllAsTouched(); // Muestra los errores en todos los campos
+      this.formRegistro.markAllAsTouched(); //Muestra los errores en todos los campos
       return;
     }
 
-    // Si es válido, envía los datos al servicio
+    //Si el formulario es valido se envian los datos al servicio
     this.serviceLog.userRegistro(this.formRegistro.value).subscribe({
       next: () => {
         console.log('Usuario creado con éxito.');

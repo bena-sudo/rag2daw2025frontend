@@ -1,15 +1,22 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { from, map, Observable } from 'rxjs';
+import { catchError, from, map, Observable, throwError } from 'rxjs';
 import { RecipeUser } from '../../interface/recipe-user';
+import { ModifUser } from '../../interface/modif-user';
+import { InfoRoles } from '../../interface/info-roles';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceAdminService {
   private authUrl = environment.apiUrl;
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    })
+  };
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -38,5 +45,31 @@ export class ServiceAdminService {
   //Metodo para borrar usuario
   deleteUser(id:string | undefined): Observable<any>{
     return this.http.delete(`${this.authUrl}/v1/usuarios/${id}`);
+  }
+
+  //Metodo para modificar usuarios
+  updateUser(user: ModifUser, id: string): Observable<RecipeUser> {
+    return this.http.put<RecipeUser>(`${this.authUrl}/v1/usuarios/${id}`, user, this.httpOptions).pipe(
+    
+          catchError((error: HttpErrorResponse) => {
+            let errorMessage = 'Ocurrió un error insesperado.';
+            if(error.status === 400) {
+              errorMessage = "Email / Nickname en uso. Prueba con otro.";
+            }else if (error.status === 500){
+              errorMessage = "Error en el servidor. Intentelo mas tarde";
+            }
+    
+            return throwError(() => errorMessage);
+          })
+        );
+  }
+
+  //Metodo que retorna todos los rols àctivos
+  getRolsUser(): Observable<InfoRoles[]>{
+    return this.http.get<InfoRoles[]>(`${this.authUrl}/v1/roles`).pipe(
+      catchError((error:HttpErrorResponse) => {
+        return throwError(() => 'Ocurrio un error inesperado.')
+      })
+    )
   }
 }

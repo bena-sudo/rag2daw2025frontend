@@ -1,3 +1,4 @@
+//Rutas para trabajar en deploiment
 export const environment = {
     production: false,
     authUrl: 'http://localhost:8090/auth',
