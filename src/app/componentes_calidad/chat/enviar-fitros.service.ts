@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { IFiltroAgroupacion } from '../estadisticas/filtros/ifiltroygroup';
+import { Estadisticas } from '../estadisticas/grafica/Estadisticas';
 
 @Injectable({
 	providedIn: 'root'
@@ -14,12 +16,8 @@ export class EnviarFitrosService {
 		this.filtroSource.next(bodyFiltros);
 	}
 
-	private statsStource = new BehaviorSubject<object | null>(null);
+	private statsStource = new BehaviorSubject<Estadisticas | null>(null);
 
 	stats$ = this.statsStource;
-
-	actualizarStats(bodyFiltros: object[]) {
-		this.statsStource.next(bodyFiltros);
-	}
 
 }
