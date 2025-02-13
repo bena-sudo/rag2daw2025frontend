@@ -1,20 +1,32 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-documento-search',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,FormsModule, CommonModule],
   templateUrl: './documento-search.component.html',
   styleUrl: './documento-search.component.css',
 })
 export class DocumentoSearchComponent {
-  @Output() searchTerm = new EventEmitter<string>();
-  searchControl: FormControl = new FormControl('');
+  filterForm: FormGroup;
 
-  constructor() {
-    this.searchControl.valueChanges
-      .pipe(debounceTime(300), distinctUntilChanged())
-      .subscribe((value) => this.searchTerm.emit(value));
+  // Emitimos el filtro para que el componente padre lo reciba
+  @Output() filtroAplicado = new EventEmitter<any>();
+
+  constructor(private readonly fb: FormBuilder) {
+    this.filterForm = this.fb.group({
+      nombre: [''],
+      estado: [''],
+      fechaCreacion: [''],
+      fechaModificacion: [''],
+    });
+  }
+
+  aplicarFiltro() {
+    const filtro = this.filterForm.value;
+
+    // Emitir los datos del filtro para ser utilizados en el componente padre
+    this.filtroAplicado.emit(filtro);
   }
 }

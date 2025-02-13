@@ -17,12 +17,26 @@ export class DocumentosService {
     );
   }
 
-  searchDocumentos(query: string): Observable<Documento[]> {
-    return from(
-      this.http.get<any>(
-        `${this.apiUrl}/documentos?filter=nombreFichero:CONTIENE:${query}&page=0&size=10&sort=id`
-      )
-    ).pipe(
+  searchDocumentos(filtros: any): Observable<Documento[]> {
+    let query = `${this.apiUrl}/documentos?`;
+    if (filtros.nombre) {
+      query += `&filter=nombreFichero:CONTIENE:` + filtros.nombre;
+    }
+    if (filtros.estado) {
+      query += `&filter=estadoDocumento:CONTIENE:` + filtros.estado;
+    }
+
+    if (filtros.fechaCreacion) {
+      query += `&filter=fechaCreacion:IGUAL:` + filtros.fechaCreacion;
+    }
+
+    if (filtros.fechaModificacion) {
+      query += `&filter=fechaRevision:IGUAL:` + filtros.fechaModificacion;
+    }
+
+    query += '&page=0&size=10&sort=id';
+
+    return from(this.http.get<any>(query)).pipe(
       map((data) => {
         return data.content || [];
       }),
