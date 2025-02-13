@@ -13,4 +13,13 @@ export class EnviarFitrosService {
 	actualizarFiltros(bodyFiltros: object) {
 		this.filtroSource.next(bodyFiltros);
 	}
+
+	private statsStource = new BehaviorSubject<object | null>(null);
+
+	stats$ = this.statsStource.asObservable();
+
+	actualizarStats(bodyFiltros: object[]) {
+		this.statsStource.next(bodyFiltros);
+	}
+
 }

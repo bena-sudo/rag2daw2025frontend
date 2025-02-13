@@ -48,7 +48,7 @@ export class ApiService {
     return this.http.put(`${this.baseUrl}updatePregunta/${idPregunta}`, pregunta);
   }
 
-  // Filtros
+  // Filtros Qualitat
   getListUsuarios(): Observable<string[]> {
     return this.http.get<string[]>(`${this.baseUrl}getListUsuarios`);
   }
@@ -56,4 +56,11 @@ export class ApiService {
   filterChats(bodyFilter: object | null): Observable<any> {
     return this.http.post<string[]>(`${this.baseUrl}filter`, bodyFilter);
   }
+
+
+  //Estadisticas Qualitat
+  getStats(datos : object):Observable<any>{
+    return this.http.post<string[]>(`${this.baseUrl}estadisticas`+datos.agrupacion, datos.body);
+  }
+
 }
