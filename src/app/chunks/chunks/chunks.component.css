@@ -1,0 +1,20 @@
+.container {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    margin-top: 20px;
+}
+
+h2 {
+    margin-bottom: 15px;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+}
+
+.filtro {
+    margin-left: 10px;
+}
+
+#status {
+    font-family: "Poppins", sans-serif;
+}
+
