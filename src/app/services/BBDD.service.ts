@@ -21,7 +21,7 @@ export class BbddService {
   }
 
   getCuestionarioById(id: number): Observable<any[]> {
-    return this.getDataObservable<any[]>(`cuestionarios/${id}/preguntas`);
+    return this.getDataObservable<any[]>(`preguntas/cuestionario/${id}`);
   }
 
   enviarRespuestas(respuestas: any[]): Observable<any> {

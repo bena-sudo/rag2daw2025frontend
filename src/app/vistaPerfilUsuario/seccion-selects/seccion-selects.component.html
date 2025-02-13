@@ -1,0 +1,36 @@
+<div class="perfil-usuario-card">    
+    <div class="perfil-usuario-info">
+      <div class="perfil-usuario-dato">
+        <label>Sector:</label>
+        <select [(ngModel)]="sector">
+          <option *ngFor="let sector of sectores" [value]="sector">{{ sector }}</option>
+        </select>
+      </div>
+      
+      <div class="perfil-usuario-dato">
+        <label>Nivel:</label>
+        <select [(ngModel)]="nivel">
+          <option *ngFor="let n of niveles" [value]="n">{{ n }}</option>
+        </select>
+      </div>
+      
+      <div class="perfil-usuario-dato">
+        <label>Módulo:</label>
+        <select [(ngModel)]="modulo">
+          <option *ngFor="let m of modulos" [value]="m">{{ m }}</option>
+        </select>
+      </div>
+      
+      <div class="perfil-usuario-dato">
+        <label>Unidad de Competencia:</label>
+        <select [(ngModel)]="unidadCompetencia">
+          <option *ngFor="let u of unidadesCompetencia" [value]="u">{{ u }}</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="perfil-usuario-boton">
+      <button >Realizar Cuestionario</button>
+    </div>
+  </div>
+  

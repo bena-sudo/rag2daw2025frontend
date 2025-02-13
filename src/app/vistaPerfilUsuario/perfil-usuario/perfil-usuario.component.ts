@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { BbddService } from '../../services/BBDD.service';
 import { DatosUsuarioComponent } from '../datos-usuario/datos-usuario.component';
 import { TablaAcreditacionesComponent } from '../tabla-acreditaciones/tabla-acreditaciones.component';
-TablaAcreditacionesComponent
+import { MensajesComponent } from "../mensajes/mensajes.component";
+import { SeccionSelectsComponent } from '../seccion-selects/seccion-selects.component';
+
 
 
 @Component({
   selector: 'app-perfil-usuario',
-  imports: [DatosUsuarioComponent, TablaAcreditacionesComponent],
+  imports: [DatosUsuarioComponent, TablaAcreditacionesComponent, MensajesComponent, SeccionSelectsComponent],
   templateUrl: './perfil-usuario.component.html',
   styleUrl: './perfil-usuario.component.css'
 })

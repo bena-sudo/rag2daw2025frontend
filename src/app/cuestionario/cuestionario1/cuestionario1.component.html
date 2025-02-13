@@ -11,6 +11,8 @@
                 [ngClass]="{'seleccionado': obtenerRespuestaSeleccionada() === 'no'}">No</button>
       </ng-container>
 
+      <app-pop-up-finalizar-cuestionario></app-pop-up-finalizar-cuestionario>
+
       <ng-container *ngIf="preguntas[preguntaActual]?.tipo === 'RANGO1_4'">
         <button type="button" 
                 (click)="seleccionarRespuesta('1')" 

@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { BbddService } from '../../services/BBDD.service';
 import { DatosService } from '../../services/datos.service';
 import { RouterModule } from '@angular/router';
+import { PopUpFinalizarCuestionarioComponent } from "../pop-up-finalizar-cuestionario/pop-up-finalizar-cuestionario.component";
 
 
 
@@ -18,7 +19,7 @@ interface Pregunta {
   selector: 'app-cuestionario1',
   templateUrl: './cuestionario1.component.html',
   styleUrls: ['./cuestionario1.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, PopUpFinalizarCuestionarioComponent],
   animations: [
     trigger('slideAnimation', [
       transition(':enter', [
