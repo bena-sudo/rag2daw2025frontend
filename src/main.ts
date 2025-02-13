@@ -3,5 +3,5 @@ import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { AdminPanelComponent } from './app/componentes_calidad/chat/admin-panel/admin_panel.component';
 
-bootstrapApplication(AppComponent /*AdminPanelComponent*/, appConfig)
+bootstrapApplication(/*AppComponent*/ AdminPanelComponent, appConfig)
   .catch((err) => console.error(err));

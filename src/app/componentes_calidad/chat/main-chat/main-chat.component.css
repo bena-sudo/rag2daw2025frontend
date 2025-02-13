@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     padding: 16px;
-    max-height: 760px;
+    max-height: 91vh;
   }
   
   .chat-messages {
@@ -15,6 +15,14 @@
     gap: 12px;
   }
   
+  .chat-message-group {
+    flex: 1;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
   .message {
     max-width: 70%;
     padding: 12px;
@@ -75,7 +83,9 @@
     width: 30px;
     margin: 3px 5px;
     border: 0px;
-    border-radius: 5px;
+    border-radius: 12px;
+    transition: 0.3s ease;
+    background-color: rgba(255, 255, 255, 0);
   }
 
   .rating > svg {
@@ -84,14 +94,19 @@
   }
 
   .rating:hover {
-    background-color: var(--black);
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.244);
   }
 
 
   .bien{
-    background-color: rgb(17, 145, 17);
+    background-color: rgb(17, 145, 17) !important;
   }
 
   .mal{
-    background-color: rgb(218, 59, 59);
+    background-color: rgb(218, 59, 59) !important;
   }
+
+  .bien:hover, .mal:hover{
+    cursor: auto;
+   }
