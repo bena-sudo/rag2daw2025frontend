@@ -5,6 +5,7 @@ import { IPregunta } from '../componentes_calidad/ipregunta';
 import { IChat } from '../componentes_calidad/ichat';
 import { EnviarFitrosService } from '../componentes_calidad/chat/enviar-fitros.service';
 import { IFiltroAgroupacion } from '../componentes_calidad/estadisticas/filtros/ifiltroygroup';
+import { Estadisticas } from '../componentes_calidad/estadisticas/grafica/Estadisticas';
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +63,7 @@ export class ApiService {
 
   //Estadisticas Qualitat
   getStats(datos : IFiltroAgroupacion):Observable<any>{
-    return this.http.post<string[]>(`${this.baseUrl}estadisticas`+datos.agrupacion, datos.filtros)
+    return this.http.post<Estadisticas>(`${this.baseUrl}estadisticas`+datos.agrupacion, datos.filtros)
     .pipe(
       tap(
         page => {
