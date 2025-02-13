@@ -21,6 +21,7 @@ export class ChunksComponent {
   constructor(private chunkService: ChunksService) {}
 
   ngOnInit(): void {
+    this.documentId=2;
     this.fetchChunks();
   }
 
@@ -28,6 +29,11 @@ export class ChunksComponent {
     this.chunksSubscription = this.chunkService.getChunksByDocumentId(this.documentId)
       .subscribe(chunks => {
         this.chunks = chunks.content;
+        this.chunks.map(chunk=>{
+          chunk.idDocumento = this.documentId;
+        });
+        console.log(this.chunks);
+        
         this.applyFilter();  // Aplica el filtro después de obtener los chunks
       }
     );

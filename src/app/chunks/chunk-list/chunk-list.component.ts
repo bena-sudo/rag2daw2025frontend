@@ -9,14 +9,14 @@ import { Estado, EstadoColor } from '../../enums/estado.enum';
   templateUrl: './chunk-list.component.html',
   styleUrl: './chunk-list.component.css'
 })
-export class ChunkListComponent implements OnInit{
+export class ChunkListComponent/* implements OnInit*/{
     @Input() chunks!: Chunk[];
     Estado = Estado;
     EstadoColor = EstadoColor;
 
     constructor(private chunkService: ChunksService) {}
 
-    ngOnInit(): void {
+    /*ngOnInit(): void {
       this.chunkService.getChunks().subscribe({
         next: (respuesta) => {
           this.chunks = respuesta.content;
@@ -26,13 +26,17 @@ export class ChunkListComponent implements OnInit{
           console.error('Error al obtener datos:', error);
         }
       });
-    }
+    }*/
 
     cambiarEstado(estado: Estado, id: number) {
       const chunk = this.chunks.find(chunk => chunk.id === id);
       
       if (chunk) {
         chunk.estado = estado;
+        const now = new Date();
+        const formattedDate = now.toISOString().slice(0, 19); // "2025-02-13T18:30:00"
+        chunk.fechaModificacion = formattedDate;
+        console.log(formattedDate);
         console.log(`El estado de ${id} cambiado a ${estado}`);
         this.actualizarChunk(chunk);
       }
@@ -41,7 +45,7 @@ export class ChunkListComponent implements OnInit{
     actualizarChunk(chunk: Chunk) {
       this.chunkService.updateChunk(chunk).subscribe({
         next: (response) => {
-          console.log('Chunk actualizado con éxito:', response);
+          console.log('Chunk actualizado con éxito');
         },
         error: (err) => {
           console.error('Error al actualizar el chunk:', err);
