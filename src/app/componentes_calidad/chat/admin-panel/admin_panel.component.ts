@@ -7,6 +7,7 @@ import { MainChatComponent } from '../main-chat/main-chat.component';
 import { FiltersComponent } from "../filters/filters.component";
 import { CommonModule, NgStyle } from '@angular/common';
 import { ApiService } from '../../../service/service';
+import { SharedService } from '../../../service/sharedService';
 @Component({
   selector: 'app-root',
   imports: [NgStyle,  FooterComponent, HeaderComponent, ChatListComponent, MainChatComponent, FiltersComponent, CommonModule],
@@ -14,6 +15,8 @@ import { ApiService } from '../../../service/service';
   styleUrl: './admin_panel.component.css'
 })
 export class AdminPanelComponent {
+  constructor(private sharedService: SharedService) {}
+
   title = 'rag2daw2025frontend';
   chatContainerHeight = '72.8vh';
   chatListWidth = 300;
@@ -58,5 +61,9 @@ export class AdminPanelComponent {
 
   toggleFooter() {
     this.showFooter = !this.showFooter;
+  }
+
+  hideComponent() {
+    this.sharedService.hideComponent(); // Triggers event
   }
 }

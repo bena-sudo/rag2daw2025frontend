@@ -1,5 +1,4 @@
-<body>
-	<app-header></app-header>
+	<!--<app-header></app-header>-->
 
 	<div class="filters">
 		<app-filters (filtersToggled)="onFiltersToggled($event)"></app-filters>
@@ -17,8 +16,7 @@
 		</div>
 	</div>
 
-	<div id="footerToggle" (click)="toggleFooter()">
+	<div id="footerToggle" (click)="hideComponent()">
     {{ showFooter ? 'Menos' : 'Más' }} Info - Rag2Daw2025
   </div>
-  <app-footer *ngIf="showFooter"></app-footer>
-</body>
+  <!--<app-footer *ngIf="showFooter"></app-footer>-->

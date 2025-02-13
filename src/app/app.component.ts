@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { FooterComponent } from './componentes_global/footer/footer.component';
 import { HeaderComponent } from './componentes_global/header/header.component';
+import { SharedService } from './service/sharedService';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,18 @@ import { HeaderComponent } from './componentes_global/header/header.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+  isVisible = false;
+  showFooter = false;
+
+  constructor(private sharedService: SharedService) {}
+
+  ngOnInit() {
+    this.sharedService.hideComponent$.subscribe(hide => {
+      if (hide) {
+        this.isVisible = !this.isVisible; 
+      }
+    });
+  }
 
 }
