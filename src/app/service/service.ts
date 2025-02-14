@@ -63,7 +63,7 @@ export class ApiService {
 
   //Estadisticas Qualitat
   getStats(datos : IFiltroAgroupacion):Observable<any>{
-    return this.http.post<Estadisticas>(`${this.baseUrl}estadisticas`+datos.agrupacion, datos.filtros)
+    return this.http.post<Estadisticas>(`${this.baseUrl}estadisticas`+datos.agrupacion + datos.historico, datos.filtros)
     .pipe(
       tap(
         page => {

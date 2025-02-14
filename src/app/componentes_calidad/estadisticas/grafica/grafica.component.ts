@@ -43,7 +43,7 @@ export class GraficaComponent implements OnInit {
         keys = datos.map(item => item[0]);
         let values = datos.map(item => item[1])
 
-        console.log(keys, values);
+        //  console.log(keys, values);
 
 
         if (this.chart) {
@@ -70,10 +70,55 @@ export class GraficaComponent implements OnInit {
               }
             });
             break;
-        
-            case "line":
+
+          case "line":
+
+            const leyenda = [...new Set(values.map(item => item))];
+
+            const datosAgrupados = new Map<string, (number)[]>();
+
+            const tiposFeedback = [...new Set(datos.map(item => item[1] ?? "null"))];
+
+            tiposFeedback.forEach(tipo => {
+              datosAgrupados.set(tipo, new Array(leyenda.length).fill(null));
+            });
+
+            datos.forEach(([fecha, key, valor]) => {
+              const index = leyenda.indexOf(fecha);
+              const clave = key ?? "null"; 
+              if (index !== -1) { 
+                datosAgrupados.get(clave)![index] = valor;
+              }
+            });
+
+            console.log(datosAgrupados);
 
 
+            const datasets = Array.from(datosAgrupados.entries()).map(([tipo, valores]) => ({
+              label: tipo === "null" ? "Null" : tipo,
+              data: valores,
+              fill: false
+            }));
+            console.log("dataset:", datasets);
+
+
+            this.chart = new Chart(this.chartCanvas.nativeElement, {
+              type: 'line',
+              data: {
+                labels: leyenda,
+                datasets: datasets
+              },
+              options: {
+                responsive: true,
+                aspectRatio: 0.45,
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
 
 
             break;
@@ -87,7 +132,7 @@ export class GraficaComponent implements OnInit {
         }
 
 
-        
+
       }
     });
   }

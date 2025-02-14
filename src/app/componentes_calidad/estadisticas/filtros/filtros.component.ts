@@ -81,8 +81,18 @@ export class FiltrosComponent {
     if (this.selectedGroup != "") {
       agrupacion = "?groupBy=" + this.selectedGroup
     }
+    let historico=""
+    if (this.graphSelected == "line") {
+      historico= "&historic=true"
+    }else{
+      historico="&historic=false"
+    }
 
-    let datos: IFiltroAgroupacion = { "filtros": this.bodyFiltros, "agrupacion": agrupacion }
+    let datos: IFiltroAgroupacion = {
+      "filtros": this.bodyFiltros,
+      "agrupacion": agrupacion,
+      "historico": historico
+    }
 
 
     this.cambiarTipoGrafico(this.graphSelected)
