@@ -11,32 +11,40 @@ import { CommonModule } from '@angular/common';
 })
 export class DocumentoCreateFormComponent {
   usuarioId = 1;
-  comentario = 'Este es un documento de prueba';
+  comentario = '';
+  nombreDocumento='';
   estadoDocumento = 'PENDIENTE';
   file: File | null = null; // Ahora puede ser null
+  intentoSubida = false;  
   createForm: FormGroup;
 
   constructor(
     private documentoService: DocumentosService,
     private formBuilder: FormBuilder,
   ) {
-    // Inicializamos el control con null en lugar de '' para que sea coherente con el tipo File.
     this.createForm = this.formBuilder.group({
       file: [null, Validators.required],
+      nombreDocumento: ['',Validators.required],
+      comentario:['']
     });
   }
 
   subir() {
+    this.intentoSubida = true; // Marcamos que el usuario ha intentado subir
+
     if (!this.file || !this.fileValid) {
       console.error('No se ha seleccionado ningún archivo.');
       return;
     }
 
+    console.log();
+    
+
     const documento = {
       idUsuario: this.usuarioId,
-      comentario: this.comentario,
+      comentario: this.createForm.get('comentario')?.value, // <-- Obtener del formulario
       estadoDocumento: this.estadoDocumento,
-      nombreFichero: this.file.name,
+      nombreFichero: this.createForm.get('nombreDocumento')?.value, // <-- Obtener del formulario
     };
 
     this.documentoService.subirDocumento(documento, this.file)
@@ -56,6 +64,11 @@ export class DocumentoCreateFormComponent {
     );
   }
 
+  get nombreDocumentoValid() {
+    const control = this.createForm.get('nombreDocumento');
+    return control?.touched && !control.valid;
+  }
+  
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
