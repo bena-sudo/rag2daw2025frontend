@@ -17,6 +17,10 @@ export class DocumentosService {
     );
   }
 
+  getDocumento(documentoID: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/documento/${documentoID}`);
+  }
+
   searchDocumentos(filtros: any): Observable<Documento[]> {
     let query = `${this.apiUrl}/documentos?`;
     if (filtros.nombre) {
@@ -43,4 +47,18 @@ export class DocumentosService {
       catchError((error) => throwError(() => error))
     );
   }
+
+  getPDFBase64blob(documento: Documento): string {    
+    const byteCharacters = atob(documento.base64Documento);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    return URL.createObjectURL(
+      new Blob([byteArray], { type: documento.contentTypeDocumento })
+    );
+  }
+
+  // https://www.geeksforgeeks.org/how-to-convert-base64-to-file-in-javascript/
 }
