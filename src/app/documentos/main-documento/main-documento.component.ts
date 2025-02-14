@@ -66,4 +66,16 @@ export class MainDocumentoComponent implements OnInit {
       },
     });
   }
+
+  obtenerDatosFiltrados(filtro: any) {
+    // Llamar al servicio para obtener los datos filtrados
+    this.documentosService.searchDocumentos(filtro).subscribe({
+      next: (documentos) => {
+        this.documentos = documentos;
+      },
+      error: (err) => {
+        console.error('Error fetching etiquetas:', err);
+      },
+    });
+  }
 }

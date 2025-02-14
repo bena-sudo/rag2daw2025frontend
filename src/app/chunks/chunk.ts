@@ -1,6 +1,5 @@
 export interface Chunk {
     id?: number | null;
-    idDocumento?: number | null;
     chunkOrder?: number | null;
     chunkText?: string | null;
     chunkedBy?: string | null;
