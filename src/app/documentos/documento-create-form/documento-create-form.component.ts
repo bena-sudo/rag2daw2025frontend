@@ -12,8 +12,8 @@ import { CommonModule } from '@angular/common';
 export class DocumentoCreateFormComponent {
   usuarioId = 1;
   comentario = '';
-  nombreDocumento='';
-  estadoDocumento = 'PENDIENTE';
+  nombreFichero='';
+  estado = 'PENDIENTE';
   file: File | null = null; // Ahora puede ser null
   intentoSubida = false;  
   createForm: FormGroup;
@@ -24,7 +24,7 @@ export class DocumentoCreateFormComponent {
   ) {
     this.createForm = this.formBuilder.group({
       file: [null, Validators.required],
-      nombreDocumento: ['',Validators.required],
+      nombreFichero: ['',Validators.required],
       comentario:['']
     });
   }
@@ -32,19 +32,16 @@ export class DocumentoCreateFormComponent {
   subir() {
     this.intentoSubida = true; // Marcamos que el usuario ha intentado subir
 
-    if (!this.file || !this.fileValid) {
-      console.error('No se ha seleccionado ningún archivo.');
+    if (!this.file || !this.createForm.get('nombreFichero')?.value) {
+      console.error('Debe seleccionar un archivo y proporcionar un nombre de fichero.');
       return;
     }
-
-    console.log();
     
-
     const documento = {
       idUsuario: this.usuarioId,
       comentario: this.createForm.get('comentario')?.value, // <-- Obtener del formulario
-      estadoDocumento: this.estadoDocumento,
-      nombreFichero: this.createForm.get('nombreDocumento')?.value, // <-- Obtener del formulario
+      estado: this.estado,
+      nombreFichero: this.createForm.get('nombreFichero')?.value, // <-- Obtener del formulario
     };
 
     this.documentoService.subirDocumento(documento, this.file)
@@ -64,8 +61,8 @@ export class DocumentoCreateFormComponent {
     );
   }
 
-  get nombreDocumentoValid() {
-    const control = this.createForm.get('nombreDocumento');
+  get nombreFicheroValid() {
+    const control = this.createForm.get('nombreFichero');
     return control?.touched && !control.valid;
   }
   

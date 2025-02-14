@@ -2,10 +2,10 @@
   <div class="formulario-contenedor">
     <h1>Subir Documento</h1>
     <form [formGroup]="createForm" class="formulario-creacion">
-      <label for="nombreDocumento">Nombre del Documento</label>
-      <input type="text" id="nombreDocumento" formControlName="nombreDocumento" [ngClass]="{
-            'is-valid':!nombreDocumentoValid,
-            'is-invalid':nombreDocumentoValid
+      <label for="nombreFichero">Nombre del Documento</label>
+      <input type="text" id="nombreFichero" formControlName="nombreFichero" [ngClass]="{
+            'is-valid':!nombreFicheroValid,
+            'is-invalid':nombreFicheroValid
           }" placeholder="Nombre" required>
 
       <label for="comentario">Comentario (opcional)</label>

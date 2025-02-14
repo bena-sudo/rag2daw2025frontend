@@ -30,7 +30,7 @@ export class DocumentosService {
         extensionDocumento: file.name.split('.').pop()
       };
       console.log('Datos que se envían:', documentoFinal);
-      return this.http.post<any>(this.apiUrl, documentoFinal);
+      return this.http.post<any>(this.apiUrl+"/documento", documentoFinal);
     });
   }
 
