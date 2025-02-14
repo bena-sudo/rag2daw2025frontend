@@ -11,11 +11,19 @@ import Chart from 'chart.js/auto';
 export class GraficaComponent implements OnInit {
   @ViewChild('chartCanvas', { static: true }) chartCanvas!: ElementRef<HTMLCanvasElement>; // Referencia al <canvas>
   public chart: any;
+  public graphType: string = 'pie';
 
-  constructor(private enviarFiltrosService: EnviarFitrosService) {}
+  constructor(private enviarFiltrosService: EnviarFitrosService) { }
 
   ngOnInit(): void {
     this.suscripcionStats();
+
+  }
+
+  suscripcionGraficaType() {
+    this.enviarFiltrosService.graphType$.subscribe((tipo: string) => {
+      this.graphType = tipo
+    })
   }
 
   suscripcionStats() {
@@ -24,38 +32,60 @@ export class GraficaComponent implements OnInit {
         let keys: any[] = [];
         let datos: any[] = [];
 
-        // Obtener las claves y valores del objeto
+
         Object.keys(objeto).forEach(key => {
           keys.push(key);
           datos.push(objeto[key]);
         });
 
-        keys = datos.map(item => item[0]);  
+        keys = datos.map(item => item[0]);
         let values = datos.map(item => item[1])
 
-        console.log(keys,values);
+        console.log(keys, values);
 
-        // Destruir el gráfico anterior si existe
+
         if (this.chart) {
           this.chart.destroy();
         }
 
-        // Crear el gráfico
-        this.chart = new Chart(this.chartCanvas.nativeElement, { // Usar la referencia al <canvas>
-          type: 'pie',
-          data: {
-            labels: keys, // Etiquetas del gráfico
-            datasets: [{
-              label: 'Cantidad agrupada',
-              data: values, // Datos del gráfico
-              backgroundColor: ['red', 'blue', 'yellow', 'green', 'purple', 'orange']
-            }]
-          },
-          options: {
-            responsive: true, // Hacer el gráfico responsive
-            maintainAspectRatio: false, // No mantener la relación de aspecto
-          }
-        });
+
+        switch (this.graphType) {
+          case "pie":
+            this.chart = new Chart(this.chartCanvas.nativeElement, {
+              type: 'pie',
+              data: {
+                labels: keys,
+                datasets: [{
+                  label: 'Cantidad agrupada',
+                  data: values,
+                  backgroundColor: ['red', 'blue', 'yellow', 'green', 'purple', 'orange']
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                aspectRatio: 0.45
+              }
+            });
+            break;
+        
+            case "line":
+
+
+            
+
+            break;
+
+
+
+          default:
+            console.log("Error recibiendo el tipo de chart");
+            this.graphType = "pie"
+            break;
+        }
+
+
+        
       }
     });
   }

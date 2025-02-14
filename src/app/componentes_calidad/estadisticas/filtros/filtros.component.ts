@@ -53,6 +53,7 @@ export class FiltrosComponent {
 
   bodyFiltros: { [key: string]: any } = {};
   aplicarEstadisticas() {
+   
     for (let [key, value] of Object.entries(this.filtros))
       if (value != "")
         this.bodyFiltros[key] = value;
@@ -72,6 +73,22 @@ export class FiltrosComponent {
     
 
     this.apiService.getStats(datos).subscribe( data => console.log(data));
+    this.limpiarFiltros()
+    this.bodyFiltros = {}
   }
+
+  limpiarFiltros() {
+		this.filtros = {
+			filterUser: '',
+			filterPregunta: '',
+			filterRespuesta: '',
+			filterChunks: '',
+			filterValorado: '',
+			filterFeedback: ''
+		};
+	  
+		this.fechaInicio = '';
+		this.fechaFin = '';
+	}
 
 }
