@@ -13,7 +13,6 @@ import { EnviarFitrosService } from '../enviar-fitros.service';
 export class FiltersComponent implements OnInit {
 
 	showFilters = true;
-	apply: any;
 
 	users: string[] = [];
 	chunks: string[] = [];
@@ -37,7 +36,6 @@ export class FiltersComponent implements OnInit {
 
 	ngOnInit() {
 		this.iniciarListaNombres();
-		this.apply = document.getElementById("apply-filters");
 	}  
 
 	iniciarListaNombres() {
@@ -65,9 +63,24 @@ export class FiltersComponent implements OnInit {
 		if (stringFecha != 'null,null')
 			this.bodyFiltros['filterRango'] = stringFecha;
 
-		console.log(this.bodyFiltros)
+		this.enviarFiltrosService.actualizarFiltros(this.bodyFiltros);
 
-		this.enviarFiltrosService.actualizarFiltros(this.bodyFiltros)
+		this.limpiarFiltros();
+		this.bodyFiltros = {};
+	}
+
+	limpiarFiltros() {
+		this.filtros = {
+			filterUser: '',
+			filterPregunta: '',
+			filterRespuesta: '',
+			filterChunks: '',
+			filterValorado: '',
+			filterFeedback: ''
+		};
+	  
+		this.fechaInicio = '';
+		this.fechaFin = '';
 	}
 
 }

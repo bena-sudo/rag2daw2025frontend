@@ -2,7 +2,7 @@
 
     <div id="filtros" [class.open]="showFilters">
         <select class="select_user" name="usuario" [(ngModel)]="filtros.filterUser">
-            <option value="">User</option>
+            <option value="">Usuario</option>
             @for (user of users; track $index) {
                 <option>{{ user }}</option>
             }

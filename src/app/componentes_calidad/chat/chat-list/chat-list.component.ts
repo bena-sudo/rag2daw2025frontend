@@ -24,27 +24,32 @@ export class ChatListComponent implements OnInit {
 		this.suscripcionFiltros();
 	}
 
+	// función que carga los chats al iniciar la app
 	cargarChats() {
 		this.apiService.getChats().subscribe( 
 			page => this.chats = page.content,
-			error => console.error("Error al conseguir los chats: ", error)
+			error => console.error("Error al cargar los chats de todos los usuarios: ", error)
 		);
 	}
 
+	// función que muestra los mensajes del chat cuando se le hace click a uno
 	@Output() seleccionarChat = new EventEmitter<number>();
 	onItemClick(idChat: number) {
 		this.seleccionarChat.emit(idChat);
 	}
 
+	// función que muestra los chat despues de aplicar los filtros
 	suscripcionFiltros() {
 		this.enviarFiltrosService.filtros$.subscribe( bodyFiltros => {
-			this.apiService.filterChats(bodyFiltros).subscribe( 
-				page => this.chats = page.content,
-				error => console.error("Error al conseguir los usuarios: ", error)
-			  );
+			if (bodyFiltros != null)
+				this.apiService.filterChats(bodyFiltros).subscribe( 
+					page => this.chats = page.content,
+					error => console.error("Error al conseguir los usuarios: ", error)
+				);
 		})
 	}
 
+	// función que borra un chat al darle al boton
 	borrarChat(idChat: number) {
 		this.apiService.deleteChat(idChat).subscribe( 
 			response => this.cargarChats(),
@@ -52,6 +57,7 @@ export class ChatListComponent implements OnInit {
 		);
 	}
 
+	// función que inicia un nuevo chat al darle a "Iniciar Chat"
 	jsonIniciarChat = {
 		"usuario": "usuarioAngular",
     	"contexto": 1
@@ -63,7 +69,5 @@ export class ChatListComponent implements OnInit {
 			},
 			error => console.error("Error al conseguir los chats: ", error)
 		);
-	}
-
-	
+	}	
 }
