@@ -10,6 +10,7 @@ import { CrearUsuarioComponent } from './componentes_admin/crear-usuario/crear-u
 import { InformacionUsuarioComponent } from './componentes_admin/informacion-usuario/informacion-usuario.component';
 
 import { ModificarUserComponent } from './componentes_admin/modificar-user/modificar-user.component';
+import { CuentasBlockComponent } from './componentes_admin/cuentas-block/cuentas-block.component';
 
 export const routes: Routes = [
     { path: 'inicio', component: InicioComponent},
@@ -17,6 +18,7 @@ export const routes: Routes = [
     { path: 'registro', canActivate: [authGuard], component: RegistroComponent},
     { path: 'users-list', canActivate: [adminGuardsGuard], component: ListadoUsuariosComponent},
     { path: 'home', canActivate: [adminGuardsGuard], component: HomeComponent},
+    { path: 'users-list-block', canActivate: [adminGuardsGuard], component: CuentasBlockComponent},
     { path: 'crear-usuario', canActivate: [adminGuardsGuard], component: CrearUsuarioComponent},
     { path: 'users-list/modificar/:id', canActivate: [adminGuardsGuard], component: ModificarUserComponent},
     { path: 'infoUser/:id', canActivate: [adminGuardsGuard], component: InformacionUsuarioComponent},

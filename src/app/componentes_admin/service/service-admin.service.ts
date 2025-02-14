@@ -11,7 +11,8 @@ import { InfoRoles } from '../../interface/info-roles';
   providedIn: 'root'
 })
 export class ServiceAdminService {
-  private authUrl = environment.apiUrl;
+  private apiUrl = environment.apiUrl;
+  private authUrl = environment.authUrl;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -22,7 +23,7 @@ export class ServiceAdminService {
 
   //Metodo para retornar todos los usuarios
   getUsers(page: number = 0, size: number = 5): Observable<{users:RecipeUser[], totalPages: number}> {
-    return this.http.get<any>(`${this.authUrl}/usuarios?page=${page}&size=${size}`).pipe(
+    return this.http.get<any>(`${this.apiUrl}/usuarios?page=${page}&size=${size}`).pipe(
       map(response => ({
         users: response.content,
         totalPages: response.totalPages
@@ -38,18 +39,18 @@ export class ServiceAdminService {
   //Metodo para retornar la informacion de un usuario
   getUser(id:string | undefined): Observable<RecipeUser | undefined> {
 
-    return this.http.get<any>(`${this.authUrl}/v1/usuarios/${id}`);
+    return this.http.get<any>(`${this.apiUrl}/v1/usuarios/${id}`);
 
   }
 
   //Metodo para borrar usuario
   deleteUser(id:string | undefined): Observable<any>{
-    return this.http.delete(`${this.authUrl}/v1/usuarios/${id}`);
+    return this.http.delete(`${this.apiUrl}/v1/usuarios/${id}`);
   }
 
   //Metodo para modificar usuarios
   updateUser(user: ModifUser, id: string): Observable<RecipeUser> {
-    return this.http.put<RecipeUser>(`${this.authUrl}/v1/usuarios/${id}`, user, this.httpOptions).pipe(
+    return this.http.put<RecipeUser>(`${this.apiUrl}/v1/usuarios/${id}`, user, this.httpOptions).pipe(
     
           catchError((error: HttpErrorResponse) => {
             let errorMessage = 'Ocurrió un error insesperado.';
@@ -66,8 +67,26 @@ export class ServiceAdminService {
 
   //Metodo que retorna todos los rols àctivos
   getRolsUser(): Observable<InfoRoles[]>{
-    return this.http.get<InfoRoles[]>(`${this.authUrl}/v1/roles`).pipe(
+    return this.http.get<InfoRoles[]>(`${this.apiUrl}/v1/roles`).pipe(
       catchError((error:HttpErrorResponse) => {
+        return throwError(() => 'Ocurrio un error inesperado.')
+      })
+    )
+  }
+
+  //Metodo que retorna todas las lineas de la tabla cuentas_bloqueadas
+  getUsersBlock(): Observable<any[]>{
+    return this.http.get<any[]>(`${this.authUrl}/bloqueadas`).pipe(
+      catchError(() => {
+        return throwError(() => 'Ocurrio un error inesperado.')
+      })
+    )
+  }
+
+  //Metodo para desbloquear una cuenta
+  desbloquearCuenta(id:number){
+    return this.http.post(`${this.authUrl}/desbloquear/${id}`, this.httpOptions).pipe(
+      catchError(() => {
         return throwError(() => 'Ocurrio un error inesperado.')
       })
     )
