@@ -52,12 +52,16 @@ export class LoginComponent {
 
         
       },
-      error: () => {
-        
+      error: (err) => {
         this.loading = false;
-        //Mensage de error en caso de que el usuario o contraseña no sean correctos
-        this.errorMessage = 'Email o contraseña incorrectos';
-
+    
+        if (err.error && err.error.message) {
+          this.errorMessage = err.error.message; 
+        } else {
+          this.errorMessage = 'Email o contraseña incorrectos'; 
+        }
+    
+        console.log('Error recibido del servidor:', err);
       }
     });
   }
