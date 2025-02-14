@@ -17,13 +17,15 @@ export class GraficaComponent implements OnInit {
 
   ngOnInit(): void {
     this.suscripcionStats();
+    this.suscripcionGraficaType();
 
   }
 
   suscripcionGraficaType() {
     this.enviarFiltrosService.graphType$.subscribe((tipo: string) => {
-      this.graphType = tipo
-    })
+      this.graphType = tipo;
+      console.log("Tipo de gráfico:", tipo);
+    });
   }
 
   suscripcionStats() {
@@ -72,7 +74,7 @@ export class GraficaComponent implements OnInit {
             case "line":
 
 
-            
+
 
             break;
 

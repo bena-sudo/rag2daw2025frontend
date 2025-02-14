@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../../service/service';
 import { EnviarFitrosService } from '../../chat/enviar-fitros.service';
 import { IFiltroAgroupacion } from './ifiltroygroup';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-filtros',
@@ -14,7 +15,8 @@ import { IFiltroAgroupacion } from './ifiltroygroup';
 export class FiltrosComponent {
 
   selectedGroup: string = "";
-
+  graphSelected: string = "pie"
+  typeGraph: Observable<string>
   apply: any;
 
   users: string[] = [];
@@ -35,14 +37,25 @@ export class FiltrosComponent {
   constructor(
     private apiService: ApiService,
     private enviarFiltrosService: EnviarFitrosService
-  ) { };
+  ) {
+    this.typeGraph = this.enviarFiltrosService.graphType$
+  };
 
   ngOnInit() {
     this.iniciarListaNombres();
     this.apply = document.getElementById("apply-filters");
+    this.subGraphType()
   }
 
+  subGraphType() {
+    this.typeGraph.subscribe((tipo: string) => {
+    });
+  }
 
+  cambiarTipoGrafico(nuevoTipo: string) {
+    this.graphSelected = nuevoTipo;
+    this.enviarFiltrosService.actualizarGraphType(nuevoTipo);
+  }
   iniciarListaNombres() {
     this.apiService.getListUsuarios().subscribe(
       list => this.users = list,
@@ -53,7 +66,7 @@ export class FiltrosComponent {
 
   bodyFiltros: { [key: string]: any } = {};
   aplicarEstadisticas() {
-   
+
     for (let [key, value] of Object.entries(this.filtros))
       if (value != "")
         this.bodyFiltros[key] = value;
@@ -66,29 +79,31 @@ export class FiltrosComponent {
 
     let agrupacion = ""
     if (this.selectedGroup != "") {
-        agrupacion= "?groupBy="+this.selectedGroup
+      agrupacion = "?groupBy=" + this.selectedGroup
     }
 
-    let datos :IFiltroAgroupacion = {"filtros":this.bodyFiltros, "agrupacion":agrupacion} 
-    
+    let datos: IFiltroAgroupacion = { "filtros": this.bodyFiltros, "agrupacion": agrupacion }
 
-    this.apiService.getStats(datos).subscribe( data => console.log(data));
+
+    this.cambiarTipoGrafico(this.graphSelected)
+
+    this.apiService.getStats(datos).subscribe(data => console.log(data))
     this.limpiarFiltros()
     this.bodyFiltros = {}
   }
 
   limpiarFiltros() {
-		this.filtros = {
-			filterUser: '',
-			filterPregunta: '',
-			filterRespuesta: '',
-			filterChunks: '',
-			filterValorado: '',
-			filterFeedback: ''
-		};
-	  
-		this.fechaInicio = '';
-		this.fechaFin = '';
-	}
+    this.filtros = {
+      filterUser: '',
+      filterPregunta: '',
+      filterRespuesta: '',
+      filterChunks: '',
+      filterValorado: '',
+      filterFeedback: ''
+    };
+    this.selectedGroup = '';
+    this.fechaInicio = '';
+    this.fechaFin = '';
+  }
 
 }

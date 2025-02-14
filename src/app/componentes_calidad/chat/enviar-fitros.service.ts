@@ -20,4 +20,12 @@ export class EnviarFitrosService {
 
 	stats$ = this.statsStource;
 
+	private graphTypeSource = new BehaviorSubject<string>('pie'); 
+	graphType$ = this.graphTypeSource.asObservable();
+
+	actualizarGraphType(tipo: string) {		
+		this.graphTypeSource.next(tipo); 
+	}
+
+
 }

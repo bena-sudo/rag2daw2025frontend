@@ -2,7 +2,7 @@
 
     <div id="filtros">
 
-
+        Filtrar los datos
 
         <select class="select_user" name="usuario" [(ngModel)]="filtros.filterUser">
             <option value="">User</option>
@@ -42,22 +42,29 @@
 
     <div class="container">
         Agrupar por un campo
-        <label>
-            <input type="radio" name="option" [(ngModel)]="selectedGroup" value="chat_user">
-            Usuario
-        </label>
 
-        <label>
-            <input type="radio" name="option" [(ngModel)]="selectedGroup" value="contexto">
-            Contexto
-          </label>
-
-          <label>
-            <input type="radio" name="option" [(ngModel)]="selectedGroup" value="chat_fecha">
-            Fecha
-          </label>
+        <select name="Agrupar" [(ngModel)]="selectedGroup">
+            <option value="">No agrupar</option>
+            <option value="chat_user">chat_user</option>
+            <option value="contexto">contexto</option>
+            <option value="feedback">valoracion</option>
+            <option value="chat_fecha">chat_fecha</option>
+            <option value="pregunta_fecha">pregunta_fecha</option>
+            <option value="texto_pregunta">texto_pregunta</option>
+            <option value="texto_respuesta">texto_respuesta</option>
+            <option value="id_documentchunk">id_documentchunk</option>
+        </select>
+       
     </div>
 
+    <div class="container">
+        Tipo de gráfico
+        <select name="grafico" id="" [(ngModel)]="graphSelected">
+
+            <option value="pie">Pie chart</option>
+            <option value="line">Line graph</option>
+        </select>
+    </div>
 
     <button (click)="aplicarEstadisticas()" id="apply-stats">Apply</button>
 </div>
