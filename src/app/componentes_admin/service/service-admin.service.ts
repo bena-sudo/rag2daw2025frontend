@@ -72,4 +72,14 @@ export class ServiceAdminService {
       })
     )
   }
+  //Metodo que retorna todos los roles y usuarios assignados a el
+  getRolUsers(nombreRol:string ): Observable<InfoRoles[]>{
+    return this.http.get<InfoRoles[]>(`${this.authUrl}/v1/roles/${nombreRol}/usuarios`);
+  }
+  
+  //Metodo que retorna todos los usuarios que empiezan por el texto proporcionado
+  getUsersStartsWith(text:string ): Observable<InfoRoles[]>{
+    return this.http.get<InfoRoles[]>(`${this.authUrl}/v1/usuarios?filter=nombre:EMPIEZA:${text}&sort=id&page=0&size=10`);
+  }
+
 }
