@@ -11,9 +11,9 @@ export class DocumentosService {
 
   constructor(private readonly http: HttpClient) {}
 
-  getDocumentos(): Observable<any> {
+  getDocumentos(pagina: number): Observable<any> {
     return this.http.get<any>(
-      `${this.apiUrl}/documentos?filters=page=0&size=10&sort=id`
+      `${this.apiUrl}/documentos?page=${pagina}&size=10&sort=id`
     );
   }
 

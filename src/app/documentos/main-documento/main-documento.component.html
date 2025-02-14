@@ -7,7 +7,7 @@
     </div>
     <div class="document-container">
       <app-documento-search
-      (filtroAplicado)="obtenerDatosFiltrados($event)"
+        (filtroAplicado)="obtenerDatosFiltrados($event)"
       ></app-documento-search>
 
       <div class="document-list">
@@ -17,6 +17,10 @@
           }
         </ul>
       </div>
+      <app-paginacion
+        [paginas]="paginas"
+        (eventoHijo)="updatePagina($event)"
+      ></app-paginacion>
     </div>
   </div>
 </div>

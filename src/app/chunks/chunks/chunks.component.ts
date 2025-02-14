@@ -20,7 +20,7 @@ export class ChunksComponent {
   private chunksSubscription?: Subscription;
   paginas: number = 0;
 
-  constructor(private chunkService: ChunksService) {}
+  constructor(private readonly chunkService: ChunksService) {}
 
   ngOnInit(): void {
     this.documentId=2;
