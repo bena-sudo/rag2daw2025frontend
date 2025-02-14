@@ -5,6 +5,7 @@ import { DocumentoEditFormComponent } from './documentos/documento-edit-form/doc
 export const routes: Routes = [
 
     {path: '', component: MainDocumentoComponent},
+    {path: 'formEdit/:id', component: DocumentoEditFormComponent},
     {path: 'formEdit', component: DocumentoEditFormComponent}
 ];
 

@@ -43,7 +43,16 @@ h1 {
     text-align: left; 
 }
 
-.formulario-edicion input,
+.formulario-edicion input{
+    width: 100%;
+    max-width: 700px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+}
+
 .formulario-edicion textarea {
     width: 100%;
     max-width: 700px;
@@ -144,4 +153,12 @@ button:hover {
         font-size: 0.9rem; 
         padding: 8px 16px;
     }
+}
+
+.is-valid {
+    border: 1px solid #ccc;
+}
+
+.is-invalid {
+    border: 1px solid red;
 }
