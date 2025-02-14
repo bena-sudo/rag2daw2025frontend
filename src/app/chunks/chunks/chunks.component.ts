@@ -23,6 +23,7 @@ export class ChunksComponent {
   constructor(private chunkService: ChunksService) {}
 
   ngOnInit(): void {
+    this.documentId=2;
     this.fetchChunks();
   }
 
