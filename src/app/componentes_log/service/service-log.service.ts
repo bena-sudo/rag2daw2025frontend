@@ -70,7 +70,7 @@ export class ServiceLogService {
         }),
         catchError((error) => {
           console.error('Error en login:', error);
-          return throwError(() => new Error('Credenciales inválidas o error en el servidor.'));
+          return throwError(() => error);
         })
       )
   }

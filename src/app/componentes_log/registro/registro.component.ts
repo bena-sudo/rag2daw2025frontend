@@ -47,12 +47,17 @@ export class RegistroComponent implements OnInit {
     this.serviceLog.userRegistro(this.formRegistro.value).subscribe({
       next: () => {
         console.log('Usuario creado con éxito.');
-        
-      },
-      error: (err) => this.messageError = err,
-      complete: () => {
         this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        if (err.error && err.error.message) {
+          this.messageError = err.error.message;
+        } else {
+          this.messageError = 'Error desconocido. Inténtalo de nuevo.';
+        }
       }
     });
+
+
   }
 }
