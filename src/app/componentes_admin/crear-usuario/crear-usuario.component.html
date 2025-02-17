@@ -16,7 +16,7 @@
           <input id="nickname" type="text" formControlName="nickname" class="form-control"/>
           
           @if (formSubmitted && formCreateUser.get('nickname')?.invalid) {
-            <div class="errores">
+            <div class="invalid-feedback">
               El nickname es obligatorio.
             </div>
           }
@@ -28,7 +28,7 @@
           <input id="nombre" type="text" formControlName="nombre" class="form-control"/>
           
           @if (formSubmitted && formCreateUser.get('nombre')?.invalid) {
-            <div class="errores">
+            <div class="invalid-feedback">
               El nombre es obligatorio.
             </div>
           }

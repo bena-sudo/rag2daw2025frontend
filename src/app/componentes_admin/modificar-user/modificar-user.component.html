@@ -15,7 +15,7 @@
           <input id="nickname" type="text" formControlName="nickname" class="form-control"/>
           
           @if (formSubmitted && formulario.get('nickname')?.invalid) {
-            <div class="errores">
+            <div class="invalid-feedback">
               El nickname es obligatorio.
             </div>
           }
@@ -27,7 +27,7 @@
           <input id="nombre" type="text" formControlName="nombre" class="form-control"/>
           
           @if (formSubmitted && formulario.get('nombre')?.invalid) {
-            <div class="errores">
+            <div class="invalid-feedback">
               El nombre es obligatorio.
             </div>
           }
@@ -40,12 +40,12 @@
           
           @if (formSubmitted && formulario.get('email')?.invalid) {
             @if (formulario.get('email')?.errors?.['required']) {
-              <div class="errores">
+              <div class="invalid-feedback">
                 El email es obligatorio.
               </div>
             }
             @if (formulario.get('email')?.errors?.['email']) {
-              <div class="errores">
+              <div class="invalid-feedback">
                 El email no es válido.
               </div>
             }
@@ -78,12 +78,12 @@
           
           @if (formSubmitted && formulario.get('telefono')?.invalid) {
             @if (formulario.get('telefono')?.errors?.['required']) {
-              <div class="errores">
+              <div class="invalid-feedback">
                 El teléfono es obligatorio.
               </div>
             }
             @if (formulario.get('telefono')?.errors?.['pattern']) {
-              <div class="errores">
+              <div class="invalid-feedback">
                 El teléfono debe tener 9 dígitos numéricos.
               </div>
             }

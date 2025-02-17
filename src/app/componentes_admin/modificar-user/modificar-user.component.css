@@ -12,7 +12,13 @@
     margin-top: 30px;
     margin-bottom: 30px;
   }
-  
+  .invalid-feedback {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 600;
+  }
   .login-box {
     flex: 1;
     background-color: #fff;
@@ -107,24 +113,8 @@
   }
   
 
-.errores {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 10px;
-    text-align: center;
-    font-weight: 600;
-}
-
 .messageSuccess{
     color: green;
-    font-size: 14px;
-    margin-bottom: 10px;
-    text-align: center;
-    font-weight: 600;
-}
-
-.messageError{
-    color: red;
     font-size: 14px;
     margin-bottom: 10px;
     text-align: center;

@@ -108,13 +108,13 @@
   }
   
 
-.errores {
+  .invalid-feedback {
     color: red;
     font-size: 14px;
     margin-bottom: 10px;
     text-align: center;
     font-weight: 600;
-}
+  }
 
 .messageSuccess{
     color: green;
