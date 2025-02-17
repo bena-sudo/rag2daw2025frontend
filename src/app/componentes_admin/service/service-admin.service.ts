@@ -6,6 +6,7 @@ import { catchError, from, map, Observable, throwError } from 'rxjs';
 import { RecipeUser } from '../../interface/recipe-user';
 import { ModifUser } from '../../interface/modif-user';
 import { InfoRoles } from '../../interface/info-roles';
+import { ActividadUsuario } from '../../interface/ActividadUsuario';
 
 @Injectable({
   providedIn: 'root'
@@ -90,5 +91,16 @@ export class ServiceAdminService {
         return throwError(() => 'Ocurrio un error inesperado.')
       })
     )
+  }
+
+
+  //Metodo para extraer las actividades de un usuario
+  getActividadUser(id: number): Observable<ActividadUsuario[]> {
+    return this.http.get<ActividadUsuario[]>(`${this.apiUrl}/v1/auditorias/usuario/${id}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error al obtener las actividades del usuario:', error);
+        return throwError(() => new Error('Error al obtener la actividad del usuario. Intente nuevamente.'));
+      })
+    );
   }
 }

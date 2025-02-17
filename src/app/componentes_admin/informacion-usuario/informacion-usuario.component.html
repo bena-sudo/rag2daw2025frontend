@@ -5,13 +5,25 @@
       <div class="user-details">
         <h2>{{ user?.nombre }}</h2>
         <p class="nickname">  {{ user?.nickname }}</p>
+        <p>{{ user?.estado}}</p>
         <p class="email">📧 {{ user?.email }}</p>
         <p class="telefono">📞 {{ user?.telefono }}</p>
         <p class="id">ID: {{ user?.id }}</p>
+        @for (rol of rols; track $index) {
+          @for (item of user?.roleIds; track $index) {
+            @if (rol.id == item) {
+              <p>{{ rol.nombre }}</p>
+            }
+          }
+        }
       </div>
     </div>
   
     <button class="back-btn" [routerLink]="['/users-list']">⬅️ Volver</button>
+
+    
+    <app-actividad-usuario [idUser] = "user?.id ?? 0"></app-actividad-usuario>
+    
   </div>
   
   
