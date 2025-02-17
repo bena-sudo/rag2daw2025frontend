@@ -1,5 +1,3 @@
-<button (click)="loadPDFBase64blob()">Hola</button>
-
 <div class="embed-container">
-  <embed [src]="PDFbase64" type="image/png" />
+  <embed [src]="PDFbase64" type="{{ contentTypeDocumento }}" />
 </div>

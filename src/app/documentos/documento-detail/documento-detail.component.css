@@ -1,0 +1,24 @@
+.flex {
+  display: flex;
+  gap: 2%;
+  padding: 2%;
+  align-items: center;
+}
+
+.flex :nth-child(1) {
+  flex: 1;
+}
+
+.flex :nth-child(2) {
+  flex: 1.5;
+}
+
+@media (max-width: 1000px) {
+  .flex {
+    flex-direction: column;
+  }
+  .flex :nth-child(1),
+  .flex :nth-child(2) {
+    width: 100%;
+  }
+}
