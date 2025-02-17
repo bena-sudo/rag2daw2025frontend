@@ -197,7 +197,7 @@
 }
 
 body {
-  background: var(--color_fondo);
+  background: var(--fondo_principal);
   font-family: Arial, sans-serif;
 }
 
