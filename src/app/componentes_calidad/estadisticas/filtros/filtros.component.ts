@@ -26,7 +26,7 @@ export class FiltrosComponent {
     filterUser: "",
     filterPregunta: "",
     filterRespuesta: "",
-    filterChunks: "",
+    filterChunk: "",
     filterValorado: "",
     filterFeedback: "",
   }
@@ -45,12 +45,21 @@ export class FiltrosComponent {
     this.iniciarListaNombres();
     this.apply = document.getElementById("apply-filters");
     this.subGraphType()
+    this.iniciarListaIDChunks()
+    
   }
 
   subGraphType() {
     this.typeGraph.subscribe((tipo: string) => {
     });
   }
+
+  iniciarListaIDChunks(){
+		this.apiService.getListChunks().subscribe(
+			list => this.chunks = list,
+			error => console.error("Error al conseguir los chunks: ", error)
+		)
+	}
 
   cambiarTipoGrafico(nuevoTipo: string) {
     this.graphSelected = nuevoTipo;
@@ -107,7 +116,7 @@ export class FiltrosComponent {
       filterUser: '',
       filterPregunta: '',
       filterRespuesta: '',
-      filterChunks: '',
+      filterChunk: '',
       filterValorado: '',
       filterFeedback: ''
     };

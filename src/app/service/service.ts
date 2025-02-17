@@ -10,7 +10,8 @@ import { Estadisticas } from '../componentes_calidad/estadisticas/grafica/Estadi
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {  
+export class ApiService {
+ 
   private baseUrl = 'http://localhost:8090/api/rag/v1/';
 
   constructor(private http: HttpClient, private  enviarFiltrosService :EnviarFitrosService) {}
@@ -60,6 +61,9 @@ export class ApiService {
     return this.http.post<string[]>(`${this.baseUrl}filter`, bodyFilter);
   }
 
+  getListChunks() {
+	  return this.http.get<string[]>(`${this.baseUrl}getListChunks`)
+  } 
 
   //Estadisticas Qualitat
   getStats(datos : IFiltroAgroupacion):Observable<any>{

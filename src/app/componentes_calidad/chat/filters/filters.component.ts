@@ -21,7 +21,7 @@ export class FiltersComponent implements OnInit {
 		filterUser: "",
 		filterPregunta: "",
 		filterRespuesta: "",
-		filterChunks: "",
+		filterChunk: "",
 		filterValorado: "",
 		filterFeedback: "",
 	}
@@ -36,7 +36,15 @@ export class FiltersComponent implements OnInit {
 
 	ngOnInit() {
 		this.iniciarListaNombres();
+		this.iniciarListaIDChunks()
 	}  
+
+	iniciarListaIDChunks(){
+		this.apiService.getListChunks().subscribe(
+			list => this.chunks = list,
+			error => console.error("Error al conseguir los chunks: ", error)
+		)
+	}
 
 	iniciarListaNombres() {
 		this.apiService.getListUsuarios().subscribe( 
@@ -63,6 +71,9 @@ export class FiltersComponent implements OnInit {
 		if (stringFecha != 'null,null')
 			this.bodyFiltros['filterRango'] = stringFecha;
 
+		console.log(this.bodyFiltros);
+		
+
 		this.enviarFiltrosService.actualizarFiltros(this.bodyFiltros);
 
 		this.limpiarFiltros();
@@ -74,7 +85,7 @@ export class FiltersComponent implements OnInit {
 			filterUser: '',
 			filterPregunta: '',
 			filterRespuesta: '',
-			filterChunks: '',
+			filterChunk: '',
 			filterValorado: '',
 			filterFeedback: ''
 		};

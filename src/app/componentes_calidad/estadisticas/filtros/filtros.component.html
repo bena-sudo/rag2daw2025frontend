@@ -17,7 +17,7 @@
         <input type="text" [(ngModel)]="filtros.filterPregunta" placeholder="Question" />
         <input type="text" [(ngModel)]="filtros.filterRespuesta" placeholder="Answer" />
 
-        <select name="chunk" [(ngModel)]="filtros.filterChunks">
+        <select name="chunk" [(ngModel)]="filtros.filterChunk">
             <option value="">Chunk</option>
             @for (chunk of chunks; track $index) {
             <option [value]="chunk">{{ chunk }}</option>
