@@ -91,17 +91,6 @@
           }
         </div>
       
-        <!--
-        <div class="input-group">
-          <label for="fecha_nacimiento">Fecha de nacimiento:</label>
-          <input id="fecha_nacimiento" type="date" formControlName="fecha_nacimiento" class="form-control"/>
-          
-          @if (formSubmitted && formCreateUser.get('fecha_nacimiento')?.invalid) {
-            <div class="errores">
-              La fecha de nacimiento es obligatoria.
-            </div>
-          }
-        </div>-->
 
         @if (messageError != '') {
           <div class="messageError">{{ messageError }}</div>

@@ -4,7 +4,6 @@ import { RecipeUser } from '../../interface/recipe-user';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { InfoRoles } from '../../interface/info-roles';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-modificar-user',
@@ -19,6 +18,7 @@ export class ModificarUserComponent implements OnInit {
   public rolesActivos: InfoRoles[] = [];
   formulario!: FormGroup;
   formSubmitted: boolean = false;
+  messageError: string = '';
 
   constructor(private adminService: ServiceAdminService, private formBuilder: FormBuilder, private router: Router) { }
 
@@ -62,7 +62,16 @@ export class ModificarUserComponent implements OnInit {
           this.router.navigate(['/users-list']);
           console.log('Usuario actualizado');
         },
-        error: err => console.log(err)
+        error: err => {
+          if (err.error && err.error.message) {
+            if(err.error.errorCode == 'DATA_INTEGRITY_VIOLATION'){
+              this.messageError = 'nickname o email en uso.'
+            }
+            
+          } else {
+            this.messageError = 'Error desconocido. Inténtalo de nuevo.';
+          }
+        }
       });
     }
   }
