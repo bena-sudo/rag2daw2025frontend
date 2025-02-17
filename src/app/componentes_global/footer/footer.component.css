@@ -1,9 +1,10 @@
 
 footer {
+    
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Centra el contenido verticalmente */
+    justify-content: center; 
     padding: 20px;
     border-top: 1px solid black;
     color: var(--color_texto_hf);
@@ -17,7 +18,7 @@ footer #txtSimarro {
     font-weight: 500;
     font-style: normal;
     border-bottom: 2px solid black;
-    margin-top: 10px; /* Ajuste para acercar el texto */
+    margin-top: 10px; 
     text-align: center;
 }
 footer p{
@@ -31,14 +32,14 @@ footer p:hover {
 
 .logo-container {
     display: flex;
-    justify-content: center; /* Centra el logo horizontalmente */
+    justify-content: center;
     align-items: center;
-    margin-bottom: 5px; /* Reducido para evitar empujar el texto hacia abajo */
+    margin-bottom: 5px; 
     width: 100%;
 }
 
 .logo-container img {
-    width: 450px; /* Ajustado el tamaño */
+    width: 450px; 
     margin-right: 15px;
 }
 
@@ -68,7 +69,6 @@ footer p:hover {
     color: black;
 }
 
-/* Media Queries para hacer el footer responsive */
 @media screen and (max-width: 768px) {
     .links a:not(:last-child)::after {
         content: none;
@@ -81,14 +81,14 @@ footer p:hover {
     .logo-container {
         flex-direction: column;
         align-items: center;
-        margin-bottom: 10px; /* Ajuste menor */
+        margin-bottom: 10px; 
         text-align: center;
     }
 
     .logo-container img {
         width: 330px;
         margin-right: 0;
-        margin-bottom: 5px; /* Menor espacio */
+        margin-bottom: 5px; 
     }
 
     .links {
@@ -123,6 +123,6 @@ footer p:hover {
     }
 
     #txtSimarro {
-        margin-top: 0; /* Asegura que el texto esté bien alineado */
+        margin-top: 0; 
     }
 }
