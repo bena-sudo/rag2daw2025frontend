@@ -84,24 +84,45 @@ export class EtiquetaGridComponent {
   /** Guardar nueva etiqueta */
   agregarEtiqueta() {
     if (this.formEtiqueta.invalid) return;
-
-    const nuevaEtiqueta: Etiqueta = {
-      id: null, // El backend generará el ID automáticamente
-      nombre: this.formEtiqueta.value.nombre,
-    };
-
-    this.etiquetaService.createEtiqueta(nuevaEtiqueta).subscribe({
-      next: (etiquetaGuardada) => {
-        this.etiquetas.push(etiquetaGuardada);
-        this.cerrarModal();
+  
+    const nombre = this.formEtiqueta.value.nombre;
+  
+    this.comprobarNombre(nombre).subscribe({
+      next: (etiquetas) => {
+        if (etiquetas.length > 0) {
+          window.alert('La etiqueta ya existe')
+          console.error('La etiqueta ya existe');
+          return;
+        }
+  
+        const nuevaEtiqueta: Etiqueta = {
+          id: null, // El backend generará el ID automáticamente
+          nombre,
+        };
+  
+        this.etiquetaService.createEtiqueta(nuevaEtiqueta).subscribe({
+          next: (etiquetaGuardada) => {
+            this.etiquetas.push(etiquetaGuardada);
+            this.cerrarModal();
+          },
+          error: (err) => console.error('Error al crear la etiqueta:', err),
+        });
       },
-      error: (err) => console.error('Error al crear la etiqueta:', err),
+      error: (err) => {
+        console.error('Error fetching etiquetas:', err);
+      },
     });
   }
+  
 
   get nombreNotValid(): string {
     const nombre = this.formEtiqueta.get('nombre');
     if (!nombre?.touched) return '';
     return nombre.invalid ? 'is-invalid' : 'is-valid';
   }
+
+  comprobarNombre(nombre: string) {
+    return this.etiquetaService.getEtiquetaByName(nombre);
+  }
+  
 }

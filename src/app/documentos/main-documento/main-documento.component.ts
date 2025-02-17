@@ -7,6 +7,7 @@ import { DocumentosService } from '../../service/documentos.service';
 import { Documento } from '../../interface/documento';
 import { DocumentoItemComponent } from '../documento-item/documento-item.component';
 import { DocumentoSearchComponent } from '../documento-search/documento-search.component';
+import { PaginacionComponent } from '../paginacion/paginacion.component';
 
 @Component({
   selector: 'app-main-documento',
@@ -16,6 +17,7 @@ import { DocumentoSearchComponent } from '../documento-search/documento-search.c
     EtiquetasListComponent,
     DocumentoItemComponent,
     DocumentoSearchComponent,
+    PaginacionComponent,
   ],
   templateUrl: './main-documento.component.html',
   styleUrl: './main-documento.component.css',
@@ -23,6 +25,8 @@ import { DocumentoSearchComponent } from '../documento-search/documento-search.c
 export class MainDocumentoComponent implements OnInit {
   searchForm!: FormGroup;
   documentos: Documento[] = [];
+  paginas: number = 0;
+  pagina: number = 0;
 
   constructor(
     private readonly documentosService: DocumentosService,
@@ -44,11 +48,14 @@ export class MainDocumentoComponent implements OnInit {
   }
 
   cargarDocumentos() {
-    this.documentosService.getDocumentos().subscribe({
+    console.log(this.pagina);
+    
+    this.documentosService.getDocumentos(this.pagina).subscribe({
       next: (data) => {
-        console.log(data);
-
+        this.paginas = data.totalPages;
         this.documentos = data.content;
+        console.log(this.documentos);
+        
       },
       error: (err) => {
         console.error('Error fetching etiquetas:', err);
@@ -77,5 +84,10 @@ export class MainDocumentoComponent implements OnInit {
         console.error('Error fetching etiquetas:', err);
       },
     });
+  }
+
+  updatePagina(valor: number) {
+    this.pagina = valor - 1;
+    this.cargarDocumentos();
   }
 }
