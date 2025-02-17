@@ -96,5 +96,6 @@ export class DocumentosService {
   createDocumento(documento: Documento): Observable<Documento> {
     return this.http.post<Documento>(`${this.apiUrl}`, documento);
   }
-  
 }
+
+
