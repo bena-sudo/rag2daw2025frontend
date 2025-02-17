@@ -33,14 +33,27 @@
         </thead>
 
         <tbody>
-            <tr *ngFor="let user of filteredUsers; let i = index">
-                <td>{{ user.id }}</td>
-                <td>{{ user.nickname }}</td>
-                <td>{{ user.email }}</td>
-                <td><a [routerLink]="['/infoUser', user.id]">Mostrar</a></td>
-                <td><a (click)="borrarUsuario(user.id)">🗑️ Borrar</a></td>
-                <td><a [routerLink]="['/users-list/modificar', user.id]">✏️ Modificar</a></td>
-            </tr>
+            @if (users.length != 0) {
+
+                @for (user of users; track $index) {
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.nickname }}</td>
+                        <td>{{ user.email }}</td>
+                        <!-- Pasa la ruta y el id del usuario que usaremos para buscar al usuario mas tarde-->
+                        <td><a [routerLink]="['/infoUser', user.id]">Mostrar</a></td>
+                        <td><a (click)="borrarUsuario(user.id)">🗑️ Borrar</a></td>
+                        <td><a [routerLink]="['/users-list/modificar', user.id]">✏️ Modificar</a></td>
+                        
+                    </tr>
+                }
+
+            }@else {
+                <!-- Por si no existen usuarios o no llega ninguno por la peticion -->
+                 <h3>No hay ningun usuario en la base de datos</h3>
+            }
+        
+          
         </tbody>
     </table>
 

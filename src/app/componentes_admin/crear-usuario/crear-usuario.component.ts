@@ -50,8 +50,11 @@ export class CrearUsuarioComponent implements OnInit {
           this.messageError = '';
         },
         error: (err) => {
-          this.messageError = err;
-          this.messageSuccess = ''; // Limpiar mensaje de éxito
+          if (err.error && err.error.message) {
+            this.messageError = err.error.message;
+          } else {
+            this.messageError = 'Error desconocido. Inténtalo de nuevo.';
+          } // Limpiar mensaje de éxito
         },
         complete: () => {
           this.formCreateUser.reset(); // Limpiar formulario
