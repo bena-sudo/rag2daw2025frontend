@@ -73,39 +73,40 @@ export class GraficaComponent implements OnInit {
 
           case "line":
 
-            const leyenda = [...new Set(values.map(item => item))];
+            const labels = [...new Set(datos.map(item => item[0]))];
+            console.log("(X):", labels);
 
-            const datosAgrupados = new Map<string, (number)[]>();
+            const tipos = [...new Set(datos.map(item => item[1]))];
+            console.log("(Leyenda):", tipos);
 
-            const tiposFeedback = [...new Set(datos.map(item => item[1] ?? "null"))];
+            const datosAgrupados = new Map<string, (number | null)[]>();
 
-            tiposFeedback.forEach(tipo => {
-              datosAgrupados.set(tipo, new Array(leyenda.length).fill(null));
+            tipos.forEach(tipo => {
+              datosAgrupados.set(tipo, new Array(labels.length).fill(null));
             });
 
-            datos.forEach(([fecha, key, valor]) => {
-              const index = leyenda.indexOf(fecha);
-              const clave = key ?? "null"; 
-              if (index !== -1) { 
-                datosAgrupados.get(clave)![index] = valor;
+            datos.forEach(([fecha, tipo, cantidad]) => {
+              const index = labels.indexOf(fecha);
+              if (index !== -1) {
+                datosAgrupados.get(tipo)![index] = cantidad;
               }
             });
 
-            console.log(datosAgrupados);
+            console.log("Datos Agrupados:", datosAgrupados);
 
-
+            // Crear los datasets para Chart.js
             const datasets = Array.from(datosAgrupados.entries()).map(([tipo, valores]) => ({
-              label: tipo === "null" ? "Null" : tipo,
+              label: tipo,
               data: valores,
+              borderColor: this.getRandomColor(), // Asegúrate de tener una función getRandomColor definida
               fill: false
             }));
-            console.log("dataset:", datasets);
 
 
             this.chart = new Chart(this.chartCanvas.nativeElement, {
               type: 'line',
               data: {
-                labels: leyenda,
+                labels: labels,
                 datasets: datasets
               },
               options: {
@@ -135,5 +136,14 @@ export class GraficaComponent implements OnInit {
 
       }
     });
+  }
+
+  getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 }
