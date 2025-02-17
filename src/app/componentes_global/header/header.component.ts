@@ -27,7 +27,6 @@ export class HeaderComponent implements OnInit {
     //Suscripcion actual al estado de el rol del usuario
     this.authService.userRole$.subscribe(role => {
       this.userRole = role;
-      console.log(this.userRole)
       this.funcHayAdmin();
     })
   }
