@@ -43,9 +43,8 @@
     <div class="container">
         Agrupar por
 
-        <select name="Agrupar" [(ngModel)]="selectedGroup">
-            <option value="">No agrupar</option>
-            <option value="chat_user">chat_user</option>
+        <select name="Agrupar" [(ngModel)]="selectedGroup" required >
+            <option value="chat_user" >chat_user</option>
             <option value="contexto">contexto</option>
             <option value="feedback">valoracion</option>
             <option value="chat_fecha">chat_fecha</option>

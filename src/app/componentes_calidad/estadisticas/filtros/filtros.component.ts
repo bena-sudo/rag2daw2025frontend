@@ -14,7 +14,7 @@ import { Observable, tap } from 'rxjs';
 })
 export class FiltrosComponent {
 
-  selectedGroup: string = "";
+  selectedGroup: string = "chat_user";
   graphSelected: string = "pie"
   typeGraph: Observable<string>
   apply: any;
