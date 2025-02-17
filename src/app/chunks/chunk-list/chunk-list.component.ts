@@ -1,61 +1,89 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil, switchMap } from 'rxjs/operators';
 import { Chunk } from '../chunk';
 import { ChunksService } from '../../service/chunks.service';
 import { Estado, EstadoColor } from '../../enums/estado.enum';
 
 @Component({
   selector: 'app-chunk-list',
-  imports: [],
   templateUrl: './chunk-list.component.html',
   styleUrl: './chunk-list.component.css'
 })
-export class ChunkListComponent implements OnInit{
-    @Input() chunks!: Chunk[];
-    Estado = Estado;
-    EstadoColor = EstadoColor;
+export class ChunkListComponent implements /*OnInit, */OnDestroy {
+  @Input() chunks!: Chunk[];
+  Estado = Estado;
+  EstadoColor = EstadoColor;
 
-    constructor(private chunkService: ChunksService) {}
+  valorEditar: number = -1;
+  
+  private destroy$ = new Subject<void>();
 
-    ngOnInit(): void {
-      this.chunkService.getChunks().subscribe({
-        next: (respuesta) => {
-          this.chunks = respuesta.content;
-          console.log('Datos obtenidos:', this.chunks);
-        },
-        error: (error) => {
-          console.error('Error al obtener datos:', error);
-        }
-      });
+  constructor(private chunkService: ChunksService) {}
+
+  ngOnInit(): void {
+  }
+
+  cambiarEstado(estado: Estado, id: number) {
+    const chunk = this.chunks.find(chunk => chunk.id === id);
+    
+    if (chunk) {
+      chunk.estado = estado;
+      this.actualizarChunk(chunk);
     }
+  }
 
-    cambiarEstado(estado: Estado, id: number) {
-      const chunk = this.chunks.find(chunk => chunk.id === id);
-      
-      if (chunk) {
-        chunk.estado = estado;
-        console.log(`El estado de ${id} cambiado a ${estado}`);
+  actualizarChunk(chunk: Chunk) {
+    this.chunkService.updateChunk(chunk).pipe(
+      takeUntil(this.destroy$) // Cancela la suscripción cuando el componente se destruye
+    ).subscribe({
+      next: () => {
+        console.log('Chunk actualizado con éxito')
+      },
+      error: (err) => console.error('Error al actualizar el chunk:', err)
+    });
+  }
+
+  editar(chunk: Chunk, confirmar: boolean = false) {
+    if (confirmar) {
+      let confirm = window.confirm("Al modificar, el estado pasará a PENDIENTE");
+      if (confirm) {
+        chunk.estado = Estado.PENDIENTE;
         this.actualizarChunk(chunk);
+      } else {
+        return;
       }
     }
+    this.valorEditar = chunk.id!;
+  }
+  
+  modificar(texto: string, chunk: Chunk){
+    chunk.chunkText = texto;
+    this.actualizarChunk(chunk);
+    this.valorEditar = -1;
+  }
 
-    actualizarChunk(chunk: Chunk) {
-      this.chunkService.updateChunk(chunk).subscribe({
-        next: (response) => {
-          console.log('Chunk actualizado con éxito:', response);
+  delete(id: number) {
+    const confirmacion = window.confirm("¿Estás seguro de que quieres eliminar este elemento?");
+    if (confirmacion) {
+      this.chunkService.deleteChunk(id).pipe(
+        takeUntil(this.destroy$) // Cancela la suscripción cuando el componente se destruye
+      ).subscribe({
+        next: () => {
+          this.chunks = this.chunks.filter(chunk => chunk.id !== id);
+          console.log('Chunk eliminado con éxito');
         },
-        error: (err) => {
-          console.error('Error al actualizar el chunk:', err);
-        }
+        error: (err) => console.error('Error al eliminar el chunk:', err)
       });
     }
-    
+  }
 
-    editar(){
-      console.log("PA EDITAR");
-      
-    }
+  getEstadoColor(estado: string): string {
+    return EstadoColor[estado as Estado] || 'black'; // Color por defecto si hay un error
+  }
 
-    getEstadoColor(estado: string): string {
-      return EstadoColor[estado as Estado] || 'black'; // Color por defecto si hay un error
-    }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }
