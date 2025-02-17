@@ -81,7 +81,7 @@ export class ServiceAdminService {
   
   //Metodo que retorna todos los usuarios que empiezan por el texto proporcionado
   getUsersStartsWith(text:string ): Observable<InfoRoles[]>{
-    return this.http.get<InfoRoles[]>(`${this.apiUrl}/v1/usuarios?filter=nombre:EMPIEZA:${text}&sort=id&page=0&size=10`);
+    return this.http.get<InfoRoles[]>(`${this.apiUrl}/v1/usuarios?filter=nickname:EMPIEZA:${text}&sort=id&page=0&size=10`);
   }
 
 
