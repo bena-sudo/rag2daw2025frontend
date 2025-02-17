@@ -1,29 +1,55 @@
-.container {
+.container-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
     padding: 20px;
-    margin: 20px auto;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container {
+    flex: 1;
+    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    max-width: 800px;
     background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .container h2 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
+    text-align: center;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
 }
 
-.container div {
-    padding: 10px;
-    margin-bottom: 10px;
+.acreditacion-item {
+    padding: 15px;
+    margin-bottom: 15px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 8px;
     background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.container p {
-    font-size: 18px;
-    color: #555;
+.acreditacion-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.acreditacion-item h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.acreditacion-item p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
 }
 
 .pendientes {
@@ -35,7 +61,7 @@
 }
 
 .container button {
-    padding: 10px 15px;
+    padding: 10px 20px;
     margin-top: 10px;
     border: none;
     border-radius: 4px;
@@ -43,6 +69,7 @@
     color: #fff;
     font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 .container button:hover {
