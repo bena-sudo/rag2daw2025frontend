@@ -33,7 +33,6 @@ export class ListadoUsuariosComponent implements OnInit, AfterViewInit {
   constructor(private adminService: ServiceAdminService, private service: SearchboxService, private router: Router) {}
 
   ngAfterViewInit() {
-    console.log("merge")
     // Se suscribe al evento 'keyup' del campo de búsqueda para detectar cuando el usuario escribe
     fromEvent<any>(this.inputSearch?.nativeElement, 'keyup')
       .pipe(
