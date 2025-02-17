@@ -53,16 +53,16 @@ export class ServiceAdminService {
   updateUser(user: ModifUser, id: string): Observable<RecipeUser> {
     return this.http.put<RecipeUser>(`${this.apiUrl}/v1/usuarios/${id}`, user, this.httpOptions).pipe(
     
-          catchError((error: HttpErrorResponse) => {
-            let errorMessage = 'Ocurrió un error insesperado.';
-            if(error.status === 400) {
-              errorMessage = "Email / Nickname en uso. Prueba con otro.";
-            }else if (error.status === 500){
-              errorMessage = "Error en el servidor. Intentelo mas tarde";
-            }
+          // catchError((error: HttpErrorResponse) => {
+          //   let errorMessage = 'Ocurrió un error insesperado.';
+          //   if(error.status === 400) {
+          //     errorMessage = "Email / Nickname en uso. Prueba con otro.";
+          //   }else if (error.status === 500){
+          //     errorMessage = "Error en el servidor. Intentelo mas tarde";
+          //   }
     
-            return throwError(() => errorMessage);
-          })
+          //   return throwError(() => errorMessage);
+          // })
         );
   }
 

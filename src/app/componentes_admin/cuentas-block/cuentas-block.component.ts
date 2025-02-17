@@ -23,6 +23,7 @@ export class CuentasBlockComponent implements OnInit{
     this.adminService.desbloquearCuenta(id).subscribe({
       next: () => {
         this.getUsersBlock();
+        console.log(this.getUsersBlock);
       }
     })
 
@@ -31,7 +32,8 @@ export class CuentasBlockComponent implements OnInit{
   getUsersBlock(){
     this.adminService.getUsersBlock().subscribe({
       next: users => {
-        this.usersBlock = users;
+        this.usersBlock = users.filter(user => user.bloqueado);
+        console.log(this.usersBlock);
 
       },
       error: () => {
