@@ -5,6 +5,9 @@ import { DocumentosComponent } from './cuestionario/documentos/documentos.compon
 import { Cuestionario1Component } from './cuestionario/cuestionario1/cuestionario1.component';
 import { ResultadosComponent } from './cuestionario/resultados/resultados.component';
 import { PerfilUsuarioComponent } from './vistaPerfilUsuario/perfil-usuario/perfil-usuario.component';
+import { AcreditacionesComponent } from './acreditaciones/acreditaciones.component';
+import { DetalleAcreditacionComponent } from './detalle-acreditacion/detalle-acreditacion.component';
+import { TablaAcreditacionesComponent } from './vistaPerfilUsuario/tabla-acreditaciones/tabla-acreditaciones.component';
 
 
 export const routes: Routes = [
@@ -13,5 +16,8 @@ export const routes: Routes = [
     {path: 'documentos', component: DocumentosComponent},
     {path: 'resultados', component: ResultadosComponent},
     {path: 'perfil', component: PerfilUsuarioComponent},
+    {path: 'tablaAcreditacion', component: TablaAcreditacionesComponent},
+    {path: 'acreditaciones', component: AcreditacionesComponent},
+    {path: 'detalle-acreditacion/:id', component: DetalleAcreditacionComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'inicio'}
 ];
