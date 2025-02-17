@@ -1,1 +1,18 @@
-<p>chunk-list works!</p>
+<div class="container">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+
+    @for (chunk of chunks; track $index) {
+        <div class="item">
+            <p [style.color]="getEstadoColor(chunk.estado!)">⬤</p>
+            <p>{{chunk.chunkOrder}}</p>
+            <p class="text">{{chunk.chunkText}}</p>
+            <div class="icons">
+                <i class="fas fa-check-circle fa-lg" (click)="cambiarEstado(Estado.APROBADO,chunk.id!)" ></i>
+                <i class="fas fa-times-circle fa-lg" (click)="cambiarEstado(Estado.DENEGADO,chunk.id!)" ></i>
+                <i class="fas fa-pen fa-lg" (click)="editar()"></i>
+            </div>
+        </div>
+    }
+</div>

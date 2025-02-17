@@ -26,11 +26,29 @@ export class EtiquetasService {
   createEtiqueta(etiqueta: Etiqueta): Observable<Etiqueta> {
     return this.http.post<Etiqueta>(`${this.apiUrl}`, etiqueta);
   }
-  
+
   searchEtiquetas(query: string): Observable<Etiqueta[]> {
     return from(
       this.http.get<any>(
         `${this.apiUrl}/etiquetas?filter=nombre:CONTIENE:${query}`
+      )
+    ).pipe(
+      map((data) => {
+        return data.content || [];
+      }),
+      catchError((error) => throwError(() => error))
+    );
+  }
+
+  getEtiqueta(etiquetaID: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${etiquetaID}`);
+  }
+
+  getEtiquetaByName(query: string): Observable<Etiqueta[]> {
+
+    return from(
+      this.http.get<any>(
+        `${this.apiUrl}/etiquetas?filter=nombre:IGUAL:${query}`
       )
     ).pipe(
       map((data) => {

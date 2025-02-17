@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChunkEditFormComponent } from './chunk-edit-form.component';
+import { PaginacionComponent } from './paginacion.component';
 
-describe('ChunkEditFormComponent', () => {
-  let component: ChunkEditFormComponent;
-  let fixture: ComponentFixture<ChunkEditFormComponent>;
+describe('PaginacionComponent', () => {
+  let component: PaginacionComponent;
+  let fixture: ComponentFixture<PaginacionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChunkEditFormComponent]
+      imports: [PaginacionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ChunkEditFormComponent);
+    fixture = TestBed.createComponent(PaginacionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

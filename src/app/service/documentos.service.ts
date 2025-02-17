@@ -34,24 +34,56 @@ export class DocumentosService {
     });
   }
 
-  getDocumentos(): Observable<any> {
+  getDocumentos(pagina: number): Observable<any> {
     return this.http.get<any>(
-      `${this.apiUrl}/documentos?filters=page=0&size=10&sort=id`
+      `${this.apiUrl}/documentos?page=${pagina}&size=10&sort=id`
     );
   }
 
-  searchDocumentos(query: string): Observable<Documento[]> {
-    return from(
-      this.http.get<any>(
-        `${this.apiUrl}/documentos?filter=nombreFichero:CONTIENE:${query}&page=0&size=10&sort=id`
-      )
-    ).pipe(
+  getDocumento(documentoID: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/documento/${documentoID}`);
+  }
+
+  searchDocumentos(filtros: any): Observable<Documento[]> {
+    let query = `${this.apiUrl}/documentos?`;
+    if (filtros.nombre) {
+      query += `&filter=nombreFichero:CONTIENE:` + filtros.nombre;
+    }
+    if (filtros.estado) {
+      query += `&filter=estadoDocumento:CONTIENE:` + filtros.estado;
+    }
+
+    if (filtros.fechaCreacion) {
+      query += `&filter=fechaCreacion:IGUAL:` + filtros.fechaCreacion;
+    }
+
+    if (filtros.fechaModificacion) {
+      query += `&filter=fechaRevision:IGUAL:` + filtros.fechaModificacion;
+    }
+
+    query += '&page=0&size=10&sort=id';
+
+    return from(this.http.get<any>(query)).pipe(
       map((data) => {
         return data.content || [];
       }),
       catchError((error) => throwError(() => error))
     );
   }
+
+  getPDFBase64blob(documento: Documento): string {    
+    const byteCharacters = atob(documento.base64Documento);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    return URL.createObjectURL(
+      new Blob([byteArray], { type: documento.contentTypeDocumento })
+    );
+  }
+
+  // https://www.geeksforgeeks.org/how-to-convert-base64-to-file-in-javascript/
 
   deleteDocumento(documentoID: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${documentoID}`);

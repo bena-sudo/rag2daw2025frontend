@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>Chunks del Documento</h2>
+  
+    <!-- Filtro de estado -->
+    <label class="filtro" for="status">Filtrar por estado:</label>
+    <select class="filtro" id="status" (change)="onStatusChange($event)">
+      <option value="">TODOS</option>
+      @for (estado of estados; track $index) {
+        <option value={{estado}}>{{estado}}</option>
+      }
+    </select>
+  
+    <!-- Lista de Chunks filtrados -->
+    @if (filteredChunks.length > 0) {
+        <app-chunk-list [chunks]="filteredChunks"></app-chunk-list>
+    } @else {
+        <p>No se encontraron chunks con el estado seleccionado.</p>
+    }
+  </div>
+  
+  <app-paginacion [paginas]="paginas" (eventoHijo)="recibirMensaje($event)"></app-paginacion>
+  
