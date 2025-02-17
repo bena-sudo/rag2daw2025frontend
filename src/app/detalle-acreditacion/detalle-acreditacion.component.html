@@ -3,20 +3,21 @@
 
     <div class="content">
         <div class="info-container">
-            <p><strong>ID Acreditación:</strong> {{infoAcreditacion.idAcreditacion}}</p>
-            <p><strong>Nombre del Módulo:</strong> {{infoAcreditacion.nombreModulo}}</p>
-            <p><strong>Nombre del Usuario:</strong> {{infoAcreditacion.nombreUsuario}}</p>
-            <p><strong>Nombre del Asesor:</strong> {{infoAcreditacion.nombreAsesor}}</p>
+            <p><strong>ID Acreditación: {{idAcreditacion}}</strong> </p>
+            <p><strong>Nombre del Módulo: {{acreditacionDetalle.nombreModulo}}</strong> </p>
+            <p><strong>Nombre del Usuario: {{acreditacionDetalle.nombreUsuario}}</strong> </p>
+            <p><strong>Nombre del Asesor: {{acreditacionDetalle.nombreAsesor}}</strong></p>
+            <button type="button" [routerLink]="['/acreditaciones']">Volver</button>
         </div>
 
         <div class="chat-container">
             <div class="messages">
-                @for (mensaje of mensajes; track $index) {
-                    @if (mensaje.idAcreditacion === idAcreditacion) {
+                @for (mensaje of mensajesArray; track $index) {
+                    @if (mensaje.acreditacion_id == idAcreditacion) {
                         <div class="message">
-                            @for (Usuario of usuarios; track $index) {
-                                @if (Usuario.idUsuario === mensaje.idUsuario) {
-                                    <p><strong>{{Usuario.nombre}}:</strong> {{mensaje.contenido}}</p>
+                            @for (usuario of usuariosArray; track $index) {
+                                @if (usuario.id === mensaje.usuario_id) {
+                                    <p><strong>{{usuario.nombre}}:</strong> {{mensaje.contenido}}</p>
                                 }
                             }
                         </div>
@@ -26,7 +27,7 @@
 
             <form [formGroup]="mensajeForm">
                 <div class="message-input">
-                    <input type="text" placeholder="Escribe tu mensaje aquí..." name="contenidoMensaje" formControlName="contenidoMensaje"/>
+                    <input type="text" placeholder="Escribe tu mensaje aquí..." name="contenidoMensaje" formControlName="contenidoMensaje" (keydown.enter)="enviarMensaje('1')"/>
                     <button type="button" (click)="enviarMensaje('1')">Enviar</button>
                 </div>
             </form>

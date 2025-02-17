@@ -1,54 +1,49 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment'; // Importa el archivo de environment
+import { FiltroResponse } from '../acreditaciones/modulos-response.model';
+import { MensajeResponse } from '../detalle-acreditacion/mensajes-response.model';
 @Injectable({
   providedIn: 'root'
 })
 export class AcreditacionesService {
 
-  usuarios = [
-    { idUsuario: '1', nombre: 'Joaquin', rol: 'Administrador' },
-    { idUsuario: '2', nombre: 'Maria', rol: 'Usuario' },
-    { idUsuario: '3', nombre: 'Carlos', rol: 'Moderador' },
-    { idUsuario: '4', nombre: 'Ana', rol: 'Usuario' },
-    { idUsuario: '5', nombre: 'Luis', rol: 'Usuario' }
-  ];
-
-  modulos = [
-    { idModulo: '1', nombre: 'Matemáticas' },
-    { idModulo: '2', nombre: 'Física' },
-    { idModulo: '3', nombre: 'Desarrollo Web' },
-    { idModulo: '4', nombre: 'Química' },
-    { idModulo: '5', nombre: 'Biología' }
-  ];
-
-  acreditaciones = [
-    { idAcreditacion: '1', estado: 'Asignado', idUsuario: '2', idModulo: '1', idAsesor: '1' },
-    { idAcreditacion: '2', estado: 'Pendiente', idUsuario: '2', idModulo: '2', idAsesor: null },
-    { idAcreditacion: '3', estado: 'Pendiente', idUsuario: '3', idModulo: '3', idAsesor: null },
-    { idAcreditacion: '4', estado: 'Asignado', idUsuario: '4', idModulo: '4', idAsesor: '1' },
-    { idAcreditacion: '5', estado: 'Pendiente', idUsuario: '5', idModulo: '5', idAsesor: null }
-  ];
-
-  mensajes = [
-    { idMensaje: '1', contenido: 'Bienvenido al estado de acreditacion, exponga sus dudas aqui', idUsuario: '1', idAcreditacion: '1' },
-    { idMensaje: '2', contenido: 'Gracias, como va el proyecto?', idUsuario: '2', idAcreditacion: '1' },
-    { idMensaje: '3', contenido: 'jaja pa que quieres saber eso', idUsuario: '1', idAcreditacion: '1' },
-    { idMensaje: '4', contenido: 'Bienvenido al estado de acreditacion, exponga sus dudas aqui', idUsuario: '1', idAcreditacion: '4' },
-    { idMensaje: '5', contenido: 'Gracias, de momento no tengo dudaas', idUsuario: '4', idAcreditacion: '4' }
-  ];
-
-  infoAcreditacion={
-    idAcreditacion: '',
-    idUsuario: '',
-    idAsesor: '',
-    idModulo: '',
-    estado: '',
-    nombreModulo: '',
-    nombreUsuario: '',
-    nombreAsesor: ''
-  }
-
+  private apiUrl = environment.apiUrl; // Usa la URL de la API desde environment
   
+    constructor(private http: HttpClient) {}
+  
+    getDataObservable<T>(endpoint: string, params?: any): Observable<T> {
+      return this.http.get<T>(`${this.apiUrl}/${endpoint}`, { 
+        params, 
+        headers: { 'Content-Type': 'application/json' } 
+      });
+    }
 
-  constructor() { }
+    getModulos(): Observable<FiltroResponse> {
+      return this.getDataObservable<FiltroResponse>('modulos');
+    }
+  
+    getUsuarios(): Observable<FiltroResponse> { 
+      return this.getDataObservable<FiltroResponse>('usuarios');
+    }
+
+    getAcreditaciones(): Observable<FiltroResponse> { 
+      return this.getDataObservable<FiltroResponse>('estadoAcreditacion');
+    }
+
+    getMensajes(): Observable<FiltroResponse> { 
+      return this.getDataObservable<FiltroResponse>('mensajes');
+    }
+
+    
+    updateEstadoAcreditacion(id: number, data: any): Observable<FiltroResponse> {
+      return this.http.put<FiltroResponse>(`${this.apiUrl}/estadoAcreditacion/${id}`, data, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    crearMensaje(mensaje: any): Observable<MensajeResponse> {
+      return this.http.post<MensajeResponse>(`${this.apiUrl}/mensajes`, mensaje);
+    }
 }

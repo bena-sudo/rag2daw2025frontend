@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AcreditacionesService } from '../services/acreditaciones.service';
+import { Observable } from 'rxjs';
+import { FiltroResponse } from './modulos-response.model';
 
 @Component({
   selector: 'app-acreditaciones',
@@ -11,52 +13,57 @@ import { AcreditacionesService } from '../services/acreditaciones.service';
 })
 export class AcreditacionesComponent {
 
+  mensajesArray: any[] = []; 
+  modulosArray: any[] = []; 
+  acreditacionesArray: any[] = []; 
+  usuariosArray: any[] = []; 
   constructor(private acreditacionesService: AcreditacionesService) {}
 
-  asignarAcreditacion(idAcreditacion: string) {
-    this.acreditaciones.forEach(element => {
-      if (idAcreditacion === element.idAcreditacion) {
-        element.idAsesor = '1';
-        element.estado = 'Asignado';
-      }
+  ngOnInit() {
+    this.acreditacionesService.getModulos().subscribe(modulos => {
+      this.modulosArray = modulos.content;
+      console.log(this.modulosArray);
+      
+    });
+
+    this.acreditacionesService.getUsuarios().subscribe(usuarios => {
+      this.usuariosArray = usuarios.content;
+    });
+
+    this.acreditacionesService.getAcreditaciones().subscribe(acreditaciones => {
+      this.acreditacionesArray = acreditaciones.content;
+      console.log(this.acreditacionesArray);
+    });
+
+    this.acreditacionesService.getMensajes().subscribe(mensajes => {
+      this.mensajesArray =  mensajes.content; 
+      console.log(this.mensajesArray);
+      
     });
   }
 
-  crearAcreditacion(idAcreditacion: string, moduloNombre: string, idUsuario: string, idAsesor: string, idModulo: string) {
-    this.acreditacionesService.infoAcreditacion.idAcreditacion = idAcreditacion;
-    this.acreditacionesService.infoAcreditacion.nombreModulo = moduloNombre;
-    this.acreditacionesService.infoAcreditacion.idUsuario = idUsuario;
-    this.acreditacionesService.infoAcreditacion.idAsesor = idAsesor,
-    this.acreditacionesService.infoAcreditacion.idModulo = idModulo;
-    this.acreditacionesService.infoAcreditacion.estado = 'Pendiente';
 
-    for (const usuario of this.usuarios) {
-      if (usuario.idUsuario === idUsuario) {
-        this.acreditacionesService.infoAcreditacion.nombreUsuario = usuario.nombre;
+  asignarAcreditacion(idAcreditacion: number, usuario_id: number, modulo_id: number) {
+    const estadoActualizado = {
+      id: idAcreditacion,
+      estado: "pendiente",
+      usuario_id: usuario_id,
+      modulo_id: modulo_id,
+      asesor_id: 1
+    };
+  
+    this.acreditacionesService.updateEstadoAcreditacion(idAcreditacion, estadoActualizado).subscribe(response => {
+      console.log('Actualización exitosa:', response);
+      
+      // Actualizar el array de acreditaciones localmente
+      const index = this.acreditacionesArray.findIndex(a => a.id === idAcreditacion);
+      if (index !== -1) {
+        this.acreditacionesArray[index] = { ...this.acreditacionesArray[index], ...estadoActualizado };
       }
-    }
-
-    for (const aseror of this.usuarios) {
-      if (aseror.idUsuario === idAsesor) {
-        this.acreditacionesService.infoAcreditacion.nombreAsesor = aseror.nombre;
-      }
-
-    }
+  
+    }, error => {
+      console.error('Error en la actualización:', error);
+    });
   }
 
-  get usuarios() {
-    return this.acreditacionesService.usuarios;
-  }
-
-  get modulos() {
-    return this.acreditacionesService.modulos;
-  }
-
-  get acreditaciones() {
-    return this.acreditacionesService.acreditaciones;
-  }
-
-  get infoAcreditacion() {
-    return this.acreditacionesService.infoAcreditacion;
-  }
 }

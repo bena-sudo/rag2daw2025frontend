@@ -84,7 +84,7 @@ h1 {
     border-radius: 4px;
 }
 
-.message-input button {
+button {
     padding: 10px 15px;
     background-color: #007bff;
     color: white;
@@ -93,6 +93,10 @@ h1 {
     cursor: pointer;
 }
 
-.message-input button:hover {
+button:hover {
     background-color: #0056b3;
+}
+
+.info-container button{
+    margin-top: 30px;
 }
