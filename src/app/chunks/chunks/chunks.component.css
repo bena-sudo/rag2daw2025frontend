@@ -18,3 +18,61 @@ h2 {
     font-family: "Poppins", sans-serif;
 }
 
+.menu-superior {
+    display: flex;
+    justify-content: space-between; /* Espaciado entre filtro y botones */
+    align-items: center;
+    background-color: #f8f9fa; /* Color de fondo claro */
+    padding: 10px 20px;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .filtro-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .filtro-label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .filtro-select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .botones-container {
+    display: flex;
+    gap: 10px; /* Espacio entre botones */
+  }
+  
+  .boton {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  
+  .aprobar {
+    background-color: var(--azul-base);
+    color: white;
+  }
+  
+  .aprobar:hover {
+    background-color: var(--azul-medio-oscuro);
+  }
+  
+  .enviar {
+    background-color: var(--azul-base);
+    color: white;
+  }
+  
+  .enviar:hover {
+    background-color: var(--azul-medio-oscuro);
+  }
+  
+
