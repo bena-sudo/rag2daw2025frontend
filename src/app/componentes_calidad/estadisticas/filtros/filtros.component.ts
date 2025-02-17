@@ -111,7 +111,7 @@ export class FiltrosComponent {
       filterValorado: '',
       filterFeedback: ''
     };
-    this.selectedGroup = '';
+    this.selectedGroup = 'chat_user';
     this.fechaInicio = '';
     this.fechaFin = '';
   }
