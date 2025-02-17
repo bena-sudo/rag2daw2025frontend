@@ -12,10 +12,10 @@ import { CommonModule } from '@angular/common';
 export class DocumentoCreateFormComponent {
   usuarioId = 1;
   comentario = '';
-  nombreFichero='';
+  nombreFichero = '';
   estado = 'PENDIENTE';
   file: File | null = null; // Ahora puede ser null
-  intentoSubida = false;  
+  intentoSubida = false;
   createForm: FormGroup;
 
   constructor(
@@ -24,34 +24,40 @@ export class DocumentoCreateFormComponent {
   ) {
     this.createForm = this.formBuilder.group({
       file: [null, Validators.required],
-      nombreFichero: ['',Validators.required],
-      comentario:['']
+      nombreFichero: ['', Validators.required],
+      comentario: ['']
     });
   }
 
   subir() {
-    this.intentoSubida = true; // Marcamos que el usuario ha intentado subir
+    this.intentoSubida = true;
 
     if (!this.file || !this.createForm.get('nombreFichero')?.value) {
       console.error('Debe seleccionar un archivo y proporcionar un nombre de fichero.');
       return;
     }
-    
-    const documento = {
-      idUsuario: this.usuarioId,
-      comentario: this.createForm.get('comentario')?.value, // <-- Obtener del formulario
-      estado: this.estado,
-      nombreFichero: this.createForm.get('nombreFichero')?.value, // <-- Obtener del formulario
-    };
 
-    this.documentoService.subirDocumento(documento, this.file)
-      .then(observable => {
-        observable.subscribe({
-          next: response => console.log('Documento creado exitosamente:', response),
-          error: error => console.error('Error al crear documento:', error)
-        });
-      })
-      .catch(error => console.error('Error al convertir el archivo:', error));
+    // Crea el objeto FormData
+    const formData = new FormData();
+    // Los nombres deben coincidir con los atributos de DocumentoNew
+    formData.append('nombreFichero', this.createForm.get('nombreFichero')?.value);
+    formData.append('comentario', this.createForm.get('comentario')?.value);
+    // Adjunta el archivo con la clave 'multipart'
+    formData.append('multipart', this.file, this.file.name);
+
+    // Si el backend requiere otros campos (por ejemplo, idUsuario), agrégalos:
+    formData.append('idUsuario', '1'); // Ejemplo; reemplaza según corresponda
+
+    // Antes de enviar la petición
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
+    }
+
+
+    this.documentoService.subirDocumento(formData).subscribe({
+      next: response => console.log('✅ Documento creado exitosamente:', response),
+      error: error => console.error('❌ Error al crear documento:', error)
+    });
   }
 
   get fileValid() {
@@ -65,7 +71,7 @@ export class DocumentoCreateFormComponent {
     const control = this.createForm.get('nombreFichero');
     return control?.touched && !control.valid;
   }
-  
+
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -96,18 +102,18 @@ export class DocumentoCreateFormComponent {
   }
 
   actualizarArchivo(file: File) {
-    if (!file) return; // Evitar archivos vacíos
-
+    if (!file) return; // Evita archivos vacíos
     this.file = file;
-    // Actualizamos el formulario con el archivo
     this.createForm.patchValue({ file: file });
     this.createForm.get('file')?.updateValueAndValidity();
-    // Marcar el control como "touched" para que fileValid retorne true.
     this.createForm.get('file')?.markAsTouched();
 
-    // Cambiar el texto dentro del área de arrastre
-    document.getElementById('drop-text')!.innerText = file.name;
+    const dropText = document.getElementById('drop-text');
+    if (dropText) {
+      dropText.innerText = file.name;
+    }
   }
+
 
   borrarArchivo() {
     this.file = null;

@@ -11,29 +11,34 @@ export class DocumentosService {
 
   constructor(private readonly http: HttpClient) {}
 
-  convertirArchivoABase64(file: File): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
+  // convertirArchivoABase64(file: File): Promise<string> {
+  //   return new Promise((resolve, reject) => {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
       
-      reader.onload = () => resolve(reader.result?.toString().split(',')[1] || ''); // Eliminamos el prefijo 'data:application/pdf;base64,'
-      reader.onerror = error => reject(error);
-    });
-  }
+  //     reader.onload = () => resolve(reader.result?.toString().split(',')[1] || ''); // Eliminamos el prefijo 'data:application/pdf;base64,'
+  //     reader.onerror = error => reject(error);
+  //   });
+  // }
 
-  subirDocumento(documento: any, file: File) {
-    return this.convertirArchivoABase64(file).then(base64 => {
-      const documentoFinal = {
-        ...documento,
-        base64Documento: base64,
-        contentTypeDocumento: file.type,
-        extensionDocumento: file.name.split('.').pop()
-      };
-      console.log('Datos que se envían:', documentoFinal);
-      return this.http.post<any>(this.apiUrl+"/documento", documentoFinal);
-    });
-  }
+  // subirDocumento(documento: any, file: File) {
+  //   return this.convertirArchivoABase64(file).then(base64 => {
+  //     const documentoFinal = {
+  //       ...documento,
+  //       base64Documento: base64,
+  //       contentTypeDocumento: file.type,
+  //       extensionDocumento: file.name.split('.').pop()
+  //     };
+  //     console.log('Datos que se envían:', documentoFinal);
+  //     return this.http.post<any>(this.apiUrl+"/documento", documentoFinal);
+  //   });
+  // }
 
+  subirDocumento(formData: FormData): Observable<any> {
+    return this.http.post<any>(this.apiUrl+"/documento", formData);
+}
+
+  
   getDocumentos(pagina: number): Observable<any> {
     return this.http.get<any>(
       `${this.apiUrl}/documentos?page=${pagina}&size=10&sort=id`
