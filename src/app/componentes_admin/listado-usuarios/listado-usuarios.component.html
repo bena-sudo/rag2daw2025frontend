@@ -38,9 +38,9 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.nickname }}</td>
                 <td>{{ user.email }}</td>
-                <td><a [routerLink]="['/infoUser', user.id]">Mostrar</a></td>
-                <td><a (click)="borrarUsuario(user.id)">🗑️ Borrar</a></td>
-                <td><a [routerLink]="['/users-list/modificar', user.id]">✏️ Modificar</a></td>
+                <td><button class="botones" [routerLink]="['/infoUser', user.id]">Mostrar</button></td>
+                <td><button class="botones" (click)="borrarUsuario(user.id)">🗑️ Borrar</button></td>
+                <td><button class="botones" [routerLink]="['/users-list/modificar', user.id]">✏️ Modificar</button></td>
             </tr>
         </tbody>
     </table>

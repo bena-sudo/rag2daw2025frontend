@@ -1,33 +1,27 @@
 <div class="container">
-    <table>
-        <thead>
-            <tr>
-                
-                <th>Usuario ID</th>
-                <th>Email</th>
-                <th>Intentos Fallidos</th>
-                <th>Bloqueado</th>
-                <th>Desbloquear</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (users of usersBlock; track $index) {
+  <table>
+    <thead>
+      <tr>
+        <th>Usuario ID</th>
+        <th>Email</th>
+        <th>Intentos Fallidos</th>
+        <th>Bloqueado</th>
+        <th>Desbloquear</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (users of usersBlock; track $index) { @if (users.bloqueado == true) {
 
-                @if (users.bloqueado == true) {
-
-                    <tr>
-                        
-                        <td>{{ users.usuarioId }}</td>
-                        <td>{{ users.email }}</td>
-                        <td>{{ users.intentosFallidos }}</td>
-                        <td>{{ users.bloqueado }}</td>
-                        <button (click)="desbloquear(users.usuarioId)">Desbloquear</button>
-
-
-                    </tr>
-                }
-               
-            }
-        </tbody>
-    </table>
+      <tr>
+        <td>{{ users.usuarioId }}</td>
+        <td>{{ users.email }}</td>
+        <td>{{ users.intentosFallidos }}</td>
+        <td>{{ users.bloqueado }}</td>
+        <td>
+          <button (click)="desbloquear(users.usuarioId)">Desbloquear</button>
+        </td>
+      </tr>
+      } }
+    </tbody>
+  </table>
 </div>
