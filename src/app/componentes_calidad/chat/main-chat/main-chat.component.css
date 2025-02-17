@@ -29,6 +29,7 @@
     border-radius: 15px;
     position: relative;
     margin: 5px; 
+    word-break: break-all;
   }
   
   .user-message {
