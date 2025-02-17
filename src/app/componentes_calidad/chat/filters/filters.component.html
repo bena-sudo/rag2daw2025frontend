@@ -24,12 +24,12 @@
         <select name="valorados" [(ngModel)]="filtros.filterValorado">
             <option value="">Todos</option>
             <option value="sin_valorar">Sin valorar</option>
-            <option value="valorados">Valorados</option>
+            <option value="valorado">Valorados</option>
         </select>
 
         
-        <select [ngClass]="{'show': filtros.filterValorado == 'valorados'}"
-            *ngIf="filtros.filterValorado === 'valorados'"
+        <select [ngClass]="{'show': filtros.filterValorado == 'valorado'}"
+            *ngIf="filtros.filterValorado === 'valorado'"
             [(ngModel)]="filtros.filterFeedback"
             name="valor">
             <option value="">Ambos</option>
