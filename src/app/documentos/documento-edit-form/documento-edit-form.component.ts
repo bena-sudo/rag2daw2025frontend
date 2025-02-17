@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DocumentosService } from '../../service/documentos.service';
 import { Documento } from '../../interface/documento';
@@ -10,7 +10,7 @@ import { Documento } from '../../interface/documento';
   templateUrl: './documento-edit-form.component.html',
   styleUrl: './documento-edit-form.component.css'
 })
-export class DocumentoEditFormComponent {
+export class DocumentoEditFormComponent implements OnInit {
 
   @Input('id') documentoID!: string;
   editForm: FormGroup;
@@ -20,14 +20,14 @@ export class DocumentoEditFormComponent {
     private documentService: DocumentosService
   ) {
     this.editForm = this.formBuilder.group({
-      nombre: ['', [Validators.required]], // Campo obligatorio
+      nombreFichero: ['', [Validators.required]], // Campo obligatorio
       comentario: [''], // Campo opcional, sin validadores
     });
   }
 
   // Getter para validar el campo "nombre"
   get nombreValid() {
-    const control = this.editForm.get('nombre');
+    const control = this.editForm.get('nombreFichero');
     return control?.touched && !control.valid;
   }
 
@@ -44,8 +44,8 @@ export class DocumentoEditFormComponent {
     // Obtenemos los valores del formulario y los asignamos al modelo Documento
     const documento: Documento = {
       id: Number.parseInt(this.documentoID), // Agregar el documentoID al modelo
-      estadoDocumento: 'PENDIENTE',
-      ...this.editForm.value
+      ...this.editForm.value,
+      estadoDocumento: 'PENDIENTE'
     };
     console.log(this.editForm.value);
 
@@ -66,5 +66,14 @@ export class DocumentoEditFormComponent {
       },
     });
   }
+
+  ngOnInit(): void {
+    this.documentService.searchDocumentoById(Number.parseInt(this.documentoID)).subscribe({
+      next: (documento) => console.log('Documento encontrado:', documento),
+      error: (err) => console.error('Error al buscar el documento:', err)
+    });
+    
+  }
+
 }
 

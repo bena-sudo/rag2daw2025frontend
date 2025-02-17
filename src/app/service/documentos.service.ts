@@ -64,4 +64,10 @@ export class DocumentosService {
     );
   }
 
+  searchDocumentoById(documentoID: number): Observable<Documento> {
+    return this.http.get<Documento>(`${this.apiUrl}/${documentoID}`).pipe(
+      catchError((error) => throwError(() => error))
+    );
+  }
+
 }
