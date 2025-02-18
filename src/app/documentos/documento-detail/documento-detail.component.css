@@ -3,6 +3,7 @@
   gap: 2%;
   padding: 2%;
   align-items: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 .flex :nth-child(1) {
@@ -22,3 +23,49 @@
     width: 100%;
   }
 }
+
+.documento-info {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  margin: 8px;
+  padding: 8px;
+  background-color: #f3f4f6; 
+  border-radius: 4px;
+  width: 40%;
+}
+
+.documento-texto {
+  
+  flex-grow: 1; 
+}
+
+.documento-nombre {
+  font-size: 1.125rem; 
+  font-weight: 600; 
+}
+
+.documento-comentario {
+  font-size: 0.875rem; 
+  color: #4b5563; 
+}
+
+.documento-boton {
+  background-color: #ff5722;
+  color: #ffffff;
+
+  border: none;
+  padding: 6px 12px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-radius: 8px;
+}
+
+.documento-boton:hover {
+  opacity: 0.9; 
+}
+
+

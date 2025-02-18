@@ -8,6 +8,7 @@ import { Documento } from '../../interface/documento';
 import { DocumentoItemComponent } from '../documento-item/documento-item.component';
 import { DocumentoSearchComponent } from '../documento-search/documento-search.component';
 import { PaginacionComponent } from '../paginacion/paginacion.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-main-documento',
@@ -18,6 +19,7 @@ import { PaginacionComponent } from '../paginacion/paginacion.component';
     DocumentoItemComponent,
     DocumentoSearchComponent,
     PaginacionComponent,
+    RouterLink
   ],
   templateUrl: './main-documento.component.html',
   styleUrl: './main-documento.component.css',
