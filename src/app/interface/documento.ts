@@ -1,18 +1,22 @@
-import { EstadoDocumento } from "./EstadoDocumento";
-
 export interface Documento {
-
-    id: number | null;
-    idDocRag: number | null;
-    idUsuario: number | null;
-    nombreFichero: string | null;
-    comentario: string | null;
-    base64Documento: string | null;
-    extensionDocumento: string | null;
-    contentTypeDocumento: string | null;
-    tipoDocumento: string | null;
-    estado: EstadoDocumento | null;
-    fechaCreacion: Date | null;
-    fechaRevision: Date | null;
-
-}
+    id?: number; // El ID puede ser opcional si es autogenerado
+    idDocRag?: number;
+    idUsuario: number;
+    nombreFichero: string;
+    comentario?: string;
+    base64Documento: string;
+    extensionDocumento?: string;
+    contentTypeDocumento?: string;
+    tipoDocumento?: string;
+    estado?: EstadoDocumento; // Enum
+    fechaCreacion?: string; // Fechas generalmente se manejan como strings en JSON
+    fechaRevision?: string;
+  }
+  
+  // Enum para EstadoDocumento, según la definición en la clase original
+  export enum EstadoDocumento {
+    PENDIENTE = 'PENDIENTE',
+    APROBADO = 'APROBADO',
+    DENEGADO = 'DENEGADO'
+  }
+  

@@ -46,6 +46,7 @@
 
 }
 
+
 @font-face {
     font-family: 'Poppins';
     src: url('/public/fonts/Poppins/Poppins-Regular.woff2') format('woff2'),
@@ -197,9 +198,10 @@
 }
 
 body {
-  background: var(--fondo_principal);
-  font-family: Arial, sans-serif;
-}
+    background-color: var(--fondo_principal);
+    font-family: "Poppins", sans-serif;
+    height: 100vh;
+  }
 
 .nav {
   display: flex;

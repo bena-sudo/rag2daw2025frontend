@@ -6,67 +6,21 @@
       <app-etiquetas-list></app-etiquetas-list>
     </div>
     <div class="document-container">
-      <form [formGroup]="searchForm" class="search-bar">
-        <button class="button_blue">BUSCAR</button>
-        <input
-          type="text"
-          placeholder="Escribir busqueda"
-          class="input_buscar"
-          formControlName="searchInput"
-          name="searchInput"
-        />
-
-        <button class="button_blue dropdown-button" type="submit">
-          <i class="fas fa-chevron-down"></i>
-        </button>
-      </form>
+      <app-documento-search
+        (filtroAplicado)="obtenerDatosFiltrados($event)"
+      ></app-documento-search>
 
       <div class="document-list">
         <ul>
-          <li class="documento">
-            <span>nombrededocumento.pdf</span>
-            <button class="documento-plus">
-              <i class="fas fa-plus-circle"></i>
-            </button>
-          </li>
-          <li class="documento">
-            <span>nombrededocumento.pdf</span>
-            <button class="documento-plus">
-              <i class="fas fa-plus-circle"></i>
-            </button>
-          </li>
-          <li class="documento">
-            <span>nombrededocumento.pdf</span>
-            <button class="documento-plus">
-              <i class="fas fa-plus-circle"></i>
-            </button>
-          </li>
-          <li class="documento">
-            <span>nombrededocumento.pdf</span>
-            <button class="documento-plus">
-              <i class="fas fa-plus-circle"></i>
-            </button>
-          </li>
-          <li class="documento">
-            <span>nombrededocumento.pdf</span>
-            <button class="documento-plus">
-              <i class="fas fa-plus-circle"></i>
-            </button>
-          </li>
-          <li class="documento">
-            <span>nombrededocumento.pdf</span>
-            <button class="documento-plus">
-              <i class="fas fa-plus-circle"></i>
-            </button>
-          </li>
-          <li class="documento">
-            <span>nombrededocumento.pdf</span>
-            <button class="documento-plus">
-              <i class="fas fa-plus-circle"></i>
-            </button>
-          </li>
+          @for (documento of documentos; track $index) {
+          <app-documento-item [documento]="documento"></app-documento-item>
+          }
         </ul>
       </div>
+      <app-paginacion
+        [paginas]="paginas"
+        (eventoHijo)="updatePagina($event)"
+      ></app-paginacion>
     </div>
   </div>
 </div>
