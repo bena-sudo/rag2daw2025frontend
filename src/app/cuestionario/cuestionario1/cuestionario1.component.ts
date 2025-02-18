@@ -4,7 +4,6 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BbddService } from '../../services/BBDD.service';
-import { DatosService } from '../../services/datos.service';
 import { RouterModule } from '@angular/router';
 import { PopUpFinalizarCuestionarioComponent } from "../pop-up-finalizar-cuestionario/pop-up-finalizar-cuestionario.component";
 
@@ -41,7 +40,7 @@ export class Cuestionario1Component implements OnInit {
   animacion: string = 'entrada';
   respuestaSeleccionada: string | null = null;
 
-  constructor(private fb: FormBuilder, private bbddService: BbddService, private datosService: DatosService) {
+  constructor(private fb: FormBuilder, private bbddService: BbddService) {
     this.formulario = this.fb.group({ respuesta: [''] });
   }
 
@@ -121,8 +120,6 @@ export class Cuestionario1Component implements OnInit {
       usuarioId: this.usuarioId,
       preguntaTexto: this.preguntas[parseInt(key)].texto
     }));
-
-    this.datosService.setRespuestas(respuestasFinales);
 
     this.bbddService.enviarRespuestas(respuestasFinales).subscribe(
       () => {

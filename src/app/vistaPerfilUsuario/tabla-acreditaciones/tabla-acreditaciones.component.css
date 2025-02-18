@@ -16,10 +16,6 @@ div h1 {
   margin: 30px;
 }
 
-.acreditaciones-container:hover {
-  transform: translateY(-10px);
-}
-
 .acreditaciones-table {
   width: 100%;
   border-collapse: collapse;

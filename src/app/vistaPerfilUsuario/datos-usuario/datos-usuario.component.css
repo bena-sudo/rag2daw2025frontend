@@ -7,11 +7,6 @@
   width: 100%;
   height: 100%; 
   transition: transform 0.3s ease-in-out;
-  
-}
-
-.perfil-usuario-card:hover {
-  transform: translateY(-10px);
 }
 
 .perfil-usuario-info {
@@ -35,4 +30,20 @@
 .perfil-usuario-dato span {
   font-weight: 400;
   color: #777;
+}
+
+.documentos {
+  display: flex;
+  justify-content: center;
+}
+
+.docInput {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }

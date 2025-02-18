@@ -4,8 +4,8 @@
     grid-template-rows: repeat(4, auto);  /* 4 filas automáticas */
     grid-template-areas:
       "datos   acreditaciones acreditaciones acreditaciones"  /* Se asegura que 'mensajes' ocupe las 3 columnas */
-      "selects acreditaciones acreditaciones acreditaciones"
-      "selects acreditaciones acreditaciones acreditaciones"
+      "datos acreditaciones acreditaciones acreditaciones"
+      "datos acreditaciones acreditaciones acreditaciones"
       "selects acreditaciones acreditaciones acreditaciones"; /* Última fila libre por si quieres agregar algo */
     gap: 20px;
     max-width: 90%;
@@ -17,7 +17,6 @@
 /* Asignación de áreas */
 .datos-usuario {
     grid-area: datos;
-    height: 100%;
 }
 
 .selects {
@@ -41,7 +40,7 @@
       grid-template-areas:
         "datos"
         "acreditaciones"
-        "mensajes";
+        "selects";
     }
   }
   

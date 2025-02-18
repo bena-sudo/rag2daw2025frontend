@@ -9,10 +9,6 @@
     transition: transform 0.3s ease-in-out;
 }
 
-.perfil-usuario-card:hover {
-    transform: translateY(-10px);
-}
-
 .perfil-usuario-info {
     display: flex;
     flex-direction: column;
