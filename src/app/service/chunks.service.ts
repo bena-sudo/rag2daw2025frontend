@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Chunk } from '../chunks/chunk';
 
 @Injectable({
@@ -16,12 +16,21 @@ export class ChunksService {
   }
 
   // Consulta los chunks desde la API
-  getChunksByDocumentId(documentId: number = 2): Observable<any> {
-    const url = `${this.apiUrl}chunks?filter=idDocumento:IGUAL:${documentId}&page=0&size=100&sort=chunkOrder`;  // Ajusta la URL según tu API
+  getChunksByDocumentId(page: number = 0,size: number = 6,documentId: number = 2, filter: string = ""): Observable<any> {
+    const url = `${this.apiUrl}chunks?filter=idDocumento:IGUAL:${documentId}${filter}&page=${page}&size=${size}&sort=chunkOrder`;  // Ajusta la URL según tu API
     return this.http.get<any>(url);
   }
 
   updateChunk(chunk: Chunk): Observable<Chunk> {
     return this.http.put<Chunk>(`${this.apiUrl}chunk/${chunk.id}`,chunk);
   }
+
+  deleteChunk(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}chunk/${id}`);
+  }
+
+  enviarChunk(chunk: Chunk): Observable<string> {
+    return of("Enviado");//this.http.put<Chunk>(`${this.apiUrl}chunk/${chunk.id}`,chunk);
+  }
+
 }

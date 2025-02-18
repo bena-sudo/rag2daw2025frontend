@@ -7,12 +7,29 @@
         <div class="item">
             <p [style.color]="getEstadoColor(chunk.estado!)">⬤</p>
             <p>{{chunk.chunkOrder}}</p>
-            <p class="text">{{chunk.chunkText}}</p>
-            <div class="icons">
-                <i class="fas fa-check-circle fa-lg" (click)="cambiarEstado(Estado.APROBADO,chunk.id!)" ></i>
-                <i class="fas fa-times-circle fa-lg" (click)="cambiarEstado(Estado.DENEGADO,chunk.id!)" ></i>
-                <i class="fas fa-pen fa-lg" (click)="editar()"></i>
-            </div>
+            @if (valorEditar !== chunk.id) {
+                <p class="text">{{chunk.chunkText}}</p>
+                <div class="icons">
+                    @if (chunk.estado !== "APROBADO") {
+                        <i class="fas fa-check-circle fa-lg" (click)="cambiarEstado(Estado.APROBADO,chunk.id!)" ></i>
+                    }
+                    @if (chunk.estado === "PENDIENTE") {
+                        <i class="fas fa-times-circle fa-lg" (click)="cambiarEstado(Estado.DENEGADO,chunk.id!)"></i>
+                    } @else if(chunk.estado === "DENEGADO"){
+                        <i class="fas fa-trash-alt fa-lg" (click)="delete(chunk.id!)"></i>
+                    }
+                    @if (chunk.estado === "APROBADO") {
+                        <i class="fas fa-pen fa-lg" (click)="editar(chunk,true)"></i>
+                    } @else {
+                        <i class="fas fa-pen fa-lg" (click)="editar(chunk)"></i>
+                    }
+                </div>
+            } @else {
+                <input type="text" [value]="chunk.chunkText" #inputRef>
+                <div class="icons">
+                    <i class="fas fa-check-circle fa-lg" (click)="modificar(inputRef.value,chunk)"></i>
+                </div>
+            }
         </div>
     }
 </div>
