@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DocumentosService } from '../../service/documentos.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-documento-create-form',
@@ -21,6 +22,7 @@ export class DocumentoCreateFormComponent {
   constructor(
     private documentoService: DocumentosService,
     private formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.createForm = this.formBuilder.group({
       file: [null, Validators.required],
@@ -55,8 +57,8 @@ export class DocumentoCreateFormComponent {
     }
 
     this.documentoService.subirDocumento(formData).subscribe({
-      next: response => console.log('✅ Documento creado exitosamente:', response),
-      error: error => console.error('❌ Error al crear documento:', error)
+      next: (response) => {console.log('✅ Documento creado exitosamente:', response),this.router.navigate(['/main'])},
+      error: (error) => {console.error('❌ Error al crear documento:', error),this.router.navigate(['/createForm'])},
     });
   }
 

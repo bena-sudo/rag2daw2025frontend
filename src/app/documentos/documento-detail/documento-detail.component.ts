@@ -4,10 +4,11 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Documento } from '../../interface/documento';
 import { DocumentosService } from '../../service/documentos.service';
 import { ChunksComponent } from '../../chunks/chunks/chunks.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-documento-detail',
-  imports: [DocumentoPreviewComponent, ChunksComponent],
+  imports: [DocumentoPreviewComponent, ChunksComponent,RouterLink],
   templateUrl: './documento-detail.component.html',
   styleUrl: './documento-detail.component.css',
 })
