@@ -22,6 +22,22 @@
       </div>
 
       <div class="form-group">
+        <label for="estado">Etiqueta</label>
+        @if (isLoading) {
+            <select id="etiqueta" class="form-select" formControlName="etiqueta">
+                <option value="">Cargando...</option>
+            </select>
+        } @else {
+            <select id="etiqueta" class="form-select" formControlName="etiqueta">
+                <option value="">Seleccione un estado</option>
+                @for (etiqueta of etiquetas; track $index) {
+                    <option value="{{etiqueta.nombre}}">{{etiqueta.nombre}}</option>
+                }
+            </select>
+        }
+    </div>
+
+      <div class="form-group">
           <label for="fechaCreacion">Fecha de Creación</label>
           <input
               type="date"
