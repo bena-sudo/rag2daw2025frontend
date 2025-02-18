@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment'; // Importa el archivo de environment
-import { FiltroResponse } from '../acreditaciones/modulos-response.model';
-import { MensajeResponse } from '../detalle-acreditacion/mensajes-response.model';
+import { FiltroResponse } from '../acreditaciones/list-acreditaciones/modulos-response.model';
+import { MensajeResponse } from '../acreditaciones/detalle-acreditacion/mensajes-response.model';
+
 @Injectable({
   providedIn: 'root'
 })

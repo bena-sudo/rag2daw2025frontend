@@ -2,14 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { AcreditacionesService } from '../services/acreditaciones.service';
-import { FiltroResponse } from '../acreditaciones/modulos-response.model';
 import { Observable } from 'rxjs';
 import { MensajeResponse } from './mensajes-response.model';
+import { AcreditacionesService } from '../../services/acreditaciones.service';
+import { DocumentoListComponent } from '../../documentos/documento-list/documento-list.component';
 
 @Component({
   selector: 'app-detalle-acreditacion',
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, DocumentoListComponent
+  ],
   templateUrl: './detalle-acreditacion.component.html',
   styleUrl: './detalle-acreditacion.component.css',
 })

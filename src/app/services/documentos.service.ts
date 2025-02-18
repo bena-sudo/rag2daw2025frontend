@@ -1,30 +1,66 @@
-import { Observable } from "rxjs";
-import { environment } from "../../environments/environment";
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { catchError, from, map, Observable, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { Documento } from '../documentos/documento';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DocumentosService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl = environment.apiUrl; 
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
-  getDataObservable<T>(endpoint: string, params?: any): Observable<T[]> {
-    return this.http.get<T[]>(`${this.apiUrl}/${endpoint}`, { params, headers: { 'Content-Type': 'application/json' } });
+  convertirArchivoABase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      
+      reader.onload = () => resolve(reader.result?.toString().split(',')[1] || ''); // Eliminamos el prefijo 'data:application/pdf;base64,'
+      reader.onerror = error => reject(error);
+    });
   }
 
-  getDocumentosById(id: number): Observable<any> {
-    return this.getDataObservable<any>(`documentos/id/${id}`);
+  subirDocumento(documento: any, file: File) {
+    return this.convertirArchivoABase64(file).then(base64 => {
+      const documentoFinal = {
+        ...documento,
+        base64Documento: base64,
+        contentTypeDocumento: file.type,
+        extensionDocumento: file.name.split('.').pop()
+      };
+      console.log('Datos que se envían:', documentoFinal);
+      return this.http.post<any>(this.apiUrl+"/documentos", documentoFinal);
+    });
   }
 
-  subirDocumento(formData: FormData): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/documentos/upload`, formData);
+  getDocumentos(): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}/documentos?filters=page=0&size=1000&sort=id`
+    );
   }
 
-  // Método para actualizar documentos (puedes agregar más lógica aquí)
-  subirDocumentosActualizados(documentos: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/documentos/actualizar`, documentos);
+  searchDocumentos(query: string): Observable<Documento[]> {
+    return from(
+      this.http.get<any>(
+        `${this.apiUrl}/documentos?filter=usuario_id:IGUAL:${query}&page=0&size=100&sort=id`
+      )
+    ).pipe(
+      map((data) => {
+        return data.content || [];
+      }),
+      catchError((error) => throwError(() => error))
+    );
   }
+
+  deleteDocumento(documentoID: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/documentos/${documentoID}`);
+  }
+
+
+//   ##  read por id
+// GET http://localhost:8091/api/v1/documentos?filter=usuario_id:IGUAL:1&page=0&size=1&sort=id HTTP/1.1
+// Content-Type: application/json
+  
 }
