@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { catchError, from, map, Observable, throwError } from 'rxjs';
+import { catchError, from, map, Observable, Subject, throwError } from 'rxjs';
 import { RecipeUser } from '../../interface/recipe-user';
 import { ModifUser } from '../../interface/modif-user';
 import { InfoRoles } from '../../interface/info-roles';
@@ -19,6 +19,8 @@ export class ServiceAdminService {
       'Content-Type': 'application/json',
     })
   };
+
+  private userDeletedSubject = new Subject<string>();
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -47,6 +49,14 @@ export class ServiceAdminService {
   //Metodo para borrar usuario
   deleteUser(id:string | undefined): Observable<any>{
     return this.http.delete(`${this.apiUrl}/v1/usuarios/${id}`);
+  }
+
+  notifyUserDeleted(id: string) {
+    this.userDeletedSubject.next(id); 
+  }
+
+  onUserDeleted(): Observable<string> {
+    return this.userDeletedSubject.asObservable(); 
   }
 
   //Metodo para modificar usuarios

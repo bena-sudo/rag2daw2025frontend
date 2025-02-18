@@ -41,12 +41,12 @@
           
           @if (formSubmitted && formCreateUser.get('email')?.invalid) {
             @if (formCreateUser.get('email')?.errors?.['required']) {
-              <div class="errores">
+              <div class="invalid-feedback">
                 El email es obligatorio.
               </div>
             }
             @if (formCreateUser.get('email')?.errors?.['email']) {
-              <div class="errores">
+              <div class="invalid-feedback">
                 El email no es válido.
               </div>
             }
@@ -60,12 +60,12 @@
           
           @if (formSubmitted && formCreateUser.get('password')?.invalid) {
             @if (formCreateUser.get('password')?.errors?.['required']) {
-              <div class="errores">
+              <div class="invalid-feedback">
                 La contraseña es obligatoria.
               </div>
             }
             @if (formCreateUser.get('password')?.errors?.['pattern']) {
-              <div class="errores">
+              <div class="invalid-feedback">
                 La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un símbolo.
               </div>
             }
@@ -79,12 +79,12 @@
           
           @if (formSubmitted && formCreateUser.get('telefono')?.invalid) {
             @if (formCreateUser.get('telefono')?.errors?.['required']) {
-              <div class="errores">
+              <div class="invalid-feedback">
                 El teléfono es obligatorio.
               </div>
             }
             @if (formCreateUser.get('telefono')?.errors?.['pattern']) {
-              <div class="errores">
+              <div class="invalid-feedback">
                 El teléfono debe tener 9 dígitos numéricos.
               </div>
             }

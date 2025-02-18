@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { RecipeUser } from '../../interface/recipe-user';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ServiceAdminService } from '../service/service-admin.service';
 import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -7,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
 import { SearchboxService } from '../service/search-service.service';
-import { InfoRoles } from '../../interface/info-roles';
+
 
 @Component({
   selector: 'app-listado-usuarios',
@@ -30,7 +29,7 @@ export class ListadoUsuariosComponent implements OnInit, AfterViewInit {
   ordenNickname: boolean | null = null;
   roles: string[] = ['USUARIO', 'ADMINISTRADOR', 'ASESOR', 'SUPERVISOR', 'ACREDITADOR', 'EVALUADOR', 'PROFESOR', 'JEFEDPTO', 'JEFEESTUDIOS'];
 
-  constructor(private adminService: ServiceAdminService, private service: SearchboxService, private router: Router) {}
+  constructor(private adminService: ServiceAdminService, private service: SearchboxService) {}
 
   ngAfterViewInit() {
     // Se suscribe al evento 'keyup' del campo de búsqueda para detectar cuando el usuario escribe
@@ -50,6 +49,10 @@ export class ListadoUsuariosComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loadUsers();
+    this.adminService.onUserDeleted().subscribe((id) => {
+      this.users = this.users.filter(user => user.id !== id);
+      this.filteredUsers = this.filteredUsers.filter(user => user.id !== id); // Actualizar la lista filtrada también
+    });
     this.service.textObservable.subscribe(text => {
       //Si hay texto hace una petición obtener los usuarios
       if (text) {
@@ -126,6 +129,11 @@ export class ListadoUsuariosComponent implements OnInit, AfterViewInit {
   }
 
   borrarUsuario(id: string) {
+    if (!id) {
+      Swal.fire("Error", "ID de usuario inválido.", "error");
+      return;
+    }
+    
     Swal.fire({
       title: "¿Estás seguro?",
       text: "No podrás revertir esta acción.",
@@ -139,7 +147,7 @@ export class ListadoUsuariosComponent implements OnInit, AfterViewInit {
       if (result.isConfirmed) {
         this.adminService.deleteUser(id).subscribe({
           next: () => {
-            this.users = this.users.filter(user => user.id !== id);
+            this.adminService.notifyUserDeleted(id);
             Swal.fire("Eliminado", "El usuario ha sido eliminado con éxito.", "success");
           },
           error: () => {
