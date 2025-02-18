@@ -1,44 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { trigger, transition, style, animate } from '@angular/animations';
-import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
 import { BbddService } from '../../services/BBDD.service';
+<<<<<<< HEAD
 import { RouterModule } from '@angular/router';
+=======
+>>>>>>> fc6c00bd5c9d8296384a9ccdf9852c2f8d74db7e
 import { PopUpFinalizarCuestionarioComponent } from "../pop-up-finalizar-cuestionario/pop-up-finalizar-cuestionario.component";
+import { CommonModule } from '@angular/common';
 
-
-
-interface Pregunta {
-  id: number;
-  contenido: string;
-}
 
 @Component({
   selector: 'app-cuestionario1',
   templateUrl: './cuestionario1.component.html',
   styleUrls: ['./cuestionario1.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, PopUpFinalizarCuestionarioComponent],
-  animations: [
-    trigger('slideAnimation', [
-      transition(':enter', [
-        style({ transform: 'translateX(100%)', opacity: 0 }),
-        animate('300ms ease-out', style({ transforsm: 'translateX(0)', opacity: 1 }))
-      ]),
-      transition(':leave', [
-        animate('300ms ease-in', style({ transform: 'translateX(-100%)', opacity: 0 }))
-      ])
-    ])
-  ]
+  imports: [ReactiveFormsModule, PopUpFinalizarCuestionarioComponent,CommonModule]
 })
 export class Cuestionario1Component implements OnInit {
+  cuestionarioId: number = 1;
   preguntas: any[] = [];
   formulario: FormGroup;
   preguntaActual = 0;
-  respuestas: any[] = [];  
+  respuestas: any[] = [];
   usuarioId: number | null = null;
   animacion: string = 'entrada';
   respuestaSeleccionada: string | null = null;
+  puedeAcreditar: boolean = false;
+  finalizado: boolean = false;
+  popUpData: any;
 
   constructor(private fb: FormBuilder, private bbddService: BbddService) {
     this.formulario = this.fb.group({ respuesta: [''] });
@@ -46,15 +34,12 @@ export class Cuestionario1Component implements OnInit {
 
   ngOnInit() {
     this.cargarPreguntas();
-
   }
 
   cargarPreguntas(): void {
-    this.usuarioId = 1;
-    const cuestionarioId = 1; 
-    this.bbddService.getCuestionarioById(cuestionarioId).subscribe(
+    this.bbddService.getCuestionarioById(this.cuestionarioId).subscribe(
       (preguntas) => {
-        this.preguntas = preguntas;
+        this.preguntas = preguntas.sort((a, b) => a.orden - b.orden);
         this.inicializarRespuestas();
       },
       (error) => {
@@ -72,12 +57,30 @@ export class Cuestionario1Component implements OnInit {
     }));
   }
 
-
   siguientePregunta() {
-    if (this.preguntaActual < this.preguntas.length - 1) {
+    const preguntaActualObj = this.preguntas[this.preguntaActual];
+    
+    if (preguntaActualObj) {
+      const siguienteNo = preguntaActualObj.siguienteNoId;
+      const siguienteSi = preguntaActualObj.siguienteSiId;
+  
       this.animacion = 'salida';
       setTimeout(() => {
-        this.preguntaActual++;
+        let nuevaPreguntaId: number | undefined;
+  
+        if (this.respuestaSeleccionada === 'no' && siguienteNo) {
+          nuevaPreguntaId = siguienteNo;
+        } else if (this.respuestaSeleccionada === 'si' && siguienteSi) {
+          nuevaPreguntaId = siguienteSi;
+        } else {
+          const siguientePregunta = this.preguntas[this.preguntaActual + 1];
+          if (siguientePregunta) {
+            nuevaPreguntaId = siguientePregunta.id;
+          }
+        }
+        if (nuevaPreguntaId !== undefined) {
+          this.preguntaActual = this.preguntas.findIndex(p => p.id === nuevaPreguntaId);
+        }
         this.animacion = 'entrada';
       }, 300);
     }
@@ -94,18 +97,19 @@ export class Cuestionario1Component implements OnInit {
   }
 
   irAPregunta(index: number) {
-  this.animacion = 'salida';
+    this.animacion = 'salida';
 
-  setTimeout(() => {
-    this.preguntaActual = index;
-    this.animacion = 'entrada';
-    this.formulario.reset();
-  }, 300);
+    setTimeout(() => {
+      this.preguntaActual = index;
+      this.animacion = 'entrada';
+      this.formulario.reset();
+    }, 300);
   }
 
   seleccionarRespuesta(respuesta: string) {
     const preguntaId = this.preguntas[this.preguntaActual].id;
     this.respuestas[this.preguntaActual] = { respuesta, preguntaId };
+    this.respuestaSeleccionada = respuesta;
   }
 
   obtenerRespuestaSeleccionada(): string {
@@ -114,13 +118,28 @@ export class Cuestionario1Component implements OnInit {
   }
 
   finalizar() {
+    
+    if (this.preguntas[this.preguntaActual].finalSi && this.respuestaSeleccionada === 'si') {
+      this.puedeAcreditar = true;
+    }
+
+    this.popUpData = {
+      puedeAcreditar: this.puedeAcreditar, 
+      mensaje: (this.respuestaSeleccionada === 'no') ? this.preguntas[this.preguntaActual]?.explicacionNo : this.preguntas[this.preguntaActual]?.explicacionSi,
+      tipo: this.preguntas[this.preguntaActual].tipoId
+    };
+
     const respuestasFinales = Object.keys(this.respuestas).map(key => ({
       respuesta: this.respuestas[parseInt(key)].respuesta,
-      preguntaId: this.preguntas[parseInt(key)].id,
-      usuarioId: this.usuarioId,
-      preguntaTexto: this.preguntas[parseInt(key)].texto
+      pregunta_id: this.preguntas[parseInt(key)].id,
+      usuario_id: this.usuarioId,
     }));
+    this.finalizado = true;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> fc6c00bd5c9d8296384a9ccdf9852c2f8d74db7e
     this.bbddService.enviarRespuestas(respuestasFinales).subscribe(
       () => {
         console.log('Respuestas enviadas con éxito');

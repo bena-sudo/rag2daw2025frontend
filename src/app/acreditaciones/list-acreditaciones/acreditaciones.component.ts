@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AcreditacionesService } from '../services/acreditaciones.service';
 import { Observable } from 'rxjs';
 import { FiltroResponse } from './modulos-response.model';
+import { AcreditacionesService } from '../../services/acreditaciones.service';
 
 @Component({
   selector: 'app-acreditaciones',
@@ -55,7 +55,6 @@ export class AcreditacionesComponent {
     this.acreditacionesService.updateEstadoAcreditacion(idAcreditacion, estadoActualizado).subscribe(response => {
       console.log('Actualización exitosa:', response);
       
-      // Actualizar el array de acreditaciones localmente
       const index = this.acreditacionesArray.findIndex(a => a.id === idAcreditacion);
       if (index !== -1) {
         this.acreditacionesArray[index] = { ...this.acreditacionesArray[index], ...estadoActualizado };
