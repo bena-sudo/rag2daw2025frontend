@@ -8,13 +8,12 @@ import { DocumentoEditFormComponent } from './documentos/documento-edit-form/doc
 
 export const routes: Routes = [
   { path: '', component: MainDocumentoComponent },
+  { path: 'main', component: MainDocumentoComponent },
   { path: 'chunks', component: ChunksComponent },
   { path: 'etiqueta', component: EtiquetaGridComponent },
   { path: 'documento/:id', component: DocumentoDetailComponent },
-    {path: 'createForm', component: DocumentoCreateFormComponent},
+  {path: 'createForm', component: DocumentoCreateFormComponent},
 
-    {path: '', component: MainDocumentoComponent},
-    {path: 'formEdit/:id', component: DocumentoEditFormComponent},
-    {path: 'formEdit', component: DocumentoEditFormComponent}
+  {path: 'editForm/:id', component: DocumentoEditFormComponent},
 ];
 
