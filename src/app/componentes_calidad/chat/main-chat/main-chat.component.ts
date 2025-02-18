@@ -1,9 +1,11 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../../service/service'
 import { CommonModule } from '@angular/common';
 import { IPregunta } from '../../ipregunta';
 import { IBodyEnvioPregunta } from './ibodyenviopregunta';
+import { SseService } from '../../../service/sse-service.service';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-main-chat',
@@ -16,8 +18,13 @@ export class MainChatComponent implements OnChanges{
 	preguntas: IPregunta[] = [];
 	textoPregunta: string = '';
 	usuario = "usuarioAngular";
+	indice = 0;
 
-	constructor(private apiService: ApiService) {};
+	constructor(
+		private apiService: ApiService, 
+		private sseService: SseService,
+		private cd: ChangeDetectorRef
+	) {};
 
 	// funcion que toma el id del chat al que se ha hecho click
 	@Input() idChat: number = -1;
@@ -57,7 +64,10 @@ export class MainChatComponent implements OnChanges{
 	// funcion que envia el body de la pregunta al back
 	enviarMensaje(body: IBodyEnvioPregunta) {
 		this.apiService.createQuestionChat(body).subscribe(
-			response => this.actualizarChat(),
+			response => {
+				this.actualizarChat(),
+				this.responder()
+			},
 			error => console.error("Error al conseguir las preguntas del chat" + this.idChat + ": ", error)
 		);
 	}
@@ -82,5 +92,33 @@ export class MainChatComponent implements OnChanges{
 			response => console.log(response),
 			error => console.error("Error al valorar la pregunta" + this.idChat + ": ", error)
 		);
+	}
+
+
+
+	/* Flujo de respuestas */
+	idPregunta: number = 1;
+	private sseSubscription!: Subscription;
+	iteracionEnvioRespuesta: number = 0;
+
+	responder(): void {
+		this.sseService.connectToSse(this.idPregunta);
+	
+		this.sseSubscription = this.sseService.messages$.subscribe({
+		  	next: (message) => {
+				const char = JSON.parse(message);
+				this.preguntas[0].textoRespuesta += char;
+				this.cd.detectChanges();
+				this.iteracionEnvioRespuesta++;
+		  	},
+		  error: (err) => console.error('Error SSE:', err)
+		});
+	}
+
+	ngOnDestroy(): void {
+		this.sseService.disconnectFromSse();
+		if (this.sseSubscription) {
+		  this.sseSubscription.unsubscribe();
+		}
 	}
 }
