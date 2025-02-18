@@ -44,7 +44,8 @@ export class DocumentoCreateFormComponent {
     formData.append('comentario', this.createForm.get('comentario')?.value);
     // Adjunta el archivo con la clave 'multipart'
     formData.append('multipart', this.file, this.file.name);
-
+    //estado por defecto 'PENDIENTE'
+    formData.append('estado','PENDIENTE');
     // Si el backend requiere otros campos (por ejemplo, idUsuario), agrégalos:
     formData.append('idUsuario', '1'); // Ejemplo; reemplaza según corresponda
 
@@ -52,7 +53,6 @@ export class DocumentoCreateFormComponent {
     for (const [key, value] of formData.entries()) {
       console.log(`${key}:`, value);
     }
-
 
     this.documentoService.subirDocumento(formData).subscribe({
       next: response => console.log('✅ Documento creado exitosamente:', response),
@@ -113,7 +113,6 @@ export class DocumentoCreateFormComponent {
       dropText.innerText = file.name;
     }
   }
-
 
   borrarArchivo() {
     this.file = null;
