@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs';
-import { EtiquetasListComponent } from '../../etiqueta/etiquetas-list/etiquetas-list.component';
 import { DocumentosService } from '../../service/documentos.service';
 import { Documento } from '../../interface/documento';
 import { DocumentoItemComponent } from '../documento-item/documento-item.component';
@@ -14,7 +13,6 @@ import { PaginacionComponent } from '../paginacion/paginacion.component';
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    EtiquetasListComponent,
     DocumentoItemComponent,
     DocumentoSearchComponent,
     PaginacionComponent,
@@ -76,9 +74,14 @@ export class MainDocumentoComponent implements OnInit {
 
   obtenerDatosFiltrados(filtro: any) {
     // Llamar al servicio para obtener los datos filtrados
-    this.documentosService.searchDocumentos(filtro).subscribe({
+      this.documentosService.searchDocumentos(filtro).subscribe({
       next: (documentos) => {
-        this.documentos = documentos;
+        if (filtro.etiqueta) {
+          this.documentos = documentos.filter(doc =>
+            doc.etiquetas.some(etiqueta => etiqueta.nombre === filtro.etiqueta))
+        }else{
+          this.documentos = documentos;
+        }
       },
       error: (err) => {
         console.error('Error fetching etiquetas:', err);

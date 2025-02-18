@@ -55,7 +55,7 @@ export class DocumentosService {
       query += `&filter=nombreFichero:CONTIENE:` + filtros.nombre;
     }
     if (filtros.estado) {
-      query += `&filter=estadoDocumento:CONTIENE:` + filtros.estado;
+      query += `&filter=estado:CONTIENE:` + filtros.estado;
     }
 
     if (filtros.fechaCreacion) {

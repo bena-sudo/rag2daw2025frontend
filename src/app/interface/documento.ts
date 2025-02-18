@@ -1,3 +1,5 @@
+import { Etiqueta } from "./etiqueta";
+
 export interface Documento {
     id?: number; // El ID puede ser opcional si es autogenerado
     idDocRag?: number;
@@ -11,6 +13,7 @@ export interface Documento {
     estado?: EstadoDocumento; // Enum
     fechaCreacion?: string; // Fechas generalmente se manejan como strings en JSON
     fechaRevision?: string;
+    etiquetas: Etiqueta[];
   }
   
   // Enum para EstadoDocumento, según la definición en la clase original
