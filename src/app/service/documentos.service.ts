@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, from, map, Observable, throwError } from 'rxjs';
 import { Documento } from '../interface/documento';
+import { Chunk } from '../chunks/chunk';
 
 @Injectable({
   providedIn: 'root',
@@ -83,6 +84,13 @@ export class DocumentosService {
 
   searchDocumentoById(documentoID: number): Observable<Documento> {
     return this.http.get<Documento>(`${this.apiUrl}/documento/${documentoID}`).pipe(
+      catchError((error) => throwError(() => error))
+    );
+  }
+
+  //Función para envio de documento y creación de sus chunks
+  enviarDocumento(documentoID: number, idUsuario: number = 1): Observable<Chunk[]>{
+    return this.http.get<Chunk[]>(`${this.apiUrl}/rag/subirDocumento/${documentoID}/${idUsuario}`).pipe(
       catchError((error) => throwError(() => error))
     );
   }

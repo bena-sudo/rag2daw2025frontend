@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of, throwError } from 'rxjs';
 import { Chunk } from '../chunks/chunk';
 
 @Injectable({
@@ -29,8 +29,9 @@ export class ChunksService {
     return this.http.delete<any>(`${this.apiUrl}chunk/${id}`);
   }
 
-  enviarChunk(chunk: Chunk): Observable<string> {
-    return of("Enviado");//this.http.put<Chunk>(`${this.apiUrl}chunk/${chunk.id}`,chunk);
+  enviarChunk(idChunk: number, idUsuario: number = 1): Observable<Chunk> {
+    return this.http.get<Chunk>(`${this.apiUrl}rag/confirmChunk/${idChunk}/${idUsuario}`).pipe(
+      catchError((error) => throwError(() => error))
+    );
   }
-
 }

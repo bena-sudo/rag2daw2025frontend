@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil, switchMap } from 'rxjs/operators';
 import { Chunk } from '../chunk';
@@ -14,6 +14,8 @@ export class ChunkListComponent implements /*OnInit, */OnDestroy {
   @Input() chunks!: Chunk[];
   Estado = Estado;
   EstadoColor = EstadoColor;
+
+  @Output() actualiza = new EventEmitter<boolean>();
 
   valorEditar: number = -1;
   
@@ -33,12 +35,17 @@ export class ChunkListComponent implements /*OnInit, */OnDestroy {
     }
   }
 
+  notificarActualizacion() {
+    this.actualiza.emit(true);
+  }
+
   actualizarChunk(chunk: Chunk) {
     this.chunkService.updateChunk(chunk).pipe(
       takeUntil(this.destroy$) // Cancela la suscripción cuando el componente se destruye
     ).subscribe({
       next: () => {
-        console.log('Chunk actualizado con éxito')
+        console.log('Chunk actualizado con éxito a ',chunk.estado);
+        this.notificarActualizacion();
       },
       error: (err) => console.error('Error al actualizar el chunk:', err)
     });

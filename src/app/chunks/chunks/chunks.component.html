@@ -21,7 +21,7 @@
   
     <!-- Lista de Chunks filtrados -->
     @if (filteredChunks.length > 0) {
-        <app-chunk-list [chunks]="filteredChunks"></app-chunk-list>
+        <app-chunk-list [chunks]="filteredChunks" (actualiza)="actualizarChunks($event)"></app-chunk-list>
     } @else {
         @if (mensajeError === "") {
           <p style="color: darkred;">No se encontraron chunks con el estado seleccionado.</p>
