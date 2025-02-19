@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, from, map, Observable, throwError } from 'rxjs';
 import { Documento } from '../interface/documento';
+import { Chunk } from '../chunks/chunk';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,7 @@ export class DocumentosService {
     return this.http.get<any>(`${this.apiUrl}/documento/${documentoID}`);
   }
 
-  searchDocumentos(filtros: any): Observable<Documento[]> {
+  searchDocumentos(filtros: any,pagina: number): Observable<any> {
     let query = `${this.apiUrl}/documentos?`;
     if (filtros.nombre) {
       query += `&filter=nombreFichero:CONTIENE:` + filtros.nombre;
@@ -43,11 +44,13 @@ export class DocumentosService {
       query += `&filter=fechaRevision:IGUAL:` + filtros.fechaModificacion;
     }
 
-    query += '&page=0&size=10&sort=id';
+    query += `&page=${pagina}&size=10&sort=id`;
 
+    console.log(query);
+    
     return from(this.http.get<any>(query)).pipe(
       map((data) => {
-        return data.content || [];
+        return data;
       }),
       catchError((error) => throwError(() => error))
     );
@@ -81,6 +84,13 @@ export class DocumentosService {
 
   searchDocumentoById(documentoID: number): Observable<Documento> {
     return this.http.get<Documento>(`${this.apiUrl}/documento/${documentoID}`).pipe(
+      catchError((error) => throwError(() => error))
+    );
+  }
+
+  //Función para envio de documento y creación de sus chunks
+  enviarDocumento(documentoID: number, idUsuario: number = 1): Observable<Chunk[]>{
+    return this.http.get<Chunk[]>(`${this.apiUrl}/rag/subirDocumento/${documentoID}/${idUsuario}`).pipe(
       catchError((error) => throwError(() => error))
     );
   }

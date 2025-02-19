@@ -116,7 +116,7 @@ export class ChunksComponent {
     
   }
 
-  actualizarChunks(){
+  actualizarChunks(confirm: boolean = false){
     if (this.selectedStatus) {
       this.modificarListaFiltrada("&filter=estado:IGUAL:"+this.selectedStatus);
     } else {
@@ -148,12 +148,21 @@ export class ChunksComponent {
       }
       const confirmacion = window.confirm("¿Estás seguro de que quieres enviar definitivamente todos los chunks aprobados?");
       if (confirmacion) {
-        this.chunks.filter(chunk=>chunk.estado === "APROBADO").forEach(chunk=>{
-          this.chunkService.enviarChunk(chunk).subscribe({
+        const chunksAprobados = this.chunks.filter(chunk => chunk.estado === "APROBADO");
+        const totalChunks = chunksAprobados.length;
+        let procesados = 0;
+        
+        chunksAprobados.forEach((chunk, index) => {
+          this.chunkService.enviarChunk(chunk.id).subscribe({
             next: (mensaje) => {
-              console.log("Mensaje recibido: ",mensaje);
+              console.log("Chunk enviado: ", mensaje.id);
+              procesados++;
+        
+              if (procesados === totalChunks) {
+                this.actualizarChunks();
+              }
             },
-            error: (err) => console.error('Error al actualizar el chunk ',chunk.id,": ", err)
+            error: (err) => console.error('Error al actualizar el chunk ', chunk.id, ": ", err)
           });
         });
       }

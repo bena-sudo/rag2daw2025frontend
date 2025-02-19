@@ -2,12 +2,12 @@ export enum Estado {
     APROBADO = 'APROBADO',
     DENEGADO = 'DENEGADO',
     PENDIENTE = 'PENDIENTE',
-    //EDITANDO = 'EDITANDO'
+    CHUNKED = 'CHUNKED'
 }
 
 export const EstadoColor: Record<Estado, string> = {
     [Estado.APROBADO]: 'green',
     [Estado.DENEGADO]: 'red',
     [Estado.PENDIENTE]: 'orange',
-    //[Estado.EDITANDO]: 'yellow',
+    [Estado.CHUNKED]: 'var(--azul-medio)',
 };
