@@ -48,7 +48,7 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}answerQuestionChat?idQuestionchat=${id}&user=${user}`);
   }
 
-  updateQuestion(idPregunta: number | null, pregunta: IPregunta): Observable<any> {
+  updateQuestion(idPregunta: number | null, pregunta: object): Observable<any> {
     return this.http.put(`${this.baseUrl}updatePregunta/${idPregunta}`, pregunta);
   }
 
