@@ -85,14 +85,6 @@ export class AcreditacionesService {
       return this.http.post<MensajeResponse>(`${this.apiUrl}/mensajes`, mensaje);
     }
 
-    infoAcreditacion={
-      idAcreditacion: '',
-      idUsuario: '',
-      idAsesor: '',
-      idModulo: '',
-      estado: '',
-      nombreModulo: '',
-      nombreUsuario: '',
-      nombreAsesor: ''
-  }
+
+    
 }

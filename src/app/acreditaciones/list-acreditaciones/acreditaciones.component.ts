@@ -22,8 +22,6 @@ export class AcreditacionesComponent {
   ngOnInit() {
     this.acreditacionesService.getModulos().subscribe(modulos => {
       this.modulosArray = modulos.content;
-      console.log(this.modulosArray);
-      
     });
 
     this.acreditacionesService.getUsuarios().subscribe(usuarios => {
@@ -32,12 +30,10 @@ export class AcreditacionesComponent {
 
     this.acreditacionesService.getAcreditaciones().subscribe(acreditaciones => {
       this.acreditacionesArray = acreditaciones.content;
-      console.log(this.acreditacionesArray);
     });
 
     this.acreditacionesService.getMensajes().subscribe(mensajes => {
-      this.mensajesArray =  mensajes.content; 
-      console.log(this.mensajesArray);
+      this.mensajesArray =  mensajes.content;
       
     });
   }

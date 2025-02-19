@@ -2,13 +2,13 @@ import { Component, Input } from '@angular/core';
 import { BbddService } from '../../services/BBDD.service';
 import { CommonModule } from '@angular/common';
 import { AcreditacionesService } from '../../services/acreditaciones.service';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FiltroResponse } from '../../acreditaciones/list-acreditaciones/modulos-response.model';
 
 @Component({
   selector: 'app-tabla-acreditaciones',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, RouterLink],
   templateUrl: './tabla-acreditaciones.component.html',
   styleUrls: ['./tabla-acreditaciones.component.css']
 })
@@ -71,29 +71,4 @@ export class TablaAcreditacionesComponent {
     return this.acreditacionesService.getDataObservable<T>(endpoint, params);
   }
 
-  crearAcreditacion(idAcreditacion: string, moduloNombre: string, idUsuario: string, idAsesor: string, idModulo: string) {
-    this.acreditacionesService.infoAcreditacion.idAcreditacion = idAcreditacion;
-    this.acreditacionesService.infoAcreditacion.nombreModulo = moduloNombre;
-    this.acreditacionesService.infoAcreditacion.idUsuario = idUsuario;
-    this.acreditacionesService.infoAcreditacion.idAsesor = idAsesor,
-    this.acreditacionesService.infoAcreditacion.idModulo = idModulo;
-    this.acreditacionesService.infoAcreditacion.estado = 'Pendiente';
-
-    this.acreditacionesService.getUsuarios().subscribe(usuariosResponse => {
-
-      const usuarios = usuariosResponse.content;
-
-      for (const usuario of usuarios) {
-        if (usuario.idUsuario === idUsuario) {
-          this.acreditacionesService.infoAcreditacion.nombreUsuario = usuario.nombre;
-        }
-      }
-
-      for (const aseror of usuarios) {
-        if (aseror.idUsuario === idAsesor) {
-          this.acreditacionesService.infoAcreditacion.nombreAsesor = aseror.nombre;
-        }
-      }
-    });
-  }
 }

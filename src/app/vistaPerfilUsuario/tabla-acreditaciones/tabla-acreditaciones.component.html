@@ -38,9 +38,7 @@
           <td>Sin actualizaciones</td>
         }
         <td>
-          <button type="button" class="revisar-btn"
-          (click)="crearAcreditacion(acreditacion.idAcreditacion, acreditacion.Modulo, acreditacion.idUsuario, acreditacion.idAsesor, acreditacion.idModulo)" 
-          [routerLink]="['/detalle-acreditacion', acreditacion.id]">Revisar</button>
+          <button type="button" class="revisar-btn" [routerLink]="['/detalle-acreditacion', acreditacion.id]">Revisar</button>
         </td>
       </tr>
       }

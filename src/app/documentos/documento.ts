@@ -1,7 +1,7 @@
 export interface Documento {
     id?: number; // El ID puede ser opcional si es autogenerado
     idDocRag?: number;
-    idUsuario: number;
+    usuario_id: number;
     nombreFichero: string;
     comentario?: string;
     base64Documento: string;
