@@ -27,7 +27,7 @@ export class DocumentosService {
     return this.http.get<any>(`${this.apiUrl}/documento/${documentoID}`);
   }
 
-  searchDocumentos(filtros: any): Observable<Documento[]> {
+  searchDocumentos(filtros: any,pagina: number): Observable<any> {
     let query = `${this.apiUrl}/documentos?`;
     if (filtros.nombre) {
       query += `&filter=nombreFichero:CONTIENE:` + filtros.nombre;
@@ -44,11 +44,13 @@ export class DocumentosService {
       query += `&filter=fechaRevision:IGUAL:` + filtros.fechaModificacion;
     }
 
-    query += '&page=0&size=10&sort=id';
+    query += `&page=${pagina}&size=10&sort=id`;
 
+    console.log(query);
+    
     return from(this.http.get<any>(query)).pipe(
       map((data) => {
-        return data.content || [];
+        return data;
       }),
       catchError((error) => throwError(() => error))
     );
