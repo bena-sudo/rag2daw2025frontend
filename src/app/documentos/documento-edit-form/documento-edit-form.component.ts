@@ -29,7 +29,6 @@ export class DocumentoEditFormComponent implements OnInit {
     });
   }
 
-  // Getter para validar el campo "nombre"
   get nombreValid() {
     const control = this.editForm.get('nombreFichero');
     return control?.touched && !control.valid;
