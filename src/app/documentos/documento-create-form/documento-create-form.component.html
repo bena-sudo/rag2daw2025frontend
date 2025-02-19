@@ -4,13 +4,12 @@
     <form [formGroup]="createForm" class="formulario-creacion">
       <label for="nombreFichero">Nombre del Documento</label>
       <input type="text" id="nombreFichero" formControlName="nombreFichero" [ngClass]="{
-            'is-valid':!nombreFicheroValid,
-            'is-invalid':nombreFicheroValid
+            'is-valid': !nombreFicheroValid,
+            'is-invalid': nombreFicheroValid
           }" placeholder="Nombre" required>
 
       <label for="comentario">Comentario (opcional)</label>
-      <textarea id="comentario" formControlName="comentario" placeholder="Comentario opcional" name="comentario"
-        [ngClass]="{}"></textarea>
+      <textarea id="comentario" formControlName="comentario" placeholder="Comentario opcional"></textarea>
 
       <!-- Área de arrastre y clic mejorada -->
       <div class="drop-area" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)"
@@ -23,30 +22,31 @@
       <p class="error-message">⚠ No se ha subido ningún archivo</p>
       }
 
-      <div formArrayName="etiquetas">
-        @for (etiqueta of IngredientsArray.controls; track $index) {
-        <div class="input-group mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="ingredient{{ $index }}"
-            name="ingredient{{ $index }}"
-            [formControlName]="$index"
-            placeholder="ingredient"
-            [ngClass]="{
-              'is-valid': ingredient.valid && ingredient.touched,
-              'is-invalid': ingredient.invalid && ingredient.touched
-            }"
-          />
-          <button class="btn btn-outline-danger" >
-            Borrar
+      <div class="etiquetas-container">
+        <div class="etiquetas-content">
+          <div formArrayName="etiquetas">
+            @for (etiquetaCtrl of etiquetasArray.controls; track $index) {
+            <div class="etiqueta-group">
+              <select class="etiqueta-input" id="etiqueta{{ $index }}" name="etiqueta{{ $index }}"
+                [formControlName]="$index">
+                <option value="" disabled selected>Etiqueta</option>
+                @for (etiqueta of etiquetasDisponibles; track $index) {
+                <option [value]="etiqueta.id">{{ etiqueta.nombre }}</option>
+                }
+              </select>
+
+              <button type="button" class="btn-borrar" (click)="delEtiqueta($index)">
+                Borrar
+              </button>
+            </div>
+            }
+          </div>
+          <button type="button" class="btn-agregar" (click)="addEtiqueta()">
+            + Agregar Etiqueta
           </button>
         </div>
-        }
-        <button class="btn btn-primary">
-          Afegir Ingredient
-        </button>
       </div>
+
 
       <div class="centro">
         <div class="botones">

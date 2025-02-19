@@ -3,6 +3,7 @@ import { DocumentosService } from '../../service/documentos.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { EtiquetasService } from '../../service/etiquetas.service';
 
 @Component({
   selector: 'app-documento-create-form',
@@ -18,10 +19,14 @@ export class DocumentoCreateFormComponent {
   file: File | null = null; // Ahora puede ser null
   intentoSubida = false;
   createForm: FormGroup;
+  etiquetasDisponibles: any[] = []; 
+
+
 
   constructor(
     private documentoService: DocumentosService,
     private formBuilder: FormBuilder,
+    private etiquetasService: EtiquetasService,
     private router: Router
   ) {
     this.createForm = this.formBuilder.group({
@@ -29,6 +34,25 @@ export class DocumentoCreateFormComponent {
       nombreFichero: ['', Validators.required],
       comentario: [''],
       etiquetas: this.formBuilder.array([])
+    });
+  }
+
+  ngOnInit() {
+    this.cargarEtiquetas();
+    console.log('Etiquetas cargadas:', this.etiquetasDisponibles);
+  }
+
+  cargarEtiquetas() {
+    this.etiquetasService.getEtiquetas().subscribe({
+      next: (response) => {
+        if (response && Array.isArray(response.content)) {
+          this.etiquetasDisponibles = response.content; // Ahora asignamos directamente el array
+          console.log('Etiquetas disponibles:', this.etiquetasDisponibles);
+        } else {
+          console.error('❌ Respuesta inesperada:', response);
+        }
+      },
+      error: (error) => console.error('❌ Error al cargar etiquetas:', error)
     });
   }
 
@@ -42,24 +66,25 @@ export class DocumentoCreateFormComponent {
 
     // Crea el objeto FormData
     const formData = new FormData();
-    // Los nombres deben coincidir con los atributos de DocumentoNew
     formData.append('nombreFichero', this.createForm.get('nombreFichero')?.value);
     formData.append('comentario', this.createForm.get('comentario')?.value);
-    // Adjunta el archivo con la clave 'multipart'
     formData.append('multipart', this.file, this.file.name);
-    //estado por defecto 'PENDIENTE'
-    formData.append('estado','PENDIENTE');
-    // Si el backend requiere otros campos (por ejemplo, idUsuario), agrégalos:
-    formData.append('idUsuario', '1'); // Ejemplo; reemplaza según corresponda
+    formData.append('estado', 'PENDIENTE');
+    formData.append('idUsuario', this.usuarioId.toString());
 
-    // Antes de enviar la petición
-    for (const [key, value] of formData.entries()) {
-      console.log(`${key}:`, value);
-    }
+    this.etiquetasArray.value.forEach((etiqueta: string) => {
+      formData.append('etiquetas', etiqueta);
+    });
 
     this.documentoService.subirDocumento(formData).subscribe({
-      next: (response) => {console.log('✅ Documento creado exitosamente:', response),this.router.navigate(['/main'])},
-      error: (error) => {console.error('❌ Error al crear documento:', error),this.router.navigate(['/createForm'])},
+      next: (response) => {
+        console.log('✅ Documento creado exitosamente:', response);
+        this.router.navigate(['/main']);
+      },
+      error: (error) => {
+        console.error('❌ Error al crear documento:', error);
+        this.router.navigate(['/createForm']);
+      }
     });
   }
 
@@ -126,6 +151,8 @@ export class DocumentoCreateFormComponent {
   triggerFileInput() {
     document.getElementById('file')?.click();
   }
+
+  // INPUT ETIQUETAS
 
   get etiquetasArray(): FormArray {
     return this.createForm.get('etiquetas') as FormArray;

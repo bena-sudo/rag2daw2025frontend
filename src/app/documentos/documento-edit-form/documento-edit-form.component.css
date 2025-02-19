@@ -162,3 +162,69 @@ button:hover {
 .is-invalid {
     border: 1px solid red;
 }
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.etiquetas-container {
+    width: 100%;
+    max-width: 700px;
+}
+
+.etiquetas-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 700px;
+}
+
+.etiqueta-group {
+    display: flex;
+    /* align-items: center; */
+    width: 100%;
+    gap: 10px;
+}
+
+.etiqueta-input {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid var(--azul-claro-1);
+    border-radius: 5px;
+    color: var(--texto_principal);
+    background-color: var(--fondo_secundario);
+}
+
+.btn-borrar {
+    width: 20%;
+    height: 40px;
+    color: red;
+    border: solid 0.5px red;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    background-color: white;
+}
+
+.btn-borrar:hover {
+    background-color: red;
+    color: white;
+}
+
+.btn-agregar {
+    background-color: var(--azul-base);
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    align-self: flex-start;
+}
+
+.btn-agregar:hover {
+    background-color: var(--azul-claro-1);
+}
