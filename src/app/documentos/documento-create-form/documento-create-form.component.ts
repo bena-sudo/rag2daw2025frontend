@@ -43,7 +43,7 @@ export class DocumentoCreateFormComponent {
     }
 
     const documento = {
-      usuario_id: 1,
+      id_usuario: 1,
       comentario: this.createForm.get('comentario')?.value, // <-- Obtener del formulario
       tipo_documento: this.createForm.get('tipo_documento')?.value, // <--  
       estado: this.estado,

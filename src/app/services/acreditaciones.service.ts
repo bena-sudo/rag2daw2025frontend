@@ -34,7 +34,7 @@ export class AcreditacionesService {
     }
 
     getAcreditacionesFiltrado(page: number = 0, size: number = 5): Observable<FiltroResponse> {
-      const filter = 'usuario_id:IGUAL:1';
+      const filter = 'usuario_id:IGUAL:2';
       const fullUrl = `${this.apiUrl}/estadoAcreditacion?filter=${encodeURIComponent(filter)}&page=${page}&size=${size}`;
       
       console.log("URL generada:", fullUrl);
@@ -44,8 +44,8 @@ export class AcreditacionesService {
       });
     }
 
-    getAcreditacionesUsuarioAceptadas (page: number = 0, size: number = 5): Observable<FiltroResponse> {
-      const filter = 'usuario_id:IGUAL:2&estado:igual:aprobado';
+    getAcreditacionesAsesorAceptadas (page: number = 0, size: number = 5): Observable<FiltroResponse> {
+      const filter = 'asesor_id:IGUAL:1,estado:IGUAL:aprobado';
       const fullUrl = `${this.apiUrl}/estadoAcreditacion?filter=${encodeURIComponent(filter)}&page=${page}&size=${size}`;
 
       return this.http.get<FiltroResponse>(fullUrl, { 
@@ -53,8 +53,17 @@ export class AcreditacionesService {
       });
     }
 
-    getAcreditacionesUsuarioDenegadas (page: number = 0, size: number = 5): Observable<FiltroResponse> {
-      const filter = 'usuario_id:IGUAL:2&estado:igual:rechazado';
+    getAcreditacionesAsesorDenegadas (page: number = 0, size: number = 5): Observable<FiltroResponse> {
+      const filter = 'asesor_id:IGUAL:1,estado:IGUAL:rechazado';
+      const fullUrl = `${this.apiUrl}/estadoAcreditacion?filter=${encodeURIComponent(filter)}&page=${page}&size=${size}`;
+
+      return this.http.get<FiltroResponse>(fullUrl, { 
+        headers: { 'Content-Type': 'application/json' } 
+      });
+    }
+
+    getAcreditacionesAsesorPendientes (page: number = 0, size: number = 5): Observable<FiltroResponse> {
+      const filter = 'asesor_id:IGUAL:1,estado:IGUAL:pendiente';
       const fullUrl = `${this.apiUrl}/estadoAcreditacion?filter=${encodeURIComponent(filter)}&page=${page}&size=${size}`;
 
       return this.http.get<FiltroResponse>(fullUrl, { 

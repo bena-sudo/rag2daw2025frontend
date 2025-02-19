@@ -24,12 +24,19 @@ export class DocumentosService {
 
   subirDocumento(documento: any, file: File) {
     return this.convertirArchivoABase64(file).then(base64 => {
+      // const documentoFinal = {
+      //   ...documento,
+      //   base64Documento: base64,
+      //   contentTypeDocumento: file.type,
+      //   extensionDocumento: file.name.split('.').pop()
+      // };
       const documentoFinal = {
         ...documento,
         base64Documento: base64,
         contentTypeDocumento: file.type,
         extensionDocumento: file.name.split('.').pop()
       };
+      
       console.log('Datos que se envían:', documentoFinal);
       return this.http.post<any>(this.apiUrl+"/documentos", documentoFinal);
     });
@@ -44,7 +51,7 @@ export class DocumentosService {
   searchDocumentos(query: string): Observable<Documento[]> {
     return from(
       this.http.get<any>(
-        `${this.apiUrl}/documentos?filter=usuario_id:IGUAL:${query}&page=0&size=100&sort=id`
+        `${this.apiUrl}/documentos?filter=id_usuario:IGUAL:${query}&page=0&size=100&sort=id`
       )
     ).pipe(
       map((data) => {
@@ -57,10 +64,4 @@ export class DocumentosService {
   deleteDocumento(documentoID: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/documentos/${documentoID}`);
   }
-
-
-//   ##  read por id
-// GET http://localhost:8091/api/v1/documentos?filter=usuario_id:IGUAL:1&page=0&size=1&sort=id HTTP/1.1
-// Content-Type: application/json
-  
 }

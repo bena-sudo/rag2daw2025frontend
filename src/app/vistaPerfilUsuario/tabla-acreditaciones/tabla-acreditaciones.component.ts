@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AcreditacionesService } from '../../services/acreditaciones.service';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
-import { FiltroResponse } from '../../acreditaciones/modulos-response.model';
+import { FiltroResponse } from '../../acreditaciones/list-acreditaciones/modulos-response.model';
 
 @Component({
   selector: 'app-tabla-acreditaciones',
@@ -19,8 +19,8 @@ export class TablaAcreditacionesComponent {
   modulos: FiltroResponse | null = null;
   asesores: FiltroResponse | null = null;
 
-  currentPage: number = 0; // Página actual
-  totalPages: number = 1; // Total de páginas
+  currentPage: number = 0;
+  totalPages: number = 1;
   pages: number[] = [];
 
   constructor(private acreditacionesService: AcreditacionesService) {}
@@ -28,29 +28,6 @@ export class TablaAcreditacionesComponent {
   ngOnInit() {
     this.pages = Array.from({ length: this.totalPages }, (_, i) => i);
     this.loadAcreditaciones();
-
-
-    // this.acreditacionesService.getAcreditaciones().subscribe(acreditaciones => {
-    //   this.acreditacionesBBDD = acreditaciones;                             // BBDD
-    //   if (acreditaciones && acreditaciones.content) {
-    //     this.acreditacionesBBDD = acreditaciones;
-  
-    //     this.acreditacionesBBDD.content.forEach(acreditacion => {
-    //       if (acreditacion.estado === 'aprobado') {
-    //         acreditacion.claseEstado = 'aprobado';
-    //       } else if (acreditacion.estado === 'rechazado') {
-    //         acreditacion.claseEstado = 'rechazado';
-    //       } else if (acreditacion.estado === 'pendiente') {
-    //         acreditacion.claseEstado = 'pendiente';
-    //       }
-    //     });
-    //   } else {
-    //     console.log("Error: La API no devolvió datos en el formato esperado.");
-    //   }
-    // }, error => {
-    //   console.error("Error al obtener acreditaciones:", error);
-    // });
-    
 
     this.acreditacionesService.getModulos().subscribe(modulos => {
       this.modulos = modulos;

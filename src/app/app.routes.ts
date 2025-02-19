@@ -7,6 +7,7 @@ import { DocumentoUserComponent } from './documentos/documento-user/documento-us
 import { AcreditacionesComponent } from './acreditaciones/list-acreditaciones/acreditaciones.component';
 import { DetalleAcreditacionComponent } from './acreditaciones/detalle-acreditacion/detalle-acreditacion.component';
 import { TablaAcreditacionesComponent } from './vistaPerfilUsuario/tabla-acreditaciones/tabla-acreditaciones.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 
 export const routes: Routes = [
@@ -17,5 +18,6 @@ export const routes: Routes = [
     {path: 'tablaAcreditacion', component: TablaAcreditacionesComponent},
     {path: 'acreditaciones', component: AcreditacionesComponent},
     {path: 'detalle-acreditacion/:id', component: DetalleAcreditacionComponent},
+    {path: 'estadisticas/:id', component: EstadisticasComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'inicio'}
 ];
