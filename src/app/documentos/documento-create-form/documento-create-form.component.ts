@@ -20,8 +20,7 @@ export class DocumentoCreateFormComponent {
   intentoSubida = false;
   createForm: FormGroup;
   etiquetasDisponibles: any[] = []; 
-
-
+  documentoId!: Number;
 
   constructor(
     private documentoService: DocumentosService,
@@ -78,8 +77,13 @@ export class DocumentoCreateFormComponent {
 
     this.documentoService.subirDocumento(formData).subscribe({
       next: (response) => {
-        console.log('✅ Documento creado exitosamente:', response);
-        this.router.navigate(['/main']);
+        // Asignar el ID del documento recibido en la respuesta
+      if (response && response.id) {
+        this.documentoId = response.id;
+      } else {
+        console.warn('No se recibió un ID en la respuesta del servidor.');
+      }
+        
       },
       error: (error) => {
         console.error('❌ Error al crear documento:', error);
@@ -170,5 +174,16 @@ export class DocumentoCreateFormComponent {
 
   delEtiqueta(i: number) {
     this.etiquetasArray.removeAt(i);
+  }
+
+  enviarDocumento() {
+    if (!this.documentoId) {
+      console.error('No se ha especificado un documentoID');
+      return;
+    }
+    this.documentoService.enviarDocumento(Number(this.documentoId)).subscribe({
+      next: (chunks) => console.log('Documento enviado con éxito:', chunks),
+      error: (err) => console.error('Error al enviar el documento:', err)
+    });
   }
 }
