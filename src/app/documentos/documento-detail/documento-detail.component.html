@@ -3,9 +3,10 @@
     <h2 class="documento-nombre">{{ documento.nombreFichero }}</h2>
     <p class="documento-comentario">{{ documento.comentario }}</p>
   </div>
-  <button class="documento-boton" [routerLink]="['/editForm', documento.id]">Editar</button>
+  <div class="documento-acciones">
+    <button class="documento-boton" [routerLink]="['/editForm', documento.id]">Editar</button>
+  </div>
 </div>
-
 
 <div class="flex">
   <app-documento-preview
