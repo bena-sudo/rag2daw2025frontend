@@ -4,10 +4,13 @@
   width: 90%;
   max-width: 800px;
   margin: 20px auto;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--fondo_secundario);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .overlay {
@@ -21,19 +24,18 @@
 }
 
 .cuestionario-container {
-  background-color: #fff;
+  background-color: var(--fondo_principal);
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
-
 }
 
 .pregunta {
   margin-bottom: 20px;
   font-size: 20px;
   font-weight: 600;
-  color: #333;
+  color: var(--texto_principal);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -63,29 +65,30 @@
   width: 100%;
   max-width: 400px;
   text-align: center;
+  background-color: var(--elemento_principal);
+  color: var(--texto_elemento);
 }
 
-.siNoButton{
+.siNoButton {
   max-width: 300px;
   min-width: 100px;
-
 }
 
 .rango:hover, .siNoButton:hover {
-  background-color: #4CAF50;
-  color: white;
+  background-color: var(--resaltado);
+  color: var(--white);
   transform: translateY(-2px);
 }
 
 .seleccionado {
-  background-color: #4CAF50;
-  color: white;
+  background-color: var(--resaltado_hover);
+  color: var(--white);
 }
 
 .cargandoPreguntas {
   text-align: center;
   font-size: 16px;
-  color: #999;
+  color: var(--texto_terciario);
 }
 
 .controles {
@@ -102,8 +105,8 @@
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  background-color: #2196F3;
-  color: white;
+  background-color: var(--azul-base);
+  color: var(--white);
   transition: background-color 0.3s ease, transform 0.3s ease;
   flex: 1;
   min-width: 120px;
@@ -112,12 +115,12 @@
 }
 
 .anteriorsiguienteButton[disabled], .boton-finalizar[disabled] {
-  background-color: #B0BEC5;
+  background-color: var(--azul-muy-claro-2);
   cursor: not-allowed;
 }
 
 .anteriorsiguienteButton:hover, .boton-finalizar:hover {
-  background-color: #1976D2;
+  background-color: var(--azul-oscuro-1);
   transform: translateY(-2px);
 }
 
@@ -133,19 +136,19 @@
   padding: 8px 12px;
   font-size: 14px;
   border: none;
-  background-color: #eee;
+  background-color: var(--azul-muy-claro-3);
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .paginacion button.activa {
-  background-color: #4CAF50;
-  color: white;
+  background-color: var(--resaltado);
+  color: var(--white);
 }
 
 .paginacion button:hover {
-  background-color: #2196F3;
+  background-color: var(--azul-base);
   transform: translateY(-2px);
 }
 

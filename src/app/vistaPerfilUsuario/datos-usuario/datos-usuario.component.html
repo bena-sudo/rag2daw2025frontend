@@ -14,12 +14,6 @@
         <label>Teléfono:</label>
         <span>{{ usuario.telefono }}</span>
       </div>
-      
-      <div class="perfil-usuario-dato">
-        <label>Fecha de Nacimiento:</label>
-        <span>{{ usuario.fechaNacimiento | date: 'dd/MM/yyyy' }}</span>
-      </div>
-
       <div class="documentos">
         <button class="docInput" type="button" [routerLink]="['/documentosUser']">Actualizar documentos</button>
       </div>

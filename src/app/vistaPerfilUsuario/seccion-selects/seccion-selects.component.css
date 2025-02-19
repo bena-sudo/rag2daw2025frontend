@@ -1,5 +1,5 @@
 .perfil-usuario-card {
-    background-color: #fff;
+    background-color: var(--fondo_secundario);
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -19,54 +19,65 @@
     display: flex;
     justify-content: space-between;
     font-size: 16px;
-    color: #555;
+    color: var(--texto_principal);
+    align-items: center;
 }
 
 .perfil-usuario-dato label {
     font-weight: 600;
-    color: #333;
-    width: 30%;  /* Asegura que el label no ocupe más espacio que el necesario */
+    color: var(--titulos);
+    width: 30%;
 }
 
 .perfil-usuario-dato select {
-    width: 65%;  /* Se ajusta para que el select ocupe el espacio restante */
-    padding: 6px 12px;
+    width: 65%;
     font-size: 14px;
     border-radius: 4px;
-    border: 1px solid #ddd;
-    background-color: #f8f8f8;
-    color: #555;
+    border: 1px solid var(--azul-claro-2);
+    background-color: var(--fondo_principal);
+    color: var(--texto_principal);
     font-weight: 400;
+    padding: 8px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .perfil-usuario-dato select:focus {
-    border-color: #007BFF;
+    border-color: var(--azul-base);
     outline: none;
 }
 
 .perfil-usuario-dato span {
     font-weight: 400;
-    color: #777;
+    color: var(--resaltado);
 }
 
 .perfil-usuario-boton {
     display: flex;
     justify-content: center;
     margin-top: 20px;
-  }
-  
+}
+
 .perfil-usuario-boton button {
-padding: 10px 20px;
-background-color: #007bff;
-color: white;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-font-size: 16px;
-transition: background-color 0.3s ease;
+    padding: 10px 20px;
+    background-color: var(--azul-base);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 .perfil-usuario-boton button:hover {
-background-color: #0056b3;
+    background-color: var(--azul-oscuro-1);
+    cursor: pointer;
 }
-  
+
+.perfil-usuario-boton button:disabled {
+    background-color: var(--azul-muy-claro-2);
+    color: #666666;
+    border: 1px solid var(--azul-claro-2);
+}

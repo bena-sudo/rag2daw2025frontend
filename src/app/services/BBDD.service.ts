@@ -16,10 +16,6 @@ export class BbddService {
     return this.http.get<T[]>(`${this.apiUrl}/${endpoint}`, { params, headers: { 'Content-Type': 'application/json' } });
   }
 
-  getCuestionarios(): Observable<any[]> {
-    return this.getDataObservable<any[]>('cuestionarios');
-  }
-
   getCuestionarioById(id: number): Observable<any[]> {
     return this.getDataObservable<any[]>(`preguntas/cuestionario/${id}`);
   }
@@ -27,7 +23,7 @@ export class BbddService {
   enviarRespuestas(respuestas: any[]): Observable<any> {
     console.log('enviando:', respuestas);
     
-    return this.http.post(`${this.apiUrl}/respuestas`, respuestas, { headers: { 'Content-Type': 'application/json' } });
+    return this.http.post(`${this.apiUrl}/respuestas/cuestionario`, respuestas, { headers: { 'Content-Type': 'application/json' } });
   }
 
   getUsuario(id: number): Observable<any> {
@@ -36,5 +32,18 @@ export class BbddService {
 
   getAcreditaciones(id: number): Observable<any> {
     return this.getDataObservable<any>(`acreditaciones/usuario/${id}`);
+  }
+
+  getAllSectores(): Observable<any> {
+    return this.getDataObservable<any>(`sectores`);
+  }
+  getAllModulos(): Observable<any> {
+    return this.getDataObservable<any>(`modulos`);
+  }
+  getAllUnidadesCompetencia(): Observable<any> {
+    return this.getDataObservable<any>(`unidadCompetencia`);
+  }
+  getAllCuestionarios(): Observable<any> {
+    return this.getDataObservable<any>(`cuestionarios`);
   }
 }

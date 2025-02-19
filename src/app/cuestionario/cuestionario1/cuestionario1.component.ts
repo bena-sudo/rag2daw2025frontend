@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BbddService } from '../../services/BBDD.service';
 import { PopUpFinalizarCuestionarioComponent } from "../pop-up-finalizar-cuestionario/pop-up-finalizar-cuestionario.component";
 import { CommonModule } from '@angular/common';
-
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cuestionario1',
   templateUrl: './cuestionario1.component.html',
   styleUrls: ['./cuestionario1.component.css'],
-  imports: [ReactiveFormsModule, PopUpFinalizarCuestionarioComponent,CommonModule]
+  imports: [ReactiveFormsModule, PopUpFinalizarCuestionarioComponent, CommonModule, RouterModule ]
 })
+
 export class Cuestionario1Component implements OnInit {
-  cuestionarioId: number = 1;
+  @Input('idCuestionario') idCuestionario?: number;
+  @Input('idUsuario') idUsuario?: number;
   preguntas: any[] = [];
   formulario: FormGroup;
   preguntaActual = 0;
   respuestas: any[] = [];
-  usuarioId: number | null = null;
   animacion: string = 'entrada';
   respuestaSeleccionada: string | null = null;
   puedeAcreditar: boolean = false;
@@ -28,12 +29,16 @@ export class Cuestionario1Component implements OnInit {
     this.formulario = this.fb.group({ respuesta: [''] });
   }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.cargarPreguntas();
   }
 
   cargarPreguntas(): void {
-    this.bbddService.getCuestionarioById(this.cuestionarioId).subscribe(
+    if (this.idCuestionario === undefined) {
+      console.error('Error: idCuestionario es undefined');
+      return;
+    }
+    this.bbddService.getCuestionarioById(this.idCuestionario).subscribe(
       (preguntas) => {
         this.preguntas = preguntas.sort((a, b) => a.orden - b.orden);
         this.inicializarRespuestas();
@@ -128,7 +133,7 @@ export class Cuestionario1Component implements OnInit {
     const respuestasFinales = Object.keys(this.respuestas).map(key => ({
       respuesta: this.respuestas[parseInt(key)].respuesta,
       pregunta_id: this.preguntas[parseInt(key)].id,
-      usuario_id: this.usuarioId,
+      usuario_id: this.idUsuario,
     }));
     this.finalizado = true;
 

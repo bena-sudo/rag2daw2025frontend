@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { CuestionarioFormComponent } from './cuestionario/cuestionario-form/cuestionario-form.component';
 import { InicioComponent } from './cuestionario/inicio/inicio.component';
 import { Cuestionario1Component } from './cuestionario/cuestionario1/cuestionario1.component';
 import { PerfilUsuarioComponent } from './vistaPerfilUsuario/perfil-usuario/perfil-usuario.component';
@@ -8,11 +7,12 @@ import { AcreditacionesComponent } from './acreditaciones/list-acreditaciones/ac
 import { DetalleAcreditacionComponent } from './acreditaciones/detalle-acreditacion/detalle-acreditacion.component';
 import { TablaAcreditacionesComponent } from './vistaPerfilUsuario/tabla-acreditaciones/tabla-acreditaciones.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
-
+import { RegistroFakeComponent } from './registro-fake/registro-fake.component';
 
 export const routes: Routes = [
     {path: 'inicio', component: InicioComponent},
-    {path: 'cuestionario', component: Cuestionario1Component},
+    {path: 'cuestionario/:idCuestionario/:idUsuario', component: Cuestionario1Component },
+    {path: 'registro', component: RegistroFakeComponent},
     {path: 'documentosUser', component: DocumentoUserComponent},
     {path: 'perfil', component: PerfilUsuarioComponent},
     {path: 'tablaAcreditacion', component: TablaAcreditacionesComponent},
