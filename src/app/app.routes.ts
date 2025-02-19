@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { AdminPanelComponent } from './componentes_calidad/chat/admin-panel/admin_panel.component';
+import { EstadisticasPanelComponent } from './componentes_calidad/estadisticas/estadisticas-panel/estadisticas-panel.component';
 import { LoginComponent } from './componentes_log/login/login.component';
 import { RegistroComponent } from './componentes_log/registro/registro.component';
 import { InicioComponent } from './componentes_log/inicio/inicio.component';
@@ -13,7 +15,10 @@ import { ModificarUserComponent } from './componentes_admin/modificar-user/modif
 import { CuentasBlockComponent } from './componentes_admin/cuentas-block/cuentas-block.component';
 import { ListaUsuariosActivosComponent } from './componentes_admin/lista-usuarios-activos/lista-usuarios-activos.component';
 
+
 export const routes: Routes = [
+    { path: 'admin', component: AdminPanelComponent },
+    { path: 'estadisticas', component: EstadisticasPanelComponent },
     { path: 'inicio', component: InicioComponent},
     { path: 'login', canActivate: [authGuard], component: LoginComponent},
     { path: 'registro', canActivate: [authGuard], component: RegistroComponent},
