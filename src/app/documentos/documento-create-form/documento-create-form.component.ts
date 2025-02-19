@@ -21,6 +21,9 @@ export class DocumentoCreateFormComponent {
   intentoSubida = false;
   createForm: FormGroup;
   existenDocumentos = false;
+  dniSubido = false;
+  documentosArray: any[] = [];
+  errorDNI: string = '';
 
   constructor(
     private documentoService: DocumentosService,
@@ -34,13 +37,36 @@ export class DocumentoCreateFormComponent {
     });
   }
 
+  ngOnInit(){
+    this.dniSubido = false;
+    this.documentoService.searchDocumentos('1').subscribe({
+      next: documentos => {
+        this.documentosArray = documentos;
+        for (const element of this.documentosArray) {
+          if (element.tipo_documento === 'DNI') {
+            this.dniSubido = true;
+          }
+          console.log(this.dniSubido);   
+        }
+        
+      },
+      error: error => console.error('Error al obtener documentos del usuario:', error)
+    });
+  }
+
+  
+  error: string | undefined;
+
   subir() {
+    
     this.intentoSubida = true; // Marcamos que el usuario ha intentado subir
 
     if (!this.file || !this.createForm.get('nombreFichero')?.value) {
       console.error('Debe seleccionar un archivo y proporcionar un nombre de fichero.');
       return;
     }
+
+    
 
     const documento = {
       usuario_id: 1,
@@ -50,12 +76,21 @@ export class DocumentoCreateFormComponent {
       nombreFichero: this.createForm.get('nombreFichero')?.value, // <-- Obtener del formulario
     };
 
+    if (this.dniSubido && documento.tipo_documento === 'DNI') {
+      console.log('Ya se ha subido el DNI');
+      this.error =  "Un usuario solo puede subir un DNI";
+      return;
+    }
+
+
     this.documentoService.subirDocumento(documento, this.file)
       .then(observable => {
         observable.subscribe({
           next: response => {
             console.log('Documento creado exitosamente:', response);
-            location.reload(); // Recargar la página después de subir el documento
+            location.reload(); 
+            
+            
           },
           error: error => console.error('Error al crear documento:', error)
         });

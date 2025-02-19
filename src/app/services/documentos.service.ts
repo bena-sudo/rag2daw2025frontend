@@ -58,9 +58,4 @@ export class DocumentosService {
     return this.http.delete<void>(`${this.apiUrl}/documentos/${documentoID}`);
   }
 
-
-//   ##  read por id
-// GET http://localhost:8091/api/v1/documentos?filter=usuario_id:IGUAL:1&page=0&size=1&sort=id HTTP/1.1
-// Content-Type: application/json
-  
 }

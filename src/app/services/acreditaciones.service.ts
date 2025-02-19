@@ -34,7 +34,7 @@ export class AcreditacionesService {
     }
 
     getAcreditacionesFiltrado(page: number = 0, size: number = 5): Observable<FiltroResponse> {
-      const filter = 'usuario_id:IGUAL:1';
+      const filter = 'usuario_id:IGUAL:2';
       const fullUrl = `${this.apiUrl}/estadoAcreditacion?filter=${encodeURIComponent(filter)}&page=${page}&size=${size}`;
       
       console.log("URL generada:", fullUrl);
@@ -76,14 +76,6 @@ export class AcreditacionesService {
       return this.http.post<MensajeResponse>(`${this.apiUrl}/mensajes`, mensaje);
     }
 
-    infoAcreditacion={
-      idAcreditacion: '',
-      idUsuario: '',
-      idAsesor: '',
-      idModulo: '',
-      estado: '',
-      nombreModulo: '',
-      nombreUsuario: '',
-      nombreAsesor: ''
-  }
+
+    
 }

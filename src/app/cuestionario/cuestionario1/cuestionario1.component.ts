@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BbddService } from '../../services/BBDD.service';
-<<<<<<< HEAD
-import { RouterModule } from '@angular/router';
-=======
->>>>>>> fc6c00bd5c9d8296384a9ccdf9852c2f8d74db7e
 import { PopUpFinalizarCuestionarioComponent } from "../pop-up-finalizar-cuestionario/pop-up-finalizar-cuestionario.component";
 import { CommonModule } from '@angular/common';
 
@@ -136,10 +132,6 @@ export class Cuestionario1Component implements OnInit {
     }));
     this.finalizado = true;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fc6c00bd5c9d8296384a9ccdf9852c2f8d74db7e
     this.bbddService.enviarRespuestas(respuestasFinales).subscribe(
       () => {
         console.log('Respuestas enviadas con éxito');
