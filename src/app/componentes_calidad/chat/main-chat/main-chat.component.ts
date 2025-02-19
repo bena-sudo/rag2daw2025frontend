@@ -107,9 +107,15 @@ export class MainChatComponent implements OnChanges{
 		this.sseSubscription = this.sseService.messages$.subscribe({
 		  	next: (message) => {
 				const char = JSON.parse(message);
-				this.preguntas[0].textoRespuesta += char;
-				this.cd.detectChanges();
-				this.iteracionEnvioRespuesta++;
+
+				if (char === '\u0003') {
+					this.sseService.disconnectFromSse();
+					this.sseSubscription.unsubscribe();
+				} else {
+					this.preguntas[0].textoRespuesta += char;
+					this.cd.detectChanges();
+					this.iteracionEnvioRespuesta++;
+				}
 		  	},
 		  error: (err) => console.error('Error SSE:', err)
 		});
