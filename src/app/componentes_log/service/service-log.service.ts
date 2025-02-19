@@ -56,6 +56,7 @@ export class ServiceLogService {
           if (response.token) {
             localStorage.setItem('auth_token', response.token);
             this.updateLoginStatus(); //Actualiza el estado del login
+            console.log(response)
 
             // Extraer y guardar todos los roles del usuario
             if (response.authorities && response.authorities.length > 0) {
@@ -96,7 +97,7 @@ export class ServiceLogService {
         localStorage.removeItem('user_roles');
         this.updateLoginStatus();
         this.updateUserRoles();
-        this.router.navigate(['/inicio']);
+        this.router.navigate(['/login']);
         return true;
       }
   
@@ -107,7 +108,7 @@ export class ServiceLogService {
       localStorage.removeItem('user_roles');
       this.updateLoginStatus();
       this.updateUserRoles();
-      this.router.navigate(['/inicio']);
+      this.router.navigate(['/login']);
       return true;
     }
   }
@@ -139,7 +140,7 @@ export class ServiceLogService {
 
       },
       error: (err) => {
-        console.error('Error al cerrar la sesion: ', err)
+        console.error('Error al cerrar la sesion: ', err);
       }
     })
   }

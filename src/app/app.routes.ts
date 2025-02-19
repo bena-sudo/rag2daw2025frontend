@@ -11,13 +11,15 @@ import { InformacionUsuarioComponent } from './componentes_admin/informacion-usu
 
 import { ModificarUserComponent } from './componentes_admin/modificar-user/modificar-user.component';
 import { CuentasBlockComponent } from './componentes_admin/cuentas-block/cuentas-block.component';
+import { ListaUsuariosActivosComponent } from './componentes_admin/lista-usuarios-activos/lista-usuarios-activos.component';
 
 export const routes: Routes = [
     { path: 'inicio', component: InicioComponent},
     { path: 'login', canActivate: [authGuard], component: LoginComponent},
     { path: 'registro', canActivate: [authGuard], component: RegistroComponent},
-    { path: 'users-list', canActivate: [adminGuardsGuard], component: ListadoUsuariosComponent},
     { path: 'home', canActivate: [adminGuardsGuard], component: HomeComponent},
+    { path: 'users-list', canActivate: [adminGuardsGuard], component: ListadoUsuariosComponent},
+    { path: 'usuarios-activos', canActivate: [adminGuardsGuard], component: ListaUsuariosActivosComponent},
     { path: 'users-list-block', canActivate: [adminGuardsGuard], component: CuentasBlockComponent},
     { path: 'crear-usuario', canActivate: [adminGuardsGuard], component: CrearUsuarioComponent},
     { path: 'users-list/modificar/:id', canActivate: [adminGuardsGuard], component: ModificarUserComponent},
