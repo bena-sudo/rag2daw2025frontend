@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 	standalone: true,
 	imports: [FormsModule, CommonModule]
 })
-export class MainChatComponent implements OnChanges, OnInit{
+export class MainChatComponent implements OnChanges{
 	preguntas: IPregunta[] = [];
 	textoPregunta: string = '';
 	usuario = "usuarioAngular";
@@ -25,23 +25,7 @@ export class MainChatComponent implements OnChanges, OnInit{
 		private sseService: SseService,
 		private cd: ChangeDetectorRef
 	) {}
-	
-	ngOnInit(): void {
-		let bodyPrueba: {feedback: string, idChat: number, idPregunta: number, textoPregunta: string, textoRespuesta: string,usuario: string, valorado: boolean
-		} = {
-			feedback: "NORMAL",
-			idChat: 6,
-			idPregunta: 63,
-			textoPregunta: "ffdg",
-			textoRespuesta: "Simulación de respuesta. Esto es una simulación para comprobar si realmente funciona el flujo que hemos incorporado en el backend y el SSE que hay en el frontend.",
-			usuario: "usuarioAngular",
-			valorado: false,
-		}
-
-		this.apiService.updateQuestion(bodyPrueba.idPregunta, bodyPrueba);
-	};
-
-	
+		
 
 	// funcion que toma el id del chat al que se ha hecho click
 	@Input() idChat: number = -1;
@@ -136,7 +120,11 @@ export class MainChatComponent implements OnChanges, OnInit{
 
 				if (this.iteracionEnvioRespuesta === 10) {
 					this.preguntas[0].idChat = this.idChat;
-					this.apiService.updateQuestion(this.preguntas[0].idPregunta, this.preguntas[0]);
+					//this.apiService.updateQuestion(this.preguntas[0].idPregunta, this.preguntas[0]);
+					this.apiService.updateQuestion(this.preguntas[0].idPregunta, this.preguntas[0]).subscribe(
+						response => console.log(response),
+						error => console.error("Error al valorar la pregunta" + this.idChat + ": ", error)
+					);
 					this.iteracionEnvioRespuesta = 0;
 				}
 		  	},

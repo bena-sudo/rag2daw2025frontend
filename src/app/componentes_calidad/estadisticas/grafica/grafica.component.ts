@@ -34,16 +34,18 @@ export class GraficaComponent implements OnInit {
         let keys: any[] = [];
         let datos: any[] = [];
 
+        console.log(objeto);
+        
 
         Object.keys(objeto).forEach(key => {
           keys.push(key);
           datos.push(objeto[key]);
         });
 
+
         keys = datos.map(item => item[0]);
         let values = datos.map(item => item[1])
 
-        //  console.log(keys, values);
 
 
         if (this.chart) {
@@ -94,11 +96,10 @@ export class GraficaComponent implements OnInit {
 
             console.log("Datos Agrupados:", datosAgrupados);
 
-            // Crear los datasets para Chart.js
             const datasets = Array.from(datosAgrupados.entries()).map(([tipo, valores]) => ({
               label: tipo,
               data: valores,
-              borderColor: this.getRandomColor(), // Asegúrate de tener una función getRandomColor definida
+              borderColor: this.getRandomColor(), 
               fill: false
             }));
 

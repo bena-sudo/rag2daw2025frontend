@@ -49,6 +49,8 @@ export class ApiService {
   }
 
   updateQuestion(idPregunta: number | null, pregunta: object): Observable<any> {
+    console.log("update:",idPregunta,pregunta);
+        
     return this.http.put(`${this.baseUrl}updatePregunta/${idPregunta}`, pregunta);
   }
 
