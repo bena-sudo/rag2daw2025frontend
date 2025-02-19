@@ -1,0 +1,29 @@
+<div class="container">
+  @if (usersBlock.length != 0) {
+  <table>
+    <thead>
+      <tr>
+        <th>Usuario ID</th>
+        <th>Email</th>
+        <th>Intentos Fallidos</th>
+        <th>Bloqueado</th>
+        <th>Desbloquear</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (users of usersBlock; track $index) {
+
+      <tr>
+        <td>{{ users.usuarioId }}</td>
+        <td>{{ users.email }}</td>
+        <td>{{ users.intentosFallidos }}</td>
+        <td>{{ users.bloqueado }}</td>
+        <button (click)="desbloquear(users.usuarioId)">Desbloquear</button>
+      </tr>
+      }
+    </tbody>
+  </table>
+  }@else {
+  <h3>No hay ningun usuario en bloqueo</h3>
+  }
+</div>
