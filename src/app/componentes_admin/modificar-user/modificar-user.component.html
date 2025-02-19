@@ -1,6 +1,8 @@
 <form [formGroup]="formulario" (ngSubmit)="actualizarUsuario()">
   <div class="container">
     <div class="login-box">
+      <button class="back-btn" [routerLink]="['/users-list']">⬅️ Volver</button>
+
       <form [formGroup]="formulario" (ngSubmit)="actualizarUsuario()">
 
         <h2>Actualizar un usuario</h2>
@@ -98,5 +100,4 @@
   
   </div>
 
-  <button class="back-btn" [routerLink]="['/users-list']">⬅️ Volver</button>
   

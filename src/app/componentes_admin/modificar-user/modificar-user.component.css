@@ -120,7 +120,19 @@
     text-align: center;
     font-weight: 600;
 }
-
+.back-btn{
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--resaltado);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.back-btn:hover {
+  background-color: var(--resaltado_hover);
+}
 button {
   margin: 5px;
   padding: 10px;
@@ -128,9 +140,15 @@ button {
   background-color: white;
   cursor: pointer;
 }
-
+button:hover {
+  background-color:var(--azul-muy-claro-3) ;
+}
 button.selected {
   background-color: #007bff;
   color: white;
   border-color: #0056b3;
+}
+button.selected:hover {
+  background-color: #004a9a;
+  
 }
