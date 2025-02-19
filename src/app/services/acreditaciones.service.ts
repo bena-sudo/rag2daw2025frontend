@@ -29,6 +29,10 @@ export class AcreditacionesService {
       return this.getDataObservable<FiltroResponse>('usuarios');
     }
 
+    getAcreditacion(id: number): Observable<any> {
+      return this.getDataObservable<any>(`estadoAcreditacion/${id}`);
+    }
+
     getAcreditaciones(): Observable<FiltroResponse> { 
       return this.getDataObservable<FiltroResponse>('estadoAcreditacion');
     }

@@ -1,35 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { saveAs } from 'file-saver';
 import { RouterModule } from '@angular/router';
 import { DocumentosService } from '../../services/documentos.service';
+import { AcreditacionesService } from '../../services/acreditaciones.service';
 
 @Component({
   selector: 'app-documento-list',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './documento-list.component.html',
   styleUrl: './documento-list.component.css'
 })
 export class DocumentoListComponent {
 
-    usuario_id = 1;
-    comentario = '';
-    nombreFichero = '';
-    tipo_documento = '';
-    estado = 'PENDIENTE';
-    file: File | null = null; // Ahora puede ser null
-    intentoSubida = false;
-    existenDocumentos = false;
+  //@Input('id') idAcreditacion?: string;
+
+  existenDocumentos = false;
   
-    documentosArray: any[] = [];
+  documentosArray: any[] = [];
+
+  acreditacion: any;
   
-    constructor(
-      private documentoService: DocumentosService) {}
+  constructor(
+    private documentoService: DocumentosService, private acreditacionesService: AcreditacionesService) {}
   
-    ngOnInit() {
+  ngOnInit() {
+      //console.log("ID : " + this.idAcreditacion);
+      //this.acreditacion = this.acreditacionesService.getAcreditacion(Number(this.idAcreditacion)).subscribe();
+
+      // this.documentoService.searchDocumentos(this.acreditacion.id_usuario).subscribe(documentos => {
+      //   console.log('Respuesta de la API:', documentos);
+      //   this.documentosArray = documentos;
+      //   if (this.documentosArray.length > 0) {
+      //     this.existenDocumentos = true;
+      //   }
+      // });
+
       this.documentoService.searchDocumentos('1').subscribe(documentos => {
-        console.log('Respuesta de la API:', documentos); // Verifica la estructura de la respuesta
+        console.log('Respuesta de la API:', documentos);
         this.documentosArray = documentos;
         if (this.documentosArray.length > 0) {
           this.existenDocumentos = true;
@@ -46,19 +55,15 @@ export class DocumentoListComponent {
         console.log('Base64 del documento:', base64Documento);
     
         if (base64Documento) {
-          // Crear una URL de tipo Data URL a partir del contenido base64
           const dataUrl = `data:${documento.contentTypeDocumento};base64,${base64Documento}`;
     
-          // Intentar abrir una nueva ventana
           const viewerWindow = window.open('', '_blank');
     
           if (viewerWindow) {
-            // Si la ventana se ha abierto correctamente, escribir el contenido
             viewerWindow.document.write('<html><body>');
             viewerWindow.document.write('<embed width="100%" height="100%" src="' + dataUrl + '" type="' + documento.contentTypeDocumento + '" />');
             viewerWindow.document.write('</body></html>');
           } else {
-            // Si no se pudo abrir la ventana, mostrar un mensaje de advertencia
             console.error('No se pudo abrir una nueva ventana para previsualizar el documento');
           }
     
@@ -80,8 +85,7 @@ export class DocumentoListComponent {
         console.log('Base64 del documento:', base64Documento);
     
         if (base64Documento) {
-          // Convertir el base64 a un Blob (el Blob es un objeto binario que representa datos)
-          const byteCharacters = atob(base64Documento); // Decodificar base64 a caracteres binarios
+          const byteCharacters = atob(base64Documento);
           const byteArrays = [];
     
           for (let offset = 0; offset < byteCharacters.length; offset += 1024) {
@@ -94,11 +98,9 @@ export class DocumentoListComponent {
             byteArrays.push(byteArray);
           }
     
-          // Crear un Blob con los datos binarios del archivo
           const blob = new Blob(byteArrays, { type: documento.contentTypeDocumento });
     
-          // Usar FileSaver.js para descargar el archivo
-          saveAs(blob, documento.nombreFichero + '.' + documento.extensionDocumento); // El nombre y extensión del archivo
+          saveAs(blob, documento.nombreFichero + '.' + documento.extensionDocumento);
           console.log('Documento descargado:', documento);
         } else {
           console.error('No se encontró contenido base64 para el documento');
