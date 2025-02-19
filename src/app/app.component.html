@@ -1,3 +1,10 @@
 <app-header></app-header>
+
+<nav>
+  <a routerLink="/admin">Admin Panel</a> |
+  <a routerLink="/estadisticas">Estadísticas</a>
+</nav>
+
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+
+<app-footer *ngIf="isVisible"></app-footer>
