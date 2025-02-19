@@ -1,0 +1,35 @@
+.paginacion {
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.arrow {
+    background-color: var(--azul-base);
+    color: white;
+    border: none;
+    border-radius: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+}
+
+.numeroPagina {
+    border-radius: 10px;
+    height: 30px;
+    width: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center; /* Centra el texto horizontalmente */
+    display: flex;
+    align-items: center; /* Centra verticalmente */
+    justify-content: center;
+}
+
+.numeroPagina::-webkit-inner-spin-button,
+.numeroPagina::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

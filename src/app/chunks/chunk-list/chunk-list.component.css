@@ -1,0 +1,46 @@
+.container {
+    margin-top: 16px;
+}
+.item {
+    background-color: var(--white);
+    padding: 16px;
+    margin-bottom: 16px;
+    display: grid; /* Cambiado de flex a grid */
+    grid-template-columns: 30px 30px 1fr 100px; /* Crea 4 columnas de igual tamaño */
+    gap: 16px; /* Espacio entre los elementos dentro del grid */
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+.item p {
+    color: var(--azul-oscuro-1);
+    margin: 0;
+    margin-right: 20px;
+    min-width: min-content;
+    align-self: center;
+}
+
+.item p.text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita el texto a 2 líneas */
+    -webkit-box-orient: vertical;
+    overflow: hidden; /* Oculta el texto que excede */
+    text-overflow: ellipsis; /* Agrega los tres puntos (...) */
+    max-width: 100%; /* Asegura que el texto no sobrepase el contenedor */
+    line-height: 1.4; /* Ajusta el espaciado entre líneas para mayor claridad */
+    /*height: calc(1.4em * 2); /* Asegura que el contenedor tenga altura suficiente para 2 líneas */
+}
+
+.icons {
+    display: flex;
+    gap: 8px;
+    align-self: center;
+}
+.icons i {
+    color: var(--resaltado);
+}
+
+.icons i:hover{
+    color: var(--resaltado_hover);
+    cursor: pointer;
+}

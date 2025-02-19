@@ -58,7 +58,7 @@
 .modal input {
   width: 100%;
   padding: 8px 16px;
-  border: 1px solid var(--fondo_hf);
+  border: 1px solid var(--fondo_principal);
   border-radius: 4px;
 }
 
@@ -69,7 +69,7 @@
 }
 
 .modal button {
-  background-color: var(--color_button);
+  background-color: var(--elemento_principal);
   color: white;
   font-weight: bold;
   padding: 8px 16px;

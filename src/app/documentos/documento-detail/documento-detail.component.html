@@ -1,0 +1,16 @@
+<div class="documento-info">
+  <div class="documento-texto">
+    <h2 class="documento-nombre">{{ documento.nombreFichero }}</h2>
+    <p class="documento-comentario">{{ documento.comentario }}</p>
+  </div>
+  <button class="documento-boton" [routerLink]="['/editForm', documento.id]">Editar</button>
+</div>
+
+
+<div class="flex">
+  <app-documento-preview
+    [PDFbase64]="PDFbase64"
+    [contentTypeDocumento]="documento.contentTypeDocumento!"
+  ></app-documento-preview>
+  <app-chunks></app-chunks>
+</div>

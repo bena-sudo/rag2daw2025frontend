@@ -1,0 +1,170 @@
+.body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.formulario-contenedor {
+    background-color: var(--white);
+    padding: 20px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 70%; 
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--texto_principal);
+    margin-bottom: 20px;
+}
+
+.formulario-creacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulario-creacion label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--texto_secundario);
+    font-weight: bold;
+    width: 100%; 
+    max-width: 700px;
+    text-align: left; 
+}
+
+.formulario-creacion input{
+    width: 100%;
+    max-width: 700px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--azul-base);
+}
+
+.formulario-creacion textarea {
+    width: 100%;
+    max-width: 700px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border: 1px solid var(--azul-base);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--texto_principal);
+}
+
+::placeholder {
+    padding-left: 10px;
+    color: var(--azul-claro-1);
+}
+
+input {
+    font-family: 'Poppins', sans-serif;
+}
+
+textarea {
+    font-family: 'Poppins', sans-serif;
+    resize: none;
+    height: 100px;
+}
+
+.botones {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; 
+    max-width: 400px; 
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1; 
+    margin: 0 5px; 
+}
+
+.guardar {
+    background-color: #ff5722;
+    color: #ffffff;
+}
+
+.borrar {
+    background-color: #ff5722;
+    color: #ffffff;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.drop-area {
+    width: 100%;
+    max-width: 700px;
+    height: 250px;
+    border: 2px dashed var(--azul-claro-1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--azul-claro-1);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    margin-bottom: 20px;
+  }
+  
+  .drop-area:hover, .drop-area.dragover {
+    background-color: #f0f8ff;
+    border-color: var(--azul-claro-1);
+    color: var(--azul-claro-1);
+  }
+  
+  #drop-text {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+    .drop-area {
+        height: 120px;
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .drop-area {
+        height: 100px;
+        font-size: 0.8rem;
+    }
+}
+
+.is-valid{
+    border: 1px solid var(--azul-claro-1);
+}
+
+.is-invalid {
+    border: solid 1px red;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
