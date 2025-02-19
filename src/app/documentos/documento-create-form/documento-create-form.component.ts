@@ -43,6 +43,8 @@ export class DocumentoCreateFormComponent {
       next: documentos => {
         this.documentosArray = documentos;
         for (const element of this.documentosArray) {
+          console.log(element);
+          
           if (element.tipo_documento === 'DNI') {
             this.dniSubido = true;
           }
@@ -59,29 +61,25 @@ export class DocumentoCreateFormComponent {
 
   subir() {
     
-    this.intentoSubida = true; // Marcamos que el usuario ha intentado subir
+    this.intentoSubida = true; 
 
     if (!this.file || !this.createForm.get('nombreFichero')?.value) {
       console.error('Debe seleccionar un archivo y proporcionar un nombre de fichero.');
       return;
     }
 
-    
-
     const documento = {
       usuario_id: 1,
-      comentario: this.createForm.get('comentario')?.value, // <-- Obtener del formulario
-      tipo_documento: this.createForm.get('tipo_documento')?.value, // <--  
+      comentario: this.createForm.get('comentario')?.value, 
+      tipo_documento: this.createForm.get('tipo_documento')?.value,
       estado: this.estado,
-      nombreFichero: this.createForm.get('nombreFichero')?.value, // <-- Obtener del formulario
+      nombreFichero: this.createForm.get('nombreFichero')?.value,
     };
 
     if (this.dniSubido && documento.tipo_documento === 'DNI') {
-      console.log('Ya se ha subido el DNI');
       this.error =  "Un usuario solo puede subir un DNI";
       return;
     }
-
 
     this.documentoService.subirDocumento(documento, this.file)
       .then(observable => {
@@ -89,14 +87,11 @@ export class DocumentoCreateFormComponent {
           next: response => {
             console.log('Documento creado exitosamente:', response);
             location.reload(); 
-            
-            
           },
           error: error => console.error('Error al crear documento:', error)
         });
       })
       .catch(error => console.error('Error al convertir el archivo:', error));
-
     this.createForm.reset();
   }
 
