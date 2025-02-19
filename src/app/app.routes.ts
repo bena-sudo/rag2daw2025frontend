@@ -13,7 +13,6 @@ export const routes: Routes = [
   { path: 'etiqueta', component: EtiquetaGridComponent },
   { path: 'documento/:id', component: DocumentoDetailComponent },
   {path: 'createForm', component: DocumentoCreateFormComponent},
-
   {path: 'editForm/:id', component: DocumentoEditFormComponent},
 ];
 
