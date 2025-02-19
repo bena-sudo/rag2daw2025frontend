@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DocumentosService } from '../../service/documentos.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -27,7 +27,8 @@ export class DocumentoCreateFormComponent {
     this.createForm = this.formBuilder.group({
       file: [null, Validators.required],
       nombreFichero: ['', Validators.required],
-      comentario: ['']
+      comentario: [''],
+      etiquetas: this.formBuilder.array([])
     });
   }
 
@@ -124,5 +125,23 @@ export class DocumentoCreateFormComponent {
 
   triggerFileInput() {
     document.getElementById('file')?.click();
+  }
+
+  get etiquetasArray(): FormArray {
+    return this.createForm.get('etiquetas') as FormArray;
+  }
+
+  getEtiquetaControl(): FormControl {
+    const control = this.formBuilder.control('');
+    control.setValidators(Validators.required);
+    return control;
+  }
+
+  addEtiqueta() {
+    this.etiquetasArray.push(this.getEtiquetaControl());
+  }
+
+  delEtiqueta(i: number) {
+    this.etiquetasArray.removeAt(i);
   }
 }

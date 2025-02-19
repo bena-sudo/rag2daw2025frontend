@@ -23,6 +23,31 @@
       <p class="error-message">⚠ No se ha subido ningún archivo</p>
       }
 
+      <div formArrayName="etiquetas">
+        @for (etiqueta of IngredientsArray.controls; track $index) {
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="ingredient{{ $index }}"
+            name="ingredient{{ $index }}"
+            [formControlName]="$index"
+            placeholder="ingredient"
+            [ngClass]="{
+              'is-valid': ingredient.valid && ingredient.touched,
+              'is-invalid': ingredient.invalid && ingredient.touched
+            }"
+          />
+          <button class="btn btn-outline-danger" >
+            Borrar
+          </button>
+        </div>
+        }
+        <button class="btn btn-primary">
+          Afegir Ingredient
+        </button>
+      </div>
+
       <div class="centro">
         <div class="botones">
           <button type="button" (click)="subir()" class="guardar">Subir</button>
