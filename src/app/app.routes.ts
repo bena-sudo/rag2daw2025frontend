@@ -11,6 +11,8 @@ import { InformacionUsuarioComponent } from './componentes_admin/informacion-usu
 
 import { ModificarUserComponent } from './componentes_admin/modificar-user/modificar-user.component';
 import { CuentasBlockComponent } from './componentes_admin/cuentas-block/cuentas-block.component';
+import { RolesListComponent } from './componentes_admin/roles-list/roles-list.component';
+import { InformacionRolComponent } from './componentes_admin/informacion-rol/informacion-rol.component';
 
 export const routes: Routes = [
     { path: 'inicio', component: InicioComponent},
@@ -22,5 +24,7 @@ export const routes: Routes = [
     { path: 'crear-usuario', canActivate: [adminGuardsGuard], component: CrearUsuarioComponent},
     { path: 'users-list/modificar/:id', canActivate: [adminGuardsGuard], component: ModificarUserComponent},
     { path: 'infoUser/:id', canActivate: [adminGuardsGuard], component: InformacionUsuarioComponent},
+    { path: 'lista-roles', canActivate: [adminGuardsGuard], component: RolesListComponent},
+    { path: 'infoRol/:id', canActivate: [adminGuardsGuard], component: InformacionRolComponent},
     { path: '**', pathMatch: 'full', redirectTo: 'inicio'}
 ];

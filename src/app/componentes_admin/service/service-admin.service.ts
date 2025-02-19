@@ -123,4 +123,28 @@ export class ServiceAdminService {
       })
     );
   }
+
+
+
+
+  getPermisos(): Observable<InfoRoles[]>{
+    return this.http.get<InfoRoles[]>(`${this.apiUrl}/v1/permisos`).pipe(
+      catchError(() => {
+        return throwError(() => 'Ocurrio un error inesperado.')
+      })
+    )
+  }
+
+  getPermisosRol(id: string): Observable<InfoRoles> {
+    return this.http.get<InfoRoles>(`${this.apiUrl}/v1/roles/${id}/permisos`).pipe(
+      catchError(() => throwError(() => 'Ocurrió un error inesperado.'))
+    );
+  }
+
+  asignarPermisosRol(idRol: string, permisos: number[]): Observable<any> {
+    return this.http.post(`${this.apiUrl}/v1/roles/${idRol}/permisos`, permisos, this.httpOptions)
+      .pipe(catchError(() => throwError(() => 'Error asignando permisos')));
+  }
+  
+  
 }
