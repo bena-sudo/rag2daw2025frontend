@@ -10,16 +10,16 @@ h2, label, #roleFilter, .table td:first-child, .pagination span {
 }
 
 h2 {
-  color: var(--color_button_hover);
+  color: var(--titulos);
   font-size: 2rem;
   margin-bottom: 10px;
 }
 span{
-  color: var(--color_button_hover);
+  color: var(--titulos);
 
 }
 label, #roleFilter {
-  color: var(--color_texto_hf);
+  color: var(--texto_terciario);
 }
 
 #roleFilter {
@@ -27,7 +27,7 @@ label, #roleFilter {
   padding: 6px;
   font-size: 0.9rem;
   border-radius: 5px;
-  border: 1px solid var(--color_button);
+  border: 1px solid var(--texto_secundario);
   margin-bottom: 20px;
   transition: 0.3s;
 }
@@ -35,8 +35,7 @@ label, #roleFilter {
 #roleFilter:hover {
   color: var(--color_texto_hf_hover);
   border-color: #007bff;
-  box-shadow: 0 0 8px var(--color_button);
-  background-color: var(--hover-bg-color, #e0e0e0);
+  box-shadow: 0 0 8px var(--azul-claro-3);
 }
 
 .form-inline {
@@ -45,11 +44,12 @@ label, #roleFilter {
   right: 30px;
 }
 
+
 .form-control {
   padding: 8px;
   font-size: 1rem;
   border-radius: 20px;
-  border: 1px solid var(--color_button);
+  border: 1px solid var(--texto_secundario);
   transition: 0.3s;
 }
 
@@ -75,8 +75,8 @@ label, #roleFilter {
 }
 
 .table th {
-  color: var(--color_button_hover);
-  background-color: var(--fondo_hf);
+  color: var(--texto_terciario);
+  background-color: var(--fondo_terciario);
   font-weight: bold;
 }
 
@@ -88,8 +88,8 @@ label, #roleFilter {
 }
 
 .table a:hover, .pagination button:hover:not([disabled]) {
-  background-color: var(--hover-bg-color, #e0e0e0);
-  color: var(--color_texto_hf_hover, --color_texto_hf);
+  background-color: var(--fondo_secundario, #e0e0e0);
+  color: var(--azul-oscuro-1, --azul-medio);
 }
 
 .pagination {
@@ -101,11 +101,10 @@ label, #roleFilter {
 }
 
 .pagination button {
-  color: var(--color_texto_hf);
+  color: var(--azul-medio-oscuro);
   padding: 8px 15px;
   margin: 0 5px;
   border-radius: 5px;
-  color: var(--color_button_hover);
   border: 1px solid #ccc;
   cursor: pointer;
   transition: 0.3s;
@@ -120,14 +119,14 @@ label, #roleFilter {
   font-size: 0.9rem;
   border: none;
   border-radius: 5px;
-  background-color: var(--color_button);
+  background-color: var(--elemento_principal);
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .botones:hover {
-  background-color: var(--color_button_hover);
+  background-color: var(--azul-medio);
 }
 
 .form-inline1 {

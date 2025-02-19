@@ -1,5 +1,5 @@
 h2 {
-    color: var(--color_button_hover);
+    color: var(--titulos);
     font-size: 2rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
@@ -30,8 +30,8 @@ table {
   }
   
   table th {
-    color: var(--color_button_hover);
-    background-color: var(--fondo_hf);
+    color: var(--texto_secundario);
+    background-color: var(--fondo_terciario);
     font-weight: bold;
   }
   

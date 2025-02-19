@@ -20,8 +20,8 @@
   }
   
   .table th {
-    color: var(--color_button_hover);
-    background-color: var(--fondo_hf);
+    color: var(--texto_terciario);
+    background-color: var(--fondo_terciario);
     font-weight: bold;
   }
   
@@ -33,8 +33,8 @@
   }
   
   .table a:hover, .pagination button:hover:not([disabled]) {
-    background-color: var(--hover-bg-color, #e0e0e0);
-    color: var(--color_texto_hf_hover, --color_texto_hf);
+    background-color: var(--fondo_secundario, #e0e0e0);
+    color: var(--azul-oscuro-1, --azul-medio);
   }
 
   .botones {
@@ -42,12 +42,12 @@
     font-size: 0.9rem;
     border: none;
     border-radius: 5px;
-    background-color: var(--color_button);
+    background-color: var(--elemento_principal);
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   
   .botones:hover {
-    background-color: var(--color_button_hover);
+    background-color: var(--azul-medio);
   }

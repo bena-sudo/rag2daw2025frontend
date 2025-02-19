@@ -7,8 +7,8 @@ footer {
     justify-content: center; 
     padding: 20px;
     border-top: 1px solid black;
-    color: var(--color_texto_hf);
-    background-color: var(--fondo_hf);
+    color: var(--azul-oscuro-3);
+    background-color: var(--fondo_terciario);
     height: auto;
     position: relative;
 }
@@ -27,7 +27,7 @@ footer p{
     font-style: normal; 
 }
 footer p:hover {
-    color: var(--color_texto_hf_hover);
+    color: var(--azul-medio);
 }
 
 .logo-container {
@@ -56,12 +56,12 @@ footer p:hover {
     font-weight: 300;
     font-style: normal;
     text-decoration: none;
-    color: var(--color_texto_hf);
+    color: var(--azul-medio);
     margin: 0 5px;
 }
 
 .links a:hover {
-    color: var(--color_texto_hf_hover);
+    color: var(--azul-oscuro-3);
 }
 
 .links a:not(:last-child)::after {

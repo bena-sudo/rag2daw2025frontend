@@ -1,4 +1,5 @@
 <div class="container">
+  <h2>Cuentas Bloqueadas</h2>
   @if (usersBlock.length != 0) {
   <table>
     <thead>
@@ -18,7 +19,9 @@
         <td>{{ users.email }}</td>
         <td>{{ users.intentosFallidos }}</td>
         <td>{{ users.bloqueado }}</td>
-        <button (click)="desbloquear(users.usuarioId)">Desbloquear</button>
+        <td>
+          <button (click)="desbloquear(users.usuarioId)">Desbloquear</button>
+        </td>
       </tr>
       }
     </tbody>
