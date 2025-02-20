@@ -45,8 +45,6 @@ export class DocumentosService {
     }
 
     query += `&page=${pagina}&size=10&sort=id`;
-
-    console.log(query);
     
     return from(this.http.get<any>(query)).pipe(
       map((data) => {
