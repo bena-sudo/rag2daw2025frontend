@@ -65,6 +65,7 @@ export class ServiceLogService {
               this.updateUserRoles(); // Actualiza el estado de los roles
             }
 
+            console.log('Descodificacion del tocken para coger id del usuario: ', response)
             console.log('Roles del usuario:', response.authorities.map(auth => auth.authority));
             console.log('Token del usuario:', response.token);
           }
@@ -74,6 +75,8 @@ export class ServiceLogService {
           return throwError(() => error);
         })
       )
+
+      
   }
 
   //Metodo para ver si esta Logged 

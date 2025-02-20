@@ -13,25 +13,27 @@ export const authInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
   // y actualiza los subjects para que sepan que no esta lgeado i no tiene rol
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 403 || error.error.message == "Token inválido o sesión no encontrada") {
+      const mensajeError = error.error?.message;
+      if (
+        (error.status === 403 && mensajeError !== "Cuenta bloqueada por múltiples intentos fallidos") || 
+        mensajeError === "Token inválido o sesión no encontrada"
+      ) {
         Swal.fire({
-              title: "Se ha cerrado tu sesion.",
-              text: "Vuelve a logearte!",
-              icon: "warning",
-              confirmButtonColor: "#dc3545",
-              confirmButtonText: "ok"
-            }).then((result) => {
-              if (result.isConfirmed) {
-                console.log("Sesión inválida o usuario desactivado, cerrando sesión...");
-                localStorage.removeItem('auth_token');
-                localStorage.removeItem('user_roles');
-                service.updateLoginStatus();
-                service.updateUserRoles();
-                router.navigate(['/login']);
-                
-              }
-            });
-        
+          title: "Se ha cerrado tu sesión.",
+          text: "Vuelve a logearte!",
+          icon: "warning",
+          confirmButtonColor: "#dc3545",
+          confirmButtonText: "OK"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log("Sesión inválida o usuario desactivado, cerrando sesión...");
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('user_roles');
+            service.updateLoginStatus();
+            service.updateUserRoles();
+            router.navigate(['/login']);
+          }
+        });
       }
       return throwError(() => error);
     })
