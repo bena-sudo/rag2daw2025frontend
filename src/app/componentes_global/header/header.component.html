@@ -26,6 +26,8 @@
 
           }@else if ( rol === 'SUPERVISOR') {
             <!-- rutas en caso del que el usuario sea rol SUPERVISOR-->
+            <a [routerLink]="['/admin']" routerLinkActive="router-link-active">Panel SUPERVISOR</a>
+            <a [routerLink]="['/estadisticas']" routerLinkActive="router-link-active">estadisticas SUPERVISOR</a>
             
 
           }@else if ( rol === 'ACREDITADOR') {

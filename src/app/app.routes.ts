@@ -14,11 +14,14 @@ import { InformacionUsuarioComponent } from './componentes_admin/informacion-usu
 import { ModificarUserComponent } from './componentes_admin/modificar-user/modificar-user.component';
 import { CuentasBlockComponent } from './componentes_admin/cuentas-block/cuentas-block.component';
 import { ListaUsuariosActivosComponent } from './componentes_admin/lista-usuarios-activos/lista-usuarios-activos.component';
+import { supervisorguardGuard } from './componentes_calidad/guard/supervisorguard.guard';
 
 
 export const routes: Routes = [
-    { path: 'admin', component: AdminPanelComponent },
-    { path: 'estadisticas', component: EstadisticasPanelComponent },
+    //Grupo supervisor
+    { path: 'admin', canActivate: [supervisorguardGuard], component: AdminPanelComponent },
+    { path: 'estadisticas', canActivate: [supervisorguardGuard], component: EstadisticasPanelComponent },
+    //Grupo seguretat
     { path: 'inicio', component: InicioComponent},
     { path: 'login', canActivate: [authGuard], component: LoginComponent},
     { path: 'registro', canActivate: [authGuard], component: RegistroComponent},

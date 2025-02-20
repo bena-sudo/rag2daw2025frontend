@@ -9,7 +9,7 @@ export const authInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router); // Inyeccion de Router para poder redirigir a inicio
   const service = inject(ServiceLogService); //Inyeccion del servicio
 
-  //Cuando el interceptor detecte un error 403 o 401 borra localstorage, redirige a login 
+  //Cuando el interceptor detecte un error 403 o tocken invalido borra localstorage, redirige a login 
   // y actualiza los subjects para que sepan que no esta lgeado i no tiene rol
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
