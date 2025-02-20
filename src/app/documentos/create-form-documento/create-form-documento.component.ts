@@ -15,10 +15,10 @@ import { EtiquetasService } from '../../service/etiquetas.service';
 @Component({
   selector: 'app-documento-create-form',
   imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './documento-create-form.component.html',
-  styleUrl: './documento-create-form.component.css',
+  templateUrl: './create-form-documento.component.html',
+  styleUrl: './create-form-documento.component.css',
 })
-export class DocumentoCreateFormComponent {
+export class CreateFormDocumentoComponent {
   usuarioId = 1;
   comentario = '';
   nombreFichero = '';

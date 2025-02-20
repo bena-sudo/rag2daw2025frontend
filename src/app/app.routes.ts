@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { ChunksComponent } from './chunks/chunks/chunks.component';
 import { EtiquetaGridComponent } from './etiqueta/etiqueta-grid/etiqueta-grid.component';
 import { MainDocumentoComponent } from './documentos/main-documento/main-documento.component';
-import { DocumentoCreateFormComponent } from './documentos/documento-create-form/documento-create-form.component';
+import { CreateFormDocumentoComponent } from './documentos/create-form-documento/create-form-documento.component';
 import { DocumentoDetailComponent } from './documentos/documento-detail/documento-detail.component';
 import { DocumentoEditFormComponent } from './documentos/documento-edit-form/documento-edit-form.component';
 import { AdminPanelComponent } from './componentes_calidad/chat/admin-panel/admin_panel.component';
@@ -28,12 +28,12 @@ export const routes: Routes = [
   { path: 'admin', canActivate: [supervisorguardGuard], component: AdminPanelComponent },
   { path: 'estadisticas', canActivate: [supervisorguardGuard], component: EstadisticasPanelComponent },
   //Grupo documental
-  { path: 'documentos', component: MainDocumentoComponent },
-  { path: 'chunks', component: ChunksComponent },
-  { path: 'etiqueta', component: EtiquetaGridComponent },
-  { path: 'documento/:id', component: DocumentoDetailComponent },
-  { path: 'createForm', component: DocumentoCreateFormComponent },
-  { path: 'editForm/:id', component: DocumentoEditFormComponent },
+  { path: 'documentos', canActivate: [adminGuardsGuard], component: MainDocumentoComponent },
+  { path: 'chunks', canActivate: [adminGuardsGuard], component: ChunksComponent },
+  { path: 'etiqueta', canActivate: [adminGuardsGuard], component: EtiquetaGridComponent },
+  { path: 'documento/:id', canActivate: [adminGuardsGuard], component: DocumentoDetailComponent },
+  { path: 'createForm', /*canActivate: [adminGuardsGuard],*/ component: CreateFormDocumentoComponent },
+  { path: 'editForm/:id', canActivate: [adminGuardsGuard], component: DocumentoEditFormComponent },
   //Grupo seguretat
   { path: 'inicio', component: InicioComponent},
   { path: 'login', canActivate: [authGuard], component: LoginComponent},

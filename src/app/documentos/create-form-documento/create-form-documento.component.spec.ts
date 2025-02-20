@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DocumentoCreateFormComponent } from './documento-create-form.component';
+import { DocumentoCreateFormComponent } from './create-form-documento.component';
 
 describe('DocumentoCreateFormComponent', () => {
   let component: DocumentoCreateFormComponent;
