@@ -115,7 +115,11 @@
 }
 
 .anteriorsiguienteButton[disabled], .boton-finalizar[disabled] {
-  background-color: var(--azul-muy-claro-2);
+  background-color: gray;
+  cursor: not-allowed;
+}
+.anteriorsiguienteButton[disabled]:hover, .boton-finalizar[disabled]:hover {
+  background-color: darkgray;
   cursor: not-allowed;
 }
 

@@ -83,6 +83,7 @@ export class Cuestionario1Component implements OnInit {
           this.preguntaActual = this.preguntas.findIndex(p => p.id === nuevaPreguntaId);
         }
         this.animacion = 'entrada';
+        this.respuestaSeleccionada = null;
       }, 300);
     }
   }

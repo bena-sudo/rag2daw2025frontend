@@ -14,7 +14,7 @@ import { AcreditacionesService } from '../../services/acreditaciones.service';
 })
 export class DocumentoListComponent {
 
-  //@Input('id') idAcreditacion?: string;
+  @Input('id') idAcreditacion?: string;
 
   existenDocumentos = false;
   
@@ -25,26 +25,17 @@ export class DocumentoListComponent {
   constructor(
     private documentoService: DocumentosService, private acreditacionesService: AcreditacionesService) {}
   
-  ngOnInit() {
-      //console.log("ID : " + this.idAcreditacion);
-      //this.acreditacion = this.acreditacionesService.getAcreditacion(Number(this.idAcreditacion)).subscribe();
+    ngOnInit() {
+      this.acreditacionesService.getAcreditacion(Number(this.idAcreditacion)).subscribe(acreditacion => {
+        this.acreditacion = acreditacion;
 
-      // this.documentoService.searchDocumentos(this.acreditacion.id_usuario).subscribe(documentos => {
-      //   console.log('Respuesta de la API:', documentos);
-      //   this.documentosArray = documentos;
-      //   if (this.documentosArray.length > 0) {
-      //     this.existenDocumentos = true;
-      //   }
-      // });
-
-      this.documentoService.searchDocumentos('1').subscribe(documentos => {
-        console.log('Respuesta de la API:', documentos);
-        this.documentosArray = documentos;
-        if (this.documentosArray.length > 0) {
-          this.existenDocumentos = true;
-        }
+        this.documentoService.searchDocumentos(this.acreditacion.usuario_id).subscribe(documentos => {
+          this.documentosArray = documentos;
+          this.existenDocumentos = this.documentosArray.length > 0;
+        });
       });
     }
+    
   
     previsualizarDocumento(id: number) {
       const documento = this.documentosArray.find(doc => doc.id === id);

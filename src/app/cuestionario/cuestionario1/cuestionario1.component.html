@@ -51,11 +51,11 @@
       }
       @if (preguntaActual < preguntas.length - 1 && ((respuestaSeleccionada === 'no' && preguntas[preguntaActual].finalNo == true) 
                                                     || (respuestaSeleccionada === 'si' && preguntas[preguntaActual].finalSi == true))) {
-        <button (click)="finalizar()" class="anteriorsiguienteButton">Siguiente</button>
+        <button (click)="finalizar()" class="anteriorsiguienteButton" [disabled]="!respuestaSeleccionada && preguntas[preguntaActual]?.tipoId == 1">Siguiente</button>
       }@else if(preguntaActual === preguntas.length - 1) {
-        <button class="boton-finalizar" (click)="finalizar()">Finalizar</button>
+        <button class="boton-finalizar" (click)="finalizar()" [disabled]="!respuestaSeleccionada && preguntas[preguntaActual]?.tipoId == 1" >Finalizar</button>
       }@else if(preguntaActual < preguntas.length) {
-        <button (click)="siguientePregunta()" class="anteriorsiguienteButton">Siguiente</button>
+        <button (click)="siguientePregunta()" class="anteriorsiguienteButton" [disabled]="!respuestaSeleccionada && preguntas[preguntaActual]?.tipoId == 1">Siguiente</button>
       }
     </div>
 
