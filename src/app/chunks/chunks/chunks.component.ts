@@ -30,7 +30,6 @@ export class ChunksComponent {
   constructor(private chunkService: ChunksService) {}
 
   ngOnInit(): void {
-    this.documentoId = 2;
     this.modificarLista(()=>{});
     this.modificarListaFiltrada();
   }
@@ -129,11 +128,6 @@ export class ChunksComponent {
     if (confirmacion) {
       this.modificarLista(()=>{
         const chunksPendientes = this.chunks.filter(chunk=>chunk.estado === "PENDIENTE");
-        if (chunksPendientes.length == 0) {
-          console.log("No hay en estado pendiente");
-        } else {
-          console.log("Se van a modificar ",chunksPendientes.length);
-        }
         this.aprobarChunks(chunksPendientes);
       });
     }
@@ -155,7 +149,6 @@ export class ChunksComponent {
         chunksAprobados.forEach((chunk, index) => {
           this.chunkService.enviarChunk(chunk.id).subscribe({
             next: (mensaje) => {
-              console.log("Chunk enviado: ", mensaje.id);
               procesados++;
         
               if (procesados === totalChunks) {

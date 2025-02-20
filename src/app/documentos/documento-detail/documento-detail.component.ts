@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './documento-detail.component.css',
 })
 export class DocumentoDetailComponent implements OnInit {
-  @Input({ required: true }) id!: string;
+  @Input({ required: true }) id!: number;
   PDFbase64!: SafeResourceUrl;
 
   documento!: Documento;
@@ -28,10 +28,9 @@ export class DocumentoDetailComponent implements OnInit {
   }
 
   cargarDocumento() {
-    this.documentosService.getDocumento(Number(this.id)).subscribe({
+    this.documentosService.getDocumento(this.id).subscribe({
       next: (data) => {
         this.documento = data;
-        console.log(data);
         this.loadPDFBase64blob();
       },
       error: (err) => {
