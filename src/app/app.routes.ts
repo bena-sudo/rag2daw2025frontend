@@ -8,7 +8,7 @@ import { DocumentoEditFormComponent } from './documentos/documento-edit-form/doc
 
 export const routes: Routes = [
   { path: '', component: MainDocumentoComponent },
-  { path: 'main', component: MainDocumentoComponent },
+  { path: 'documentos', component: MainDocumentoComponent },
   { path: 'chunks', component: ChunksComponent },
   { path: 'etiqueta', component: EtiquetaGridComponent },
   { path: 'documento/:id', component: DocumentoDetailComponent },
