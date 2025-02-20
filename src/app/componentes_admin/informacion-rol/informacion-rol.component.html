@@ -1,0 +1,18 @@
+<section>
+  <h3 class="titulo">Permisos del Rol {{nombreRol}}</h3>
+
+  <div class="permisos-container">
+
+      @for (permiso of todosLosPermisos; track permisoId) {
+          <button 
+            type="button" 
+            (click)="togglePermiso(permiso)" 
+            [ngClass]="{'activo': esPermisoActivo(permiso)}"
+            title={{permiso.descripcion}}>
+            {{ permiso.nombre }}
+          </button>
+        }
+
+
+  </div>
+</section>

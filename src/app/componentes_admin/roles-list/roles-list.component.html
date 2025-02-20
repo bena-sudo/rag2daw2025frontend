@@ -1,0 +1,17 @@
+<div class="body">
+
+    <h2 class="titulo">Listado de Roles</h2>
+
+    <div class="roles-contenedor">
+
+    @for (rol of rolesActivos; track $index) {
+        <div class="card">
+            <button class="card-body" [routerLink]="['/infoRol', rol.id]">
+                <h5 class="card-title">{{rol.nombre}}</h5>
+            </button>
+        </div>
+    }
+
+    </div>
+
+</div>

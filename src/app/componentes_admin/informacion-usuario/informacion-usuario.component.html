@@ -37,7 +37,7 @@
 
   </div>
 
-  <a [routerLink]="['/users-list']">Volver</a>
+  <button [routerLink]="['/users-list']" class="back-btn">⬅️ Volver</button>
 
   @if (user) {
     <app-actividad-usuario [idUser] = "user.id"></app-actividad-usuario>

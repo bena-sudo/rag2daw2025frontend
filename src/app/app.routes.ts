@@ -22,9 +22,19 @@ import { CuentasBlockComponent } from './componentes_admin/cuentas-block/cuentas
 import { ListaUsuariosActivosComponent } from './componentes_admin/lista-usuarios-activos/lista-usuarios-activos.component';
 import { supervisorguardGuard } from './componentes_calidad/guard/supervisorguard.guard';
 
+import { Cuestionario1Component } from './cuestionario/cuestionario1/cuestionario1.component';
+import { PerfilUsuarioComponent } from './vistaPerfilUsuario/perfil-usuario/perfil-usuario.component';
+import { DocumentoUserComponent } from './documentos/documento-user/documento-user.component';
+import { AcreditacionesComponent } from './acreditaciones/list-acreditaciones/acreditaciones.component';
+import { DetalleAcreditacionComponent } from './acreditaciones/detalle-acreditacion/detalle-acreditacion.component';
+import { TablaAcreditacionesComponent } from './vistaPerfilUsuario/tabla-acreditaciones/tabla-acreditaciones.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { RegistroFakeComponent } from './registro-fake/registro-fake.component';
+import { asesorGuardGuard } from './documentos/guard/asesor-guard.guard';
+import { RolesListComponent } from './componentes_admin/roles-list/roles-list.component';
+import { InformacionRolComponent } from './componentes_admin/informacion-rol/informacion-rol.component';
 
 export const routes: Routes = [
-  //Grupo supervisor
   { path: 'admin', canActivate: [supervisorguardGuard], component: AdminPanelComponent },
   { path: 'estadisticas', canActivate: [supervisorguardGuard], component: EstadisticasPanelComponent },
   //Grupo documental
@@ -45,5 +55,17 @@ export const routes: Routes = [
   { path: 'crear-usuario', canActivate: [adminGuardsGuard], component: CrearUsuarioComponent},
   { path: 'users-list/modificar/:id', canActivate: [adminGuardsGuard], component: ModificarUserComponent},
   { path: 'infoUser/:id', canActivate: [adminGuardsGuard], component: InformacionUsuarioComponent},
+  { path: 'lista-roles', canActivate: [adminGuardsGuard], component: RolesListComponent},
+    { path: 'infoRol/:id', canActivate: [adminGuardsGuard], component: InformacionRolComponent},
+  
+  //Grupo acreditaciones
+    {path: 'cuestionario/:idCuestionario/:idUsuario', component: Cuestionario1Component },
+    {path: 'documentosUser', component: DocumentoUserComponent},
+    {path: 'perfil', component: PerfilUsuarioComponent},
+    {path: 'acreditaciones', canActivate: [asesorGuardGuard], component: AcreditacionesComponent},
+    {path: 'detalle-acreditacion/:id', canActivate: [asesorGuardGuard], component: DetalleAcreditacionComponent},
+    {path: 'estadisticas/:id', canActivate: [asesorGuardGuard], component: EstadisticasComponent},
+
+    //En caso de ruta erronea redreccion a la pagina de incio
   { path: '**', pathMatch: 'full', redirectTo: 'inicio'}
 ];

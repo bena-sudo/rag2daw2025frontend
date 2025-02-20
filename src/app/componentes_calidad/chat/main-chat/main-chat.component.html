@@ -33,8 +33,11 @@
       }
     </div>
 
-    <div class="chat-input">
-      <input type="text" placeholder="Escribe aquí tu pregunta" [(ngModel)]="textoPregunta"/>
-      <button (click)="crearMensaje()">Enviar</button>
-    </div>
+    @if (idChat != -1) {
+      <div class="chat-input">
+        <input type="text" placeholder="Escribe aquí tu pregunta" [(ngModel)]="textoPregunta"/>
+        <button (click)="crearMensaje()">Enviar</button>
+      </div>
+    }
+    
   </div>

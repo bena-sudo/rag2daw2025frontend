@@ -35,6 +35,8 @@ export class MainChatComponent implements OnChanges{
 
 	// con el id del chat cambia el contenido a las preguntas
 	actualizarChat() {
+		this.sseService.disconnectFromSse();
+		this.sseSubscription.unsubscribe();
 		if (this.idChat == -1)
 			return;
 		
