@@ -12,6 +12,7 @@
 
 .flex :nth-child(2) {
   flex: 1.5;
+  align-self: flex-start;
 }
 
 @media (max-width: 1000px) {
@@ -25,19 +26,15 @@
 }
 
 .documento-info {
-  font-family: 'Poppins', sans-serif;
   display: flex;
-  justify-content: space-between; 
-  align-items: center; 
-  margin: 8px;
-  padding: 8px;
-  background-color: #f3f4f6; 
-  border-radius: 4px;
-  width: 40%;
+  justify-content: space-between; /* Espaciado entre filtro y botones */
+  align-items: center;
+  background-color: #f8f9fa; /* Color de fondo claro */
+  padding: 1% 2% 1% 2% ;
+  border-bottom: 2px solid #dee2e6;
 }
 
 .documento-texto {
-  
   flex-grow: 1; 
 }
 
@@ -58,7 +55,6 @@
   border: none;
   padding: 6px 12px;
   font-size: 1rem;
-  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s;
   border-radius: 8px;
@@ -67,5 +63,3 @@
 .documento-boton:hover {
   opacity: 0.9; 
 }
-
-
