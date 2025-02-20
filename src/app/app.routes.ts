@@ -16,7 +16,6 @@ import { CuentasBlockComponent } from './componentes_admin/cuentas-block/cuentas
 import { ListaUsuariosActivosComponent } from './componentes_admin/lista-usuarios-activos/lista-usuarios-activos.component';
 import { supervisorguardGuard } from './componentes_calidad/guard/supervisorguard.guard';
 
-import { InicioComponent } from './cuestionario/inicio/inicio.component';
 import { Cuestionario1Component } from './cuestionario/cuestionario1/cuestionario1.component';
 import { PerfilUsuarioComponent } from './vistaPerfilUsuario/perfil-usuario/perfil-usuario.component';
 import { DocumentoUserComponent } from './documentos/documento-user/documento-user.component';
