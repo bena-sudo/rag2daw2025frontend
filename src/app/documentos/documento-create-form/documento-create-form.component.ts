@@ -17,7 +17,7 @@ export class DocumentoCreateFormComponent {
   nombreFichero = '';
   tipo_documento = '';
   estado = 'PENDIENTE';
-  file: File | null = null; // Ahora puede ser null
+  file: File | null = null;
   intentoSubida = false;
   createForm: FormGroup;
   existenDocumentos = false;
@@ -46,7 +46,7 @@ export class DocumentoCreateFormComponent {
           if (element.tipo_documento === 'DNI') {
             this.dniSubido = true;
           }
-          console.log(this.dniSubido);   
+          console.log(this.dniSubido);
         }
         
       },
@@ -59,7 +59,7 @@ export class DocumentoCreateFormComponent {
 
   subir() {
     
-    this.intentoSubida = true; // Marcamos que el usuario ha intentado subir
+    this.intentoSubida = true; 
 
     if (!this.file || !this.createForm.get('nombreFichero')?.value) {
       console.error('Debe seleccionar un archivo y proporcionar un nombre de fichero.');
@@ -68,12 +68,13 @@ export class DocumentoCreateFormComponent {
 
     
 
+    //Id usuario se tiene que coger de la sesion
     const documento = {
       id_usuario: 1,
-      comentario: this.createForm.get('comentario')?.value, // <-- Obtener del formulario
-      tipo_documento: this.createForm.get('tipo_documento')?.value, // <--  
+      comentario: this.createForm.get('comentario')?.value,
+      tipo_documento: this.createForm.get('tipo_documento')?.value,
       estado: this.estado,
-      nombreFichero: this.createForm.get('nombreFichero')?.value, // <-- Obtener del formulario
+      nombreFichero: this.createForm.get('nombreFichero')?.value,
     };
 
     if (this.dniSubido && documento.tipo_documento === 'DNI') {

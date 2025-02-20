@@ -18,7 +18,7 @@ export class TablaAcreditacionesComponent {
   acreditacionesBBDD: FiltroResponse | null = null;
   modulos: FiltroResponse | null = null;
   asesores: FiltroResponse | null = null;
-
+  usuario_id: number = 2; // Cambiar por el usuario que tenga la sesión iniciada
   currentPage: number = 0;
   totalPages: number = 1;
   pages: number[] = [];
@@ -39,12 +39,11 @@ export class TablaAcreditacionesComponent {
   }
 
   loadAcreditaciones (page: number = 0) {
-    this.acreditacionesService.getAcreditacionesFiltrado(page, 5).subscribe(acreditaciones => {
+    this.acreditacionesService.getAcreditacionesFiltrado(this.usuario_id, page, 5).subscribe(acreditaciones => {
       console.log("AQUUi : " + acreditaciones.content.map(acreditacion => acreditacion.usuario_id));
     });
-    
-    this.acreditacionesService.getAcreditacionesFiltrado(page, 5).subscribe(acreditaciones => {
-      
+
+    this.acreditacionesService.getAcreditacionesFiltrado(this.usuario_id, page, 5).subscribe(acreditaciones => {
       this.acreditacionesBBDD = acreditaciones;
       this.totalPages = acreditaciones.totalPages;
 

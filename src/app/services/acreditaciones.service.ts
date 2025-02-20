@@ -37,41 +37,41 @@ export class AcreditacionesService {
       return this.getDataObservable<FiltroResponse>('estadoAcreditacion');
     }
 
-    getAcreditacionesFiltrado(page: number = 0, size: number = 5): Observable<FiltroResponse> {
-      const filter = 'usuario_id:IGUAL:2';
+    getAcreditacionesFiltrado(usuarioId: number, page: number = 0, size: number = 5): Observable<FiltroResponse> {
+      const filter = `usuario_id:IGUAL:${usuarioId}`;
       const fullUrl = `${this.apiUrl}/estadoAcreditacion?filter=${encodeURIComponent(filter)}&page=${page}&size=${size}`;
       
       console.log("URL generada:", fullUrl);
       
       return this.http.get<FiltroResponse>(fullUrl, { 
-        headers: { 'Content-Type': 'application/json' } 
+      headers: { 'Content-Type': 'application/json' } 
       });
     }
 
-    getAcreditacionesAsesorAceptadas (page: number = 0, size: number = 5): Observable<FiltroResponse> {
-      const filter = 'asesor_id:IGUAL:1,estado:IGUAL:aprobado';
+    getAcreditacionesAsesorAceptadas (asesorId: number, page: number = 0, size: number = 5): Observable<FiltroResponse> {
+      const filter = `asesor_id:IGUAL:${asesorId},estado:IGUAL:aprobado`;
       const fullUrl = `${this.apiUrl}/estadoAcreditacion?filter=${encodeURIComponent(filter)}&page=${page}&size=${size}`;
 
       return this.http.get<FiltroResponse>(fullUrl, { 
-        headers: { 'Content-Type': 'application/json' } 
+      headers: { 'Content-Type': 'application/json' } 
       });
     }
 
-    getAcreditacionesAsesorDenegadas (page: number = 0, size: number = 5): Observable<FiltroResponse> {
-      const filter = 'asesor_id:IGUAL:1,estado:IGUAL:rechazado';
+    getAcreditacionesAsesorDenegadas (asesorId: number, page: number = 0, size: number = 5): Observable<FiltroResponse> {
+      const filter = `asesor_id:IGUAL:${asesorId},estado:IGUAL:rechazado`;
       const fullUrl = `${this.apiUrl}/estadoAcreditacion?filter=${encodeURIComponent(filter)}&page=${page}&size=${size}`;
 
       return this.http.get<FiltroResponse>(fullUrl, { 
-        headers: { 'Content-Type': 'application/json' } 
+      headers: { 'Content-Type': 'application/json' } 
       });
     }
 
-    getAcreditacionesAsesorPendientes (page: number = 0, size: number = 5): Observable<FiltroResponse> {
-      const filter = 'asesor_id:IGUAL:1,estado:IGUAL:pendiente';
+    getAcreditacionesAsesorPendientes (asesorId: number, page: number = 0, size: number = 5): Observable<FiltroResponse> {
+      const filter = `asesor_id:IGUAL:${asesorId},estado:IGUAL:pendiente`;
       const fullUrl = `${this.apiUrl}/estadoAcreditacion?filter=${encodeURIComponent(filter)}&page=${page}&size=${size}`;
 
       return this.http.get<FiltroResponse>(fullUrl, { 
-        headers: { 'Content-Type': 'application/json' } 
+      headers: { 'Content-Type': 'application/json' } 
       });
     }
     

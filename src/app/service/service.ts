@@ -12,7 +12,7 @@ import { Estadisticas } from '../componentes_calidad/estadisticas/grafica/Estadi
 })
 export class ApiService {
  
-  private baseUrl = 'http://localhost:8090/api/rag/v1/';
+  private baseUrl = 'http://localhost:8091/api/rag/v1/';
 
   constructor(private http: HttpClient, private  enviarFiltrosService :EnviarFitrosService) {}
 

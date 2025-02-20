@@ -3,7 +3,6 @@ import { AdminPanelComponent } from './componentes_calidad/chat/admin-panel/admi
 import { EstadisticasPanelComponent } from './componentes_calidad/estadisticas/estadisticas-panel/estadisticas-panel.component';
 import { LoginComponent } from './componentes_log/login/login.component';
 import { RegistroComponent } from './componentes_log/registro/registro.component';
-import { InicioComponent } from './componentes_log/inicio/inicio.component';
 import { authGuard } from './componentes_log/guards/auth.guard';
 import { ListadoUsuariosComponent } from './componentes_admin/listado-usuarios/listado-usuarios.component';
 import { adminGuardsGuard } from './componentes_admin/guards/admin-guards.guard';
@@ -26,4 +25,17 @@ import { TablaAcreditacionesComponent } from './vistaPerfilUsuario/tabla-acredit
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { RegistroFakeComponent } from './registro-fake/registro-fake.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+    {path: 'inicio', component: InicioComponent},
+    {path: 'cuestionario/:idCuestionario/:idUsuario', component: Cuestionario1Component },
+    {path: 'registro', component: RegistroComponent},
+    {path: 'documentosUser', component: DocumentoUserComponent},
+    {path: 'perfil', component: PerfilUsuarioComponent},
+    {path: 'tablaAcreditacion', component: TablaAcreditacionesComponent},
+    {path: 'acreditaciones', component: AcreditacionesComponent},
+    {path: 'detalle-acreditacion/:id', component: DetalleAcreditacionComponent},
+    {path: 'estadisticas/:id', component: EstadisticasComponent},
+    {path: 'login', component: LoginComponent},
+
+    {path: '', pathMatch: 'full', redirectTo: 'inicio'}
+];

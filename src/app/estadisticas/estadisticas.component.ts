@@ -32,19 +32,21 @@ export class EstadisticasComponent implements AfterViewInit, OnInit {
   }
 
   obtenerAcreditaciones() {
-    this.acreditacionesService.getAcreditacionesAsesorAceptadas().subscribe((response: any) => {
+    const asesor_id = 1; //Cambiar el id por el asesor que tenga iniciada la sesion
+
+    this.acreditacionesService.getAcreditacionesAsesorAceptadas(asesor_id).subscribe((response: any) => {
       console.log("✅ ACEPTADAS:", JSON.stringify(response, null, 2));
       this.aceptadas = response.totalElements || 0;
       this.actualizarTotales();
     });
-  
-    this.acreditacionesService.getAcreditacionesAsesorDenegadas().subscribe((response: any) => {
+    
+    this.acreditacionesService.getAcreditacionesAsesorDenegadas(asesor_id).subscribe((response: any) => {
       console.log("❌ DENEGADAS:", JSON.stringify(response, null, 2));
       this.denegadas = response.totalElements || 0;
       this.actualizarTotales();
     });
-  
-    this.acreditacionesService.getAcreditacionesAsesorPendientes().subscribe((response: any) => {
+    
+    this.acreditacionesService.getAcreditacionesAsesorPendientes(asesor_id).subscribe((response: any) => {
       console.log("⏳ PENDIENTES:", JSON.stringify(response, null, 2));
       this.pendientes = response.totalElements || 0;
       this.actualizarTotales();
