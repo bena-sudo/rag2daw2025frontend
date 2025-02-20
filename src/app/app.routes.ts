@@ -44,7 +44,7 @@ export const routes: Routes = [
   { path: 'chunks', canActivate: [adminGuardsGuard], component: ChunksComponent },
   { path: 'etiqueta', canActivate: [adminGuardsGuard], component: EtiquetaGridComponent },
   { path: 'documento/:id', canActivate: [adminGuardsGuard], component: DocumentoDetailComponent },
-  { path: 'createForm', /*canActivate: [adminGuardsGuard],*/ component: CreateFormDocumentoComponent },
+  { path: 'createForm', canActivate: [adminGuardsGuard], component: CreateFormDocumentoComponent },
   { path: 'editForm/:id', canActivate: [adminGuardsGuard], component: DocumentoEditFormComponent },
   { path: 'grafica', component: EvolucionDocumentosComponent},
 
