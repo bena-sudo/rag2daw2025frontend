@@ -1,4 +1,11 @@
 import { Routes } from '@angular/router';
+import { ChunksComponent } from './chunks/chunks/chunks.component';
+import { EtiquetaGridComponent } from './etiqueta/etiqueta-grid/etiqueta-grid.component';
+import { MainDocumentoComponent } from './documentos/main-documento/main-documento.component';
+import { GraficasEstadisticasComponent } from './estadistica_documental/graficas-estadisticas/graficas-estadisticas.component';
+import { CreateFormDocumentoComponent } from './documentos/create-form-documento/create-form-documento.component';
+import { DocumentoDetailComponent } from './documentos/documento-detail/documento-detail.component';
+import { DocumentoEditFormComponent } from './documentos/documento-edit-form/documento-edit-form.component';
 import { AdminPanelComponent } from './componentes_calidad/chat/admin-panel/admin_panel.component';
 import { EstadisticasPanelComponent } from './componentes_calidad/estadisticas/estadisticas-panel/estadisticas-panel.component';
 import { LoginComponent } from './componentes_log/login/login.component';
@@ -27,13 +34,20 @@ import { RegistroFakeComponent } from './registro-fake/registro-fake.component';
 import { asesorGuardGuard } from './documentos/guard/asesor-guard.guard';
 import { RolesListComponent } from './componentes_admin/roles-list/roles-list.component';
 import { InformacionRolComponent } from './componentes_admin/informacion-rol/informacion-rol.component';
+import { EvolucionDocumentosComponent } from './estadistica_documental/evolucion-documentos/evolucion-documentos.component';
 
 export const routes: Routes = [
-    //Grupo supervisor
   { path: 'admin', canActivate: [supervisorguardGuard], component: AdminPanelComponent },
   { path: 'estadisticas', canActivate: [supervisorguardGuard], component: EstadisticasPanelComponent },
   //Grupo documental
-  
+  { path: 'documentos', canActivate: [adminGuardsGuard], component: MainDocumentoComponent },
+  { path: 'chunks', canActivate: [adminGuardsGuard], component: ChunksComponent },
+  { path: 'etiqueta', canActivate: [adminGuardsGuard], component: EtiquetaGridComponent },
+  { path: 'documento/:id', canActivate: [adminGuardsGuard], component: DocumentoDetailComponent },
+  { path: 'createForm', canActivate: [adminGuardsGuard], component: CreateFormDocumentoComponent },
+  { path: 'editForm/:id', canActivate: [adminGuardsGuard], component: DocumentoEditFormComponent },
+  { path: 'grafica', component: EvolucionDocumentosComponent},
+
   //Grupo seguretat
   { path: 'inicio', component: InicioComponent},
   { path: 'login', canActivate: [authGuard], component: LoginComponent},

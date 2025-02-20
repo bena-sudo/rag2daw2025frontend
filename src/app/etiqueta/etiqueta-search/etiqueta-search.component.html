@@ -1,0 +1,11 @@
+<form class="search-bar">
+  <button>BUSCAR</button>
+  <input
+    type="search"
+    class="form-control"
+    placeholder="Search..."
+    aria-label="Search"
+    [formControl]="searchControl"
+    (keydown.enter)="$event.preventDefault()"
+  />
+</form>

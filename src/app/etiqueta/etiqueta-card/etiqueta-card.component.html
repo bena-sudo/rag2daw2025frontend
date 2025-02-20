@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="actions">
+    <button (click)="abrirModal()"><i class="fas fa-edit"></i> Editar</button>
+    <button (click)="eliminarEtiqueta()">
+      <i class="fas fa-trash"></i> Eliminar
+    </button>
+  </div>
+  <p>{{ etiqueta.nombre }}</p>
+</div>
+
+@if(mostrarModal){
+<div class="modal-overlay">
+  <form class="modal" [formGroup]="formEtiqueta" (ngSubmit)="guardarCambios()">
+    <h2>Editar Etiqueta</h2>
+    <input
+      type="text"
+      formControlName="nombre"
+      placeholder="Nuevo nombre"
+      [ngClass]="nombreNotValid"
+    />
+
+    <div class="modal-actions">
+      <button type="submit">Guardar</button>
+      <button (click)="cerrarModal()">Cancelar</button>
+    </div>
+  </form>
+</div>
+}
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+/>

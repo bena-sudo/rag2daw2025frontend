@@ -1,0 +1,65 @@
+.flex {
+  display: flex;
+  gap: 2%;
+  padding: 2%;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.flex :nth-child(1) {
+  flex: 1;
+}
+
+.flex :nth-child(2) {
+  flex: 1.5;
+  align-self: flex-start;
+}
+
+@media (max-width: 1000px) {
+  .flex {
+    flex-direction: column;
+  }
+  .flex :nth-child(1),
+  .flex :nth-child(2) {
+    width: 100%;
+  }
+}
+
+.documento-info {
+  display: flex;
+  justify-content: space-between; /* Espaciado entre filtro y botones */
+  align-items: center;
+  background-color: #f8f9fa; /* Color de fondo claro */
+  padding: 1% 2% 1% 2% ;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.documento-texto {
+  flex-grow: 1; 
+}
+
+.documento-nombre {
+  font-size: 1.125rem; 
+  font-weight: 600; 
+}
+
+.documento-comentario {
+  font-size: 0.875rem; 
+  color: #4b5563; 
+}
+
+.documento-boton {
+  background-color: #ff5722;
+  color: #ffffff;
+
+  border: none;
+  padding: 6px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-radius: 8px;
+}
+
+.documento-boton:hover {
+  opacity: 0.9; 
+}

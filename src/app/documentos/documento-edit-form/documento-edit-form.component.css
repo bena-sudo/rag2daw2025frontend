@@ -1,0 +1,230 @@
+
+.body {
+    font-family: 'Poppins', sans-serif;
+    /* background-color: #e8f0f4; */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.formulario-contenedor {
+    background-color: #ffffff;
+    padding: 20px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 70%; 
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.formulario-edicion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulario-edicion label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+    width: 100%; 
+    max-width: 700px;
+    text-align: left; 
+}
+
+.formulario-edicion input{
+    width: 100%;
+    max-width: 700px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.formulario-edicion textarea {
+    width: 100%;
+    max-width: 700px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+}
+
+::placeholder {
+    padding-left: 10px;
+    color: #aaa;
+}
+
+input {
+    font-family: 'Poppins', sans-serif;
+}
+
+textarea {
+    font-family: 'Poppins', sans-serif;
+    resize: none;
+    height: 100px;
+}
+
+.botones {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; 
+    max-width: 400px; 
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1; 
+    margin: 0 5px; 
+}
+
+.guardar {
+    background-color: #ff5722;
+    color: #ffffff;
+}
+
+.borrar {
+    background-color: #ff5722;
+    color: #ffffff;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+
+@media screen and (max-width: 768px) {
+    .formulario-contenedor {
+        max-width: 90%; 
+        padding: 20px;
+    }
+
+    .formulario-edicion label {
+        max-width: 100%; 
+    }
+
+    .formulario-edicion input,
+    .formulario-edicion textarea {
+        max-width: 100%; 
+    }
+
+    .botones {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    button {
+        flex: none; 
+        margin: 5px 0; 
+        width: 100%; 
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem; 
+    }
+
+    .formulario-contenedor {
+        padding: 15px;
+    }
+
+    button {
+        font-size: 0.9rem; 
+        padding: 8px 16px;
+    }
+}
+
+.is-valid {
+    border: 1px solid #ccc;
+}
+
+.is-invalid {
+    border: 1px solid red;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.etiquetas-container {
+    width: 100%;
+    max-width: 700px;
+}
+
+.etiquetas-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 700px;
+}
+
+.etiqueta-group {
+    display: flex;
+    /* align-items: center; */
+    width: 100%;
+    gap: 10px;
+}
+
+.etiqueta-input {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid var(--azul-claro-1);
+    border-radius: 5px;
+    color: var(--texto_principal);
+    background-color: var(--fondo_secundario);
+}
+
+.btn-borrar {
+    width: 20%;
+    height: 40px;
+    color: red;
+    border: solid 0.5px red;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    background-color: white;
+}
+
+.btn-borrar:hover {
+    background-color: red;
+    color: white;
+}
+
+.btn-agregar {
+    background-color: var(--azul-base);
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    align-self: flex-start;
+}
+
+.btn-agregar:hover {
+    background-color: var(--azul-claro-1);
+}
