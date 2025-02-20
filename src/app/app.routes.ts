@@ -10,12 +10,11 @@ import { EvolucionDocumentosComponent } from './estadistica_documental/evolucion
 
 export const routes: Routes = [
   { path: '', component: MainDocumentoComponent },
-  { path: 'main', component: MainDocumentoComponent },
+  { path: 'documentos', component: MainDocumentoComponent },
   { path: 'chunks', component: ChunksComponent },
   { path: 'etiqueta', component: EtiquetaGridComponent },
   { path: 'documento/:id', component: DocumentoDetailComponent },
   {path: 'createForm', component: DocumentoCreateFormComponent},
-
   {path: 'editForm/:id', component: DocumentoEditFormComponent},
   {path: 'grafica', component: EvolucionDocumentosComponent}
   

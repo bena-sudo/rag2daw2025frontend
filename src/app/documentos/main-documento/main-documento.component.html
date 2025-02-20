@@ -6,7 +6,7 @@
       ></app-documento-search>
 
       <div class="document-list">
-        <button class="button_orange">+ Añadir documento</button>
+        <button class="button_orange" [routerLink]="['createForm']">+ Añadir documento</button>
         <ul>
           @for (documento of documentos; track $index) {
           <app-documento-item [documento]="documento"></app-documento-item>

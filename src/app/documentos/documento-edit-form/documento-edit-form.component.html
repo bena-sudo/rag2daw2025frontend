@@ -26,6 +26,31 @@
 
             </textarea>
 
+            <div class="etiquetas-container">
+                <div class="etiquetas-content">
+                  <div formArrayName="etiquetas">
+                    @for (etiquetaCtrl of etiquetasArray.controls; track $index) {
+                    <div class="etiqueta-group">
+                      <select class="etiqueta-input" id="etiqueta{{ $index }}" name="etiqueta{{ $index }}"
+                        [formControlName]="$index">
+                        <option value="" disabled selected>Etiqueta</option>
+                        @for (etiqueta of etiquetasDisponibles; track $index) {
+                        <option [value]="etiqueta.id">{{ etiqueta.nombre }}</option>
+                        }
+                      </select>
+        
+                      <button type="button" class="btn-borrar" (click)="delEtiqueta($index)">
+                        Borrar
+                      </button>
+                    </div>
+                    }
+                  </div>
+                  <button type="button" class="btn-agregar" (click)="addEtiqueta()">
+                    + Agregar Etiqueta
+                  </button>
+                </div>
+              </div>
+
             <div class="centro">
                 <div class="botones">
                     <button (click)="submitForm()" class="guardar">Guardar</button>

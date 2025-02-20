@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
 import { DocumentosService } from '../../service/documentos.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { EtiquetasService } from '../../service/etiquetas.service';
 
 @Component({
   selector: 'app-documento-create-form',
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './documento-create-form.component.html',
-  styleUrl: './documento-create-form.component.css'
+  styleUrl: './documento-create-form.component.css',
 })
 export class DocumentoCreateFormComponent {
   usuarioId = 1;
@@ -18,16 +26,37 @@ export class DocumentoCreateFormComponent {
   file: File | null = null; // Ahora puede ser null
   intentoSubida = false;
   createForm: FormGroup;
+  etiquetasDisponibles: any[] = [];
+  documentoId!: number;
 
   constructor(
     private documentoService: DocumentosService,
     private formBuilder: FormBuilder,
+    private etiquetasService: EtiquetasService,
     private router: Router
   ) {
     this.createForm = this.formBuilder.group({
       file: [null, Validators.required],
       nombreFichero: ['', Validators.required],
-      comentario: ['']
+      comentario: [''],
+      etiquetas: this.formBuilder.array([]),
+    });
+  }
+
+  ngOnInit() {
+    this.cargarEtiquetas();
+  }
+
+  cargarEtiquetas() {
+    this.etiquetasService.getEtiquetas().subscribe({
+      next: (response) => {
+        if (response && Array.isArray(response.content)) {
+          this.etiquetasDisponibles = response.content;
+        } else {
+          console.error('❌ Respuesta inesperada:', response);
+        }
+      },
+      error: (error) => console.error('❌ Error al cargar etiquetas:', error),
     });
   }
 
@@ -35,37 +64,47 @@ export class DocumentoCreateFormComponent {
     this.intentoSubida = true;
 
     if (!this.file || !this.createForm.get('nombreFichero')?.value) {
-      console.error('Debe seleccionar un archivo y proporcionar un nombre de fichero.');
+      console.error(
+        'Debe seleccionar un archivo y proporcionar un nombre de fichero.'
+      );
       return;
     }
 
     // Crea el objeto FormData
     const formData = new FormData();
-    // Los nombres deben coincidir con los atributos de DocumentoNew
-    formData.append('nombreFichero', this.createForm.get('nombreFichero')?.value);
+    formData.append(
+      'nombreFichero',
+      this.createForm.get('nombreFichero')?.value
+    );
     formData.append('comentario', this.createForm.get('comentario')?.value);
-    // Adjunta el archivo con la clave 'multipart'
     formData.append('multipart', this.file, this.file.name);
-    //estado por defecto 'PENDIENTE'
-    formData.append('estado','PENDIENTE');
-    // Si el backend requiere otros campos (por ejemplo, idUsuario), agrégalos:
-    formData.append('idUsuario', '1'); // Ejemplo; reemplaza según corresponda
+    formData.append('estado', 'PENDIENTE');
+    formData.append('idUsuario', this.usuarioId.toString());
 
-    // Antes de enviar la petición
-    for (const [key, value] of formData.entries()) {
-      console.log(`${key}:`, value);
-    }
+    this.etiquetasArray.value.forEach((etiqueta: string) => {
+      formData.append('etiquetas', etiqueta);
+    });
 
     this.documentoService.subirDocumento(formData).subscribe({
-      next: (response) => {console.log('✅ Documento creado exitosamente:', response),this.router.navigate(['/main'])},
-      error: (error) => {console.error('❌ Error al crear documento:', error),this.router.navigate(['/createForm'])},
+      next: (response) => {
+        // Asignar el ID del documento recibido en la respuesta
+        if (response && response.id) {
+          this.documentoId = response.id;
+          this.router.navigate(['/documento', this.documentoId]);
+        } else {
+          console.warn('No se recibió un ID en la respuesta del servidor.');
+        }
+      },
+      error: (error) => {
+        console.error('❌ Error al crear documento:', error);
+        this.router.navigate(['/createForm']);
+      },
     });
   }
 
   get fileValid() {
     return (
-      this.createForm.get('file')?.valid &&
-      this.createForm.get('file')?.touched
+      this.createForm.get('file')?.valid && this.createForm.get('file')?.touched
     );
   }
 
@@ -119,10 +158,82 @@ export class DocumentoCreateFormComponent {
   borrarArchivo() {
     this.file = null;
     this.createForm.reset(); // Resetea el formulario
-    document.getElementById('drop-text')!.innerText = "Arrastra y suelta un archivo aquí o haz clic para seleccionar";
+    document.getElementById('drop-text')!.innerText =
+      'Arrastra y suelta un archivo aquí o haz clic para seleccionar';
   }
 
   triggerFileInput() {
     document.getElementById('file')?.click();
+  }
+
+  // INPUT ETIQUETAS
+
+  get etiquetasArray(): FormArray {
+    return this.createForm.get('etiquetas') as FormArray;
+  }
+
+  getEtiquetaControl(): FormControl {
+    const control = this.formBuilder.control('');
+    control.setValidators(Validators.required);
+    return control;
+  }
+
+  addEtiqueta() {
+    this.etiquetasArray.push(this.getEtiquetaControl());
+  }
+
+  delEtiqueta(i: number) {
+    this.etiquetasArray.removeAt(i);
+  }
+
+  enviarDocumento() {
+    this.intentoSubida = true;
+
+    if (!this.file || !this.createForm.get('nombreFichero')?.value) {
+      console.error(
+        'Debe seleccionar un archivo y proporcionar un nombre de fichero.'
+      );
+      return;
+    }
+
+    // Crea el objeto FormData
+    const formData = new FormData();
+    formData.append(
+      'nombreFichero',
+      this.createForm.get('nombreFichero')?.value
+    );
+    formData.append('comentario', this.createForm.get('comentario')?.value);
+    formData.append('multipart', this.file, this.file.name);
+    formData.append('estado', 'PENDIENTE');
+    formData.append('idUsuario', this.usuarioId.toString());
+
+    this.etiquetasArray.value.forEach((etiqueta: string) => {
+      formData.append('etiquetas', etiqueta);
+    });
+
+    this.documentoService.subirDocumento(formData).subscribe({
+      next: (response) => {
+        // Asignar el ID del documento recibido en la respuesta
+        if (response && response.id) {
+          this.documentoId = response.id;
+          if (!this.documentoId) {
+            console.error('No se ha especificado un documentoID');
+            return;
+          }
+          this.documentoService.enviarDocumento(this.documentoId).subscribe({
+            next: (chunks) => {
+              this.router.navigate(['/documento', this.documentoId]);
+            },
+            error: (err) => console.error('Error al enviar el documento:', err),
+          });
+        } else {
+          console.warn('No se recibió un ID en la respuesta del servidor.');
+        }
+      },
+      error: (error) => {
+        console.error('❌ Error al crear documento:', error);
+        this.router.navigate(['/createForm']);
+      },
+    });
   }
 }

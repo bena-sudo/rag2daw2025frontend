@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime } from 'rxjs';
 import { DocumentosService } from '../../service/documentos.service';
 import { Documento } from '../../interface/documento';
 import { DocumentoItemComponent } from '../documento-item/documento-item.component';
@@ -27,6 +26,7 @@ export class MainDocumentoComponent implements OnInit {
   documentos: Documento[] = [];
   paginas: number = 0;
   pagina: number = 0;
+  filtros: any = null;
 
   constructor(
     private readonly documentosService: DocumentosService,
@@ -38,61 +38,51 @@ export class MainDocumentoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.searchForm
-      .get('searchInput')
-      ?.valueChanges.pipe(
-        debounceTime(1000) // Espera 1 segundo tras el último cambio
-      )
-      .subscribe(); //SERVICE
-    this.cargarDocumentos();
+    this.getDocumentos();
   }
 
   cargarDocumentos() {
-    console.log(this.pagina);
-    
     this.documentosService.getDocumentos(this.pagina).subscribe({
       next: (data) => {
-        this.paginas = data.totalPages;
         this.documentos = data.content;
-        console.log(this.documentos);
-        
+        this.paginas = data.totalPages;
       },
       error: (err) => {
-        console.error('Error fetching etiquetas:', err);
+        console.error('Error obteniendo documentos:', err);
       },
     });
   }
 
-  onSearch(term: string): void {
-    this.documentosService.searchDocumentos(term).subscribe({
-      next: (documentos) => {
-        this.documentos = documentos;
-      },
-      error: (err) => {
-        console.error('Error fetching etiquetas:', err);
-      },
-    });
+  getDocumentos() {
+    if (this.filtros) { 
+      this.obtenerDatosFiltrados(this.filtros);
+    } else {
+      this.cargarDocumentos();
+    }
   }
 
   obtenerDatosFiltrados(filtro: any) {
-    // Llamar al servicio para obtener los datos filtrados
-      this.documentosService.searchDocumentos(filtro).subscribe({
-      next: (documentos) => {
-        if (filtro.etiqueta) {
-          this.documentos = documentos.filter(doc =>
-            doc.etiquetas.some(etiqueta => etiqueta.nombre === filtro.etiqueta))
-        }else{
-          this.documentos = documentos;
-        }
+    this.filtros = filtro;
+    this.documentosService.searchDocumentos(filtro, this.pagina).subscribe({
+      next: (data) => {
+        this.documentos = filtro.etiqueta 
+          ? data.content.filter((doc: { etiquetas: any[]; }) => 
+              doc.etiquetas.some((etiqueta) => etiqueta.nombre === filtro.etiqueta)
+            )
+          : data.content;
+        
+        this.paginas = data.totalPages;
       },
       error: (err) => {
-        console.error('Error fetching etiquetas:', err);
+        console.error('Error obteniendo documentos filtrados:', err);
       },
     });
   }
 
   updatePagina(valor: number) {
-    this.pagina = valor - 1;
-    this.cargarDocumentos();
+    if (valor >= 1 && valor <= this.paginas) {
+      this.pagina = valor - 1;
+      this.getDocumentos();
+    }
   }
 }
