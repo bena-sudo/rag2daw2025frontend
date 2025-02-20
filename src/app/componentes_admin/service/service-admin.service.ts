@@ -147,4 +147,23 @@ export class ServiceAdminService {
   }
   
   
+  //Metodo que retorna un listado de los usuarios que estan en activo
+  getActiveUsers():Observable<any[]>{
+    return this.http.get<any[]>(`${this.authUrl}/sesiones-activas`,this.httpOptions).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error al obtener los usuarios activos:', error);
+        return throwError(() => new Error('Error al obtener los usuarios activos. Intente nuevamente.'));
+      })
+    );
+  }
+
+  //Metodo para desactivar cualquier sesion que este activa si eres el administrador
+  desactivarCuenta(id:string){
+    return this.http.delete(`${this.authUrl}/logout/${id}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error al desactivar usuario:', error);
+        return throwError(() => new Error('Error al desactivar usuario. Intente nuevamente.'));
+      })
+    );
+  }
 }

@@ -20,6 +20,10 @@
             <!-- rutas en caso del que el usuario sea rol USUARIO-->
             
             
+          }@else if ( rol === 'ASESOR') {
+            <!-- rutas en caso del que el usuario sea rol SUPERVISOR-->
+            
+
           }@else if ( rol === 'SUPERVISOR') {
             <!-- rutas en caso del que el usuario sea rol SUPERVISOR-->
             
@@ -49,7 +53,6 @@
 
             
             <a [routerLink]="['/users-list']">Lista Usuarios</a>
-            <a [routerLink]="['/crear-usuario']">Crear usuario</a>
             <a [routerLink]="['/users-list-block']">Usuarios bloqueados</a>
             <a [routerLink]="['/lista-roles']">Gestión Roles y Permisos</a>
          

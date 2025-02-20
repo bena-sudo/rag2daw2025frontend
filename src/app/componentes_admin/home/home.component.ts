@@ -1,24 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
-import { SseService } from '../service/sse.service';
+import { Component} from '@angular/core';
+import { Chart1Component } from '../chart1/chart1.component';
 
-// Registrar los controladores necesarios
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  LineElement,
-  PointElement,
-  Title,
-  Tooltip,
-  Legend
-);
+
 
 @Component({
   selector: 'app-home',
+  imports: [Chart1Component],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent{
+  
 
   
 }
+
+

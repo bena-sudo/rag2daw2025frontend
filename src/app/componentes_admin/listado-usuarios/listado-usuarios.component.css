@@ -130,5 +130,11 @@ label, #roleFilter {
   background-color: var(--color_button_hover);
 }
 
+.form-inline1 {
+  display: flex;
+  gap: 10px; /* Espacio entre los elementos */
+  align-items: center; /* Alineación vertical */
+  margin-bottom: 15px; /* Espaciado inferior */
+}
 
 
