@@ -18,5 +18,6 @@ export const routes: Routes = [
 
   {path: 'editForm/:id', component: DocumentoEditFormComponent},
   {path: 'grafica', component: EvolucionDocumentosComponent}
+  
 ];
 
