@@ -10,7 +10,10 @@ footer {
     color: var(--azul-oscuro-3);
     background-color: var(--fondo_terciario);
     height: auto;
-    position: relative;
+    position: fixed; /* Fija el footer en la parte inferior */
+    bottom: 0; /* Asegura que el footer esté en la parte inferior */
+    width: 100%; /* Asegura que el footer ocupe todo el ancho */
+    z-index: 1000; /* Asegura que el footer esté por encima de otros elementos */
 }
 
 footer #txtSimarro {
