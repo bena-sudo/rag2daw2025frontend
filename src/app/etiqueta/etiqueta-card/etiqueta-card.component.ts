@@ -40,7 +40,6 @@ export class EtiquetaCardComponent {
 
     this.etiquetaService.deleteEtiqueta(this.etiqueta.id).subscribe({
       next: () => {
-        console.log('Etiqueta eliminada correctamente');
         window.location.reload();
       },
       error: (err) => console.error('Error al eliminar la etiqueta:', err),

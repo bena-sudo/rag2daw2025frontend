@@ -57,7 +57,6 @@ export class DocumentoEditFormComponent implements OnInit {
   submitForm() {
     if (this.editForm.invalid) {
       this.editForm.markAllAsTouched();
-      console.log('Formulario no válido');
       return;
     }
 
@@ -69,11 +68,8 @@ export class DocumentoEditFormComponent implements OnInit {
       etiquetas: this.etiquetasArray.value.map((etiqueta: string) => ({ id: etiqueta }))
     };
 
-    console.log('Enviando documento actualizado:', documento);
-
     this.documentService.updateDocumento(documento).subscribe({
       next: (updatedDoc) => {
-        console.log('Documento actualizado:', updatedDoc);
         this.editForm.reset();
       },
       error: (err) => {
@@ -81,7 +77,6 @@ export class DocumentoEditFormComponent implements OnInit {
         this.router.navigate(['/editForm', documento.id]);
       },
       complete: () => {
-        console.log('Actualización completada.');
         this.router.navigate(['/documento', documento.id]);
       },
     });
@@ -91,7 +86,6 @@ export class DocumentoEditFormComponent implements OnInit {
     this.cargarEtiquetas();
     this.documentService.searchDocumentoById(Number.parseInt(this.documentoID)).subscribe({
       next: (documento) => {
-        console.log('Documento encontrado:', documento);
         this.documentoOriginal = documento;
         this.editForm.patchValue({
           nombreFichero: documento.nombreFichero,
@@ -112,7 +106,6 @@ export class DocumentoEditFormComponent implements OnInit {
       next: (response) => {
         if (response && Array.isArray(response.content)) {
           this.etiquetasDisponibles = response.content;
-          console.log('Etiquetas disponibles:', this.etiquetasDisponibles);
         } else {
           console.error('❌ Respuesta inesperada:', response);
         }

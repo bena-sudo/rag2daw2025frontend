@@ -44,7 +44,6 @@ export class ChunkListComponent implements /*OnInit, */OnDestroy {
       takeUntil(this.destroy$) // Cancela la suscripción cuando el componente se destruye
     ).subscribe({
       next: () => {
-        console.log('Chunk actualizado con éxito a ',chunk.estado);
         this.notificarActualizacion();
       },
       error: (err) => console.error('Error al actualizar el chunk:', err)
@@ -78,7 +77,6 @@ export class ChunkListComponent implements /*OnInit, */OnDestroy {
       ).subscribe({
         next: () => {
           this.chunks = this.chunks.filter(chunk => chunk.id !== id);
-          console.log('Chunk eliminado con éxito');
         },
         error: (err) => console.error('Error al eliminar el chunk:', err)
       });
