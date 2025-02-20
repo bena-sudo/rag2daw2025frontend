@@ -16,6 +16,7 @@ export class DocumentoListComponent {
 
   @Input('id') idAcreditacion?: string;
 
+
   existenDocumentos = false;
   
   documentosArray: any[] = [];
@@ -26,10 +27,16 @@ export class DocumentoListComponent {
     private documentoService: DocumentosService, private acreditacionesService: AcreditacionesService) {}
   
     ngOnInit() {
+      console.log(this.idAcreditacion);
+
+      if (this.idAcreditacion === undefined) {
+        this.idAcreditacion = '1';
+      }
+      
       this.acreditacionesService.getAcreditacion(Number(this.idAcreditacion)).subscribe(acreditacion => {
         this.acreditacion = acreditacion;
 
-        this.documentoService.searchDocumentos(this.acreditacion.usuario_id).subscribe(documentos => {
+        this.documentoService.searchDocumentos('2').subscribe(documentos => {
           this.documentosArray = documentos;
           this.existenDocumentos = this.documentosArray.length > 0;
         });

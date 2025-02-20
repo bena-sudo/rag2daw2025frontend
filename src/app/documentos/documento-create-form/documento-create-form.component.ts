@@ -12,7 +12,7 @@ import { DocumentosService } from '../../services/documentos.service';
   styleUrl: './documento-create-form.component.css'
 })
 export class DocumentoCreateFormComponent {
-  usuario_id = 1;
+  usuario_id = 2;
   comentario = '';
   nombreFichero = '';
   tipo_documento = '';
@@ -39,7 +39,7 @@ export class DocumentoCreateFormComponent {
 
   ngOnInit(){
     this.dniSubido = false;
-    this.documentoService.searchDocumentos('1').subscribe({
+    this.documentoService.searchDocumentos('2').subscribe({
       next: documentos => {
         this.documentosArray = documentos;
         for (const element of this.documentosArray) {
@@ -70,7 +70,7 @@ export class DocumentoCreateFormComponent {
 
     //Id usuario se tiene que coger de la sesion
     const documento = {
-      id_usuario: 1,
+      id_usuario: 2,
       comentario: this.createForm.get('comentario')?.value,
       tipo_documento: this.createForm.get('tipo_documento')?.value,
       estado: this.estado,
