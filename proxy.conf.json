@@ -1,0 +1,9 @@
+{
+    "/auth": {
+      "target": "http://13.73.226.200:8090",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  
