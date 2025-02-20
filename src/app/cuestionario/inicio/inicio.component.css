@@ -2,11 +2,14 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     padding: 50px;
+    background-image: url('/assets/logo_acredita_incual.jpg');
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: 900px 900px;
+    background-color: white;
+
 }
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-}
+
 .button {
     margin-top: 20px;
     padding: 10px 20px;
@@ -21,7 +24,7 @@ body {
 
 .container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 100px auto;
     background-color: #F5F5F5; /* Color de fondo del contenedor */
     padding: 20px;
     border-radius: 10px; /* Bordes redondeados */
