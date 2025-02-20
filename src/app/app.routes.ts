@@ -28,7 +28,7 @@ export const routes: Routes = [
   { path: 'admin', canActivate: [supervisorguardGuard], component: AdminPanelComponent },
   { path: 'estadisticas', canActivate: [supervisorguardGuard], component: EstadisticasPanelComponent },
   //Grupo documental
-  { path: 'documento', component: MainDocumentoComponent },
+  { path: 'documentos', component: MainDocumentoComponent },
   { path: 'chunks', component: ChunksComponent },
   { path: 'etiqueta', component: EtiquetaGridComponent },
   { path: 'documento/:id', component: DocumentoDetailComponent },

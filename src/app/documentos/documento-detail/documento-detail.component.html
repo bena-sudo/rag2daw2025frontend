@@ -5,6 +5,7 @@
   </div>
   <div class="documento-acciones">
     <button class="documento-boton" [routerLink]="['/editForm', documento.id]">Editar</button>
+    <button class="documento-boton" (click)="eliminarDocumento()">Borrar</button>
   </div>
 </div>
 
@@ -13,5 +14,5 @@
     [PDFbase64]="PDFbase64"
     [contentTypeDocumento]="documento.contentTypeDocumento!"
   ></app-documento-preview>
-  <app-chunks></app-chunks>
+  <app-chunks [documentoId]="id"></app-chunks>
 </div>

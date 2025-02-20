@@ -45,8 +45,6 @@ export class DocumentosService {
     }
 
     query += `&page=${pagina}&size=10&sort=id`;
-
-    console.log(query);
     
     return from(this.http.get<any>(query)).pipe(
       map((data) => {
@@ -71,7 +69,7 @@ export class DocumentosService {
   // https://www.geeksforgeeks.org/how-to-convert-base64-to-file-in-javascript/
 
   deleteDocumento(documentoID: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${documentoID}`);
+    return this.http.delete<void>(`${this.apiUrl}/documento/${documentoID}`);
   }
 
   updateDocumento(documento: Documento): Observable<Documento> {
