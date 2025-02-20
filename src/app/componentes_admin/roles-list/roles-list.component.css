@@ -1,0 +1,46 @@
+.body {
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    height: 65vh;
+}
+
+.titulo {
+    color: var(--color_texto_hf);
+    font-size: 2rem;
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+.roles-contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    width: 250px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+    all: unset;
+    cursor: pointer; 
+    text-align: center;
+}
+
+.card-title {
+    color: var(--color_button);
+    font-size: 1.2rem;
+    font-weight: bold;
+}

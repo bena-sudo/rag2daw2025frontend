@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { saveAs } from 'file-saver';
+
 import { DocumentoListComponent } from '../documento-list/documento-list.component';
 import { DocumentosService } from '../../services/documentos.service';
 
