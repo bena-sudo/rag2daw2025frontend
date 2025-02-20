@@ -16,21 +16,14 @@ import { CuentasBlockComponent } from './componentes_admin/cuentas-block/cuentas
 import { ListaUsuariosActivosComponent } from './componentes_admin/lista-usuarios-activos/lista-usuarios-activos.component';
 import { supervisorguardGuard } from './componentes_calidad/guard/supervisorguard.guard';
 
+import { InicioComponent } from './cuestionario/inicio/inicio.component';
+import { Cuestionario1Component } from './cuestionario/cuestionario1/cuestionario1.component';
+import { PerfilUsuarioComponent } from './vistaPerfilUsuario/perfil-usuario/perfil-usuario.component';
+import { DocumentoUserComponent } from './documentos/documento-user/documento-user.component';
+import { AcreditacionesComponent } from './acreditaciones/list-acreditaciones/acreditaciones.component';
+import { DetalleAcreditacionComponent } from './acreditaciones/detalle-acreditacion/detalle-acreditacion.component';
+import { TablaAcreditacionesComponent } from './vistaPerfilUsuario/tabla-acreditaciones/tabla-acreditaciones.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { RegistroFakeComponent } from './registro-fake/registro-fake.component';
 
-export const routes: Routes = [
-    //Grupo supervisor
-    { path: 'admin', canActivate: [supervisorguardGuard], component: AdminPanelComponent },
-    { path: 'estadisticas', canActivate: [supervisorguardGuard], component: EstadisticasPanelComponent },
-    //Grupo seguretat
-    { path: 'inicio', component: InicioComponent},
-    { path: 'login', canActivate: [authGuard], component: LoginComponent},
-    { path: 'registro', canActivate: [authGuard], component: RegistroComponent},
-    { path: 'home', canActivate: [adminGuardsGuard], component: HomeComponent},
-    { path: 'users-list', canActivate: [adminGuardsGuard], component: ListadoUsuariosComponent},
-    { path: 'usuarios-activos', canActivate: [adminGuardsGuard], component: ListaUsuariosActivosComponent},
-    { path: 'users-list-block', canActivate: [adminGuardsGuard], component: CuentasBlockComponent},
-    { path: 'crear-usuario', canActivate: [adminGuardsGuard], component: CrearUsuarioComponent},
-    { path: 'users-list/modificar/:id', canActivate: [adminGuardsGuard], component: ModificarUserComponent},
-    { path: 'infoUser/:id', canActivate: [adminGuardsGuard], component: InformacionUsuarioComponent},
-    { path: '**', pathMatch: 'full', redirectTo: 'inicio'}
-];
+export const routes: Routes = [];
