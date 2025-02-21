@@ -3,12 +3,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DocumentosService } from '../../service/documentos.service';
 import { Documento } from '../../interface/documento';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { EtiquetasService } from '../../service/etiquetas.service';
 
 @Component({
   selector: 'app-documento-edit-form',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,RouterLink],
   templateUrl: './documento-edit-form.component.html',
   styleUrl: './documento-edit-form.component.css'
 })

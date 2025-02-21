@@ -2,6 +2,10 @@
     <div class="formulario-contenedor">
         <h1>Formulario de edición</h1>
         <form [formGroup]="editForm" class="formulario-edicion">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+          <button class="boton-atras" [routerLink]="['/documento',documentoID]">
+            <i class="fas fa-arrow-left" ></i>
+          </button>
             <label for="nombre">Introduce el nuevo nombre</label>
             <input 
                 type="text"
