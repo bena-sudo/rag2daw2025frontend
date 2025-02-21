@@ -11,6 +11,12 @@
 }
 
 /*BUTTONS*/
+.button-container {
+  display: flex;
+  gap: 10px; /* Espaciado entre botones */
+  justify-content: space-between;
+}
+
 .button_orange {
   background-color: var(--resaltado);
   color: var(--white);
@@ -19,7 +25,7 @@
   border: none;
   border-radius: 8px;
   margin-right: 8px;
-  width: 100%;
+  width: 32.5%;
   margin-bottom: 10px;
 }
 

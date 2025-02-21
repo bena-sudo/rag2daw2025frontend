@@ -1,26 +1,23 @@
 <div class="container">
   <div class="main">
     <div class="document-container">
-      <app-documento-search
-        (filtroAplicado)="obtenerDatosFiltrados($event)"
-      ></app-documento-search>
+      <app-documento-search (filtroAplicado)="obtenerDatosFiltrados($event)"></app-documento-search>
 
       <div class="document-list">
-        <button class="button_orange" [routerLink]="['createForm']">+ Añadir documento</button>
+        <div class="button-container">
+          <button class="button_orange" [routerLink]="['createForm']">+ Añadir documento</button>
+          <button class="button_orange" [routerLink]="['etiqueta']">Gestión Etiquetas</button>
+          <button class="button_orange" [routerLink]="['grafica']">Estadistica</button>
+        </div>
+
         <ul>
           @for (documento of documentos; track $index) {
           <app-documento-item [documento]="documento"></app-documento-item>
           }
         </ul>
       </div>
-      <app-paginacion
-        [paginas]="paginas"
-        (eventoHijo)="updatePagina($event)"
-      ></app-paginacion>
+      <app-paginacion [paginas]="paginas" (eventoHijo)="updatePagina($event)"></app-paginacion>
     </div>
   </div>
 </div>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
