@@ -62,5 +62,23 @@ export class DocumentoDetailComponent implements OnInit {
   }
 
 
+  enviarDocumento() {
+    if (!this.documento || !this.documento.id) {
+      console.error('❌ Error: No hay documento cargado o ID no válido.');
+      return;
+    }
+  
+    const documentoID = this.documento.id;
+    const idUsuario = 1; // ID del usuario, si necesitas pasarlo
+  
+    this.documentosService.enviarDocumento(documentoID, idUsuario).subscribe({
+      next: (chunks) => {
+        console.log('📤 Documento enviado con éxito:', chunks);
+      },
+      error: (err) => {
+        console.error('❌ Error al enviar el documento:', err);
+      },
+    });
+  }
   
 }
