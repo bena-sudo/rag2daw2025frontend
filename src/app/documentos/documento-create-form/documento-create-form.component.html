@@ -11,7 +11,9 @@
             'is-valid': !nombreFicheroValid,
             'is-invalid': nombreFicheroValid
           }" placeholder="Nombre" required>
-
+      @if(errorNombre){
+        <p class="error-message">Debe proporcionar un nombre de fichero.</p>
+      }
       <label for="comentario">Comentario (opcional)</label>
       <textarea id="comentario" formControlName="comentario" placeholder="Comentario opcional"></textarea>
 

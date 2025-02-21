@@ -29,6 +29,8 @@ export class DocumentoCreateFormComponent {
   etiquetasDisponibles: any[] = [];
   documentoId!: number;
 
+  errorNombre: boolean = false;
+
   constructor(
     private documentoService: DocumentosService,
     private formBuilder: FormBuilder,
@@ -64,9 +66,7 @@ export class DocumentoCreateFormComponent {
     this.intentoSubida = true;
 
     if (!this.file || !this.createForm.get('nombreFichero')?.value) {
-      console.error(
-        'Debe seleccionar un archivo y proporcionar un nombre de fichero.'
-      );
+      this.errorNombre = true;
       return;
     }
 
