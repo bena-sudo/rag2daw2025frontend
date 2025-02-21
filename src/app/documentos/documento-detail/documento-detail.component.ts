@@ -55,6 +55,11 @@ export class DocumentoDetailComponent implements OnInit {
       return;
     }
 
+    let confirm = window.confirm("¿Está seguro que desea eliminar permanentemente el documento?");
+    if (!confirm) {
+      return;
+    }
+
     this.documentosService.deleteDocumento(this.documento.id).subscribe({
       next: () => {
         this.router.navigate(['/documentos']);
