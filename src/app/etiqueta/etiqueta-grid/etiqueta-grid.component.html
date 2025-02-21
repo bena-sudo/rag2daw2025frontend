@@ -1,4 +1,10 @@
 <div class="container">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <div class="header-container">
+    <button class="boton-atras" [routerLink]="['/documentos']">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+  </div>
   <app-etiqueta-search (searchTerm)="onSearch($event)"></app-etiqueta-search>
 
   <!-- Botón para abrir el modal -->

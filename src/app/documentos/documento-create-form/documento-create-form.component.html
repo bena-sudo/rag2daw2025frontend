@@ -2,6 +2,10 @@
   <div class="formulario-contenedor">
     <h1>Subir Documento</h1>
     <form [formGroup]="createForm" class="formulario-creacion">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <button class="boton-atras" [routerLink]="['/documentos']">
+        <i class="fas fa-arrow-left" ></i>
+      </button>
       <label for="nombreFichero">Nombre del Documento</label>
       <input type="text" id="nombreFichero" formControlName="nombreFichero" [ngClass]="{
             'is-valid': !nombreFicheroValid,
@@ -50,7 +54,7 @@
       <div class="centro">
         <div class="botones">
           <button type="button" (click)="subir()" class="guardar">Subir</button>
-          <button type="button" (click)="enviarDocumento()" class="guardar">Enviar</button>
+          <button type="button" (click)="enviarDocumento()" class="guardar">Subir y Enviar</button>
           <button type="button" (click)="borrarArchivo()" class="borrar">Borrar</button>
         </div>
       </div>

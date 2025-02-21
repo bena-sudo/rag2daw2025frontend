@@ -60,4 +60,7 @@ export class DocumentoDetailComponent implements OnInit {
       complete: () => console.log('Operación de eliminación completada'),
     });
   }
+
+
+  
 }

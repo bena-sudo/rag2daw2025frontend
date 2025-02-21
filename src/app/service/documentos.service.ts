@@ -10,13 +10,12 @@ import { Chunk } from '../chunks/chunk';
 export class DocumentosService {
   private readonly apiUrl = 'http://localhost:8090/api/v1';
 
-  constructor(private readonly http: HttpClient) {}
-  
-  subirDocumento(formData: FormData): Observable<any> {
-    return this.http.post<any>(this.apiUrl+"/documento", formData);
-}
+  constructor(private readonly http: HttpClient) { }
 
-  
+  subirDocumento(formData: FormData): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "/documento", formData);
+  }
+
   getDocumentos(pagina: number): Observable<any> {
     return this.http.get<any>(
       `${this.apiUrl}/documentos?page=${pagina}&size=10&sort=id`
@@ -27,7 +26,7 @@ export class DocumentosService {
     return this.http.get<any>(`${this.apiUrl}/documento/${documentoID}`);
   }
 
-  searchDocumentos(filtros: any,pagina: number): Observable<any> {
+  searchDocumentos(filtros: any, pagina: number): Observable<any> {
     let query = `${this.apiUrl}/documentos?`;
     if (filtros.nombre) {
       query += `&filter=nombreFichero:CONTIENE:` + filtros.nombre;
@@ -45,7 +44,7 @@ export class DocumentosService {
     }
 
     query += `&page=${pagina}&size=10&sort=id`;
-    
+
     return from(this.http.get<any>(query)).pipe(
       map((data) => {
         return data;
@@ -54,7 +53,7 @@ export class DocumentosService {
     );
   }
 
-  getPDFBase64blob(documento: Documento): string {    
+  getPDFBase64blob(documento: Documento): string {
     const byteCharacters = atob(documento.base64Documento);
     const byteNumbers = new Array(byteCharacters.length);
     for (let i = 0; i < byteCharacters.length; i++) {
@@ -87,12 +86,12 @@ export class DocumentosService {
   }
 
   //Función para envio de documento y creación de sus chunks
-  enviarDocumento(documentoID: number, idUsuario: number = 1): Observable<Chunk[]>{
+  enviarDocumento(documentoID: number, idUsuario: number = 1): Observable<Chunk[]> {
     return this.http.get<Chunk[]>(`${this.apiUrl}/rag/subirDocumento/${documentoID}/${idUsuario}`).pipe(
       catchError((error) => throwError(() => error))
     );
   }
-  
+
 }
 
 

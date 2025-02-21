@@ -127,3 +127,31 @@ body {
   border-color: #dc3545;
   box-shadow: none;
 }
+
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Espaciado entre el botón y el buscador */
+  margin-bottom: 16px;
+}
+
+.boton-atras {
+  position: static; /* Elimina la posición absoluta para que fluya con el contenido */
+  width: 40px;
+  height: 40px;
+  background-color: var(--azul-base);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease-in-out;
+}
+
+.boton-atras:hover {
+  background-color: var(--azul-claro-1);
+}

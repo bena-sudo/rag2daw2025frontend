@@ -1,8 +1,26 @@
 <div class="documento-info">
-  <div class="documento-texto">
-    <h2 class="documento-nombre">{{ documento.nombreFichero }}</h2>
-    <p class="documento-comentario">{{ documento.comentario }}</p>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <div class="documento-header">
+    <button class="boton-atras" [routerLink]="['/documentos']">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <div class="documento-detalles">
+      <h2 class="documento-nombre">{{ documento.nombreFichero }}</h2>
+      <p class="documento-comentario">{{ documento.comentario }}</p>
+    </div>
+
+    <div class="documento-etiquetas">
+      @for (etiqueta of documento.etiquetas; track $index) {
+        <span class="etiqueta">
+        {{etiqueta.nombre}}
+        </span>
+      }
+      
+    </div>
   </div>
+
   <div class="documento-acciones">
     <button class="documento-boton" [routerLink]="['/editForm', documento.id]">Editar</button>
     <button class="documento-boton" (click)="eliminarDocumento()">Borrar</button>

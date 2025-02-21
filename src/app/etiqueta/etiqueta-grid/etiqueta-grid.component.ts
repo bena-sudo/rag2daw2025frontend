@@ -10,6 +10,7 @@ import { EtiquetasService } from '../../service/etiquetas.service';
 import { EtiquetaCardComponent } from '../etiqueta-card/etiqueta-card.component';
 import { EtiquetaSearchComponent } from '../etiqueta-search/etiqueta-search.component';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-etiqueta-grid',
@@ -18,6 +19,7 @@ import { CommonModule } from '@angular/common';
     EtiquetaCardComponent,
     EtiquetaSearchComponent,
     CommonModule,
+    RouterLink
   ],
   templateUrl: './etiqueta-grid.component.html',
   styleUrl: './etiqueta-grid.component.css',

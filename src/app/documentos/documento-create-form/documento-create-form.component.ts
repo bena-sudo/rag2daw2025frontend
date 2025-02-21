@@ -9,12 +9,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { EtiquetasService } from '../../service/etiquetas.service';
 
 @Component({
   selector: 'app-documento-create-form',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './documento-create-form.component.html',
   styleUrl: './documento-create-form.component.css',
 })
