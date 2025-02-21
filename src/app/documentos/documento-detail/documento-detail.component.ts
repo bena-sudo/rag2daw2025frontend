@@ -12,11 +12,14 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './documento-detail.component.html',
   styleUrl: './documento-detail.component.css',
 })
+
 export class DocumentoDetailComponent implements OnInit {
   @Input({ required: true }) id!: number;
   PDFbase64!: SafeResourceUrl;
   
   documento!: Documento;
+
+  reiniciar: boolean = true;
 
   constructor(
     private readonly documentosService: DocumentosService,
@@ -61,6 +64,12 @@ export class DocumentoDetailComponent implements OnInit {
     });
   }
 
+ reiniciarComponente() {
+    this.reiniciar = false;
+    setTimeout(() => {
+      this.reiniciar = true;
+    }, 0); // Un pequeño delay para forzar la actualización del componente
+  }
 
   enviarDocumento() {
     if (!this.documento || !this.documento.id) {
@@ -74,11 +83,11 @@ export class DocumentoDetailComponent implements OnInit {
     this.documentosService.enviarDocumento(documentoID, idUsuario).subscribe({
       next: (chunks) => {
         console.log('📤 Documento enviado con éxito:', chunks);
+        this.reiniciarComponente();
       },
       error: (err) => {
         console.error('❌ Error al enviar el documento:', err);
       },
     });
   }
-  
 }

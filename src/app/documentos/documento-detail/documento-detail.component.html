@@ -33,5 +33,7 @@
     [PDFbase64]="PDFbase64"
     [contentTypeDocumento]="documento.contentTypeDocumento!"
   ></app-documento-preview>
-  <app-chunks [documentoId]="id"></app-chunks>
+  @if (reiniciar) {
+    <app-chunks [documentoId]="id"></app-chunks>
+  }
 </div>
